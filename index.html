@@ -1,931 +1,700 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dropless — Less Scrubbing. More Living.</title>
-  <meta name="description" content="A hydrophobic glass protection spray made in Shellharbour, NSW. One bottle. One year. Tested 47 days with a family of four." />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dropless — Less Scrubbing. More Living.</title>
+<meta name="description" content="Professional hydrophobic protection sprays. Made in Wollongong, NSW Australia. 14 products for every surface."/>
+<meta property="og:title" content="Dropless — Less Scrubbing. More Living."/>
+<meta property="og:description" content="Professional hydrophobic coatings. Apply once, forget for months."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://dropless.com.au"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#f4f1ec;--bg2:#eae5dc;--ink:#0d2027;--soft:#2c3e44;--muted:#6d7a7e;--line:#d8d2c6;--teal:#1a5d6e;--teal2:#4ea8b0;--drop:#c8e3e4;--white:#fefdfb;--r:3px;--max:1240px;--pad:clamp(16px,4vw,48px);}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Geist',system-ui,sans-serif;font-size:17px;line-height:1.55;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body.rtl{direction:rtl;text-align:right;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.display{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.02em;line-height:1.05;font-variation-settings:"opsz" 144,"SOFT" 50;}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);}
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Dropless — Less Scrubbing. More Living." />
-  <meta property="og:description" content="Hydrophobic glass protection. Apply once. Forget for months." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dropless.com.au" />
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(244,241,236,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s;}
+.nav.scrolled{border-bottom-color:var(--line);background:rgba(244,241,236,.96);}
+.logo{font-family:'Fraunces',serif;font-size:22px;font-weight:500;letter-spacing:-.02em;display:flex;align-items:center;gap:7px;}
+.logo-drop{width:12px;height:16px;background:var(--teal);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;position:relative;top:-1px;}
+.nav-center{display:flex;gap:24px;font-size:13.5px;color:var(--soft);}
+.nav-center a{padding:4px 0;position:relative;}
+.nav-center a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--teal);transition:width .25s;}
+.nav-center a:hover{color:var(--teal);}
+.nav-center a:hover::after{width:100%;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+select.lang-pick{background:transparent;border:1px solid var(--line);color:var(--soft);font-family:'Geist',sans-serif;font-size:13px;padding:6px 10px;border-radius:20px;cursor:pointer;outline:none;}
+select.lang-pick:hover{border-color:var(--teal);color:var(--teal);}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;font-family:'Geist',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.02em;border-radius:999px;cursor:pointer;transition:transform .2s,background .2s,color .2s,border-color .2s;border:1.5px solid var(--ink);}
+.btn-primary{background:var(--ink);color:var(--white);}
+.btn-primary:hover{background:var(--teal);border-color:var(--teal);transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:var(--ink);}
+.btn-ghost:hover{background:var(--ink);color:var(--white);}
+@media(max-width:760px){.nav-center{display:none;}.nav-right .nav-buy{display:none;}}
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+/* HERO */
+.hero{min-height:100vh;padding:110px var(--pad) 80px;display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center;max-width:var(--max);margin:0 auto;}
+@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:100px;}}
+.hero-text{opacity:0;transform:translateY(20px);animation:rise 1s .2s forwards cubic-bezier(.2,.7,.2,1);}
+.hero h1{font-size:clamp(44px,7.5vw,100px);margin:20px 0 24px;}
+.hero h1 em{font-style:italic;color:var(--teal);font-variation-settings:"opsz" 144,"SOFT" 100;}
+.hero-sub{font-size:clamp(16px,1.6vw,19px);color:var(--soft);max-width:460px;margin:0 0 32px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.hero-visual{position:relative;aspect-ratio:3/4;max-width:440px;margin-left:auto;opacity:0;transform:translateY(20px);animation:rise 1.1s .45s forwards cubic-bezier(.2,.7,.2,1);}
+.bottle-stage{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,rgba(78,168,176,.18),transparent 60%),linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-radius:8px;overflow:hidden;}
+.bottle-stage::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(78,168,176,.35) 0,transparent 1px),radial-gradient(circle at 75% 60%,rgba(78,168,176,.25) 0,transparent 1.5px),radial-gradient(circle at 45% 80%,rgba(78,168,176,.3) 0,transparent 1px),radial-gradient(circle at 85% 30%,rgba(78,168,176,.2) 0,transparent 1.2px);background-size:55px 55px;animation:drift 18s linear infinite;}
+.bottle-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);font-size:clamp(80px,18vw,140px);filter:drop-shadow(0 20px 30px rgba(13,32,39,.15));}
+.hero-badge{position:absolute;bottom:20px;left:20px;right:20px;display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
 
-  <style>
-    :root {
-      --bg: #f4f1ec;
-      --bg-warm: #ebe6dd;
-      --ink: #0d2027;
-      --ink-soft: #2c3e44;
-      --muted: #6d7a7e;
-      --line: #d8d2c6;
-      --teal: #1a5d6e;
-      --teal-bright: #4ea8b0;
-      --drop: #c8e3e4;
-      --white: #fefdfb;
-      --radius: 2px;
-      --maxw: 1240px;
-      --pad: clamp(20px, 4vw, 48px);
-    }
+/* STATS */
+.stats{background:var(--teal);color:var(--white);padding:28px var(--pad);}
+.stats-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center;}
+@media(max-width:640px){.stats-inner{grid-template-columns:repeat(2,1fr);}}
+.stat-num{font-family:'Fraunces',serif;font-size:clamp(28px,5vw,44px);font-weight:400;letter-spacing:-.02em;}
+.stat-lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin-top:2px;}
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* SECTION */
+section{padding:clamp(72px,10vw,120px) var(--pad);}
+.section-inner{max-width:var(--max);margin:0 auto;}
+.section-head{text-align:center;margin-bottom:56px;}
+.section-head h2{font-size:clamp(32px,5vw,56px);margin:10px 0 16px;}
+.section-head p{font-size:18px;color:var(--soft);max-width:560px;margin:0 auto;}
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Geist', system-ui, -apple-system, sans-serif;
-      font-weight: 400;
-      font-size: 17px;
-      line-height: 1.55;
-      letter-spacing: -0.005em;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+/* PRODUCTS GRID */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.prod-card{background:var(--white);border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:box-shadow .25s,transform .25s;}
+.prod-card:hover{box-shadow:0 8px 32px rgba(13,32,39,.08);transform:translateY(-2px);}
+.prod-card-head{padding:24px 24px 16px;display:flex;gap:14px;align-items:flex-start;}
+.prod-icon{font-size:28px;line-height:1;flex-shrink:0;}
+.prod-name{font-family:'Fraunces',serif;font-size:19px;font-weight:400;margin:0 0 4px;line-height:1.2;}
+.prod-tag{font-size:12.5px;color:var(--muted);}
+.prod-surfaces{font-size:11px;color:var(--teal);letter-spacing:.08em;font-weight:500;padding:0 24px 16px;}
+.prod-toggle{width:100%;background:none;border:none;border-top:1px solid var(--line);padding:14px 24px;text-align:left;font-family:'Geist',sans-serif;font-size:13.5px;font-weight:500;color:var(--teal);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s;}
+.prod-toggle:hover{background:rgba(26,93,110,.04);}
+.prod-toggle .chevron{transition:transform .3s;font-size:11px;}
+.prod-toggle.open .chevron{transform:rotate(180deg);}
+.prod-instructions{display:none;padding:0 24px 24px;border-top:1px solid var(--bg2);}
+.prod-instructions.visible{display:block;}
+.inst-imp{background:rgba(255,230,100,.25);border-left:3px solid #e6b800;padding:10px 14px;border-radius:0 4px 4px 0;margin-bottom:10px;font-size:13.5px;}
+.inst-crit{background:rgba(230,80,80,.1);border-left:3px solid #cc4444;padding:10px 14px;border-radius:0 4px 4px 0;margin-bottom:10px;font-size:13.5px;}
+.inst-effect{background:rgba(78,168,176,.1);border-left:3px solid var(--teal2);padding:10px 14px;border-radius:0 4px 4px 0;margin-bottom:14px;font-size:13.5px;}
+body.rtl .inst-imp,body.rtl .inst-crit,body.rtl .inst-effect{border-left:none;border-right:3px solid;}
+body.rtl .inst-imp{border-right-color:#e6b800;}
+body.rtl .inst-crit{border-right-color:#cc4444;}
+body.rtl .inst-effect{border-right-color:var(--teal2);}
+.inst-label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;}
+.inst-text{line-height:1.5;}
+.inst-steps-title{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.inst-steps{margin:0;padding-left:20px;}
+body.rtl .inst-steps{padding-left:0;padding-right:20px;}
+.inst-steps li{font-size:14px;margin-bottom:6px;line-height:1.45;}
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+/* LANG TABS */
+.lang-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;padding-top:12px;}
+.lang-tab{font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid var(--line);background:transparent;cursor:pointer;font-family:'Geist',sans-serif;color:var(--soft);transition:background .2s,color .2s,border-color .2s;}
+.lang-tab.active{background:var(--teal);color:var(--white);border-color:var(--teal);}
 
-    .display {
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      font-variation-settings: "opsz" 144, "SOFT" 50;
-    }
+/* HOW IT WORKS */
+.how{background:var(--bg2);}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+@media(max-width:700px){.steps-grid{grid-template-columns:repeat(2,1fr);}}
+.step{text-align:center;padding:28px 16px;}
+.step-num{width:44px;height:44px;background:var(--teal);color:var(--white);border-radius:50%;font-family:'Fraunces',serif;font-size:22px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.step h3{font-size:16px;font-weight:600;margin:0 0 8px;}
+.step p{font-size:14px;color:var(--soft);margin:0;}
 
-    .eyebrow {
-      font-family: 'Geist', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--teal);
-    }
+/* BUY */
+.buy{background:var(--teal);color:var(--white);}
+.buy-inner{max-width:680px;margin:0 auto;text-align:center;}
+.buy h2{font-size:clamp(28px,4vw,48px);margin:10px 0 12px;color:var(--white);}
+.buy-sub{opacity:.85;margin-bottom:36px;font-size:17px;}
+.buy-form{background:rgba(255,255,255,.1);border-radius:12px;padding:32px;text-align:left;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:560px){.form-row{grid-template-columns:1fr;}}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.8;}
+.form-group select,.form-group input{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:var(--white);padding:12px 14px;border-radius:6px;font-family:'Geist',sans-serif;font-size:15px;outline:none;transition:border-color .2s;}
+.form-group select option{color:var(--ink);background:var(--white);}
+.form-group select:focus,.form-group input:focus{border-color:rgba(255,255,255,.7);}
+.form-group input::placeholder{opacity:.5;}
+.buy-submit{width:100%;padding:15px;background:var(--white);color:var(--teal);border:none;border-radius:999px;font-family:'Geist',sans-serif;font-size:15px;font-weight:600;cursor:pointer;margin-top:8px;transition:transform .2s,background .2s;}
+.buy-submit:hover{background:var(--bg);transform:translateY(-1px);}
+.buy-note{font-size:12px;opacity:.65;text-align:center;margin-top:12px;}
 
-    /* ───────── NAV ───────── */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 18px var(--pad);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(244, 241, 236, 0.7);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid transparent;
-      transition: border-color .3s, background .3s;
-    }
-    .nav.scrolled {
-      border-bottom-color: var(--line);
-      background: rgba(244, 241, 236, 0.92);
-    }
-    .logo {
-      font-family: 'Fraunces', serif;
-      font-size: 22px;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .logo-drop {
-      width: 14px; height: 18px;
-      background: var(--teal);
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      transform: rotate(0deg);
-      position: relative;
-      top: -1px;
-    }
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      font-size: 14px;
-      color: var(--ink-soft);
-    }
-    .nav-links a {
-      position: relative;
-      padding: 6px 0;
-      transition: color .2s;
-    }
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0; bottom: 0;
-      width: 0; height: 1px;
-      background: var(--teal);
-      transition: width .25s ease;
-    }
-    .nav-links a:hover { color: var(--teal); }
-    .nav-links a:hover::after { width: 100%; }
-    @media (max-width: 720px) { .nav-links { display: none; } }
+/* FAQ */
+.faq-list{max-width:760px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;background:none;border:none;padding:20px 0;text-align:left;font-family:'Geist',sans-serif;font-size:16px;font-weight:500;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+body.rtl .faq-q{text-align:right;}
+.faq-q .fq-icon{color:var(--teal);font-size:20px;font-weight:300;flex-shrink:0;transition:transform .3s;}
+.faq-q.open .fq-icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;font-size:15px;color:var(--soft);line-height:1.6;transition:max-height .35s ease,padding .35s;}
+.faq-a.open{max-height:300px;padding-bottom:18px;}
 
-    /* ───────── HERO ───────── */
-    .hero {
-      min-height: 100vh;
-      padding: 120px var(--pad) 80px;
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 60px;
-      align-items: center;
-      max-width: var(--maxw);
-      margin: 0 auto;
-    }
-    @media (max-width: 920px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 110px; }
-    }
+/* CONTACT */
+.contact{background:var(--bg2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:var(--max);margin:0 auto;}
+@media(max-width:760px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info h2{font-size:clamp(28px,4vw,44px);margin:10px 0 16px;}
+.contact-info p{color:var(--soft);margin-bottom:24px;}
+.contact-detail{display:flex;gap:10px;align-items:center;margin-bottom:12px;font-size:15px;}
+.contact-form-wrap{background:var(--white);border-radius:10px;padding:32px;}
+.cf-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.cf-group label{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.cf-group input,.cf-group textarea{border:1.5px solid var(--line);padding:12px 14px;border-radius:6px;font-family:'Geist',sans-serif;font-size:15px;color:var(--ink);background:transparent;outline:none;transition:border-color .2s;}
+.cf-group input:focus,.cf-group textarea:focus{border-color:var(--teal);}
+.cf-group textarea{height:100px;resize:vertical;}
+.cf-submit{width:100%;padding:14px;background:var(--ink);color:var(--white);border:none;border-radius:999px;font-family:'Geist',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:background .2s,transform .2s;}
+.cf-submit:hover{background:var(--teal);transform:translateY(-1px);}
 
-    .hero-text { opacity: 0; transform: translateY(20px); animation: rise 1s .2s forwards cubic-bezier(.2,.7,.2,1); }
-    .hero h1 {
-      font-size: clamp(48px, 8vw, 104px);
-      margin: 24px 0 28px;
-    }
-    .hero h1 em {
-      font-style: italic;
-      font-variation-settings: "opsz" 144, "SOFT" 100;
-      color: var(--teal);
-    }
-    .hero p {
-      font-size: clamp(16px, 1.6vw, 19px);
-      color: var(--ink-soft);
-      max-width: 460px;
-      margin: 0 0 36px;
-    }
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad) 32px;}
+.footer-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;}
+@media(max-width:640px){.footer-inner{grid-template-columns:1fr;}}
+.footer-brand{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:var(--white);margin-bottom:10px;}
+.footer-brand-sub{font-size:13px;line-height:1.6;}
+.footer-col h4{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:12px;}
+.footer-col a{display:block;font-size:14px;margin-bottom:8px;color:rgba(255,255,255,.6);transition:color .2s;}
+.footer-col a:hover{color:var(--white);}
+.footer-bottom{max-width:var(--max);margin:32px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;font-size:12.5px;flex-wrap:wrap;gap:8px;}
 
-    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 26px;
-      font-family: 'Geist', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: transform .2s, background .2s, color .2s;
-      border: 1px solid var(--ink);
-    }
-    .btn-primary { background: var(--ink); color: var(--white); }
-    .btn-primary:hover { background: var(--teal); border-color: var(--teal); transform: translateY(-1px); }
-    .btn-ghost { background: transparent; color: var(--ink); }
-    .btn-ghost:hover { background: var(--ink); color: var(--white); }
-    .btn .arrow { transition: transform .25s; }
-    .btn:hover .arrow { transform: translateX(4px); }
+/* ANIM */
+@keyframes rise{to{opacity:1;transform:translateY(0);}}
+@keyframes drift{from{background-position:0 0;}to{background-position:55px 55px;}}
 
-    /* Product visual */
-    .hero-visual {
-      position: relative;
-      aspect-ratio: 3 / 4;
-      max-width: 460px;
-      margin-left: auto;
-      opacity: 0; transform: translateY(20px);
-      animation: rise 1.1s .45s forwards cubic-bezier(.2,.7,.2,1);
-    }
-    .bottle-stage {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 50% 35%, rgba(78,168,176,0.18), transparent 60%),
-        linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .bottle-stage::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(78,168,176,0.35) 0, transparent 1px),
-        radial-gradient(circle at 75% 60%, rgba(78,168,176,0.25) 0, transparent 1.5px),
-        radial-gradient(circle at 45% 80%, rgba(78,168,176,0.3) 0, transparent 1px),
-        radial-gradient(circle at 85% 30%, rgba(78,168,176,0.2) 0, transparent 1.2px),
-        radial-gradient(circle at 30% 55%, rgba(78,168,176,0.25) 0, transparent 1px);
-      background-size: 60px 60px;
-      animation: drift 18s linear infinite;
-    }
-    .bottle-svg {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 55%;
-      filter: drop-shadow(0 30px 40px rgba(13, 32, 39, 0.18));
-    }
-    .visual-label {
-      position: absolute;
-      bottom: 18px;
-      left: 18px;
-      right: 18px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    @keyframes rise {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes drift {
-      from { background-position: 0 0; }
-      to { background-position: 60px 60px; }
-    }
-
-    /* ───────── SECTION FRAME ───────── */
-    section {
-      padding: clamp(80px, 12vw, 140px) var(--pad);
-      max-width: var(--maxw);
-      margin: 0 auto;
-    }
-    .section-head {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 60px;
-      margin-bottom: 60px;
-      align-items: end;
-    }
-    @media (max-width: 720px) {
-      .section-head { grid-template-columns: 1fr; gap: 16px; }
-    }
-    .section-head h2 {
-      font-size: clamp(36px, 5.5vw, 64px);
-      margin: 14px 0 0;
-    }
-    .section-head h2 em { font-style: italic; color: var(--teal); }
-    .section-head .lead {
-      font-size: clamp(15px, 1.5vw, 17px);
-      color: var(--ink-soft);
-      max-width: 540px;
-    }
-
-    /* ───────── PROMISE BAND ───────── */
-    .promise {
-      background: var(--ink);
-      color: var(--white);
-      max-width: none;
-      margin: 0;
-      padding: clamp(80px, 11vw, 140px) var(--pad);
-    }
-    .promise-inner {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-    }
-    @media (max-width: 920px) { .promise-inner { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px) { .promise-inner { grid-template-columns: 1fr; } }
-    .stat {
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding-top: 24px;
-    }
-    .stat .num {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(48px, 6vw, 72px);
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: var(--white);
-    }
-    .stat .num em { color: var(--teal-bright); font-style: italic; }
-    .stat .label {
-      margin-top: 14px;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-    }
-
-    /* ───────── HOW IT WORKS ───────── */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-    }
-    @media (max-width: 920px) { .steps { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
-    .step {
-      border-top: 1px solid var(--line);
-      padding-top: 24px;
-    }
-    .step-num {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-size: 36px;
-      color: var(--teal);
-      line-height: 1;
-    }
-    .step h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 22px;
-      font-weight: 500;
-      margin: 18px 0 10px;
-      letter-spacing: -0.01em;
-    }
-    .step p {
-      font-size: 15px;
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.55;
-    }
-
-    /* ───────── BEFORE / AFTER ───────── */
-    .ba {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 20px;
-    }
-    @media (max-width: 720px) { .ba { grid-template-columns: 1fr; } }
-    .ba-card {
-      aspect-ratio: 4/5;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-      transition: transform .4s ease;
-    }
-    .ba-card:hover { transform: translateY(-4px); }
-    .ba-before {
-      background:
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 2px, transparent 2px 8px),
-        linear-gradient(160deg, #8b9395 0%, #5a6669 100%);
-    }
-    .ba-after {
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.7) 0, transparent 30%),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.5) 0, transparent 25%),
-        linear-gradient(160deg, #b8d4d5 0%, #4ea8b0 100%);
-    }
-    .ba-card::before {
-      content: attr(data-label);
-      position: absolute;
-      top: 18px; left: 18px;
-      font-family: 'Geist', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--white);
-      background: rgba(0,0,0,0.4);
-      padding: 6px 10px;
-      border-radius: 999px;
-      backdrop-filter: blur(6px);
-    }
-    .ba-card::after {
-      content: attr(data-caption);
-      position: absolute;
-      bottom: 18px; left: 18px; right: 18px;
-      font-family: 'Fraunces', serif;
-      font-size: 18px;
-      color: var(--white);
-      line-height: 1.3;
-    }
-
-    .ba-note {
-      margin-top: 28px;
-      font-size: 14px;
-      color: var(--muted);
-      font-style: italic;
-      max-width: 600px;
-    }
-
-    /* ───────── INSIDE / FEATURES ───────── */
-    .inside {
-      background: var(--bg-warm);
-      max-width: none;
-      margin: 0;
-      padding: clamp(80px, 11vw, 140px) var(--pad);
-    }
-    .inside-inner { max-width: var(--maxw); margin: 0 auto; }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    @media (max-width: 720px) { .features { grid-template-columns: 1fr; } }
-    .feature {
-      background: var(--bg-warm);
-      padding: 32px 28px;
-      transition: background .3s;
-    }
-    .feature:hover { background: var(--bg); }
-    .feature-icon {
-      width: 32px; height: 32px;
-      stroke: var(--teal);
-      fill: none;
-      stroke-width: 1.4;
-      margin-bottom: 18px;
-    }
-    .feature h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 20px;
-      font-weight: 500;
-      margin: 0 0 8px;
-      letter-spacing: -0.01em;
-    }
-    .feature p {
-      font-size: 14px;
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.55;
-    }
-
-    /* ───────── FAQ ───────── */
-    .faq { max-width: 820px; margin: 0 auto; }
-    details {
-      border-top: 1px solid var(--line);
-      padding: 24px 0;
-      cursor: pointer;
-    }
-    details:last-of-type { border-bottom: 1px solid var(--line); }
-    summary {
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'Fraunces', serif;
-      font-size: clamp(18px, 2.2vw, 22px);
-      letter-spacing: -0.01em;
-      font-weight: 500;
-    }
-    summary::-webkit-details-marker { display: none; }
-    summary .plus {
-      width: 24px; height: 24px;
-      position: relative;
-      flex-shrink: 0;
-      margin-left: 16px;
-      transition: transform .3s;
-    }
-    summary .plus::before, summary .plus::after {
-      content: "";
-      position: absolute;
-      left: 50%; top: 50%;
-      background: var(--ink);
-      transition: transform .3s;
-    }
-    summary .plus::before { width: 14px; height: 1.5px; transform: translate(-50%, -50%); }
-    summary .plus::after  { width: 1.5px; height: 14px; transform: translate(-50%, -50%); }
-    details[open] summary .plus::after { transform: translate(-50%, -50%) scaleY(0); }
-    details[open] summary .plus { transform: rotate(180deg); }
-    details p {
-      margin: 16px 0 0;
-      color: var(--ink-soft);
-      max-width: 700px;
-    }
-
-    /* ───────── CONTACT ───────── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 60px;
-    }
-    @media (max-width: 820px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
-
-    .contact-side h3 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(28px, 4vw, 42px);
-      margin: 14px 0 18px;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-    }
-    .contact-side p { color: var(--ink-soft); margin: 0 0 28px; }
-    .contact-info {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .contact-info li { padding: 10px 0; border-bottom: 1px solid var(--line); }
-    .contact-info li:last-child { border-bottom: none; }
-    .contact-info strong {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink);
-      margin-bottom: 4px;
-      font-weight: 500;
-    }
-
-    form { display: grid; gap: 18px; }
-    .field { display: flex; flex-direction: column; }
-    .field label {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-    .field input, .field textarea {
-      font-family: 'Geist', sans-serif;
-      font-size: 16px;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--line);
-      padding: 10px 0;
-      color: var(--ink);
-      outline: none;
-      transition: border-color .2s;
-    }
-    .field input:focus, .field textarea:focus { border-bottom-color: var(--teal); }
-    .field textarea { min-height: 90px; resize: vertical; }
-    form button {
-      justify-self: start;
-      margin-top: 12px;
-    }
-
-    /* ───────── FOOTER ───────── */
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 60px var(--pad) 32px;
-      max-width: var(--maxw);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-    @media (max-width: 720px) { footer { grid-template-columns: 1fr; gap: 30px; } }
-    .foot-brand {
-      font-family: 'Fraunces', serif;
-      font-size: 24px;
-      letter-spacing: -0.02em;
-    }
-    .foot-brand p {
-      font-family: 'Geist', sans-serif;
-      font-size: 13px;
-      color: var(--muted);
-      max-width: 320px;
-      margin: 10px 0 0;
-      line-height: 1.5;
-    }
-    .foot-col h4 {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink);
-      margin: 0 0 14px;
-      font-weight: 500;
-    }
-    .foot-col ul { list-style: none; padding: 0; margin: 0; }
-    .foot-col li { padding: 4px 0; font-size: 14px; color: var(--muted); }
-    .foot-col a:hover { color: var(--teal); }
-    .legal {
-      grid-column: 1 / -1;
-      border-top: 1px solid var(--line);
-      padding-top: 24px;
-      margin-top: 20px;
-      font-size: 12px;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    /* ───────── REVEAL ON SCROLL ───────── */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
-    .reveal.in { opacity: 1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      .reveal, .hero-text, .hero-visual { opacity: 1; transform: none; animation: none; transition: none; }
-      .bottle-stage::before { animation: none; }
-    }
-  </style>
+/* MOBILE NAV */
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--white);border-top:1px solid var(--line);padding:8px 0 max(8px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);}
+.mob-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:500;color:var(--soft);padding:4px;cursor:pointer;transition:color .2s;}
+.mob-nav-item:hover{color:var(--teal);}
+.mob-nav-icon{font-size:20px;}
+@media(max-width:640px){.mob-nav{display:grid;}body{padding-bottom:64px;}}
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <a href="#" class="logo">
-      <span class="logo-drop"></span>
-      <span>Dropless</span>
-    </a>
-    <div class="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#proof">Proof</a>
-      <a href="#inside">Inside</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="logo"><span class="logo-drop"></span>Dropless</a>
+  <div class="nav-center">
+    <a href="#products">Products</a>
+    <a href="#how">How It Works</a>
+    <a href="#buy">Buy</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <select class="lang-pick" id="globalLang" onchange="setLang(this.value)">
+      <option value="en">English</option>
+      <option value="tr">Türkçe</option>
+      <option value="ar">العربية</option>
+      <option value="zh">中文</option>
+      <option value="hi">हिन्दी</option>
+      <option value="es">Español</option>
+      <option value="it">Italiano</option>
+      <option value="fa">فارسی</option>
+    </select>
+    <a href="#buy" class="btn btn-primary nav-buy">Buy Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">Made in Wollongong, NSW · Australia</div>
+    <h1 class="display">Less Scrubbing.<br><em>More Living.</em></h1>
+    <p class="hero-sub">Professional hydrophobic coatings for every surface. Apply once — water beads, stains slide off, surfaces stay clean for months.</p>
+    <div class="hero-btns">
+      <a href="#buy" class="btn btn-primary">Shop Now <span>→</span></a>
+      <a href="#products" class="btn btn-ghost">See All Products</a>
     </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <span class="eyebrow">Hydrophobic glass protection · Made in Shellharbour, NSW</span>
-      <h1 class="display">Less Scrubbing.<br><em>More Living.</em></h1>
-      <p>One bottle. One year. A single application that turns your shower glass, windscreen, and windows water-repellent — so dirt, soap, and limescale slide off instead of settling in.</p>
-      <div class="cta-row">
-        <a href="#contact" class="btn btn-primary">Reserve a bottle <span class="arrow">→</span></a>
-        <a href="#how" class="btn btn-ghost">How it works</a>
-      </div>
+  </div>
+  <div class="hero-visual">
+    <div class="bottle-stage"></div>
+    <div class="bottle-icon">💧</div>
+    <div class="hero-badge">
+      <span>Dropless Bath</span>
+      <span>100 mL · $24.99 AUD</span>
     </div>
+  </div>
+</div>
 
-    <div class="hero-visual">
-      <div class="bottle-stage">
-        <!-- Stylised bottle placeholder — replace with real product photo when ready -->
-        <svg class="bottle-svg" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="bot" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0%" stop-color="#0d2027" />
-              <stop offset="100%" stop-color="#1a5d6e" />
-            </linearGradient>
-            <linearGradient id="cap" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#2c3e44" />
-              <stop offset="100%" stop-color="#0d2027" />
-            </linearGradient>
-          </defs>
-          <!-- cap -->
-          <rect x="44" y="6" width="32" height="36" rx="3" fill="url(#cap)" />
-          <rect x="48" y="10" width="24" height="2" fill="rgba(255,255,255,0.15)" />
-          <!-- neck -->
-          <rect x="50" y="42" width="20" height="14" fill="#162a32" />
-          <!-- body -->
-          <rect x="28" y="56" width="64" height="138" rx="6" fill="url(#bot)" />
-          <!-- label -->
-          <rect x="34" y="78" width="52" height="98" fill="#f4f1ec" />
-          <text x="60" y="120" text-anchor="middle" font-family="Fraunces" font-size="14" fill="#0d2027" font-style="italic">Dropless</text>
-          <text x="60" y="138" text-anchor="middle" font-family="Geist" font-size="6" fill="#6d7a7e" letter-spacing="2">HYDROPHOBIC</text>
-          <text x="60" y="148" text-anchor="middle" font-family="Geist" font-size="6" fill="#6d7a7e" letter-spacing="2">GLASS SHIELD</text>
-          <text x="60" y="170" text-anchor="middle" font-family="Geist" font-size="5" fill="#6d7a7e">100 ML</text>
-          <!-- highlight -->
-          <rect x="32" y="60" width="6" height="130" rx="3" fill="rgba(255,255,255,0.08)" />
-        </svg>
-      </div>
-      <div class="visual-label">
-        <span>100 ML · HDPE</span>
-        <span>Lot 001</span>
-      </div>
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div><div class="stat-num">14</div><div class="stat-lbl">Products</div></div>
+    <div><div class="stat-num">8</div><div class="stat-lbl">Languages</div></div>
+    <div><div class="stat-num">AU</div><div class="stat-lbl">Made in Australia</div></div>
+    <div><div class="stat-num">1yr</div><div class="stat-lbl">Lasting Protection</div></div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="eyebrow">Product Range</div>
+      <h2 class="display">Protection for Every Surface</h2>
+      <p>Professional-grade hydrophobic coatings. Select a product below to view instructions in your language.</p>
     </div>
-  </section>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
 
-  <!-- PROMISE BAND -->
-  <section class="promise">
-    <div class="promise-inner">
-      <div class="stat reveal">
-        <div class="num"><em>47</em></div>
-        <div class="label">Days tested without cleaning</div>
-      </div>
-      <div class="stat reveal">
-        <div class="num"><em>4</em></div>
-        <div class="label">Person family, daily use</div>
-      </div>
-      <div class="stat reveal">
-        <div class="num"><em>1</em></div>
-        <div class="label">Application, months of protection</div>
-      </div>
-      <div class="stat reveal">
-        <div class="num"><em>100</em>ml</div>
-        <div class="label">Covers up to 25 m² of glass</div>
-      </div>
+<!-- HOW IT WORKS -->
+<section id="how" class="how">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="eyebrow">Universal Method</div>
+      <h2 class="display">Four Steps. Lasting Protection.</h2>
     </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="how">
-    <div class="section-head reveal">
-      <span class="eyebrow">How it works</span>
-      <div>
-        <h2 class="display">A microscopic layer that <em>water can't grip.</em></h2>
-        <p class="lead">Dropless bonds a hydrophobic film to glass at the molecular level. Water beads up and rolls away — taking soap film, mineral spots, and dirt with it.</p>
-      </div>
+    <div class="steps-grid">
+      <div class="step"><div class="step-num">1</div><h3>Clean</h3><p>Clean the surface thoroughly and make sure it's completely dry.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Spray</h3><p>Apply a light, even mist. Less is more — a thin coat bonds better.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Spread</h3><p>Use a clean microfiber cloth (not the cleaning cloth) to spread evenly.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Buff</h3><p>Buff until clear. Avoid water for 30–60 min. Done.</p></div>
     </div>
+  </div>
+</section>
 
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step-num">i.</div>
-        <h3>Clean the surface</h3>
-        <p>Wipe the glass thoroughly. The cleaner the substrate, the stronger the bond.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">ii.</div>
-        <h3>Mist evenly</h3>
-        <p>A few light passes from 20 cm away. The fine mist self-distributes across the surface.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">iii.</div>
-        <h3>Wait 10 minutes</h3>
-        <p>The active layer cures and chemically bonds to silica in the glass.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-num">iv.</div>
-        <h3>Buff lightly</h3>
-        <p>A soft microfibre pass removes excess. Done — protection is active.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- BEFORE / AFTER -->
-  <section id="proof">
-    <div class="section-head reveal">
-      <span class="eyebrow">The proof</span>
-      <div>
-        <h2 class="display">Forty-seven days. <em>No cleaning.</em></h2>
-        <p class="lead">A working family bathroom, used by four people, hot showers daily. The protected pane was left untouched. Here's what we found.</p>
-      </div>
-    </div>
-
-    <div class="ba">
-      <div class="ba-card ba-before reveal" data-label="Untreated" data-caption="Soap film, limescale, water spots — after 14 days."></div>
-      <div class="ba-card ba-after reveal" data-label="Dropless" data-caption="Beading, runoff, clarity — after 47 days."></div>
-    </div>
-    <p class="ba-note reveal">Replace these panels with real photos once the shoot is done. Same lighting, same angle, same panel — only treatment differs.</p>
-  </section>
-
-  <!-- INSIDE -->
-  <section id="inside" class="inside">
-    <div class="inside-inner">
-      <div class="section-head reveal">
-        <span class="eyebrow">What's inside</span>
-        <div>
-          <h2 class="display">Honest formula. <em>Australian made.</em></h2>
-          <p class="lead">No mystery ingredients, no fragrance dye, no claim we can't back up.</p>
+<!-- BUY -->
+<section id="buy" class="buy">
+  <div class="buy-inner">
+    <div class="eyebrow" style="color:rgba(255,255,255,.6)">Order Now</div>
+    <h2 class="display">Ships from Wollongong, NSW</h2>
+    <p class="buy-sub">Free shipping on orders over $50 AUD · Australia Post tracked delivery</p>
+    <div class="buy-form">
+      <form action="https://app.dropless.com.au/stripe/checkout" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Product</label>
+            <select name="urun_adi" id="buyProduct" onchange="updatePrice()">
+              <option value="Dropless Bath 100mL" data-price="24.99">Dropless Bath 100mL — $24.99</option>
+              <option value="Dropless Bath 50mL" data-price="14.99">Dropless Bath 50mL — $14.99</option>
+              <option value="Dropless Glass Pro Coat" data-price="24.99">Glass Pro Coat — $24.99</option>
+              <option value="Dropless Multi-Surface Coat" data-price="24.99">Multi-Surface Coat — $24.99</option>
+              <option value="Dropless RainXtreme" data-price="24.99">RainXtreme — $24.99</option>
+              <option value="Dropless Ceramic Shield" data-price="24.99">Ceramic Shield — $24.99</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <select name="adet">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
         </div>
-      </div>
-
-      <div class="features">
-        <div class="feature reveal">
-          <svg class="feature-icon" viewBox="0 0 32 32"><path d="M16 4 C12 12, 8 16, 8 21 a8 8 0 0 0 16 0 C24 16, 20 12, 16 4 z"/></svg>
-          <h3>Water-based</h3>
-          <p>Glycerin and water carrier with a low-VOC active. Around 10% IPA evaporates on cure.</p>
+        <div class="form-group" style="margin-bottom:16px;">
+          <label>Your Email</label>
+          <input type="email" name="musteri_email" placeholder="you@example.com"/>
         </div>
-        <div class="feature reveal">
-          <svg class="feature-icon" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10"/><path d="M11 16 l4 4 l6 -8"/></svg>
-          <h3>Preserved properly</h3>
-          <p>Optiphen Plus at ~1% keeps the bottle stable for the shelf life — no microbial drift.</p>
-        </div>
-        <div class="feature reveal">
-          <svg class="feature-icon" viewBox="0 0 32 32"><path d="M6 26 L16 6 L26 26 z"/><path d="M11 20 h10"/></svg>
-          <h3>Made in Shellharbour</h3>
-          <p>Blended and bottled in NSW. Locally sourced — no AICIS registration required.</p>
-        </div>
-        <div class="feature reveal">
-          <svg class="feature-icon" viewBox="0 0 32 32"><rect x="6" y="10" width="20" height="14" rx="2"/><path d="M10 10 v-3 a2 2 0 0 1 2 -2 h8 a2 2 0 0 1 2 2 v3"/></svg>
-          <h3>Family safe</h3>
-          <p>Designed for indoor use around children and pets once cured. GHS-compliant SDS available.</p>
-        </div>
-        <div class="feature reveal">
-          <svg class="feature-icon" viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path d="M16 5 v22 M5 16 h22"/></svg>
-          <h3>Works on most glass</h3>
-          <p>Shower screens, windows, windscreens, ceramic tiles, mirrors. Not for non-glass plastics.</p>
-        </div>
-        <div class="feature reveal">
-          <svg class="feature-icon" viewBox="0 0 32 32"><path d="M6 18 q4 -6 10 -6 t10 6"/><path d="M10 22 q3 -4 6 -4 t6 4"/><circle cx="16" cy="26" r="1.5" fill="currentColor" stroke="none"/></svg>
-          <h3>Fine mist spray</h3>
-          <p>Even atomisation, less waste. Aim for light coverage, not saturation.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="section-head reveal">
-      <span class="eyebrow">Common questions</span>
-      <div>
-        <h2 class="display">Good questions. <em>Direct answers.</em></h2>
-      </div>
-    </div>
-
-    <div class="faq">
-      <details class="reveal">
-        <summary>How long does one application really last? <span class="plus"></span></summary>
-        <p>In our 4-person household test, the protected shower glass stayed clear for 47 days with zero cleaning. With monthly light wipes (no harsh chemicals), most surfaces stay protected for 8–12 months.</p>
-      </details>
-      <details class="reveal">
-        <summary>Will it work on my car windscreen? <span class="plus"></span></summary>
-        <p>Yes — Dropless was tested on automotive glass first. Above ~60 km/h, rain beads roll off the screen without wipers. Reapply every 4–6 months for highway use.</p>
-      </details>
-      <details class="reveal">
-        <summary>Can I use it on coated or tinted glass? <span class="plus"></span></summary>
-        <p>Yes for tinted glass. For anti-glare or oleophobic factory coatings (phone screens, some monitors) we recommend a small test patch first.</p>
-      </details>
-      <details class="reveal">
-        <summary>Is it safe around kids and pets? <span class="plus"></span></summary>
-        <p>Once cured (about 30 minutes after application), the bonded layer is inert. Avoid direct spraying near food prep surfaces or inhalation during application — full safety data in the SDS.</p>
-      </details>
-      <details class="reveal">
-        <summary>When can I buy one? <span class="plus"></span></summary>
-        <p>The first production lot is ready. We're launching on eBay first — use the form below to get on the early-access list and we'll email you the moment it's live.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-grid">
-      <div class="contact-side reveal">
-        <span class="eyebrow">Get in touch</span>
-        <h3 class="display">Reserve a bottle, or just say hello.</h3>
-        <p>Drop us a note and we'll get back within a working day. Trade and bulk enquiries welcome.</p>
-        <ul class="contact-info">
-          <li><strong>Email</strong>info@dropless.com.au</li>
-          <li><strong>Location</strong>Shellharbour, NSW, Australia</li>
-          <li><strong>Hours</strong>Mon – Fri · 9am – 5pm AEST</li>
-        </ul>
-      </div>
-
-      <!-- Replace action with your Formspree endpoint once registered:
-           https://formspree.io/f/YOUR_ID
-           Until then this falls back to a mailto link via JS below. -->
-      <form id="contactForm" action="https://formspree.io/f/REPLACE_ME" method="POST" class="reveal">
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required />
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-        <div class="field">
-          <label for="topic">Topic</label>
-          <input type="text" id="topic" name="topic" placeholder="Reserve a bottle / Trade enquiry / Question" />
-        </div>
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send <span class="arrow">→</span></button>
+        <input type="hidden" name="tutar" id="buyPrice" value="24.99"/>
+        <button type="submit" class="buy-submit">Proceed to Secure Payment →</button>
+        <p class="buy-note">Secured by Stripe · SSL encrypted · Ships within 1–2 business days</p>
       </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="foot-brand">
-      Dropless<span style="color:var(--teal);">.</span>
-      <p>Hydrophobic glass protection, made in Shellharbour, NSW. Distributed across Australia.</p>
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="display">Common Questions</h2>
     </div>
-    <div class="foot-col">
-      <h4>Product</h4>
-      <ul>
-        <li><a href="#how">How it works</a></li>
-        <li><a href="#proof">Proof</a></li>
-        <li><a href="#inside">Inside the bottle</a></li>
-        <li><a href="/sds.pdf">Safety data sheet</a></li>
-      </ul>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="eyebrow">Get in Touch</div>
+      <h2 class="display">We're here to help.</h2>
+      <p>Questions about which product suits your surface? Want wholesale pricing? Reach out anytime.</p>
+      <div class="contact-detail">📧 <a href="mailto:info@dropless.com.au">info@dropless.com.au</a></div>
+      <div class="contact-detail">📍 Wollongong, NSW 2500, Australia</div>
+      <div class="contact-detail">🚚 Ships Australia-wide</div>
     </div>
-    <div class="foot-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="mailto:info@dropless.com.au">info@dropless.com.au</a></li>
-        <li><a href="#">Trade enquiries</a></li>
-      </ul>
+    <div class="contact-form-wrap">
+      <form id="contactForm" onsubmit="submitContact(event)">
+        <div class="cf-group"><label>Name</label><input type="text" name="name" required placeholder="Your name"/></div>
+        <div class="cf-group"><label>Email</label><input type="email" name="email" required placeholder="your@email.com"/></div>
+        <div class="cf-group"><label>Message</label><textarea name="message" required placeholder="How can we help?"></textarea></div>
+        <button type="submit" class="cf-submit">Send Message</button>
+      </form>
     </div>
-    <div class="legal">
-      <span>© <span id="year"></span> Dropless. All rights reserved.</span>
-      <span>ABN 65 948 041 856 · Shellharbour, NSW</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">💧 Dropless</div>
+      <div class="footer-brand-sub">Professional hydrophobic protection.<br>Made in Wollongong, NSW, Australia.<br>© 2026 Dropless. All rights reserved.</div>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#products">All Products</a>
+      <a href="#buy">Buy Now</a>
+      <a href="#how">How It Works</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:info@dropless.com.au">info@dropless.com.au</a>
+      <a href="#contact">Send a Message</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>dropless.com.au</span>
+    <span>Made with ❤ in Wollongong</span>
+  </div>
+</footer>
 
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+<!-- MOBILE NAV -->
+<nav class="mob-nav">
+  <a href="#" class="mob-nav-item"><span class="mob-nav-icon">🏠</span>Home</a>
+  <a href="#products" class="mob-nav-item"><span class="mob-nav-icon">📦</span>Products</a>
+  <a href="#buy" class="mob-nav-item"><span class="mob-nav-icon">🛒</span>Buy</a>
+  <a href="#contact" class="mob-nav-item"><span class="mob-nav-icon">✉</span>Contact</a>
+</nav>
 
-    // Nav scroll state
-    const nav = document.getElementById('nav');
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+<script>
+// ── TRANSLATIONS ──────────────────────────────────────────────────────────────
+const T = {
+  imp_label: {en:'IMPORTANT',tr:'ÖNEMLİ',ar:'مهم',zh:'重要提示',hi:'महत्वपूर्ण',es:'IMPORTANTE',it:'IMPORTANTE',fa:'مهم'},
+  crit_label:{en:'CRITICAL',tr:'KRİTİK',ar:'تحذير حرج',zh:'关键提示',hi:'महत्वपूर्ण चेतावनी',es:'CRÍTICO',it:'CRITICO',fa:'بسیار مهم'},
+  eff_label: {en:'NORMAL EFFECT',tr:'NORMAL ETKİ',ar:'تأثير طبيعي',zh:'正常现象',hi:'सामान्य प्रभाव',es:'EFECTO NORMAL',it:'EFFETTO NORMALE',fa:'اثر طبیعی'},
+  dir_label: {en:'DIRECTIONS',tr:'KULLANIM',ar:'طريقة الاستخدام',zh:'使用方法',hi:'उपयोग निर्देश',es:'INSTRUCCIONES',it:'ISTRUZIONI',fa:'دستورالعمل‌ها'},
+  imp_text: {
+    en:'This is NOT a cleaning product. Clean the surface first and ensure it is completely dry.',
+    tr:'Bu bir temizlik ürünü değildir. Yüzeyi önce temizleyin ve tamamen kurutun.',
+    ar:'هذا ليس منتج تنظيف. يجب تنظيف السطح أولاً وتجفيفه تمامًا.',
+    zh:'这不是清洁产品。请先清洁表面并完全干燥。',
+    hi:'यह एक सफाई उत्पाद नहीं है। सतह को पहले साफ करें और पूरी तरह सुखाएं।',
+    es:'Este NO es un producto de limpieza. Limpia la superficie primero y asegúrate de que esté completamente seca.',
+    it:'Questo NON è un prodotto per la pulizia. Pulisci prima la superficie e asciugala completamente.',
+    fa:'این محصول پاک‌کننده نیست. ابتدا سطح را تمیز کنید و کاملاً خشک کنید.'
+  },
+  crit_text:{
+    en:'Do NOT use the same cloth used for cleaning. Cleaning cloths contain residue that interferes with the coating.',
+    tr:'Temizlik için kullanılan bezi ASLA uygulamada kullanmayın. Temizlik bezlerindeki kalıntılar kaplamayı bozar.',
+    ar:'لا تستخدم نفس قطعة القماش المستخدمة في التنظيف. بقايا مواد التنظيف تُفسد طبقة الحماية.',
+    zh:'不要使用用于清洁的抹布进行施工。清洁抹布中的残留物会影响涂层效果。',
+    hi:'सफाई में इस्तेमाल किया गया कपड़ा बिल्कुल उपयोग न करें। उसमें मौजूद अवशेष कोटिंग को खराब कर देते हैं।',
+    es:'No uses el mismo paño que usaste para limpiar. Los residuos de limpieza interfieren con el recubrimiento.',
+    it:'Non usare il panno utilizzato per pulire. I residui dei detergenti compromettono il rivestimento.',
+    fa:'از همان پارچه‌ای که برای تمیزکاری استفاده کردید استفاده نکنید. باقیمانده مواد پاک‌کننده به پوشش آسیب می‌زند.'
+  },
+  show_inst:{en:'Show Instructions ▾',tr:'Talimatları Göster ▾',ar:'عرض التعليمات ▾',zh:'查看说明 ▾',hi:'निर्देश देखें ▾',es:'Ver Instrucciones ▾',it:'Mostra Istruzioni ▾',fa:'نمایش دستورالعمل‌ها ▾'},
+  hide_inst:{en:'Hide Instructions ▴',tr:'Talimatları Gizle ▴',ar:'إخفاء التعليمات ▴',zh:'隐藏说明 ▴',hi:'निर्देश छुपाएं ▴',es:'Ocultar Instrucciones ▴',it:'Nascondi Istruzioni ▴',fa:'پنهان کردن دستورالعمل‌ها ▴'}
+};
 
-    // Reveal on scroll
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+// ── PRODUCT DATA ──────────────────────────────────────────────────────────────
+const PRODUCTS = [
+{id:'multi-surface', num:1, icon:'🌊', name:'Dropless Multi-Surface Coat',
+ surfaces:{en:'Glass · Mirror · Tile · Stainless Steel',tr:'Cam · Ayna · Fayans · Paslanmaz Çelik',ar:'زجاج · مرايا · بلاط · فولاذ',zh:'玻璃·镜子·瓷砖·不锈钢',hi:'कांच · दर्पण · टाइल · स्टील',es:'Vidrio · Espejo · Cerámica · Acero',it:'Vetro · Specchio · Piastrelle · Acciaio',fa:'شیشه · آینه · کاشی · فولاد'},
+ inst:{
+  en:{eff:'In the first minutes, you may notice faint streaks or uneven reflections. This is normal — the coating will level out as it dries. Water will bead and roll off treated surfaces.',steps:['Clean and dry all surfaces thoroughly.','Spray a light, even layer.','Spread with a clean microfiber cloth.','Buff until clear.','Avoid water for 30 minutes.']},
+  tr:{eff:'İlk dakikalarda hafif izler veya düzensiz yansımalar görebilirsiniz. Bu normaldir — kaplama kurudukça yüzeye oturur. Su, işlem görmüş yüzeylerde boncuklanarak kayar.',steps:['Tüm yüzeyleri iyice temizleyin ve kurutun.','İnce ve eşit bir tabaka halinde sıkın.','Temiz bir mikrofiber bezle yayın.','Şeffaflaşana dek parlatın.','30 dakika su değdirmeyin.']},
+  ar:{eff:'قد تظهر خطوط خفيفة أو انعكاسات غير متساوية في الدقائق الأولى. هذا طبيعي — ستستقر الطبقة عند الجفاف. الماء سيتكوّر ويزلق عن السطح.',steps:['نظّف جميع الأسطح جيدًا وجفّفها.','رش طبقة خفيفة ومتساوية.','وزّع باستخدام قطعة مايكروفايبر نظيفة.','امسح حتى يصبح السطح شفافًا.','تجنب ملامسة الماء لمدة 30 دقيقة.']},
+  zh:{eff:'前几分钟可能会看到轻微条纹或反光不均。这是正常的——涂层干燥后会自动平整。水会在处理过的表面上形成水珠并滑落。',steps:['彻底清洁并干燥所有表面。','轻喷一层薄薄的涂层。','用干净的超细纤维布涂抹。','抛光至透明。','30分钟内避免接触水。']},
+  hi:{eff:'शुरुआती मिनटों में हल्की धारियाँ या असमान चमक दिख सकती है। यह सामान्य है — सूखते समय कोटिंग समतल हो जाती है। उपचारित सतहों पर पानी बूंदों में बदल जाता है।',steps:['सभी सतहों को अच्छी तरह साफ करें और सुखाएं।','हल्की और समान परत स्प्रे करें।','साफ माइक्रोफ़ाइबर कपड़े से फैलाएं।','शफाफ होने तक पॉलिश करें।','30 मिनट तक पानी से बचाएं।']},
+  es:{eff:'Durante los primeros minutos pueden aparecer líneas leves o reflejos irregulares. Es normal — la capa se nivelará al secarse. El agua formará gotas y resbalará.',steps:['Limpia y seca todas las superficies.','Rocía una capa ligera y uniforme.','Esparce con un paño de microfibra limpio.','Pule hasta que quede transparente.','Evita el agua por 30 minutos.']},
+  it:{eff:'Nei primi minuti possono comparire leggere striature o riflessi irregolari. È normale — il rivestimento si uniformerà mentre asciuga. L\'acqua formerà gocce e scivoleranno.',steps:['Pulisci e asciuga tutte le superfici.','Spruzza uno strato leggero e uniforme.','Distribuisci con un panno in microfibra.','Lucida fino a trasparenza.','Evita l\'acqua per 30 minuti.']},
+  fa:{eff:'در دقایق اولیه ممکن است خطوط کم‌رنگ یا بازتاب‌های ناهموار مشاهده شود. این طبیعی است — پوشش در حین خشک شدن صاف می‌شود. آب روی سطوح تیمار شده به قطره تبدیل می‌شود.',steps:['تمام سطوح را کاملاً تمیز و خشک کنید.','یک لایه سبک و یکنواخت اسپری کنید.','با پارچه میکروفایبر تمیز بمالید.','تا شفاف شدن پولیش کنید.','به مدت ۳۰ دقیقه از تماس با آب خودداری کنید.']}
+ }
+},
+{id:'glass-pro', num:2, icon:'🔭', name:'Dropless Glass Pro Coat',
+ surfaces:{en:'Shower Glass · Windows · Mirrors · Glass Splashbacks',tr:'Duş Camı · Pencere · Ayna · Cam Panel',ar:'زجاج الدش · النوافذ · المرايا',zh:'淋浴玻璃·窗户·镜子',hi:'शावर ग्लास · खिड़कियाँ · दर्पण',es:'Vidrio de ducha · Ventanas · Espejos',it:'Vetro doccia · Finestre · Specchi',fa:'شیشه دوش · پنجره · آینه'},
+ inst:{
+  en:{eff:'In the first minutes, you may notice faint streaks or uneven reflections. This is normal — the coating will level out and become smooth as it dries. Water droplets will bead and disappear without leaving marks.',steps:['Clean and dry the glass.','Apply a light mist.','Spread evenly with a clean microfiber cloth.','Buff thoroughly for a clear, streak-free finish.','Avoid water for 30 minutes.']},
+  tr:{eff:'İlk dakikalarda hafif çizgi benzeri izler veya düzensiz yansımalar görebilirsiniz. Bu normaldir — kaplama kurudukça pürüzsüzleşir. Su damlaları iz bırakmadan kaybolur.',steps:['Camı temizleyin ve tamamen kurutun.','İnce bir sis tabakası halinde sıkın.','Temiz bir mikrofiber bezle eşit şekilde yayın.','Net ve izsiz görünüm için iyice parlatın.','30 dakika su değdirmeyin.']},
+  ar:{eff:'قد تظهر خطوط خفيفة أو انعكاسات غير متساوية في الدقائق الأولى. هذا طبيعي — ستستقر الطبقة وتصبح ناعمة. ستنزلق قطرات الماء دون أن تترك أثرًا.',steps:['نظّف الزجاج وجفّفه جيدًا.','رش طبقة خفيفة.','وزّع المنتج بمايكروفايبر نظيفة.','امسح جيدًا للحصول على وضوح بدون خطوط.','تجنب الماء لمدة 30 دقيقة.']},
+  zh:{eff:'前几分钟可能会看到轻微条纹或反光不均。这是正常的——涂层干燥后会自动平整变光滑。水滴会迅速滑落，不留痕迹。',steps:['清洁并完全干燥玻璃。','轻喷一层薄薄的雾状涂层。','用干净超细纤维布均匀涂抹。','充分抛光以获得清晰无痕效果。','30分钟内避免接触水。']},
+  hi:{eff:'शुरुआती मिनटों में हल्की धारियाँ या असमान चमक दिख सकती है। यह सामान्य है — सूखते समय कोटिंग चिकनी हो जाती है। पानी की बूंदें बिना निशान छोड़े गायब हो जाएँगी।',steps:['कांच को साफ करें और सुखाएं।','हल्की धुंध जैसी परत स्प्रे करें।','साफ माइक्रोफ़ाइबर से समान रूप से फैलाएं।','स्पष्ट और बिना धारियों के परिणाम के लिए पॉलिश करें।','30 मिनट तक पानी से बचाएं।']},
+  es:{eff:'Durante los primeros minutos pueden aparecer líneas leves o reflejos irregulares. Es normal — la capa se nivelará y quedará suave. Las gotas de agua se deslizarán sin dejar rastro.',steps:['Limpia y seca el vidrio.','Rocía una ligera neblina.','Esparce con microfibra limpia.','Pule bien para acabado claro y sin rayas.','Evita el agua por 30 minutos.']},
+  it:{eff:'Nei primi minuti possono comparire leggere striature o riflessi irregolari. È normale — il rivestimento si uniformerà. Le gocce d\'acqua scivoleranno senza lasciare tracce.',steps:['Pulisci e asciuga il vetro.','Spruzza una leggera nebbiolina.','Distribuisci con microfibra pulita.','Lucida per un risultato chiaro e senza aloni.','Evita acqua per 30 minuti.']},
+  fa:{eff:'در دقایق اولیه ممکن است خطوط کم‌رنگ یا بازتاب‌های ناهموار مشاهده شود. این طبیعی است — پوشش در حین خشک شدن صاف می‌شود. قطرات آب بدون جای گذاشتن اثر می‌لغزند.',steps:['شیشه را تمیز کرده و کاملاً خشک کنید.','یک مه سبک اسپری کنید.','با پارچه میکروفایبر تمیز به‌طور یکنواخت بمالید.','برای جلای روشن و بدون خط پولیش کنید.','به مدت ۳۰ دقیقه از تماس با آب خودداری کنید.']}
+ }
+},
+{id:'ceramic', num:3, icon:'🏠', name:'Dropless Ceramic Shield',
+ surfaces:{en:'Ceramic Tiles · Sinks · Shower Walls · Benchtops',tr:'Seramik Karo · Lavabo · Duş Duvarı · Tezgah',ar:'بلاط خزفي · أحواض · جدران الدش',zh:'陶瓷砖·洗手盆·淋浴墙',hi:'सेरेमिक टाइल · सिंक · शावर वॉल',es:'Azulejos · Lavabo · Paredes de ducha',it:'Piastrelle · Lavandino · Pareti doccia',fa:'کاشی سرامیک · سینک · دیوار دوش'},
+ inst:{
+  en:{eff:'In the first minutes, the surface may appear slightly hazy. This is normal — the coating will settle and clear as it dries. Once cured, water and soap scum will not adhere to the ceramic.',steps:['Clean and dry the ceramic surface.','Spray a light, even layer.','Spread with a clean microfiber cloth.','Buff until clear.','Avoid water for 30 minutes.']},
+  tr:{eff:'İlk dakikalarda yüzey hafif mat görünebilir. Bu normaldir — kaplama kurudukça şeffaflaşır. Kuruduktan sonra su ve sabun kalıntıları seramiğe yapışmaz.',steps:['Seramik yüzeyi temizleyin ve kurutun.','İnce ve eşit bir tabaka halinde sıkın.','Temiz bir mikrofiber bezle yayın.','Şeffaflaşana dek parlatın.','30 dakika su değdirmeyin.']},
+  ar:{eff:'قد يبدو السطح ضبابيًا قليلاً في الدقائق الأولى. هذا طبيعي — ستستقر الطبقة وتصبح شفافة عند الجفاف. لن يتراكم الماء أو الصابون على السيراميك.',steps:['نظّف السطح الخزفي وجفّفه.','رش طبقة خفيفة ومتساوية.','وزّع بمايكروفايبر نظيفة.','امسح حتى يصبح شفافًا.','تجنب الماء لمدة 30 دقيقة.']},
+  zh:{eff:'前几分钟表面可能会略显雾状。这是正常的——涂层干燥后会变透明。固化后，水和肥皂垢不会附着在陶瓷上。',steps:['清洁并干燥陶瓷表面。','轻喷一层薄薄的涂层。','用超细纤维布涂抹。','抛光至透明。','30分钟内避免接触水。']},
+  hi:{eff:'शुरुआती मिनटों में सतह थोड़ी धुंधली दिख सकती है। यह सामान्य है — सूखते समय पारदर्शी हो जाती है। पानी और साबुन के दाग सेरेमिक पर नहीं चिपकते।',steps:['सेरेमिक सतह को साफ करें और सुखाएं।','हल्की और समान परत स्प्रे करें।','साफ माइक्रोफ़ाइबर से फैलाएं।','शफाफ होने तक पॉलिश करें।','30 मिनट तक पानी से बचाएं।']},
+  es:{eff:'Durante los primeros minutos el surface puede verse ligeramente nublado. Es normal — se aclarará al secarse. El agua y los residuos de jabón no se adherirán.',steps:['Limpia y seca la superficie cerámica.','Rocía una capa ligera y uniforme.','Esparce con microfibra limpia.','Pule hasta transparencia.','Evita el agua por 30 minutos.']},
+  it:{eff:'Nei primi minuti la superficie può apparire leggermente opaca. È normale — il rivestimento si chiarirà asciugando. Acqua e residui di sapone non aderiranno.',steps:['Pulisci e asciuga la superficie ceramica.','Spruzza uno strato leggero.','Distribuisci con microfibra pulita.','Lucida fino a trasparenza.','Evita acqua per 30 minuti.']},
+  fa:{eff:'در دقایق اولیه سطح ممکن است کمی مات به نظر برسد. این طبیعی است — در حین خشک شدن شفاف می‌شود. آب و رسوبات صابون به سطح سرامیک نمی‌چسبند.',steps:['سطح سرامیک را تمیز کرده و خشک کنید.','یک لایه سبک اسپری کنید.','با پارچه میکروفایبر تمیز بمالید.','تا شفاف شدن پولیش کنید.','به مدت ۳۰ دقیقه از تماس با آب خودداری کنید.']}
+ }
+},
+{id:'interior-glass', num:4, icon:'🚗', name:'Dropless Interior Glass Coat',
+ surfaces:{en:'Car Interior Glass · Dashboard Glass · Rear Windows',tr:'Araç İç Camı · Arka Cam · Yan Cam İç Yüzeyi',ar:'زجاج داخلي للسيارة · النوافذ الخلفية',zh:'汽车内玻璃·仪表板玻璃·后窗',hi:'कार इंटीरियर ग्लास · डैशबोर्ड ग्लास',es:'Vidrio interior de auto · Vidrios traseros',it:'Vetro interno auto · Lunotto posteriore',fa:'شیشه داخلی خودرو · پنجره عقب'},
+ inst:{
+  en:{eff:'In the first minutes, you may notice faint fog or uneven areas. This is normal — the coating will settle as it dries. Once cured, the glass will resist interior condensation and fogging.',steps:['Clean and dry the interior glass surface.','Apply a light mist.','Spread evenly with a clean microfiber cloth.','Buff thoroughly until clear.','Avoid moisture for 30 minutes.']},
+  tr:{eff:'İlk dakikalarda hafif buğulanma veya düzensiz alanlar görebilirsiniz. Bu normaldir — kaplama kurudukça oturur. Kuruduktan sonra cam iç buğulanmaya ve yoğuşmaya karşı direnç gösterir.',steps:['İç cam yüzeyini temizleyin ve kurutun.','İnce bir sis tabakası uygulayın.','Temiz mikrofiber bezle eşit yayın.','Şeffaflaşana dek iyice parlatın.','30 dakika nemden uzak tutun.']},
+  ar:{eff:'قد تلاحظ بعض الضباب أو المناطق غير المتساوية في الدقائق الأولى. هذا طبيعي. بعد الجفاف، يقاوم الزجاج التكثيف والضباب الداخلي.',steps:['نظّف السطح الزجاجي الداخلي وجفّفه.','طبّق رذاذًا خفيفًا.','وزّع بمايكروفايبر نظيفة.','امسح جيدًا حتى يصبح شفافًا.','تجنب الرطوبة 30 دقيقة.']},
+  zh:{eff:'前几分钟可能出现轻微雾状或不均匀区域。这是正常的。固化后，玻璃能抵抗内部冷凝和起雾。',steps:['清洁并干燥车内玻璃表面。','轻喷薄薄一层。','用超细纤维布均匀涂抹。','充分抛光至透明。','30分钟内避免受潮。']},
+  hi:{eff:'शुरुआती मिनटों में हल्की धुंध या असमान क्षेत्र दिख सकते हैं। यह सामान्य है। सूखने पर कांच कोहरे और भाप के प्रति प्रतिरोधी हो जाता है।',steps:['कार के अंदर के कांच को साफ करें और सुखाएं।','हल्की धुंध लगाएं।','साफ माइक्रोफ़ाइबर से फैलाएं।','पूरी तरह पॉलिश करें।','30 मिनट तक नमी से बचाएं।']},
+  es:{eff:'Pueden aparecer zonas nubladas o desiguales en los primeros minutos. Es normal. Una vez curado, el vidrio resiste la condensación y el empañamiento interior.',steps:['Limpia y seca el vidrio interior.','Aplica una neblina ligera.','Esparce con microfibra limpia.','Pule completamente hasta transparencia.','Evita la humedad por 30 minutos.']},
+  it:{eff:'Nei primi minuti possono comparire aree appannate o diseguali. È normale. Una volta indurito, il vetro resiste alla condensa e all\'appannamento interno.',steps:['Pulisci e asciuga il vetro interno.','Applica una leggera nebbiolina.','Distribuisci con microfibra pulita.','Lucida accuratamente fino a trasparenza.','Evita umidità per 30 minuti.']},
+  fa:{eff:'در دقایق اولیه ممکن است مه خفیف یا نواحی ناهموار مشاهده شود. این طبیعی است. پس از خشک شدن، شیشه در برابر بخار و مه داخلی مقاوم می‌شود.',steps:['شیشه داخلی را تمیز کرده و خشک کنید.','یک لایه اسپری سبک بپاشید.','با پارچه میکروفایبر تمیز بمالید.','به‌طور کامل پولیش کنید.','به مدت ۳۰ دقیقه از رطوبت دور نگه دارید.']}
+ }
+},
+{id:'rainxtreme', num:6, icon:'🌧', name:'Dropless RainXtreme',
+ surfaces:{en:'Windshield · Exterior Car Glass · Motorbike Visors',tr:'Ön Cam · Araç Dış Camı · Motosiklet Vizörü',ar:'الزجاج الأمامي · زجاج السيارة الخارجي',zh:'挡风玻璃·汽车外玻璃·摩托车面罩',hi:'विंडशील्ड · कार एक्सटीरियर ग्लास',es:'Parabrisas · Vidrio exterior de auto',it:'Parabrezza · Vetri esterni auto',fa:'شیشه جلو · شیشه خارجی خودرو'},
+ inst:{
+  en:{eff:'In the first minutes, you may notice streaks or haze. This is normal — the coating will clear as it cures. At speed above 70 km/h, rain will bead and clear without wipers in many conditions.',steps:['Clean and dry the windshield.','Spray a thin, even layer.','Spread with a clean microfiber cloth.','Buff thoroughly until streak-free.','Avoid water for 1 hour.']},
+  tr:{eff:'İlk dakikalarda çizgi veya buğulanma görebilirsiniz. Bu normaldir. 70 km/h üzerinde, yağmur damlaları sileceksiz temizlenebilir.',steps:['Ön camı temizleyin ve kurutun.','İnce ve eşit bir tabaka sıkın.','Temiz mikrofiber bezle yayın.','İzsiz olana dek iyice parlatın.','1 saat su değdirmeyin.']},
+  ar:{eff:'قد تظهر خطوط أو ضباب في الدقائق الأولى. هذا طبيعي. فوق 70 كم/ساعة، تتساقط قطرات المطر دون الحاجة لمساحات.',steps:['نظّف الزجاج الأمامي وجفّفه.','رش طبقة رفيعة ومتساوية.','وزّع بمايكروفايبر نظيفة.','امسح جيدًا حتى تختفي الخطوط.','تجنب الماء لمدة ساعة.']},
+  zh:{eff:'前几分钟可能出现条纹或雾状。这是正常的。时速70公里以上，雨水会自动滑落，无需雨刷。',steps:['清洁并干燥挡风玻璃。','轻喷一层薄薄的涂层。','用超细纤维布涂抹。','完全抛光至无条纹。','1小时内避免接触水。']},
+  hi:{eff:'शुरुआती मिनटों में धारियाँ या धुंध दिख सकती है। यह सामान्य है। 70 किमी/घंटा से ऊपर बारिश बिना वाइपर के हट जाती है।',steps:['विंडशील्ड को साफ करें और सुखाएं।','एक पतली समान परत स्प्रे करें।','साफ माइक्रोफ़ाइबर से फैलाएं।','पूरी तरह धारियाँ-मुक्त पॉलिश करें।','1 घंटे तक पानी से बचाएं।']},
+  es:{eff:'Pueden aparecer rayas o neblina en los primeros minutos. Es normal. A más de 70 km/h, la lluvia se desliza sin limpiaparabrisas.',steps:['Limpia y seca el parabrisas.','Aplica una capa fina y uniforme.','Esparce con microfibra limpia.','Pule hasta que no queden rayas.','Evita el agua por 1 hora.']},
+  it:{eff:'Nei primi minuti possono comparire striature o appannamento. È normale. Oltre i 70 km/h, la pioggia scivolerà via senza tergicristalli.',steps:['Pulisci e asciuga il parabrezza.','Spruzza uno strato sottile e uniforme.','Distribuisci con microfibra pulita.','Lucida fino a eliminare le striature.','Evita acqua per 1 ora.']},
+  fa:{eff:'در دقایق اولیه ممکن است خطوط یا مه مشاهده شود. این طبیعی است. در سرعت بالاتر از ۷۰ کیلومتر، باران بدون برف‌پاک‌کن می‌لغزد.',steps:['شیشه جلو را تمیز کرده و خشک کنید.','یک لایه نازک و یکنواخت اسپری کنید.','با پارچه میکروفایبر تمیز بمالید.','به‌طور کامل تا بدون خط پولیش کنید.','به مدت ۱ ساعت از تماس با آب خودداری کنید.']}
+ }
+},
+{id:'plastic-screen', num:7, icon:'📱', name:'Dropless Plastic & Screen Guard',
+ surfaces:{en:'Phone · Tablet · TV Screens · Plastic Panels',tr:'Telefon · Tablet · TV Ekranı · Plastik Panel',ar:'شاشات الهاتف · التلفاز · الألواح البلاستيكية',zh:'手机·平板·电视屏幕·塑料板',hi:'फोन · टैबलेट · टीवी स्क्रीन · प्लास्टिक',es:'Pantallas · Plásticos · TV · Tablets',it:'Schermi · Plastica · TV · Tablet',fa:'صفحه نمایش · پلاستیک · تلویزیون'},
+ inst:{
+  en:{eff:'In the first minutes, you may notice slight hazing. This is normal — the coating will clear as it dries. Once settled, the surface will resist fingerprints and water marks.',steps:['Clean and dry the plastic/screen surface.','Apply a very light mist.','Spread gently with a clean microfiber cloth.','Buff until clear.','Avoid moisture for 30 minutes.']},
+  tr:{eff:'İlk dakikalarda hafif buğulanma görülebilir. Bu normaldir — kaplama kurudukça netleşir. Kuruduktan sonra parmak izi ve su lekelerine dirençli olur.',steps:['Plastik/ekran yüzeyini temizleyin ve kurutun.','Çok ince bir sis uygulayın.','Temiz mikrofiber bezle nazikçe yayın.','Şeffaflaşana dek parlatın.','30 dakika nemden uzak tutun.']},
+  ar:{eff:'قد يظهر ضباب خفيف في الدقائق الأولى. هذا طبيعي. بعد الجفاف، السطح يقاوم بصمات الأصابع وآثار الماء.',steps:['نظّف السطح البلاستيكي/الشاشة وجفّفه.','طبّق رذاذًا خفيفًا جدًا.','وزّع بلطف بمايكروفايبر نظيفة.','امسح حتى يصبح شفافًا.','تجنب الرطوبة 30 دقيقة.']},
+  zh:{eff:'前几分钟可能出现轻微雾状。这是正常的。固化后表面能抵抗指纹和水痕。',steps:['清洁并干燥表面。','喷极轻薄一层。','用超细纤维布轻轻涂抹。','抛光至透明。','30分钟内避免受潮。']},
+  hi:{eff:'शुरुआती मिनटों में हल्की धुंधलापन दिख सकता है। यह सामान्य है। सूखने पर उंगलियों के निशान नहीं चिपकते।',steps:['सतह को साफ करें और सुखाएं।','बहुत हल्की धुंध लगाएं।','साफ माइक्रोफ़ाइबर से धीरे फैलाएं।','शफाफ होने तक पॉलिश करें।','30 मिनट तक नमी से बचाएं।']},
+  es:{eff:'Puede aparecer una ligera neblina en los primeros minutos. Es normal. Una vez curado, resiste huellas dactilares y marcas de agua.',steps:['Limpia y seca la superficie.','Aplica una neblina muy ligera.','Esparce suavemente con microfibra.','Pule hasta transparencia.','Evita humedad por 30 minutos.']},
+  it:{eff:'Nei primi minuti può comparire un leggero appannamento. È normale. Una volta curato, resiste alle impronte e alle macchie d\'acqua.',steps:['Pulisci e asciuga la superficie.','Applica una nebbia molto leggera.','Distribuisci delicatamente con microfibra.','Lucida fino a trasparenza.','Evita umidità per 30 minuti.']},
+  fa:{eff:'در دقایق اولیه ممکن است کمی مات به نظر برسد. این طبیعی است. پس از خشک شدن، در برابر اثر انگشت مقاوم می‌شود.',steps:['سطح را تمیز کرده و خشک کنید.','یک مه بسیار سبک اسپری کنید.','با پارچه میکروفایبر تمیز به‌آرامی بمالید.','تا شفاف شدن پولیش کنید.','به مدت ۳۰ دقیقه از رطوبت دور نگه دارید.']}
+ }
+},
+{id:'toilet', num:8, icon:'🚽', name:'Dropless Toilet Anti-Stick Hybrid',
+ surfaces:{en:'Toilet Bowl · Toilet Pan',tr:'Klozet · Tuvalet Taşı',ar:'كرسي المرحاض',zh:'马桶内壁',hi:'टॉयलेट बाउल',es:'Inodoro',it:'WC · Tazza del bagno',fa:'کاسه توالت'},
+ inst:{
+  en:{eff:'After application, the bowl may appear slightly different for a few minutes. This is normal — the hybrid coating will settle as it dries. Once cured, waste will not stick and cleaning time is dramatically reduced.',steps:['Clean the toilet bowl thoroughly and dry.','Apply a light spray around the bowl interior.','Spread with a clean applicator cloth.','Allow 10 minutes to cure.','Avoid flushing for 30 minutes after application.']},
+  tr:{eff:'Uygulamadan sonra klozet birkaç dakika farklı görünebilir. Bu normaldir. Kaplama kuruduktan sonra kir yapışmaz ve temizlik süresi dramatik biçimde azalır.',steps:['Klozeti iyice temizleyin ve kurutun.','İç yüzeye hafif bir sprey uygulayın.','Temiz bir uygulama beziyle yayın.','10 dakika kurumaya bırakın.','Uygulamadan sonra 30 dakika sifon çekmeyin.']},
+  ar:{eff:'قد يبدو الوعاء مختلفًا قليلاً بعد التطبيق. هذا طبيعي. بعد الجفاف، لن تتراكم الأوساخ وسيكون التنظيف أسهل بكثير.',steps:['نظّف المرحاض جيدًا وجفّفه.','طبّق رذاذًا خفيفًا داخل الوعاء.','وزّع بقطعة تطبيق نظيفة.','اتركه 10 دقائق ليجف.','تجنب السحب لمدة 30 دقيقة.']},
+  zh:{eff:'应用后马桶可能看起来略有不同几分钟。这是正常的。固化后污垢不会粘附，清洁时间大幅减少。',steps:['彻底清洁马桶并干燥。','在马桶内壁喷轻薄一层。','用清洁施用布涂抹。','等待10分钟固化。','施用后30分钟内避免冲水。']},
+  hi:{eff:'लगाने के बाद कुछ मिनट अलग दिख सकता है। यह सामान्य है। सूखने पर गंदगी नहीं चिपकती और सफाई आसान हो जाती है।',steps:['टॉयलेट बाउल को अच्छी तरह साफ करें।','अंदर हल्का स्प्रे करें।','साफ कपड़े से फैलाएं।','10 मिनट ठीक होने दें।','30 मिनट तक फ्लश न करें।']},
+  es:{eff:'El inodoro puede verse ligeramente diferente por unos minutos. Es normal. Una vez curado, los residuos no se adherirán y la limpieza es mucho más fácil.',steps:['Limpia el inodoro a fondo y sécalo.','Aplica un spray ligero por el interior.','Esparce con un paño limpio.','Deja curar 10 minutos.','Evita tirar de la cadena por 30 minutos.']},
+  it:{eff:'Il WC può apparire leggermente diverso per alcuni minuti. È normale. Una volta indurito, i residui non aderiranno e la pulizia sarà molto più facile.',steps:['Pulisci il WC accuratamente e asciugalo.','Applica uno spray leggero all\'interno.','Distribuisci con un panno applicatore.','Lascia indurire 10 minuti.','Evita lo sciacquone per 30 minuti.']},
+  fa:{eff:'پس از استفاده، کاسه توالت ممکن است چند دقیقه‌ای متفاوت به نظر برسد. این طبیعی است. پس از کیور شدن، مواد زائد نمی‌چسبند.',steps:['کاسه توالت را کاملاً تمیز کرده و خشک کنید.','یک اسپری سبک داخل کاسه بپاشید.','با پارچه اپلیکاتور تمیز بمالید.','۱۰ دقیقه صبر کنید.','به مدت ۳۰ دقیقه از فلاش کردن خودداری کنید.']}
+ }
+},
+{id:'bathroom', num:9, icon:'🚿', name:'Dropless Bathroom Shield',
+ surfaces:{en:'Bathroom Tiles · Shower Glass · Bath · Vanity',tr:'Banyo Karosu · Duş Camı · Küvet · Tezgah',ar:'بلاط الحمام · زجاج الدش · البانيو',zh:'浴室瓷砖·淋浴玻璃·浴缸',hi:'बाथरूम टाइल्स · शावर ग्लास · बाथ',es:'Azulejos baño · Vidrio ducha · Bañera',it:'Piastrelle bagno · Doccia · Vasca',fa:'کاشی حمام · شیشه دوش · وان'},
+ inst:{
+  en:{eff:'In the first minutes, surfaces may appear slightly wet or uneven. This is normal — the coating will settle and become invisible as it dries. Water will bead and soap scum will not adhere.',steps:['Clean and dry all bathroom surfaces.','Spray a light, even layer.','Spread with a clean microfiber cloth.','Buff until the surface is clear.','Avoid water for 30 minutes.']},
+  tr:{eff:'İlk dakikalarda yüzeyler hafif ıslak veya düzensiz görünebilir. Bu normaldir. Kaplama kurudukça görünmez hale gelir. Su boncuklanır, sabun kalıntıları yapışmaz.',steps:['Tüm banyo yüzeylerini temizleyin ve kurutun.','İnce ve eşit bir tabaka sıkın.','Temiz mikrofiber bezle yayın.','Şeffaflaşana dek parlatın.','30 dakika su değdirmeyin.']},
+  ar:{eff:'قد تبدو الأسطح رطبة قليلاً في الدقائق الأولى. هذا طبيعي. ستستقر الطبقة وتصبح غير مرئية. الماء سيتكوّر والصابون لن يتراكم.',steps:['نظّف جميع أسطح الحمام وجفّفها.','رش طبقة خفيفة ومتساوية.','وزّع بمايكروفايبر نظيفة.','امسح حتى يصبح السطح شفافًا.','تجنب الماء 30 دقيقة.']},
+  zh:{eff:'前几分钟表面可能略显潮湿或不均。这是正常的——涂层会变透明。水会成珠状，肥皂垢不会附着。',steps:['清洁并干燥所有浴室表面。','轻喷均匀一层。','用超细纤维布涂抹。','抛光至透明。','30分钟内避免接触水。']},
+  hi:{eff:'शुरुआती मिनटों में सतहें थोड़ी गीली लग सकती हैं। यह सामान्य है। पानी बूंदों में बदल जाता है और साबुन नहीं चिपकता।',steps:['सभी बाथरूम सतहों को साफ करें।','हल्की और समान परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','शफाफ होने तक पॉलिश करें।','30 मिनट तक पानी से बचाएं।']},
+  es:{eff:'Las superficies pueden verse algo húmedas o desiguales. Es normal. El agua formará gotas y los residuos de jabón no se adherirán.',steps:['Limpia y seca todas las superficies del baño.','Rocía una capa ligera.','Esparce con microfibra limpia.','Pule hasta transparencia.','Evita el agua por 30 minutos.']},
+  it:{eff:'Nei primi minuti le superfici possono apparire leggermente umide. È normale. L\'acqua formerà gocce e i residui di sapone non aderiranno.',steps:['Pulisci e asciuga tutte le superfici bagno.','Spruzza uno strato leggero.','Distribuisci con microfibra.','Lucida fino a trasparenza.','Evita acqua per 30 minuti.']},
+  fa:{eff:'در دقایق اولیه ممکن است سطوح کمی مرطوب به نظر برسند. این طبیعی است. پوشش نامرئی می‌شود. آب به قطره تبدیل می‌شود و صابون نمی‌چسبد.',steps:['تمام سطوح حمام را تمیز کرده و خشک کنید.','یک لایه سبک اسپری کنید.','با پارچه میکروفایبر بمالید.','تا شفاف شدن پولیش کنید.','به مدت ۳۰ دقیقه از تماس با آب خودداری کنید.']}
+ }
+},
+{id:'stone-bench', num:10, icon:'🪨', name:'Dropless Stone & Bench Guard',
+ surfaces:{en:'Marble · Granite · Quartz · Kitchen Benchtops',tr:'Mermer · Granit · Kuvars · Mutfak Tezgahı',ar:'رخام · جرانيت · كوارتز · أسطح المطبخ',zh:'大理石·花岗岩·石英石·厨房台面',hi:'मार्बल · ग्रेनाइट · क्वार्ट्ज · किचन काउंटर',es:'Mármol · Granito · Cuarzo · Encimeras',it:'Marmo · Granito · Quarzo · Piano cucina',fa:'مرمر · گرانیت · کوارتز · کانتر آشپزخانه'},
+ inst:{
+  en:{eff:'In the first minutes, you may notice faint marks or uneven reflections. This is normal — the coating will level out and become smooth as it dries. Water droplets will bead and disappear without leaving marks.',steps:['Clean and dry the stone/benchtop surface.','Spray a light, even layer.','Spread evenly with a clean microfiber cloth.','Buff thoroughly for clarity.','Avoid water for 30 minutes.']},
+  tr:{eff:'İlk dakikalarda hafif izler veya düzensiz yansımalar görebilirsiniz. Bu normaldir — kaplama kurudukça pürüzsüzleşir. Su damlaları iz bırakmadan kaybolur.',steps:['Taş/tezgah yüzeyini temizleyin ve kurutun.','İnce ve eşit bir tabaka sıkın.','Temiz mikrofiber bezle eşit yayın.','Netlik için iyice parlatın.','30 dakika su değdirmeyin.']},
+  ar:{eff:'قد تظهر علامات خفيفة أو انعكاسات غير متساوية. هذا طبيعي. ستختفي قطرات الماء دون أن تترك أثرًا.',steps:['نظّف سطح الحجر/الطاولة وجفّفه.','رش طبقة خفيفة.','وزّع بمايكروفايبر نظيفة.','امسح جيدًا للوضوح.','تجنب الماء 30 دقيقة.']},
+  zh:{eff:'前几分钟可能看到轻微痕迹或反光不均。这是正常的——涂层干燥后自动平整。水滴迅速滑落，不留痕迹。',steps:['清洁并干燥表面。','轻喷均匀一层。','超细纤维布均匀涂抹。','充分抛光。','30分钟内避免接触水。']},
+  hi:{eff:'शुरुआती मिनटों में हल्के निशान दिख सकते हैं। यह सामान्य है। पानी बिना निशान के गायब हो जाएगा।',steps:['सतह को साफ करें और सुखाएं।','हल्की परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','स्पष्टता के लिए पॉलिश करें।','30 मिनट तक पानी से बचाएं।']},
+  es:{eff:'Pueden aparecer marcas leves o reflejos irregulares. Es normal. Las gotas de agua desaparecerán sin dejar huella.',steps:['Limpia y seca la superficie.','Rocía una capa ligera.','Esparce con microfibra.','Pule para mayor claridad.','Evita el agua 30 minutos.']},
+  it:{eff:'Nei primi minuti possono comparire lievi segni o riflessi irregolari. È normale. Le gocce scompariranno senza lasciare tracce.',steps:['Pulisci e asciuga la superficie.','Spruzza uno strato leggero.','Distribuisci con microfibra.','Lucida per chiarezza.','Evita acqua 30 minuti.']},
+  fa:{eff:'در دقایق اولیه ممکن است علائم خفیف مشاهده شود. این طبیعی است. قطرات آب بدون اثر ناپدید می‌شوند.',steps:['سطح را تمیز کرده و خشک کنید.','یک لایه سبک اسپری کنید.','با پارچه میکروفایبر بمالید.','برای وضوح پولیش کنید.','به مدت ۳۰ دقیقه از تماس با آب خودداری کنید.']}
+ }
+},
+{id:'metal-shine', num:11, icon:'✨', name:'Dropless Metal Shine+',
+ surfaces:{en:'Stainless Steel · Aluminium · Brass · Chrome',tr:'Paslanmaz Çelik · Alüminyum · Pirinç · Krom',ar:'فولاذ مقاوم للصدأ · ألومنيوم · كروم',zh:'不锈钢·铝·黄铜·镀铬',hi:'स्टेनलेस स्टील · एल्युमिनियम · क्रोम',es:'Acero inox · Aluminio · Cromo · Latón',it:'Acciaio inox · Alluminio · Cromo · Ottone',fa:'فولاد ضد زنگ · آلومینیوم · کروم · برنج'},
+ inst:{
+  en:{eff:'In the first minutes, you may notice faint haze or uneven reflections. This is normal — the coating will level out and become smooth as it dries. Once settled, the metal will appear glossier and resist fingerprints and water marks.',steps:['Clean and dry the metal surface.','Spray a light, even layer.','Spread with a clean microfiber cloth.','Buff thoroughly to activate the shine.','Avoid water for 30 minutes.']},
+  tr:{eff:'İlk dakikalarda hafif buğulanma veya düzensiz yansımalar görebilirsiniz. Bu normaldir — kaplama kurudukça yüzeye oturur. Kuruduktan sonra metal daha parlak görünür, parmak izi ve su lekelerine karşı dirençlidir.',steps:['Metal yüzeyi temizleyin ve kurutun.','İnce ve eşit bir tabaka sıkın.','Temiz mikrofiber bezle yayın.','Parlaklığı aktive etmek için iyice parlatın.','30 dakika su değdirmeyin.']},
+  ar:{eff:'قد يظهر ضباب خفيف أو انعكاسات غير متساوية. هذا طبيعي. بعد الجفاف يبدو المعدن أكثر لمعانًا ومقاومًا لبصمات الأصابع.',steps:['نظّف سطح المعدن وجفّفه.','رش طبقة خفيفة.','وزّع بمايكروفايبر نظيفة.','امسح جيدًا لتنشيط اللمعان.','تجنب الماء 30 دقيقة.']},
+  zh:{eff:'前几分钟可能看到轻微雾状或反光不均。这是正常的。干燥后金属更亮，抵抗指纹和水痕。',steps:['清洁并干燥金属表面。','轻喷均匀一层。','超细纤维布涂抹。','充分抛光激活光泽。','30分钟内避免接触水。']},
+  hi:{eff:'शुरुआती मिनटों में हल्का धुंधलापन दिख सकता है। यह सामान्य है। सूखने पर धातु अधिक चमकदार और उंगलियों के निशान-रोधी हो जाती है।',steps:['धातु की सतह साफ करें और सुखाएं।','हल्की परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','चमक के लिए पॉलिश करें।','30 मिनट तक पानी से बचाएं।']},
+  es:{eff:'Puede aparecer una ligera neblina. Es normal. Una vez curado, el metal se verá más brillante y resistirá huellas y marcas de agua.',steps:['Limpia y seca la superficie metálica.','Rocía una capa ligera.','Esparce con microfibra.','Pule para activar el brillo.','Evita el agua 30 minutos.']},
+  it:{eff:'Può comparire leggero appannamento. È normale. Una volta curato, il metallo apparirà più lucido e resisterà alle impronte.',steps:['Pulisci e asciuga la superficie metallica.','Spruzza uno strato leggero.','Distribuisci con microfibra.','Lucida per attivare la brillantezza.','Evita acqua 30 minuti.']},
+  fa:{eff:'در دقایق اولیه ممکن است مه خفیف مشاهده شود. این طبیعی است. پس از خشک شدن، فلز درخشان‌تر و در برابر اثر انگشت مقاوم‌تر می‌شود.',steps:['سطح فلزی را تمیز کرده و خشک کنید.','یک لایه سبک اسپری کنید.','با پارچه میکروفایبر بمالید.','برای درخشندگی پولیش کنید.','به مدت ۳۰ دقیقه از تماس با آب خودداری کنید.']}
+ }
+},
+{id:'leather', num:12, icon:'👜', name:'Dropless Leather & Vinyl Guard',
+ surfaces:{en:'Leather Seats · Vinyl Upholstery · Car Interior · Bags',tr:'Deri Koltuk · Vinil Döşeme · Araç İçi · Çanta',ar:'مقاعد جلدية · تنجيد فينيل · حقائب',zh:'皮革座椅·乙烯基装饰·汽车内饰·皮包',hi:'चमड़ा सीट · विनाइल · कार इंटीरियर · बैग',es:'Asientos de cuero · Vinilo · Interior auto',it:'Sedili in pelle · Vinile · Interno auto',fa:'صندلی چرم · وینیل · داخل خودرو · کیف'},
+ inst:{
+  en:{eff:'In the first minutes, you may notice a slight darkening or uneven reflections. This is normal — the coating will level out as it dries. Once settled, the surface will feel smoother, resist stains, and repel water.',steps:['Clean and dry the leather/vinyl surface.','Spray a light, even layer.','Spread gently with a clean microfiber cloth.','Allow 5 minutes to settle.','Buff lightly for a natural finish.','Avoid moisture for 30 minutes.']},
+  tr:{eff:'İlk dakikalarda hafif koyulaşma veya düzensiz yansımalar görebilirsiniz. Bu normaldir. Kuruduktan sonra yüzey pürüzsüz hissedilir, lekelere ve suya dirençlidir.',steps:['Deri/vinil yüzeyi temizleyin ve kurutun.','İnce ve eşit tabaka sıkın.','Temiz mikrofiber bezle nazikçe yayın.','5 dakika oturmasına izin verin.','Doğal görünüm için hafifçe parlatın.','30 dakika nemden uzak tutun.']},
+  ar:{eff:'قد يظهر تعتيم خفيف في الدقائق الأولى. هذا طبيعي. بعد الجفاف السطح أكثر نعومة ومقاومة للبقع والماء.',steps:['نظّف الجلد/الفينيل وجفّفه.','رش طبقة خفيفة.','وزّع بلطف بمايكروفايبر.','اتركه 5 دقائق.','امسح بخفة لمظهر طبيعي.','تجنب الرطوبة 30 دقيقة.']},
+  zh:{eff:'前几分钟可能略微变暗。这是正常的。干燥后表面更顺滑，耐污且防水。',steps:['清洁并干燥表面。','轻喷均匀一层。','轻柔涂抹超细纤维布。','等待5分钟。','轻轻抛光。','30分钟内避免受潮。']},
+  hi:{eff:'शुरुआती मिनटों में थोड़ा गहरा दिख सकता है। यह सामान्य है। सूखने पर सतह नरम और दाग-रोधी हो जाती है।',steps:['सतह साफ करें और सुखाएं।','हल्की परत स्प्रे करें।','माइक्रोफ़ाइबर से धीरे फैलाएं।','5 मिनट सेट होने दें।','हल्के पॉलिश करें।','30 मिनट नमी से बचाएं।']},
+  es:{eff:'Puede aparecer un leve oscurecimiento. Es normal. Una vez curado, el material es más suave y resistente a manchas.',steps:['Limpia y seca la superficie.','Rocía una capa ligera.','Esparce suavemente con microfibra.','Deja reposar 5 minutos.','Pule ligeramente.','Evita humedad 30 minutos.']},
+  it:{eff:'Può comparire un leggero scurimento. È normale. Una volta curato, il materiale è più liscio e resistente alle macchie.',steps:['Pulisci e asciuga la superficie.','Spruzza uno strato leggero.','Distribuisci delicatamente con microfibra.','Lascia riposare 5 minuti.','Lucida leggermente.','Evita umidità 30 minuti.']},
+  fa:{eff:'در دقایق اولیه ممکن است کمی تیره‌تر شود. این طبیعی است. پس از خشک شدن سطح نرم‌تر و ضد لک می‌شود.',steps:['سطح را تمیز کرده و خشک کنید.','یک لایه سبک اسپری کنید.','با پارچه میکروفایبر به‌آرامی بمالید.','۵ دقیقه صبر کنید.','به‌آرامی پولیش کنید.','به مدت ۳۰ دقیقه از رطوبت دور نگه دارید.']}
+ }
+},
+{id:'fabric', num:13, icon:'🛋', name:'Dropless Fabric Guard',
+ surfaces:{en:'Sofas · Cushions · Car Seats · Outdoor Fabric',tr:'Kanepe · Yastık · Araba Koltuğu · Dış Mekan Kumaşı',ar:'الكنب · الوسائد · مقاعد السيارة · الأقمشة الخارجية',zh:'沙发·靠垫·汽车座椅·户外面料',hi:'सोफा · कुशन · कार सीट · आउटडोर फैब्रिक',es:'Sofás · Cojines · Asientos auto · Telas',it:'Divani · Cuscini · Sedili auto · Tessuti',fa:'مبل · کوسن · صندلی خودرو · پارچه بیرونی'},
+ inst:{
+  en:{eff:'The fabric may appear slightly darker for a few minutes. This is normal — the coating will settle as it dries. Once settled, liquids will bead on the surface instead of soaking in.',steps:['Clean and dry the fabric surface.','Spray a light, even mist from 15–20 cm distance.','Ensure full coverage without soaking the fabric.','Allow 10–15 minutes to dry.','For maximum protection, apply a second light coat.','Avoid moisture for 1 hour.']},
+  tr:{eff:'Kumaş ilk dakikalarda hafif koyulaşabilir. Bu normaldir. Kuruduktan sonra sıvılar yüzeyde boncuklanır ve emilmez.',steps:['Kumaşı temizleyin ve kurutun.','15–20 cm mesafeden ince sis sıkın.','Kumaşı ıslatmadan tüm yüzeyi kaplayın.','10–15 dakika kurumaya bırakın.','Maksimum koruma için ikinci kat uygulayın.','1 saat nemden uzak tutun.']},
+  ar:{eff:'قد يصبح القماش أغمق قليلاً. هذا طبيعي. بعد الجفاف، تتكوّن قطرات الماء بدلاً من امتصاصه.',steps:['نظّف القماش وجفّفه.','رش من 15-20 سم بدون تشبيع.','تأكد من التغطية الكاملة.','اترك 10-15 دقيقة.','للحماية القصوى أضف طبقة ثانية.','تجنب الرطوبة ساعة.']},
+  zh:{eff:'布料可能略微变暗几分钟。这是正常的。干燥后液体在表面成珠，不会被吸收。',steps:['清洁并干燥布料。','15-20厘米距离轻喷。','覆盖全面但不要浸湿。','等待10-15分钟。','如需最强保护，再喷一层。','1小时内避免受潮。']},
+  hi:{eff:'पारचे कुछ मिनट गहरा दिख सकता है। यह सामान्य है। सूखने पर तरल सोखता नहीं, बूंदें बनती हैं।',steps:['कपड़े को साफ करें और सुखाएं।','15-20 सेमी से हल्की धुंध।','बिना भिगोए पूरा ढकें।','10-15 मिनट सूखने दें।','अधिक सुरक्षा के लिए दूसरी परत।','1 घंटे नमी से बचाएं।']},
+  es:{eff:'La tela puede verse más oscura por unos minutos. Es normal. Una vez curado, los líquidos forman gotas en lugar de absorberse.',steps:['Limpia y seca la tela.','Rocía desde 15-20 cm sin empapar.','Cubre toda la superficie.','Deja secar 10-15 minutos.','Para máxima protección, aplica otra capa.','Evita humedad 1 hora.']},
+  it:{eff:'Il tessuto può apparire più scuro per qualche minuto. È normale. Una volta curato, i liquidi formeranno gocce sulla superficie.',steps:['Pulisci e asciuga il tessuto.','Spruzza da 15-20 cm senza bagnare.','Copri tutta la superficie.','Lascia asciugare 10-15 minuti.','Per massima protezione applica un secondo strato.','Evita umidità 1 ora.']},
+  fa:{eff:'پارچه ممکن است چند دقیقه تیره‌تر به نظر برسد. این طبیعی است. پس از خشک شدن، مایعات به جای جذب، به قطره تبدیل می‌شوند.',steps:['پارچه را تمیز کرده و خشک کنید.','از ۱۵-۲۰ سانتی بدون خیس کردن اسپری کنید.','کل سطح را بپوشانید.','۱۰-۱۵ دقیقه خشک شود.','برای حداکثر حفاظت، لایه دوم بزنید.','۱ ساعت از رطوبت دور نگه دارید.']}
+ }
+},
+{id:'hybrid-ultra', num:14, icon:'🔬', name:'Dropless Hybrid Ultra-Long',
+ surfaces:{en:'All Hard Surfaces · Long-term Industrial Protection',tr:'Tüm Sert Yüzeyler · Uzun Vadeli Endüstriyel Koruma',ar:'جميع الأسطح الصلبة · حماية طويلة الأمد',zh:'所有硬质表面·长期工业保护',hi:'सभी कठोर सतहें · दीर्घकालिक सुरक्षा',es:'Todas las superficies duras · Protección industrial',it:'Tutte le superfici dure · Protezione a lungo termine',fa:'تمام سطوح سخت · حفاظت بلندمدت صنعتی'},
+ inst:{
+  en:{eff:'In the first minutes, the hybrid film may look slightly uneven or glossy. This is normal — the VG/PG + silicone matrix will level out and bond as it dries. Once settled, the coating provides ultra-long durability and strong water-repellency.',steps:['Clean and dry the surface thoroughly.','Spray a thin, even layer.','Spread with a clean microfiber cloth.','Allow 5–10 minutes for the hybrid matrix to settle.','Buff lightly for a smooth finish.','Avoid water for 1 hour.']},
+  tr:{eff:'İlk dakikalarda hibrit film hafif parlak veya düzensiz görünebilir. Bu normaldir — VG/PG + silikon matrisi kurudukça yüzeye oturur. Ultra uzun ömürlü ve güçlü su itici tabaka oluşur.',steps:['Yüzeyi iyice temizleyin ve kurutun.','İnce eşit tabaka sıkın.','Temiz mikrofiber bezle yayın.','Hibrit matrisin oturması için 5–10 dakika bekleyin.','Pürüzsüz görünüm için hafifçe parlatın.','1 saat su değdirmeyin.']},
+  ar:{eff:'قد يبدو الطلاء الهجين لامعًا أو غير متساوٍ. هذا طبيعي. بعد الجفاف توفر طبقة طويلة الأمد ومقاومة قوية للماء.',steps:['نظّف السطح وجفّفه جيدًا.','رش طبقة رقيقة.','وزّع بمايكروفايبر نظيفة.','اتركه 5-10 دقائق.','امسح بخفة.','تجنب الماء ساعة.']},
+  zh:{eff:'前几分钟混合涂层可能略显光亮或不均。这是正常的。干燥后形成超长耐久且强力防水的保护层。',steps:['彻底清洁并干燥。','喷薄薄均匀一层。','超细纤维布涂抹。','等待5-10分钟稳定。','轻轻抛光。','1小时内避免接触水。']},
+  hi:{eff:'हाइब्रिड फिल्म थोड़ी चमकीली दिख सकती है। यह सामान्य है। सूखने पर दीर्घकालिक जल-रोधक कोटिंग बनती है।',steps:['सतह को अच्छी तरह साफ करें।','पतली समान परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','5-10 मिनट सेट होने दें।','हल्के पॉलिश करें।','1 घंटे पानी से बचाएं।']},
+  es:{eff:'La película híbrida puede verse brillante o irregular. Es normal. Una vez curado, ofrece protección ultra-duradera y fuerte repelencia al agua.',steps:['Limpia y seca bien la superficie.','Rocía capa fina uniforme.','Esparce con microfibra.','Deja reposar 5-10 minutos.','Pule ligeramente.','Evita agua 1 hora.']},
+  it:{eff:'Il film ibrido può apparire lucido o irregolare. È normale. Una volta curato offre protezione ultra-duratura e forte idrorepellenza.',steps:['Pulisci e asciuga bene.','Spruzza strato sottile.','Distribuisci con microfibra.','Lascia riposare 5-10 minuti.','Lucida leggermente.','Evita acqua 1 ora.']},
+  fa:{eff:'فیلم ترکیبی ممکن است کمی براق یا ناهموار به نظر برسد. این طبیعی است. پس از خشک شدن، پوشش دوام بلندمدت و دفع آب قوی ارائه می‌دهد.',steps:['سطح را کاملاً تمیز کرده و خشک کنید.','یک لایه نازک و یکنواخت اسپری کنید.','با پارچه میکروفایبر بمالید.','۵-۱۰ دقیقه صبر کنید.','به‌آرامی پولیش کنید.','به مدت ۱ ساعت از تماس با آب خودداری کنید.']}
+ }
+}
+];
 
-    // Form fallback: if Formspree action is still placeholder, switch to mailto
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', (e) => {
-      if (form.action.includes('REPLACE_ME')) {
-        e.preventDefault();
-        const name = encodeURIComponent(form.name.value);
-        const email = encodeURIComponent(form.email.value);
-        const topic = encodeURIComponent(form.topic.value || 'Website enquiry');
-        const msg = encodeURIComponent(form.message.value);
-        const body = `Name: ${decodeURIComponent(name)}%0AEmail: ${decodeURIComponent(email)}%0A%0A${decodeURIComponent(msg)}`;
-        window.location.href = `mailto:info@dropless.com.au?subject=${topic}&body=${body}`;
-      }
-    });
-  </script>
+// ── FAQ DATA ──────────────────────────────────────────────────────────────────
+const FAQS = [
+  {q:'Is this safe for all glass types?', a:'Yes. Dropless products are formulated for all glass including tempered, laminated, coated glass, mirrors, and windows. Always test on an inconspicuous area first.'},
+  {q:'How long does the protection last?', a:'Under normal conditions, one application lasts 6–12 months. High-traffic surfaces like windshields may need reapplication every 3–6 months. The Hybrid Ultra-Long formula offers extended durability.'},
+  {q:'Can I use it on my car windshield?', a:'Yes — use Dropless RainXtreme for exterior windshields. For interior glass, use Dropless Interior Glass Coat. Do not use the same product for both interior and exterior.'},
+  {q:'Why must I use a separate cloth for application?', a:'Cleaning cloths retain residues from cleaners, grease, or soap. These residues bond with the coating during application and reduce its effectiveness. Always use a fresh, clean microfiber cloth.'},
+  {q:'How long after application can I use the surface?', a:'Most products are ready in 30 minutes. RainXtreme and Hybrid Ultra-Long need 1 hour. Full cure takes 24 hours — for best results, avoid heavy contact for the first day.'},
+  {q:'Can I apply on top of an old coating?', a:'Clean the surface thoroughly first. Old coatings that are still active may interfere. For best results on previously coated surfaces, use a surface prep wipe with isopropyl alcohol before applying.'}
+];
+
+// ── CURRENT LANGUAGE ──────────────────────────────────────────────────────────
+let currentLang = 'en';
+const RTL = ['ar','fa'];
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('globalLang').value = lang;
+  if (RTL.includes(lang)) {
+    document.body.classList.add('rtl');
+  } else {
+    document.body.classList.remove('rtl');
+  }
+  renderProducts();
+}
+
+// ── RENDER PRODUCTS ───────────────────────────────────────────────────────────
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  const L = currentLang;
+  grid.innerHTML = PRODUCTS.map(p => {
+    const inst = p.inst[L] || p.inst['en'];
+    const stepsHtml = inst.steps.map((s,i) => `<li>${s}</li>`).join('');
+    const showTxt = T.show_inst[L] || T.show_inst.en;
+    const hideTxt = T.hide_inst[L] || T.hide_inst.en;
+    return `
+<div class="prod-card" id="card-${p.id}">
+  <div class="prod-card-head">
+    <div class="prod-icon">${p.icon}</div>
+    <div>
+      <div class="prod-name">${p.name}</div>
+      <div class="prod-tag">${p.surfaces[L] || p.surfaces.en}</div>
+    </div>
+  </div>
+  <div class="prod-surfaces"></div>
+  <button class="prod-toggle" onclick="toggleInst('${p.id}',this,'${L}')" data-show="${showTxt}" data-hide="${hideTxt}">
+    <span>${showTxt}</span><span class="chevron">▾</span>
+  </button>
+  <div class="prod-instructions" id="inst-${p.id}">
+    <div class="inst-imp">
+      <div class="inst-label">${T.imp_label[L]||T.imp_label.en}</div>
+      <div class="inst-text">${T.imp_text[L]||T.imp_text.en}</div>
+    </div>
+    <div class="inst-crit">
+      <div class="inst-label">${T.crit_label[L]||T.crit_label.en}</div>
+      <div class="inst-text">${T.crit_text[L]||T.crit_text.en}</div>
+    </div>
+    <div class="inst-effect">
+      <div class="inst-label">${T.eff_label[L]||T.eff_label.en}</div>
+      <div class="inst-text">${inst.eff}</div>
+    </div>
+    <div class="inst-steps-title">${T.dir_label[L]||T.dir_label.en}</div>
+    <ol class="inst-steps">${stepsHtml}</ol>
+  </div>
+</div>`;
+  }).join('');
+}
+
+function toggleInst(id, btn, lang) {
+  const panel = document.getElementById('inst-'+id);
+  const isOpen = panel.classList.contains('visible');
+  panel.classList.toggle('visible', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  const showTxt = T.show_inst[lang]||T.show_inst.en;
+  const hideTxt = T.hide_inst[lang]||T.hide_inst.en;
+  btn.querySelector('span:first-child').textContent = isOpen ? showTxt : hideTxt;
+}
+
+// ── RENDER FAQ ────────────────────────────────────────────────────────────────
+function renderFaq() {
+  document.getElementById('faqList').innerHTML = FAQS.map(f => `
+<div class="faq-item">
+  <button class="faq-q" onclick="toggleFaq(this)">${f.q}<span class="fq-icon">+</span></button>
+  <div class="faq-a">${f.a}</div>
+</div>`).join('');
+}
+
+function toggleFaq(btn) {
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('open');
+  btn.classList.toggle('open', open);
+}
+
+// ── NAV SCROLL ────────────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── BUY PRICE UPDATE ──────────────────────────────────────────────────────────
+function updatePrice() {
+  const sel = document.getElementById('buyProduct');
+  const opt = sel.options[sel.selectedIndex];
+  document.getElementById('buyPrice').value = opt.dataset.price || '24.99';
+}
+
+// ── CONTACT FORM ──────────────────────────────────────────────────────────────
+function submitContact(e) {
+  e.preventDefault();
+  const f = e.target;
+  const body = `Name: ${f.name.value}\nEmail: ${f.email.value}\n\n${f.message.value}`;
+  window.location.href = `mailto:info@dropless.com.au?subject=Enquiry from ${f.name.value}&body=${encodeURIComponent(body)}`;
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+renderProducts();
+renderFaq();
+</script>
 </body>
 </html>
