@@ -692,9 +692,81 @@ function submitContact(e) {
   window.location.href = `mailto:info@dropless.com.au?subject=Enquiry from ${f.name.value}&body=${encodeURIComponent(body)}`;
 }
 
+// ── ERP DYNAMIC FETCH ─────────────────────────────────────────────────────────
+const ERP_API = 'https://app.dropless.com.au/api/urun-listesi';
+
+async function loadFromERP() {
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 5000); // 5 sn timeout
+    const res = await fetch(ERP_API, { signal: ctrl.signal });
+    clearTimeout(timer);
+    if (!res.ok) return;
+    const erpProducts = await res.json();
+    if (!Array.isArray(erpProducts) || !erpProducts.length) return;
+
+    let updated = false;
+
+    erpProducts.forEach(ep => {
+      if (!ep.talimat || !Object.keys(ep.talimat).length) return;
+
+      // Hardcoded listede bu ürünü ada göre bul
+      const existing = PRODUCTS.find(p =>
+        p.name.toLowerCase() === (ep.baslik_en || ep.urun_adi || '').toLowerCase() ||
+        p.id === ep.urun_kodu
+      );
+
+      if (existing) {
+        // Talimatları ERP'den güncelle
+        existing.inst = {};
+        DILLER.forEach(dil => {
+          if (ep.talimat[dil]) {
+            existing.inst[dil] = { eff: ep.talimat[dil].effect || '', steps: ep.talimat[dil].steps || [] };
+          }
+        });
+        if (ep.ikon) existing.icon = ep.ikon;
+        if (ep.yuzeyler_en) {
+          const surfs = ep.yuzeyler_en;
+          DILLER.forEach(d => { if (!existing.surfaces[d]) existing.surfaces[d] = surfs; });
+          existing.surfaces.en = surfs;
+        }
+        updated = true;
+      } else {
+        // ERP'de var ama hardcoded'da yok → yeni ürün olarak ekle
+        const newProd = {
+          id: ep.urun_kodu || ('erp-' + PRODUCTS.length),
+          num: PRODUCTS.length + 1,
+          icon: ep.ikon || '💧',
+          name: ep.baslik_en || ep.urun_adi,
+          surfaces: {},
+          inst: {}
+        };
+        const surfs = ep.yuzeyler_en || '';
+        DILLER.forEach(dil => {
+          newProd.surfaces[dil] = surfs;
+          if (ep.talimat[dil]) {
+            newProd.inst[dil] = { eff: ep.talimat[dil].effect || '', steps: ep.talimat[dil].steps || [] };
+          }
+        });
+        // Sıra numarasına göre yerleştir
+        const sira = ep.web_sira || 99;
+        const insertAt = PRODUCTS.findIndex(p => (p.num || 99) > sira);
+        if (insertAt === -1) PRODUCTS.push(newProd);
+        else PRODUCTS.splice(insertAt, 0, newProd);
+        updated = true;
+      }
+    });
+
+    if (updated) renderProducts();
+  } catch(e) {
+    // Sessizce geç — hardcoded data zaten yüklü
+  }
+}
+
 // ── INIT ──────────────────────────────────────────────────────────────────────
 renderProducts();
 renderFaq();
+loadFromERP(); // Arka planda ERP'den güncelle — başarısız olursa hardcoded kalır
 </script>
 </body>
 </html>
