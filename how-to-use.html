@@ -281,21 +281,26 @@ const PRODUCTS = [
 ];
 
 const LABELS = {
-  en:{title:'How to Use',select:'Select your product to view instructions:',effect:'What to expect',steps:'Application steps',tips:'Pro tip',tip_text:'Always use a clean, dry microfiber cloth. Residues from cleaning products can reduce coating effectiveness.',buy:'Need another bottle?',buy_sub:'Free shipping across Australia.',buy_btn:'Shop Now →',surfaces:'Works on',back:'← All products'},
-  tr:{title:'Nasıl Kullanılır',select:'Talimatları görmek için ürününüzü seçin:',effect:'Ne bekleyin',steps:'Uygulama adımları',tips:'Pro ipucu',tip_text:'Her zaman temiz, kuru bir mikrofiber bez kullanın. Temizlik ürünü kalıntıları kaplamayı olumsuz etkileyebilir.',buy:'Yeni şişeye ihtiyacınız var mı?',buy_sub:'Avustralya\'da ücretsiz kargo.',buy_btn:'Sipariş Ver →',surfaces:'Uyumlu yüzeyler',back:'← Tüm ürünler'},
-  ar:{title:'كيفية الاستخدام',select:'اختر منتجك لعرض التعليمات:',effect:'ما يمكن توقعه',steps:'خطوات التطبيق',tips:'نصيحة احترافية',tip_text:'استخدم دائمًا قطعة مايكروفايبر نظيفة وجافة.',buy:'تحتاج زجاجة أخرى؟',buy_sub:'شحن مجاني في أستراليا.',buy_btn:'تسوق الآن →',surfaces:'يعمل على',back:'← جميع المنتجات'},
-  zh:{title:'使用说明',select:'选择您的产品查看说明：',effect:'使用预期效果',steps:'使用步骤',tips:'专业提示',tip_text:'始终使用干净干燥的超细纤维布。清洁产品残留会影响涂层效果。',buy:'需要再购一瓶？',buy_sub:'澳大利亚全境免费配送。',buy_btn:'立即购买 →',surfaces:'适用表面',back:'← 所有产品'},
-  hi:{title:'उपयोग विधि',select:'निर्देश देखने के लिए अपना उत्पाद चुनें:',effect:'क्या उम्मीद करें',steps:'आवेदन के चरण',tips:'प्रो टिप',tip_text:'हमेशा साफ और सूखे माइक्रोफ़ाइबर कपड़े का उपयोग करें।',buy:'एक और बोतल चाहिए?',buy_sub:'ऑस्ट्रेलिया में मुफ़्त शिपिंग।',buy_btn:'अभी खरीदें →',surfaces:'इन पर काम करता है',back:'← सभी उत्पाद'},
-  es:{title:'Cómo Usar',select:'Selecciona tu producto para ver las instrucciones:',effect:'Qué esperar',steps:'Pasos de aplicación',tips:'Consejo pro',tip_text:'Usa siempre un paño de microfibra limpio y seco.',buy:'¿Necesitas otra botella?',buy_sub:'Envío gratis en Australia.',buy_btn:'Comprar →',surfaces:'Funciona en',back:'← Todos los productos'},
-  it:{title:'Come Usarlo',select:'Seleziona il tuo prodotto per vedere le istruzioni:',effect:'Cosa aspettarsi',steps:'Passi di applicazione',tips:'Consiglio pro',tip_text:'Usa sempre un panno in microfibra pulito e asciutto.',buy:'Hai bisogno di un\'altra bottiglia?',buy_sub:'Spedizione gratuita in Australia.',buy_btn:'Acquista →',surfaces:'Funziona su',back:'← Tutti i prodotti'},
-  fa:{title:'نحوه استفاده',select:'محصول خود را برای مشاهده دستورالعمل انتخاب کنید:',effect:'چه انتظاری داشته باشید',steps:'مراحل استفاده',tips:'نکته حرفه‌ای',tip_text:'همیشه از پارچه میکروفایبر تمیز و خشک استفاده کنید.',buy:'به یک بطری دیگر نیاز دارید؟',buy_sub:'ارسال رایگان در استرالیا.',buy_btn:'خرید کنید ←',surfaces:'مناسب برای',back:'← همه محصولات'}
+  en:{title:'How to Use',select:'Select your product to view instructions:',effect:'What to expect',steps:'Application steps',tips:'Pro tip',tip_text:'Always use a clean, dry microfiber cloth. Residues from cleaning products can reduce coating effectiveness.',buy:'Need another bottle?',buy_sub:'Free shipping across Australia.',buy_btn:'Shop Now →',surfaces:'Works on',back:'← All products',back_site:'← Back to site',lang_label:'Language:'},
+  tr:{title:'Nasıl Kullanılır',select:'Talimatları görmek için ürününüzü seçin:',effect:'Ne bekleyin',steps:'Uygulama adımları',tips:'Pro ipucu',tip_text:'Her zaman temiz, kuru bir mikrofiber bez kullanın. Temizlik ürünü kalıntıları kaplamayı olumsuz etkileyebilir.',buy:'Yeni şişeye ihtiyacınız var mı?',buy_sub:'Avustralya\'da ücretsiz kargo.',buy_btn:'Sipariş Ver →',surfaces:'Uyumlu yüzeyler',back:'← Tüm ürünler',back_site:'← Siteye dön',lang_label:'Dil:'},
+  ar:{title:'كيفية الاستخدام',select:'اختر منتجك لعرض التعليمات:',effect:'ما يمكن توقعه',steps:'خطوات التطبيق',tips:'نصيحة احترافية',tip_text:'استخدم دائمًا قطعة مايكروفايبر نظيفة وجافة.',buy:'تحتاج زجاجة أخرى؟',buy_sub:'شحن مجاني في أستراليا.',buy_btn:'تسوق الآن →',surfaces:'يعمل على',back:'← جميع المنتجات',back_site:'← العودة للموقع',lang_label:'اللغة:'},
+  zh:{title:'使用说明',select:'选择您的产品查看说明：',effect:'使用预期效果',steps:'使用步骤',tips:'专业提示',tip_text:'始终使用干净干燥的超细纤维布。清洁产品残留会影响涂层效果。',buy:'需要再购一瓶？',buy_sub:'澳大利亚全境免费配送。',buy_btn:'立即购买 →',surfaces:'适用表面',back:'← 所有产品',back_site:'← 返回网站',lang_label:'语言：'},
+  hi:{title:'उपयोग विधि',select:'निर्देश देखने के लिए अपना उत्पाद चुनें:',effect:'क्या उम्मीद करें',steps:'आवेदन के चरण',tips:'प्रो टिप',tip_text:'हमेशा साफ और सूखे माइक्रोफ़ाइबर कपड़े का उपयोग करें।',buy:'एक और बोतल चाहिए?',buy_sub:'ऑस्ट्रेलिया में मुफ़्त शिपिंग।',buy_btn:'अभी खरीदें →',surfaces:'इन पर काम करता है',back:'← सभी उत्पाद',back_site:'← साइट पर वापस',lang_label:'भाषा:'},
+  es:{title:'Cómo Usar',select:'Selecciona tu producto para ver las instrucciones:',effect:'Qué esperar',steps:'Pasos de aplicación',tips:'Consejo pro',tip_text:'Usa siempre un paño de microfibra limpio y seco.',buy:'¿Necesitas otra botella?',buy_sub:'Envío gratis en Australia.',buy_btn:'Comprar →',surfaces:'Funciona en',back:'← Todos los productos',back_site:'← Volver al sitio',lang_label:'Idioma:'},
+  it:{title:'Come Usarlo',select:'Seleziona il tuo prodotto per vedere le istruzioni:',effect:'Cosa aspettarsi',steps:'Passi di applicazione',tips:'Consiglio pro',tip_text:'Usa sempre un panno in microfibra pulito e asciutto.',buy:'Hai bisogno di un\'altra bottiglia?',buy_sub:'Spedizione gratuita in Australia.',buy_btn:'Acquista →',surfaces:'Funziona su',back:'← Tutti i prodotti',back_site:'← Torna al sito',lang_label:'Lingua:'},
+  fa:{title:'نحوه استفاده',select:'محصول خود را برای مشاهده دستورالعمل انتخاب کنید:',effect:'چه انتظاری داشته باشید',steps:'مراحل استفاده',tips:'نکته حرفه‌ای',tip_text:'همیشه از پارچه میکروفایبر تمیز و خشک استفاده کنید.',buy:'به یک بطری دیگر نیاز دارید؟',buy_sub:'ارسال رایگان در استرالیا.',buy_btn:'خرید کنید ←',surfaces:'مناسب برای',back:'← همه محصولات',back_site:'← بازگشت به سایت',lang_label:'زبان:'}
 };
 
 function setLang(lang, btn) {
   currentLang = lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
-  document.body.classList.toggle('rtl', ['ar','fa'].includes(lang));
+  document.body.classList.toggle('rtl', RTL.includes(lang));
+  document.documentElement.lang = lang;
+  const lbl = LABELS[lang] || LABELS.en;
+  document.querySelector('.topbar-back').textContent = lbl.back_site;
+  document.querySelector('.lang-bar-label').textContent = lbl.lang_label;
+  document.title = lbl.title + ' — Dropless';
   render();
 }
 
