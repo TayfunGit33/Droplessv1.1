@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Products — Dropless Surface Protection</title>
+<meta name="description" content="Professional hydrophobic coatings and surface protection products. Made in Wollongong, NSW Australia."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#f4f1ec;--bg2:#eae5dc;--ink:#0d2027;--soft:#2c3e44;--muted:#6d7a7e;--line:#d8d2c6;--teal:#1a5d6e;--teal2:#4ea8b0;--white:#fefdfb;--max:1240px;--pad:clamp(16px,4vw,48px);}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Geist',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.display{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.02em;line-height:1.05;}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(244,241,236,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.logo{font-family:'Fraunces',serif;font-size:22px;font-weight:500;letter-spacing:-.02em;display:flex;align-items:center;gap:7px;}
+.logo-drop{width:12px;height:16px;background:var(--teal);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;position:relative;top:-1px;}
+.nav-center{display:flex;gap:24px;font-size:13.5px;color:var(--soft);}
+.nav-center a{padding:4px 0;position:relative;transition:color .2s;}
+.nav-center a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--teal);transition:width .25s;}
+.nav-center a:hover,.nav-center a.active{color:var(--teal);}
+.nav-center a:hover::after,.nav-center a.active::after{width:100%;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+select.lang-pick{background:transparent;border:1px solid var(--line);color:var(--soft);font-family:'Geist',sans-serif;font-size:13px;padding:6px 10px;border-radius:20px;cursor:pointer;outline:none;}
+select.lang-pick:hover{border-color:var(--teal);}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;font-family:'Geist',sans-serif;font-size:13.5px;font-weight:500;border-radius:999px;cursor:pointer;transition:.2s;border:1.5px solid var(--ink);text-decoration:none;}
+.btn-primary{background:var(--ink);color:var(--white);}
+.btn-primary:hover{background:var(--teal);border-color:var(--teal);transform:translateY(-1px);}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px;transition:.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-overlay{display:none;position:fixed;inset:0;z-index:195;background:var(--bg);padding:80px var(--pad) 32px;flex-direction:column;overflow-y:auto;}
+.mob-overlay.open{display:flex;}
+.mob-overlay a{font-size:clamp(22px,5vw,28px);font-family:'Fraunces',serif;padding:14px 0;border-bottom:1px solid var(--line);color:var(--ink);}
+@media(max-width:760px){.nav-center{display:none;}.hamburger{display:block;}.nav-right .nav-buy,.nav-right .lang-pick{display:none;}}
+
+/* PAGE HEADER */
+.page-header{padding:110px var(--pad) 48px;max-width:var(--max);margin:0 auto;}
+.page-header h1{font-size:clamp(36px,6vw,72px);margin:10px 0 14px;}
+.page-header p{font-size:17px;color:var(--soft);max-width:580px;line-height:1.65;}
+
+/* CATEGORY TABS */
+.cat-tabs{background:var(--bg2);border-bottom:1px solid var(--line);position:sticky;top:56px;z-index:100;}
+.cat-tabs-inner{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.cat-tabs-inner::-webkit-scrollbar{display:none;}
+.cat-tab{flex-shrink:0;padding:16px 20px;font-size:13.5px;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;transition:.2s;font-family:'Geist',sans-serif;}
+.cat-tab:hover{color:var(--teal);}
+.cat-tab.active{color:var(--teal);border-bottom-color:var(--teal);}
+.cat-count{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;background:var(--teal);color:#fff;border-radius:999px;font-size:10px;font-weight:700;margin-left:6px;padding:0 4px;}
+.cat-tab:not(.active) .cat-count{background:var(--line);color:var(--muted);}
+
+/* FILTER BAR */
+.filter-bar{max-width:var(--max);margin:0 auto;padding:24px var(--pad) 0;display:flex;align-items:center;flex-wrap:wrap;gap:10px;}
+.filter-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:4px;white-space:nowrap;}
+.filter-chip{padding:5px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;font-family:'Geist',sans-serif;font-size:12.5px;color:var(--soft);cursor:pointer;transition:.2s;white-space:nowrap;}
+.filter-chip:hover{border-color:var(--teal);color:var(--teal);}
+.filter-chip.active{background:var(--teal);color:#fff;border-color:var(--teal);}
+.filter-divider{width:1px;height:20px;background:var(--line);margin:0 4px;}
+.filter-pro-chip{padding:5px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;font-family:'Geist',sans-serif;font-size:12.5px;color:var(--soft);cursor:pointer;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:5px;}
+.filter-pro-chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.filter-count{margin-left:auto;font-size:13px;color:var(--muted);}
+
+/* PRODUCTS GRID */
+.products-section{max-width:var(--max);margin:0 auto;padding:28px var(--pad) 80px;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+
+/* PRODUCT CARD */
+.prod-card{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .25s,transform .25s;}
+.prod-card:hover{box-shadow:0 12px 40px rgba(13,32,39,.09);transform:translateY(-2px);}
+.prod-card[data-hidden="true"]{display:none;}
+
+.prod-card-visual{height:200px;background:linear-gradient(145deg,#daeef0,#bddde1);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.prod-card-visual.vis-automotive{background:linear-gradient(145deg,#d4e8f0,#b8d4df);}
+.prod-card-visual.vis-home{background:linear-gradient(145deg,#e8ecd4,#d4dcb8);}
+.prod-card-visual.vis-kit{background:linear-gradient(145deg,#ece8d4,#dcd4b8);}
+.prod-card-icon{font-size:56px;filter:drop-shadow(0 6px 12px rgba(13,32,39,.12));}
+
+/* Badges on card */
+.card-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;}
+.badge-made{background:rgba(26,93,110,.12);color:var(--teal);}
+.badge-selected{background:rgba(200,160,40,.15);color:#7a5800;display:flex;align-items:center;gap:4px;}
+.badge-new{background:var(--teal);color:#fff;}
+.badge-pro{position:absolute;top:12px;right:12px;background:var(--ink);color:#fff;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;}
+
+.prod-card-body{padding:20px 20px 0;flex:1;}
+.prod-card-name{font-family:'Fraunces',serif;font-size:18px;font-weight:400;margin:0 0 5px;line-height:1.2;}
+.prod-card-desc{font-size:13.5px;color:var(--soft);line-height:1.55;margin:0 0 12px;}
+.prod-card-surfaces{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.surf-chip{font-size:11px;padding:3px 9px;border-radius:20px;background:rgba(26,93,110,.07);color:var(--teal);font-weight:500;}
+
+.prod-card-footer{padding:16px 20px 20px;border-top:1px solid var(--bg2);display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;}
+.prod-card-price{font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:var(--ink);}
+.prod-card-price span{font-size:12px;font-weight:400;color:var(--muted);font-family:'Geist',sans-serif;}
+.prod-card-actions{display:flex;gap:8px;}
+.pca-btn{font-family:'Geist',sans-serif;font-size:12.5px;font-weight:500;padding:8px 14px;border-radius:6px;cursor:pointer;transition:.2s;border:none;white-space:nowrap;}
+.pca-buy{background:var(--teal);color:#fff;}
+.pca-buy:hover{background:var(--ink);}
+.pca-how{background:transparent;color:var(--teal);border:1.5px solid var(--teal);}
+.pca-how:hover{background:var(--teal);color:#fff;}
+
+/* SELECTED BY DROPLESS tooltip */
+.selected-tooltip{position:relative;display:inline-flex;align-items:center;gap:4px;cursor:help;}
+.selected-tooltip .tt{position:absolute;bottom:calc(100% + 8px);left:0;background:var(--ink);color:#fff;font-size:11.5px;line-height:1.45;padding:8px 12px;border-radius:6px;white-space:nowrap;max-width:220px;white-space:normal;width:220px;display:none;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,.2);}
+.selected-tooltip .tt::after{content:"";position:absolute;top:100%;left:16px;border:5px solid transparent;border-top-color:var(--ink);}
+.selected-tooltip:hover .tt{display:block;}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:80px 20px;color:var(--muted);}
+.empty-state h3{font-family:'Fraunces',serif;font-size:24px;margin:0 0 8px;color:var(--soft);}
+
+/* BUNDLE SECTION */
+.bundle-section{background:var(--bg2);padding:clamp(48px,8vw,80px) var(--pad);}
+.bundle-inner{max-width:var(--max);margin:0 auto;}
+.bundle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:40px;}
+.bundle-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:28px;position:relative;overflow:hidden;}
+.bundle-card::before{content:"Bundle";position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(26,93,110,.1);color:var(--teal);}
+.bundle-card h3{font-family:'Fraunces',serif;font-size:20px;margin:0 0 8px;}
+.bundle-card p{font-size:13.5px;color:var(--soft);margin:0 0 16px;}
+.bundle-items{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.bundle-item{display:flex;align-items:center;gap:10px;font-size:13.5px;}
+.bundle-item-ico{font-size:18px;flex-shrink:0;}
+.bundle-item-name{color:var(--soft);}
+.bundle-item-tag{margin-left:auto;font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(26,93,110,.08);color:var(--teal);font-weight:500;white-space:nowrap;}
+.bundle-price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:16px;}
+.bundle-price{font-family:'Fraunces',serif;font-size:28px;font-weight:300;}
+.bundle-price-was{font-size:14px;color:var(--muted);text-decoration:line-through;}
+.bundle-save{font-size:12px;padding:3px 10px;background:rgba(26,93,110,.1);color:var(--teal);border-radius:999px;font-weight:600;}
+.bundle-btn{display:block;text-align:center;background:var(--ink);color:#fff;padding:12px;border-radius:8px;font-family:'Geist',sans-serif;font-size:14px;font-weight:500;transition:.2s;}
+.bundle-btn:hover{background:var(--teal);}
+
+/* B2B STRIP */
+.b2b-strip{background:var(--ink);color:#fff;padding:48px var(--pad);}
+.b2b-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.b2b-text h2{font-family:'Fraunces',serif;font-size:clamp(24px,3vw,36px);margin:0 0 8px;color:#fff;}
+.b2b-text p{font-size:15px;color:rgba(255,255,255,.65);margin:0;max-width:480px;}
+.b2b-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+.b2b-badge{font-size:12.5px;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);}
+.b2b-cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start;flex-shrink:0;}
+.b2b-btn{display:inline-block;padding:13px 28px;border-radius:999px;font-family:'Geist',sans-serif;font-size:14px;font-weight:600;transition:.2s;}
+.b2b-btn-primary{background:#fff;color:var(--ink);}
+.b2b-btn-primary:hover{background:var(--teal2);color:#fff;}
+.b2b-btn-ghost{background:transparent;color:rgba(255,255,255,.7);font-size:13px;padding:8px 0;}
+.b2b-btn-ghost:hover{color:#fff;}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad) 32px;}
+.footer-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;}
+@media(max-width:640px){.footer-inner{grid-template-columns:1fr;}}
+.footer-brand{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.footer-brand-sub{font-size:13px;line-height:1.6;}
+.footer-col h4{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px;}
+.footer-col a{display:block;font-size:14px;margin-bottom:8px;color:rgba(255,255,255,.6);transition:color .2s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{max-width:var(--max);margin:32px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;font-size:12.5px;flex-wrap:wrap;gap:8px;}
+
+@keyframes rise{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.page-header{animation:rise .6s ease both;}
+
+@media(max-width:640px){
+  body{padding-bottom:0;}
+  .prod-card-footer{flex-direction:column;align-items:flex-start;}
+  .prod-card-actions{width:100%;}
+  .pca-btn{flex:1;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="logo"><span class="logo-drop"></span>Dropless</a>
+  <div class="nav-center">
+    <a href="products.html" class="active">Products</a>
+    <a href="/#how">How It Works</a>
+    <a href="/#buy">Buy</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <select class="lang-pick" id="globalLang" onchange="setLang(this.value)">
+      <option value="en">English</option>
+      <option value="tr">Türkçe</option>
+      <option value="ar">العربية</option>
+      <option value="zh">中文</option>
+      <option value="hi">हिन्दी</option>
+      <option value="es">Español</option>
+      <option value="it">Italiano</option>
+      <option value="fa">فارسی</option>
+    </select>
+    <a href="/#buy" class="btn btn-primary nav-buy">Buy Now</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mob-overlay" id="mobOverlay">
+  <a href="products.html" onclick="toggleMenu()">Products</a>
+  <a href="/#how" onclick="toggleMenu()">How It Works</a>
+  <a href="/#buy" onclick="toggleMenu()">Buy Now</a>
+  <a href="/#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="/#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="eyebrow">Surface Protection Technologies</div>
+  <h1 class="display">Our Products</h1>
+  <p>Professional hydrophobic coatings made in Wollongong, NSW — plus carefully selected tools and accessories to complete your application.</p>
+</div>
+
+<!-- CATEGORY TABS -->
+<div class="cat-tabs">
+  <div class="cat-tabs-inner">
+    <button class="cat-tab active" data-cat="all" onclick="filterCat('all',this)">
+      All Products <span class="cat-count" id="cnt-all">0</span>
+    </button>
+    <button class="cat-tab" data-cat="coating" onclick="filterCat('coating',this)">
+      Surface Coatings <span class="cat-count" id="cnt-coating">0</span>
+    </button>
+    <button class="cat-tab" data-cat="accessory" onclick="filterCat('accessory',this)">
+      Application Tools <span class="cat-count" id="cnt-accessory">0</span>
+    </button>
+    <button class="cat-tab" data-cat="industrial" onclick="filterCat('industrial',this)">
+      Industrial & Commercial <span class="cat-count" id="cnt-industrial">0</span>
+    </button>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filterBar">
+  <span class="filter-label">Surface:</span>
+  <button class="filter-chip active" data-surface="all" onclick="filterSurface('all',this)">All</button>
+  <button class="filter-chip" data-surface="glass" onclick="filterSurface('glass',this)">Glass</button>
+  <button class="filter-chip" data-surface="ceramic" onclick="filterSurface('ceramic',this)">Ceramic & Tile</button>
+  <button class="filter-chip" data-surface="metal" onclick="filterSurface('metal',this)">Metal</button>
+  <button class="filter-chip" data-surface="automotive" onclick="filterSurface('automotive',this)">Automotive</button>
+  <button class="filter-chip" data-surface="fabric" onclick="filterSurface('fabric',this)">Fabric & Leather</button>
+  <span class="filter-divider"></span>
+  <button class="filter-pro-chip" id="proToggle" onclick="togglePro()">🔧 Pro Only</button>
+  <span class="filter-count" id="filterCount"></span>
+</div>
+
+<!-- PRODUCTS GRID -->
+<div class="products-section">
+  <div class="products-grid" id="productsGrid"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <h3>No products match this filter</h3>
+    <p style="margin-top:8px;">Try selecting a different surface type or category.</p>
+  </div>
+</div>
+
+<!-- BUNDLES -->
+<section class="bundle-section">
+  <div class="bundle-inner">
+    <div style="text-align:center;margin-bottom:8px;" class="eyebrow">Complete Solutions</div>
+    <h2 class="display" style="font-size:clamp(28px,4vw,48px);text-align:center;margin:8px 0 12px;">Curated Kits</h2>
+    <p style="text-align:center;color:var(--soft);max-width:520px;margin:0 auto;font-size:16px;">Everything you need in one kit. Coating + the right tools, picked by us.</p>
+    <div class="bundle-grid" id="bundleGrid"></div>
+  </div>
+</section>
+
+<!-- B2B STRIP -->
+<div class="b2b-strip">
+  <div class="b2b-inner">
+    <div class="b2b-text">
+      <h2>Wholesale & Trade Accounts</h2>
+      <p>Detailers, cleaning services, tile installers, glaziers — get trade pricing, bulk stock, and priority support.</p>
+      <div class="b2b-badges">
+        <span class="b2b-badge">✓ Volume Discounts</span>
+        <span class="b2b-badge">✓ Dedicated Account Manager</span>
+        <span class="b2b-badge">✓ Priority Dispatch</span>
+        <span class="b2b-badge">✓ NET 30 Terms Available</span>
+      </div>
+    </div>
+    <div class="b2b-cta">
+      <a href="mailto:info@dropless.com.au?subject=Trade Account Enquiry" class="b2b-btn b2b-btn-primary">Apply for Trade Account →</a>
+      <a href="mailto:info@dropless.com.au" class="b2b-btn b2b-btn-ghost">or email info@dropless.com.au</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><span style="width:10px;height:14px;background:var(--teal2);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;display:inline-block;"></span>Dropless</div>
+      <p class="footer-brand-sub">Professional surface protection coatings.<br>Made in Wollongong, NSW, Australia.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="products.html">All Products</a>
+      <a href="products.html?cat=coating">Surface Coatings</a>
+      <a href="products.html?cat=accessory">Application Tools</a>
+      <a href="how-to-use.html">How to Use</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+      <a href="mailto:info@dropless.com.au">info@dropless.com.au</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Dropless. Made in Australia.</span>
+    <span>ABN applied · Wollongong NSW 2500</span>
+  </div>
+</footer>
+
+<script>
+// ─── PRODUCT DATA ──────────────────────────────────────────────
+// origin: "dropless" = we manufacture | "selected" = curated/sourced externally
+// pro: true = also targeted at professional users
+// surfaces: used for filtering ["glass","ceramic","metal","automotive","fabric"]
+// cat: "coating" | "accessory" | "industrial"
+// howToUseId: matches products.html?product=ID in how-to-use.html
+
+const PRODUCTS = [
+  {
+    id: 'bath-100',
+    name: 'Dropless Bath',
+    desc: 'Hydrophobic shield for shower glass, tiles and bathroom surfaces. Water beads and rolls off instantly.',
+    icon: '🚿',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['glass','ceramic'],
+    pro: false,
+    price: 24.99,
+    size: '100 mL',
+    badge: 'Best Seller',
+    howToUseId: 'bathroom',
+    stripeId: '',
+    visClass: 'vis-glass'
+  },
+  {
+    id: 'glass-pro-100',
+    name: 'Dropless Glass Pro',
+    desc: 'Professional-grade coating for windows, shower screens and mirrors. Long-lasting clarity.',
+    icon: '🔭',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['glass'],
+    pro: true,
+    price: 29.99,
+    size: '100 mL',
+    badge: 'Pro',
+    howToUseId: 'glass-pro',
+    stripeId: '',
+    visClass: 'vis-glass'
+  },
+  {
+    id: 'ceramic-100',
+    name: 'Dropless Ceramic Shield',
+    desc: 'Stops soap scum and limescale bonding to ceramic tiles, sinks and kitchen splashbacks.',
+    icon: '🏠',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['ceramic'],
+    pro: false,
+    price: 24.99,
+    size: '100 mL',
+    badge: 'New',
+    howToUseId: 'ceramic',
+    stripeId: '',
+    visClass: 'vis-glass'
+  },
+  {
+    id: 'rainxtreme-100',
+    name: 'Dropless RainXtreme',
+    desc: 'Windshield and automotive glass coating. Rain clears itself at speed — less wiping, safer driving.',
+    icon: '🌧️',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['glass','automotive'],
+    pro: false,
+    price: 24.99,
+    size: '100 mL',
+    badge: '',
+    howToUseId: 'rainxtreme',
+    stripeId: '',
+    visClass: 'vis-automotive'
+  },
+  {
+    id: 'metal-shine-100',
+    name: 'Dropless Metal Shine+',
+    desc: 'Protects stainless steel, aluminium and chrome from fingerprints, water spots and oxidation.',
+    icon: '✨',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['metal'],
+    pro: false,
+    price: 22.99,
+    size: '100 mL',
+    badge: '',
+    howToUseId: 'metal-shine',
+    stripeId: '',
+    visClass: 'vis-glass'
+  },
+  {
+    id: 'microfiber-3pk',
+    name: 'Microfiber Application Cloth',
+    desc: 'Ultra-soft 300 GSM microfiber cloths. Selected and tested by the Dropless team for optimal coating results.',
+    icon: '🧤',
+    cat: 'accessory',
+    origin: 'selected',
+    surfaces: ['glass','ceramic','metal','automotive','fabric'],
+    pro: false,
+    price: 12.99,
+    size: '3-pack',
+    badge: '',
+    howToUseId: '',
+    stripeId: '',
+    visClass: 'vis-kit'
+  }
+];
+
+const BUNDLES = [
+  {
+    name: 'Shower Starter Kit',
+    desc: 'Everything to protect your bathroom glass and tiles from day one.',
+    items: [
+      {icon:'🚿', name:'Dropless Bath 100 mL', tag:'You make'},
+      {icon:'🧤', name:'Microfiber Cloth (×2)', tag:'Included'}
+    ],
+    price: 32.99,
+    was: 37.98,
+    href: '/#buy'
+  },
+  {
+    name: 'Automotive Glass Kit',
+    desc: 'Windshield + interior glass protection in one go.',
+    items: [
+      {icon:'🌧️', name:'RainXtreme 100 mL', tag:'You make'},
+      {icon:'🔭', name:'Glass Pro 100 mL', tag:'You make'},
+      {icon:'🧤', name:'Microfiber Cloth (×2)', tag:'Included'}
+    ],
+    price: 54.99,
+    was: 67.97,
+    href: '/#buy'
+  },
+  {
+    name: 'Home Protection Bundle',
+    desc: 'Glass, ceramic and metal — the full home kit.',
+    items: [
+      {icon:'🚿', name:'Dropless Bath 100 mL', tag:'You make'},
+      {icon:'🏠', name:'Ceramic Shield 100 mL', tag:'You make'},
+      {icon:'✨', name:'Metal Shine+ 100 mL', tag:'You make'},
+      {icon:'🧤', name:'Microfiber Cloths (×3)', tag:'Included'}
+    ],
+    price: 64.99,
+    was: 85.96,
+    href: '/#buy'
+  }
+];
+
+// ─── STATE ──────────────────────────────────────────────────────
+let activeCat     = 'all';
+let activeSurface = 'all';
+let proOnly       = false;
+
+// ─── RENDER ─────────────────────────────────────────────────────
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  let visible = 0;
+
+  grid.innerHTML = PRODUCTS.map(p => {
+    const show = matchFilter(p);
+    if (show) visible++;
+
+    const originBadge = p.origin === 'selected'
+      ? `<div class="card-badge badge-selected selected-tooltip">
+           ✦ Selected by Dropless
+           <span class="tt">Sourced and approved by the Dropless team. Every accessory we stock has been tested with our coatings for best results.</span>
+         </div>`
+      : `<div class="card-badge badge-made">Made by Dropless</div>`;
+
+    const proBadge = p.pro ? `<div class="badge-pro">Pro</div>` : '';
+    const newBadge = p.badge === 'New' ? `<div class="card-badge badge-new" style="left:auto;right:12px;">New</div>` : '';
+
+    const surfaceChips = p.surfaces.slice(0,3).map(s =>
+      `<span class="surf-chip">${surfaceLabel(s)}</span>`
+    ).join('');
+
+    const howBtn = p.howToUseId
+      ? `<a href="how-to-use.html?product=${p.howToUseId}" class="pca-btn pca-how">How to Use</a>`
+      : '';
+
+    const buyUrl = p.stripeId
+      ? `https://app.dropless.com.au/stripe/checkout?product=${p.stripeId}`
+      : '/#buy';
+
+    return `
+    <div class="prod-card" data-id="${p.id}" data-cat="${p.cat}"
+         data-surfaces="${p.surfaces.join(',')}" data-pro="${p.pro}"
+         data-hidden="${!show}">
+      <div class="prod-card-visual ${p.visClass}">
+        ${originBadge}
+        ${proBadge}
+        ${newBadge}
+        <div class="prod-card-icon">${p.icon}</div>
+      </div>
+      <div class="prod-card-body">
+        <div class="prod-card-name">${p.name}</div>
+        <div class="prod-card-desc">${p.desc}</div>
+        <div class="prod-card-surfaces">${surfaceChips}</div>
+      </div>
+      <div class="prod-card-footer">
+        <div class="prod-card-price">$${p.price.toFixed(2)}<span> AUD · ${p.size}</span></div>
+        <div class="prod-card-actions">
+          ${howBtn}
+          <a href="${buyUrl}" class="pca-btn pca-buy">Buy →</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
+  document.getElementById('filterCount').textContent = visible + ' product' + (visible !== 1 ? 's' : '');
+  updateCounts();
+}
+
+function matchFilter(p) {
+  if (activeCat !== 'all' && p.cat !== activeCat) return false;
+  if (activeSurface !== 'all' && !p.surfaces.includes(activeSurface)) return false;
+  if (proOnly && !p.pro) return false;
+  return true;
+}
+
+function surfaceLabel(s) {
+  return {glass:'Glass',ceramic:'Ceramic & Tile',metal:'Metal',automotive:'Automotive',fabric:'Fabric & Leather'}[s] || s;
+}
+
+function updateCounts() {
+  const cats = ['all','coating','accessory','industrial'];
+  cats.forEach(cat => {
+    const el = document.getElementById('cnt-' + cat);
+    if (!el) return;
+    const count = PRODUCTS.filter(p => {
+      if (cat !== 'all' && p.cat !== cat) return false;
+      if (activeSurface !== 'all' && !p.surfaces.includes(activeSurface)) return false;
+      if (proOnly && !p.pro) return false;
+      return true;
+    }).length;
+    el.textContent = count;
+  });
+}
+
+// ─── FILTER ACTIONS ─────────────────────────────────────────────
+function filterCat(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts();
+}
+
+function filterSurface(surface, btn) {
+  activeSurface = surface;
+  document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts();
+}
+
+function togglePro() {
+  proOnly = !proOnly;
+  document.getElementById('proToggle').classList.toggle('active', proOnly);
+  renderProducts();
+}
+
+// ─── BUNDLES ────────────────────────────────────────────────────
+function renderBundles() {
+  document.getElementById('bundleGrid').innerHTML = BUNDLES.map(b => {
+    const items = b.items.map(i =>
+      `<div class="bundle-item">
+        <span class="bundle-item-ico">${i.icon}</span>
+        <span class="bundle-item-name">${i.name}</span>
+        <span class="bundle-item-tag">${i.tag}</span>
+      </div>`
+    ).join('');
+    const save = (b.was - b.price).toFixed(2);
+    return `
+    <div class="bundle-card">
+      <h3>${b.name}</h3>
+      <p>${b.desc}</p>
+      <div class="bundle-items">${items}</div>
+      <div class="bundle-price-row">
+        <span class="bundle-price">$${b.price.toFixed(2)}</span>
+        <span class="bundle-price-was">$${b.was.toFixed(2)}</span>
+        <span class="bundle-save">Save $${save}</span>
+      </div>
+      <a href="${b.href}" class="bundle-btn">Order This Kit →</a>
+    </div>`;
+  }).join('');
+}
+
+// ─── NAV & LANG ─────────────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobOverlay').classList.toggle('open');
+}
+
+function setLang(lang) {
+  document.body.classList.toggle('rtl', ['ar','fa'].includes(lang));
+  document.documentElement.lang = lang;
+}
+
+// Handle ?cat= URL param on load
+function initFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const cat = params.get('cat');
+  if (cat) {
+    const btn = document.querySelector(`.cat-tab[data-cat="${cat}"]`);
+    if (btn) filterCat(cat, btn);
+  }
+}
+
+// ─── INIT ───────────────────────────────────────────────────────
+renderProducts();
+renderBundles();
+initFromURL();
+</script>
+</body>
+</html>
