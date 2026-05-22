@@ -44,18 +44,53 @@ select.lang-pick:hover{border-color:var(--teal);color:var(--teal);}
 @media(max-width:760px){.nav-center{display:none;}.nav-right .nav-buy{display:none;}}
 
 /* HERO */
-.hero{min-height:88vh;padding:90px var(--pad) 40px;display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:start;max-width:var(--max);margin:0 auto;}
-@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:80px;}}
+.hero{min-height:88vh;padding:90px var(--pad) 60px;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;max-width:var(--max);margin:0 auto;}
+@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:80px;gap:48px;}}
 .hero-text{opacity:0;transform:translateY(20px);animation:rise 1s .2s forwards cubic-bezier(.2,.7,.2,1);}
-.hero h1{font-size:clamp(44px,7.5vw,100px);margin:20px 0 24px;}
+.hero h1{font-size:clamp(44px,7vw,96px);margin:20px 0 22px;}
 .hero h1 em{font-style:italic;color:var(--teal);font-variation-settings:"opsz" 144,"SOFT" 100;}
-.hero-sub{font-size:clamp(16px,1.6vw,19px);color:var(--soft);max-width:460px;margin:0 0 32px;}
+.hero-sub{font-size:clamp(16px,1.5vw,18px);color:var(--soft);max-width:480px;margin:0 0 32px;line-height:1.65;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
-.hero-visual{position:relative;aspect-ratio:3/4;max-width:440px;margin-left:auto;opacity:0;transform:translateY(20px);animation:rise 1.1s .45s forwards cubic-bezier(.2,.7,.2,1);}
-.bottle-stage{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,rgba(78,168,176,.18),transparent 60%),linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);border-radius:8px;overflow:hidden;}
-.bottle-stage::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(78,168,176,.35) 0,transparent 1px),radial-gradient(circle at 75% 60%,rgba(78,168,176,.25) 0,transparent 1.5px),radial-gradient(circle at 45% 80%,rgba(78,168,176,.3) 0,transparent 1px),radial-gradient(circle at 85% 30%,rgba(78,168,176,.2) 0,transparent 1.2px);background-size:55px 55px;animation:drift 18s linear infinite;}
-.bottle-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);font-size:clamp(80px,18vw,140px);filter:drop-shadow(0 20px 30px rgba(13,32,39,.15));}
-.hero-badge{position:absolute;bottom:20px;left:20px;right:20px;display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+
+/* HERO VISUAL — product card mock-up */
+.hero-visual{position:relative;max-width:400px;margin-left:auto;opacity:0;transform:translateY(20px);animation:rise 1.1s .45s forwards cubic-bezier(.2,.7,.2,1);}
+@media(max-width:900px){.hero-visual{max-width:360px;margin:0 auto;}}
+.prod-mock-card{background:var(--white);border-radius:20px;box-shadow:0 24px 64px rgba(13,32,39,.11),0 4px 12px rgba(13,32,39,.06);overflow:hidden;}
+.prod-mock-visual{background:linear-gradient(145deg,#daeef0 0%,#bddde1 60%,#a8d3d8 100%);padding:44px 24px 36px;min-height:260px;display:flex;justify-content:center;align-items:flex-end;position:relative;overflow:hidden;}
+.prod-mock-visual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(255,255,255,.75) 3px,transparent 3px) 14% 22% / auto,radial-gradient(circle,rgba(255,255,255,.55) 2px,transparent 2px) 68% 14% / auto,radial-gradient(circle,rgba(255,255,255,.65) 4px,transparent 4px) 44% 62% / auto,radial-gradient(circle,rgba(255,255,255,.5) 2px,transparent 2px) 82% 52% / auto,radial-gradient(circle,rgba(255,255,255,.6) 3px,transparent 3px) 24% 78% / auto,radial-gradient(circle,rgba(255,255,255,.5) 2px,transparent 2px) 58% 38% / auto,radial-gradient(circle,rgba(255,255,255,.55) 3px,transparent 3px) 88% 78% / auto;animation:beadFloat 5s ease-in-out infinite alternate;pointer-events:none;}
+/* CSS spray bottle */
+.css-bottle{display:flex;flex-direction:column;align-items:center;filter:drop-shadow(0 14px 28px rgba(13,32,39,.18));z-index:1;position:relative;}
+.css-bottle-cap{width:22px;height:13px;background:var(--teal);border-radius:3px 3px 0 0;position:relative;}
+.css-bottle-cap::after{content:"";position:absolute;right:-12px;top:3px;width:12px;height:7px;background:var(--teal);border-radius:0 4px 4px 0;}
+.css-bottle-neck{width:30px;height:16px;background:linear-gradient(to bottom,#c8e2e6,#b8dde2);border:1.5px solid rgba(26,93,110,.2);border-top:none;border-bottom:none;}
+.css-bottle-body{width:70px;height:112px;background:linear-gradient(135deg,#e2f0f3 0%,#cae3e7 45%,#b4d9de 100%);border-radius:5px 5px 10px 10px;border:1.5px solid rgba(26,93,110,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.css-bottle-body::before{content:"";position:absolute;left:7px;top:8px;width:5px;height:52%;background:rgba(255,255,255,.55);border-radius:3px;transform:skewX(-6deg);}
+.css-bottle-body::after{content:"";position:absolute;inset:16px 9px;background:rgba(255,255,255,.32);border-radius:3px;border:1px solid rgba(255,255,255,.5);}
+.bottle-lbl{position:relative;z-index:1;text-align:center;line-height:1.25;}
+.bottle-lbl-brand{font-family:'Fraunces',serif;font-size:8.5px;font-weight:600;color:var(--teal);letter-spacing:.12em;text-transform:uppercase;}
+.bottle-lbl-prod{font-family:'Fraunces',serif;font-size:13px;font-weight:500;color:var(--ink);}
+.bottle-lbl-vol{font-size:7.5px;color:var(--soft);letter-spacing:.1em;margin-top:2px;}
+/* Info section */
+.prod-mock-info{padding:22px 26px 26px;}
+.prod-mock-eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;}
+.prod-mock-name{font-family:'Fraunces',serif;font-size:21px;font-weight:400;color:var(--ink);margin:0 0 3px;line-height:1.2;}
+.prod-mock-tagline{font-size:12.5px;color:var(--muted);margin-bottom:16px;}
+.prod-mock-price-row{display:flex;align-items:baseline;gap:6px;margin-bottom:16px;}
+.prod-mock-price{font-family:'Fraunces',serif;font-size:28px;font-weight:300;color:var(--ink);}
+.prod-mock-price-detail{font-size:13px;color:var(--muted);}
+.prod-mock-btn{display:block;width:100%;padding:12px;background:var(--ink);color:var(--white);border:none;border-radius:999px;font-family:'Geist',sans-serif;font-size:13.5px;font-weight:600;text-align:center;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none;}
+.prod-mock-btn:hover{background:var(--teal);transform:translateY(-1px);}
+.prod-mock-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;}
+.prod-mock-tag{font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(26,93,110,.07);color:var(--teal);font-weight:500;}
+/* Floating badges */
+.mock-float{position:absolute;background:var(--white);border-radius:12px;padding:9px 13px;box-shadow:0 8px 28px rgba(13,32,39,.13);font-size:12px;font-weight:500;color:var(--ink);white-space:nowrap;display:flex;align-items:center;gap:8px;z-index:2;}
+.mock-float.mf-top{top:20px;right:-14px;animation:floatBob 3.2s ease-in-out infinite;}
+.mock-float.mf-bottom{bottom:90px;left:-14px;animation:floatBob 3.8s ease-in-out infinite;animation-delay:.9s;}
+.mock-float-ico{font-size:18px;}
+.mock-float-main{font-size:12px;font-weight:600;color:var(--ink);display:block;}
+.mock-float-sub{font-size:10px;color:var(--muted);display:block;}
+@keyframes floatBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes beadFloat{0%{opacity:.7;}100%{opacity:1;}}
 
 /* STATS */
 .stats{background:var(--teal);color:var(--white);padding:28px var(--pad);}
@@ -171,7 +206,6 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 
 /* ANIM */
 @keyframes rise{to{opacity:1;transform:translateY(0);}}
-@keyframes drift{from{background-position:0 0;}to{background-position:55px 55px;}}
 
 /* HAMBURGER */
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:210;flex-shrink:0;}
@@ -299,11 +333,43 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     </div>
   </div>
   <div class="hero-visual">
-    <div class="bottle-stage"></div>
-    <div class="bottle-icon">💧</div>
-    <div class="hero-badge">
-      <span>Dropless Bath</span>
-      <span>100 mL · $24.99 AUD</span>
+    <div class="mock-float mf-top">
+      <span class="mock-float-ico">⭐</span>
+      <span><span class="mock-float-main">4.9 / 5 rating</span><span class="mock-float-sub">120+ happy customers</span></span>
+    </div>
+    <div class="prod-mock-card">
+      <div class="prod-mock-visual">
+        <div class="css-bottle">
+          <div class="css-bottle-cap"></div>
+          <div class="css-bottle-neck"></div>
+          <div class="css-bottle-body">
+            <div class="bottle-lbl">
+              <div class="bottle-lbl-brand">Dropless</div>
+              <div class="bottle-lbl-prod">Bath</div>
+              <div class="bottle-lbl-vol">100 mL</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="prod-mock-info">
+        <div class="prod-mock-eyebrow">Best Seller · Glass &amp; Shower</div>
+        <div class="prod-mock-name">Dropless Bath</div>
+        <div class="prod-mock-tagline">Professional hydrophobic glass coat</div>
+        <div class="prod-mock-price-row">
+          <span class="prod-mock-price">$24.99</span>
+          <span class="prod-mock-price-detail">AUD · 100 mL</span>
+        </div>
+        <a href="#buy" class="prod-mock-btn">Order Now →</a>
+        <div class="prod-mock-tags">
+          <span class="prod-mock-tag">💧 Water Repellent</span>
+          <span class="prod-mock-tag">✓ 12-Month Guard</span>
+          <span class="prod-mock-tag">🇦🇺 Made in AU</span>
+        </div>
+      </div>
+    </div>
+    <div class="mock-float mf-bottom">
+      <span class="mock-float-ico">📦</span>
+      <span><span class="mock-float-main">Ships AU-wide</span><span class="mock-float-sub">via Sendle · fast delivery</span></span>
     </div>
   </div>
 </div>
