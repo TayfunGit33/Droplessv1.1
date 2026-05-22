@@ -136,7 +136,8 @@ body.rtl .inst-steps{padding-left:0;padding-right:20px;}
 .inst-steps li{font-size:14px;margin-bottom:6px;line-height:1.45;}
 
 /* LANG TABS */
-.lang-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;padding-top:12px;}
+.lang-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;padding-top:10px;border-top:1px solid var(--line);margin-top:10px;align-items:center;}
+.lang-tabs::before{content:'🌐';font-size:13px;margin-right:2px;opacity:.5;}
 .lang-tab{font-size:12px;padding:4px 10px;border-radius:20px;border:1px solid var(--line);background:transparent;cursor:pointer;font-family:'Geist',sans-serif;color:var(--soft);transition:background .2s,color .2s,border-color .2s;}
 .lang-tab.active{background:var(--teal);color:var(--white);border-color:var(--teal);}
 
@@ -403,6 +404,16 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <button class="cat-btn" onclick="setCat('home',this)">🏠 Home & Kitchen</button>
       <button class="cat-btn" onclick="setCat('soft',this)">🛋 Soft Surfaces</button>
       <button class="cat-btn" onclick="setCat('tech',this)">📱 Screens</button>
+    </div>
+    <div class="lang-tabs" id="inlineLangTabs">
+      <button class="lang-tab active" data-lang="en" onclick="setLang('en')">🇦🇺 EN</button>
+      <button class="lang-tab" data-lang="tr" onclick="setLang('tr')">🇹🇷 TR</button>
+      <button class="lang-tab" data-lang="ar" onclick="setLang('ar')">🇸🇦 AR</button>
+      <button class="lang-tab" data-lang="zh" onclick="setLang('zh')">🇨🇳 ZH</button>
+      <button class="lang-tab" data-lang="hi" onclick="setLang('hi')">🇮🇳 HI</button>
+      <button class="lang-tab" data-lang="es" onclick="setLang('es')">🇪🇸 ES</button>
+      <button class="lang-tab" data-lang="it" onclick="setLang('it')">🇮🇹 IT</button>
+      <button class="lang-tab" data-lang="fa" onclick="setLang('fa')">🇮🇷 FA</button>
     </div>
     <div class="products-grid" id="productsGrid"></div>
   </div>
@@ -804,6 +815,10 @@ function setLang(lang) {
   // Update mobile lang buttons
   document.querySelectorAll('.mob-lang button').forEach(b => {
     b.classList.toggle('mob-lang-active', b.textContent.trim() === pick?.options[pick.selectedIndex]?.text);
+  });
+  // Update inline lang tabs
+  document.querySelectorAll('#inlineLangTabs .lang-tab').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
   });
   renderProducts();
 }
