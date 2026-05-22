@@ -173,8 +173,59 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 @keyframes rise{to{opacity:1;transform:translateY(0);}}
 @keyframes drift{from{background-position:0 0;}to{background-position:55px 55px;}}
 
+/* HAMBURGER */
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:210;flex-shrink:0;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;transition:transform .3s,opacity .3s;border-radius:2px;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:760px){.hamburger{display:block;}.nav-center{display:none;}.nav-right .nav-buy,.nav-right .lang-pick{display:none;}}
+
+/* MOBILE OVERLAY */
+.mob-overlay{display:none;position:fixed;inset:0;z-index:195;background:var(--bg);padding:76px var(--pad) 32px;flex-direction:column;overflow-y:auto;}
+.mob-overlay.open{display:flex;}
+.mob-overlay a{font-size:clamp(24px,6vw,30px);font-family:'Fraunces',serif;padding:14px 0;border-bottom:1px solid var(--line);color:var(--ink);}
+.mob-overlay a:hover{color:var(--teal);}
+.mob-lang{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px;}
+.mob-lang button{padding:7px 14px;border-radius:20px;border:1px solid var(--line);background:transparent;font-family:'Geist',sans-serif;font-size:13px;cursor:pointer;color:var(--soft);}
+.mob-lang button.mob-lang-active{background:var(--teal);color:var(--white);border-color:var(--teal);}
+
+/* TRUST BADGES */
+.trust-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;}
+.trust-badge{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--soft);}
+.trust-badge .tbico{font-size:15px;}
+
+/* NAV ACTIVE */
+.nav-center a.nav-active{color:var(--teal);}
+.nav-center a.nav-active::after{width:100%;}
+
+/* SEARCH */
+.prod-search-wrap{max-width:420px;margin:0 auto 24px;position:relative;}
+.prod-search{width:100%;padding:12px 16px 12px 42px;border:1.5px solid var(--line);border-radius:999px;font-family:'Geist',sans-serif;font-size:15px;background:var(--white);color:var(--ink);outline:none;transition:.2s;}
+.prod-search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(26,93,110,.08);}
+.prod-search-ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;}
+
+/* CATEGORY FILTER */
+.cat-filter{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:36px;}
+.cat-btn{padding:7px 16px;border-radius:999px;border:1.5px solid var(--line);background:transparent;font-family:'Geist',sans-serif;font-size:13px;color:var(--soft);cursor:pointer;transition:.2s;}
+.cat-btn:hover{border-color:var(--teal);color:var(--teal);}
+.cat-btn.active{background:var(--teal);color:var(--white);border-color:var(--teal);}
+
+/* PROD BUY BUTTON */
+.prod-buy-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 48px);margin:0 24px 20px;padding:10px;background:var(--teal);color:var(--white);border:none;border-radius:6px;font-family:'Geist',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:.2s;}
+.prod-buy-btn:hover{background:var(--ink);}
+
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:80px;right:20px;z-index:150;width:44px;height:44px;background:var(--teal);color:var(--white);border:none;border-radius:50%;font-size:18px;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(26,93,110,.3);transition:.2s;display:none;}
+.back-top:hover{transform:translateY(-2px);}
+.back-top.visible{display:flex;}
+@media(max-width:640px){.back-top{bottom:72px;right:14px;}}
+
+/* CONTACT SUCCESS */
+.contact-success{display:none;background:rgba(26,93,110,.1);border:1px solid var(--teal);color:var(--teal);border-radius:8px;padding:16px;margin-top:16px;text-align:center;font-weight:500;}
+
 /* MOBILE NAV */
-.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--white);border-top:1px solid var(--line);padding:8px 0 max(8px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);}
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--white);border-top:1px solid var(--line);padding:8px 0 max(8px,env(safe-area-inset-bottom));grid-template-columns:repeat(5,1fr);}
 .mob-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:500;color:var(--soft);padding:4px;cursor:pointer;transition:color .2s;}
 .mob-nav-item:hover{color:var(--teal);}
 .mob-nav-icon{font-size:20px;}
@@ -190,6 +241,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <a href="#products">Products</a>
     <a href="#how">How It Works</a>
     <a href="#buy">Buy</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </div>
   <div class="nav-right">
@@ -204,8 +256,30 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <option value="fa">فارسی</option>
     </select>
     <a href="#buy" class="btn btn-primary nav-buy">Buy Now</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE OVERLAY MENU -->
+<div class="mob-overlay" id="mobOverlay">
+  <a href="#products" onclick="toggleMenu()">Products</a>
+  <a href="#how" onclick="toggleMenu()">How It Works</a>
+  <a href="#buy" onclick="toggleMenu()">Buy Now</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <div class="mob-lang" id="mobLang">
+    <button onclick="setLang('en');toggleMenu()" class="mob-lang-active">English</button>
+    <button onclick="setLang('tr');toggleMenu()">Türkçe</button>
+    <button onclick="setLang('ar');toggleMenu()">العربية</button>
+    <button onclick="setLang('zh');toggleMenu()">中文</button>
+    <button onclick="setLang('hi');toggleMenu()">हिन्दी</button>
+    <button onclick="setLang('es');toggleMenu()">Español</button>
+    <button onclick="setLang('it');toggleMenu()">Italiano</button>
+    <button onclick="setLang('fa');toggleMenu()">فارسی</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -216,6 +290,12 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <div class="hero-btns">
       <a href="#buy" class="btn btn-primary">Shop Now <span>→</span></a>
       <a href="#products" class="btn btn-ghost">See All Products</a>
+    </div>
+    <div class="trust-row">
+      <span class="trust-badge"><span class="tbico">🇦🇺</span> Made in Australia</span>
+      <span class="trust-badge"><span class="tbico">🔒</span> Stripe Secured</span>
+      <span class="trust-badge"><span class="tbico">🚚</span> Ships AU-wide</span>
+      <span class="trust-badge"><span class="tbico">⭐</span> 1-Year Protection</span>
     </div>
   </div>
   <div class="hero-visual">
@@ -245,6 +325,18 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <div class="eyebrow">Product Range</div>
       <h2 class="display">Protection for Every Surface</h2>
       <p>Professional-grade hydrophobic coatings. Select a product below to view instructions in your language.</p>
+    </div>
+    <div class="prod-search-wrap">
+      <span class="prod-search-ico">🔍</span>
+      <input type="text" class="prod-search" id="prodSearch" placeholder="Search products..." oninput="filterProducts()">
+    </div>
+    <div class="cat-filter">
+      <button class="cat-btn active" onclick="setCat('all',this)">All Products</button>
+      <button class="cat-btn" onclick="setCat('bathroom',this)">🛁 Bathroom</button>
+      <button class="cat-btn" onclick="setCat('car',this)">🚗 Car & Auto</button>
+      <button class="cat-btn" onclick="setCat('home',this)">🏠 Home & Kitchen</button>
+      <button class="cat-btn" onclick="setCat('soft',this)">🛋 Soft Surfaces</button>
+      <button class="cat-btn" onclick="setCat('tech',this)">📱 Screens</button>
     </div>
     <div class="products-grid" id="productsGrid"></div>
   </div>
@@ -278,12 +370,21 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
           <div class="form-group">
             <label>Product</label>
             <select name="urun_adi" id="buyProduct" onchange="updatePrice()">
-              <option value="Dropless Bath 100mL" data-price="24.99">Dropless Bath 100mL — $24.99</option>
-              <option value="Dropless Bath 50mL" data-price="14.99">Dropless Bath 50mL — $14.99</option>
-              <option value="Dropless Glass Pro Coat" data-price="24.99">Glass Pro Coat — $24.99</option>
-              <option value="Dropless Multi-Surface Coat" data-price="24.99">Multi-Surface Coat — $24.99</option>
-              <option value="Dropless RainXtreme" data-price="24.99">RainXtreme — $24.99</option>
-              <option value="Dropless Ceramic Shield" data-price="24.99">Ceramic Shield — $24.99</option>
+              <option value="Dropless Bath 100mL" data-price="24.99">💧 Dropless Bath 100mL — $24.99</option>
+              <option value="Dropless Bath 50mL" data-price="14.99">💧 Dropless Bath 50mL — $14.99</option>
+              <option value="Dropless Multi-Surface Coat" data-price="24.99">🌊 Multi-Surface Coat — $24.99</option>
+              <option value="Dropless Glass Pro Coat" data-price="24.99">🔭 Glass Pro Coat — $24.99</option>
+              <option value="Dropless Ceramic Shield" data-price="24.99">🏠 Ceramic Shield — $24.99</option>
+              <option value="Dropless Interior Glass Coat" data-price="24.99">🚗 Interior Glass Coat — $24.99</option>
+              <option value="Dropless RainXtreme" data-price="24.99">🌧 RainXtreme — $24.99</option>
+              <option value="Dropless Plastic Screen Guard" data-price="24.99">📱 Plastic &amp; Screen Guard — $24.99</option>
+              <option value="Dropless Toilet Anti-Stick Hybrid" data-price="24.99">🚽 Toilet Anti-Stick Hybrid — $24.99</option>
+              <option value="Dropless Bathroom Shield" data-price="24.99">🚿 Bathroom Shield — $24.99</option>
+              <option value="Dropless Stone Bench Guard" data-price="24.99">🪨 Stone &amp; Bench Guard — $24.99</option>
+              <option value="Dropless Metal Shine Plus" data-price="24.99">✨ Metal Shine+ — $24.99</option>
+              <option value="Dropless Leather Vinyl Guard" data-price="24.99">👜 Leather &amp; Vinyl Guard — $24.99</option>
+              <option value="Dropless Fabric Guard" data-price="24.99">🛋 Fabric Guard — $24.99</option>
+              <option value="Dropless Hybrid Ultra-Long" data-price="24.99">🔬 Hybrid Ultra-Long — $24.99</option>
             </select>
           </div>
           <div class="form-group">
@@ -337,6 +438,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
         <div class="cf-group"><label>Email</label><input type="email" name="email" required placeholder="your@email.com"/></div>
         <div class="cf-group"><label>Message</label><textarea name="message" required placeholder="How can we help?"></textarea></div>
         <button type="submit" class="cf-submit">Send Message</button>
+        <div class="contact-success" id="contactSuccess">✅ Your message is ready — check your email client to send it.</div>
       </form>
     </div>
   </div>
@@ -368,15 +470,46 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   </div>
 </footer>
 
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
 <!-- MOBILE NAV -->
 <nav class="mob-nav">
   <a href="#" class="mob-nav-item"><span class="mob-nav-icon">🏠</span>Home</a>
   <a href="#products" class="mob-nav-item"><span class="mob-nav-icon">📦</span>Products</a>
   <a href="#buy" class="mob-nav-item"><span class="mob-nav-icon">🛒</span>Buy</a>
+  <a href="#faq" class="mob-nav-item"><span class="mob-nav-icon">❓</span>FAQ</a>
   <a href="#contact" class="mob-nav-item"><span class="mob-nav-icon">✉</span>Contact</a>
 </nav>
 
 <script>
+const DILLER = ['en','tr','ar','zh','hi','es','it','fa'];
+
+// ── PRODUCT CATEGORIES ────────────────────────────────────────────────────────
+const CATS = {
+  'multi-surface':'home','glass-pro':'bathroom','ceramic':'bathroom',
+  'interior-glass':'car','rainxtreme':'car','plastic-screen':'tech',
+  'toilet':'bathroom','bathroom':'bathroom','stone-bench':'home',
+  'metal-shine':'home','leather':'soft','fabric':'soft','hybrid-ultra':'home'
+};
+
+// Maps product id → buy form option value
+const BUY_MAP = {
+  'multi-surface':'Dropless Multi-Surface Coat',
+  'glass-pro':'Dropless Glass Pro Coat',
+  'ceramic':'Dropless Ceramic Shield',
+  'interior-glass':'Dropless Interior Glass Coat',
+  'rainxtreme':'Dropless RainXtreme',
+  'plastic-screen':'Dropless Plastic Screen Guard',
+  'toilet':'Dropless Toilet Anti-Stick Hybrid',
+  'bathroom':'Dropless Bathroom Shield',
+  'stone-bench':'Dropless Stone Bench Guard',
+  'metal-shine':'Dropless Metal Shine Plus',
+  'leather':'Dropless Leather Vinyl Guard',
+  'fabric':'Dropless Fabric Guard',
+  'hybrid-ultra':'Dropless Hybrid Ultra-Long'
+};
+
 // ── TRANSLATIONS ──────────────────────────────────────────────────────────────
 const T = {
   imp_label: {en:'IMPORTANT',tr:'ÖNEMLİ',ar:'مهم',zh:'重要提示',hi:'महत्वपूर्ण',es:'IMPORTANTE',it:'IMPORTANTE',fa:'مهم'},
@@ -404,7 +537,8 @@ const T = {
     fa:'از همان پارچه‌ای که برای تمیزکاری استفاده کردید استفاده نکنید. باقیمانده مواد پاک‌کننده به پوشش آسیب می‌زند.'
   },
   show_inst:{en:'Show Instructions ▾',tr:'Talimatları Göster ▾',ar:'عرض التعليمات ▾',zh:'查看说明 ▾',hi:'निर्देश देखें ▾',es:'Ver Instrucciones ▾',it:'Mostra Istruzioni ▾',fa:'نمایش دستورالعمل‌ها ▾'},
-  hide_inst:{en:'Hide Instructions ▴',tr:'Talimatları Gizle ▴',ar:'إخفاء التعليمات ▴',zh:'隐藏说明 ▴',hi:'निर्देश छुपाएं ▴',es:'Ocultar Instrucciones ▴',it:'Nascondi Istruzioni ▴',fa:'پنهان کردن دستورالعمل‌ها ▴'}
+  hide_inst:{en:'Hide Instructions ▴',tr:'Talimatları Gizle ▴',ar:'إخفاء التعليمات ▴',zh:'隐藏说明 ▴',hi:'निर्देश छुपाएं ▴',es:'Ocultar Instrucciones ▴',it:'Nascondi Istruzioni ▴',fa:'پنهان کردن دستورالعمل‌ها ▴'},
+  buy_now:{en:'Buy Now',tr:'Satın Al',ar:'اشتري الآن',zh:'立即购买',hi:'अभी खरीदें',es:'Comprar',it:'Acquista',fa:'خرید'}
 };
 
 // ── PRODUCT DATA ──────────────────────────────────────────────────────────────
@@ -590,28 +724,75 @@ const FAQS = [
   {q:'Can I apply on top of an old coating?', a:'Clean the surface thoroughly first. Old coatings that are still active may interfere. For best results on previously coated surfaces, use a surface prep wipe with isopropyl alcohol before applying.'}
 ];
 
-// ── CURRENT LANGUAGE ──────────────────────────────────────────────────────────
+// ── CURRENT LANGUAGE + FILTER STATE ──────────────────────────────────────────
 let currentLang = 'en';
+let currentCat = 'all';
+let searchQuery = '';
 const RTL = ['ar','fa'];
 
 function setLang(lang) {
   currentLang = lang;
-  document.getElementById('globalLang').value = lang;
-  if (RTL.includes(lang)) {
-    document.body.classList.add('rtl');
-  } else {
-    document.body.classList.remove('rtl');
-  }
+  const pick = document.getElementById('globalLang');
+  if (pick) pick.value = lang;
+  document.body.classList.toggle('rtl', RTL.includes(lang));
+  // Update mobile lang buttons
+  document.querySelectorAll('.mob-lang button').forEach(b => {
+    b.classList.toggle('mob-lang-active', b.textContent.trim() === pick?.options[pick.selectedIndex]?.text);
+  });
   renderProducts();
+}
+
+function setCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts();
+}
+
+function filterProducts() {
+  searchQuery = (document.getElementById('prodSearch')?.value || '').toLowerCase();
+  renderProducts();
+}
+
+function quickBuy(prodId) {
+  const val = BUY_MAP[prodId];
+  if (val) {
+    const sel = document.getElementById('buyProduct');
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === val) { sel.selectedIndex = i; break; }
+    }
+    updatePrice();
+  }
+  document.getElementById('buy').scrollIntoView({behavior:'smooth'});
+}
+
+function toggleMenu() {
+  const ham = document.getElementById('hamburger');
+  const overlay = document.getElementById('mobOverlay');
+  ham.classList.toggle('open');
+  overlay.classList.toggle('open');
+  document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
 }
 
 // ── RENDER PRODUCTS ───────────────────────────────────────────────────────────
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   const L = currentLang;
-  grid.innerHTML = PRODUCTS.map(p => {
+  const filtered = PRODUCTS.filter(p => {
+    const cat = CATS[p.id] || 'home';
+    const catOk = currentCat === 'all' || cat === currentCat;
+    const q = searchQuery;
+    const searchOk = !q || p.name.toLowerCase().includes(q) || (p.surfaces[L]||p.surfaces.en||'').toLowerCase().includes(q);
+    return catOk && searchOk;
+  });
+  if (!filtered.length) {
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:48px 0">No products found.</p>';
+    return;
+  }
+  const buyTxt = T.buy_now[L] || T.buy_now.en;
+  grid.innerHTML = filtered.map(p => {
     const inst = p.inst[L] || p.inst['en'];
-    const stepsHtml = inst.steps.map((s,i) => `<li>${s}</li>`).join('');
+    const stepsHtml = inst.steps.map(s => `<li>${s}</li>`).join('');
     const showTxt = T.show_inst[L] || T.show_inst.en;
     const hideTxt = T.hide_inst[L] || T.hide_inst.en;
     return `
@@ -643,6 +824,7 @@ function renderProducts() {
     <div class="inst-steps-title">${T.dir_label[L]||T.dir_label.en}</div>
     <ol class="inst-steps">${stepsHtml}</ol>
   </div>
+  <button class="prod-buy-btn" onclick="quickBuy('${p.id}')">🛒 ${buyTxt}</button>
 </div>`;
   }).join('');
 }
@@ -672,9 +854,22 @@ function toggleFaq(btn) {
   btn.classList.toggle('open', open);
 }
 
-// ── NAV SCROLL ────────────────────────────────────────────────────────────────
+// ── NAV SCROLL + ACTIVE + BACK-TO-TOP ────────────────────────────────────────
 window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  const sy = window.scrollY;
+  document.getElementById('nav').classList.toggle('scrolled', sy > 40);
+  const bt = document.getElementById('backTop');
+  if (bt) bt.classList.toggle('visible', sy > 400);
+  // Active nav
+  const sections = ['products','how','buy','faq','contact'];
+  let active = '';
+  for (const id of sections) {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 80) active = id;
+  }
+  document.querySelectorAll('.nav-center a').forEach(a => {
+    a.classList.toggle('nav-active', a.getAttribute('href') === '#' + active);
+  });
 });
 
 // ── BUY PRICE UPDATE ──────────────────────────────────────────────────────────
@@ -689,7 +884,10 @@ function submitContact(e) {
   e.preventDefault();
   const f = e.target;
   const body = `Name: ${f.name.value}\nEmail: ${f.email.value}\n\n${f.message.value}`;
-  window.location.href = `mailto:info@dropless.com.au?subject=Enquiry from ${f.name.value}&body=${encodeURIComponent(body)}`;
+  window.open(`mailto:info@dropless.com.au?subject=Enquiry from ${encodeURIComponent(f.name.value)}&body=${encodeURIComponent(body)}`, '_blank');
+  f.reset();
+  const ok = document.getElementById('contactSuccess');
+  if (ok) ok.style.display = 'block';
 }
 
 // ── ERP DYNAMIC FETCH ─────────────────────────────────────────────────────────
