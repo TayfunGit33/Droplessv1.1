@@ -208,6 +208,14 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 /* ANIM */
 @keyframes rise{to{opacity:1;transform:translateY(0);}}
 
+/* ORDER BANNER */
+.order-banner{position:fixed;top:0;left:0;right:0;z-index:500;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:15px;font-weight:500;transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);}
+.order-banner.visible{transform:translateY(0);}
+.order-banner.success{background:#0d9488;color:#fff;}
+.order-banner.cancelled{background:#f59e0b;color:#fff;}
+.order-banner-close{background:rgba(255,255,255,.25);border:none;color:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:16px;line-height:1;flex-shrink:0;}
+.order-banner-close:hover{background:rgba(255,255,255,.4);}
+
 /* HAMBURGER */
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:210;flex-shrink:0;}
 .hamburger span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;transition:transform .3s,opacity .3s;border-radius:2px;}
@@ -268,6 +276,12 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 </style>
 </head>
 <body>
+
+<!-- ORDER RESULT BANNER -->
+<div class="order-banner" id="orderBanner">
+  <span id="orderBannerMsg"></span>
+  <button class="order-banner-close" onclick="closeBanner()" aria-label="Close">✕</button>
+</div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
@@ -1041,6 +1055,36 @@ async function loadFromERP() {
     // Sessizce geç — hardcoded data zaten yüklü
   }
 }
+
+// ── ORDER RESULT BANNER ───────────────────────────────────────────────────────
+function closeBanner() {
+  document.getElementById('orderBanner').classList.remove('visible');
+  // URL'den parametreyi temizle (sayfa yenilenince tekrar açılmasın)
+  const url = new URL(window.location);
+  url.searchParams.delete('order');
+  url.searchParams.delete('sid');
+  history.replaceState({}, '', url);
+}
+
+(function checkOrderParam() {
+  const params = new URLSearchParams(window.location.search);
+  const order  = params.get('order');
+  if (!order) return;
+  const banner = document.getElementById('orderBanner');
+  const msg    = document.getElementById('orderBannerMsg');
+  if (order === 'success') {
+    banner.classList.add('success');
+    msg.innerHTML = '✅ <strong>Payment successful!</strong> Your order has been received — you\'ll get a confirmation email shortly.';
+  } else if (order === 'cancelled') {
+    banner.classList.add('cancelled');
+    msg.innerHTML = '⚠️ Payment was cancelled. Your cart is still here whenever you\'re ready.';
+  }
+  // Nav yüksekliği kadar body'yi aşağı it
+  document.body.style.paddingTop = '54px';
+  setTimeout(() => banner.classList.add('visible'), 100);
+  // 10 saniye sonra otomatik kapat (sadece success için)
+  if (order === 'success') setTimeout(closeBanner, 10000);
+})();
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 renderProducts();
