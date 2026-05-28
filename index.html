@@ -255,7 +255,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 .cat-btn.active{background:var(--teal);color:var(--white);border-color:var(--teal);}
 
 /* PROD BUY BUTTON */
-.prod-buy-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 48px);margin:0 24px 20px;padding:10px;background:var(--teal);color:var(--white);border:none;border-radius:6px;font-family:'Geist',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:.2s;}
+.prod-buy-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 48px);margin:0 24px 16px;padding:10px;background:var(--teal);color:var(--white);border:none;border-radius:6px;font-family:'Geist',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:.2s;}
+.sds-btns{display:flex;gap:8px;margin:0 24px 20px;}
+.sds-btn-read,.sds-btn-dl{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:7px 4px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none;transition:.18s;}
+.sds-btn-read{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;}
+.sds-btn-read:hover{background:#dcfce7;}
+.sds-btn-dl{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;}
+.sds-btn-dl:hover{background:#dbeafe;}
 .prod-buy-btn:hover{background:var(--ink);}
 
 /* BACK TO TOP */
@@ -1070,6 +1076,10 @@ function renderProducts() {
     <ol class="inst-steps">${stepsHtml}</ol>
   </div>
   <button class="prod-buy-btn" onclick="quickBuy('${p.id}')">🛒 ${buyTxt}</button>
+  ${SDS_MAP[p.id] ? `<div class="sds-btns">
+    <a class="sds-btn-read" href="${SDS_MAP[p.id]}" target="_blank" rel="noopener">📄 Safety Data Sheet</a>
+    <a class="sds-btn-dl"   href="${SDS_MAP[p.id].replace('/serve/','/download/')}" download>⬇️ Download PDF</a>
+  </div>` : ''}
 </div>`;
   }).join('');
 }
@@ -1205,7 +1215,25 @@ function submitContact(e) {
 }
 
 // ── ERP DYNAMIC FETCH ─────────────────────────────────────────────────────────
-const ERP_API = 'https://app.dropless.com.au/api/urun-listesi';
+const ERP_API     = 'https://app.dropless.com.au/api/urun-listesi';
+const ERP_SDS_API = 'https://app.dropless.com.au/sds/api';
+
+// SDS map: { 'bathroom': 'https://app.dropless.com.au/sds/serve/bathroom', ... }
+let SDS_MAP = {};
+
+async function loadSDS() {
+  try {
+    const ctrl = new AbortController();
+    setTimeout(() => ctrl.abort(), 5000);
+    const res = await fetch(ERP_SDS_API, { signal: ctrl.signal });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data && data.sds) {
+      SDS_MAP = data.sds;
+      renderProducts(); // SDS butonları için yeniden render
+    }
+  } catch(e) { /* sessiz geç */ }
+}
 
 async function loadFromERP() {
   try {
@@ -1309,7 +1337,8 @@ function closeBanner() {
 renderProducts();
 renderFaq();
 filterBuyProducts(); // Sayfa açılışında tüm ürünleri doldur
-loadFromERP(); // Arka planda ERP'den güncelle — başarısız olursa hardcoded kalır
+loadFromERP();  // Arka planda ERP'den güncelle — başarısız olursa hardcoded kalır
+loadSDS();      // SDS PDF linklerini ERP'den çek
 
 // Bundle formları için email senkronizasyonu
 document.getElementById('musteri_email') && document.getElementById('musteri_email').addEventListener('input', function() {
