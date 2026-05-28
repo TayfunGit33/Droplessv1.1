@@ -461,36 +461,21 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <p class="buy-sub">Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post &amp; Sendle delivery network.</p>
     <div class="buy-form">
       <form action="https://app.dropless.com.au/stripe/checkout" method="POST">
+        <div class="form-group" style="margin-bottom:14px;">
+          <label>Category</label>
+          <select id="buyCategory" onchange="filterBuyProducts()">
+            <option value="">🛍 All Products</option>
+            <option value="bathroom">🛁 Bathroom &amp; Home</option>
+            <option value="automotive">🚗 Automotive</option>
+            <option value="premium">⭐ Premium Concentrates</option>
+            <option value="fragrance">💨 Fragrance &amp; Fabric</option>
+            <option value="specialty">🔧 Specialty</option>
+          </select>
+        </div>
         <div class="form-row">
           <div class="form-group">
             <label>Product</label>
-            <select name="urun_adi" id="buyProduct" onchange="updatePrice()">
-              <optgroup label="— Bathroom &amp; Home —">
-                <option value="Dropless Bathroom Shield" data-price="14.95" data-tier="standard">🚿 Bathroom Shield 100mL — $14.95</option>
-                <option value="Dropless Bathroom Shield 500mL" data-price="29.95" data-tier="standard">🚿 Bathroom Shield 500mL — $29.95</option>
-                <option value="Dropless Glass Pro Coat 500mL" data-price="29.95" data-tier="standard">🔭 Glass Pro Coat 500mL — $29.95</option>
-                <option value="Dropless Multi-Surface Coat 500mL" data-price="29.95" data-tier="standard">🌊 Multi-Surface Coat 500mL — $29.95</option>
-                <option value="Dropless Stone Bench Guard 500mL" data-price="34.95" data-tier="standard">🪨 Stone &amp; Bench Guard 500mL — $34.95</option>
-                <option value="Dropless Fabric Guard 1L" data-price="39.95" data-tier="standard">🛋 Fabric Guard 1 Litre — $39.95</option>
-              </optgroup>
-              <optgroup label="— Automotive —">
-                <option value="Dropless RainXtreme 500mL" data-price="29.95" data-tier="standard">🌧 RainXtreme 500mL — $29.95</option>
-                <option value="Dropless Interior Glass Coat 500mL" data-price="29.95" data-tier="standard">🚗 Interior Glass Coat 500mL — $29.95</option>
-                <option value="Dropless Metal Shine Plus 500mL" data-price="34.95" data-tier="standard">✨ Metal Shine+ 500mL — $34.95</option>
-                <option value="Dropless Leather Vinyl Guard 500mL" data-price="34.95" data-tier="standard">👜 Leather &amp; Vinyl Guard 500mL — $34.95</option>
-              </optgroup>
-              <optgroup label="— Premium Concentrates —">
-                <option value="Dropless Ceramic Shield 500mL" data-price="39.95" data-tier="premium">🏠 Ceramic Shield 500mL — $39.95</option>
-                <option value="Dropless Hybrid Ultra-Long 500mL" data-price="44.95" data-tier="premium">🔬 Hybrid Ultra-Long 500mL — $44.95</option>
-              </optgroup>
-              <optgroup label="— Specialty —">
-                <option value="Dropless Toilet Anti-Stick Hybrid 500mL" data-price="29.95" data-tier="standard">🚽 Toilet Anti-Stick Hybrid 500mL — $29.95</option>
-                <option value="Dropless Plastic Screen Guard 100mL" data-price="14.95" data-tier="standard">📱 Plastic &amp; Screen Guard 100mL — $14.95</option>
-              </optgroup>
-              <optgroup label="— Fragrance &amp; Fabric —">
-                <option value="Dropless Odour Refresher Spritzer 500mL" data-price="29.95" data-tier="standard">💨 Odour Refresher &amp; Spritzer 500mL — $29.95</option>
-              </optgroup>
-            </select>
+            <select name="urun_adi" id="buyProduct" onchange="updatePrice()"></select>
           </div>
           <div class="form-group">
             <label>Quantity</label>
@@ -1132,9 +1117,74 @@ window.addEventListener('scroll', () => {
   });
 });
 
+// ── BUY CATALOG (add new categories/products here) ───────────────────────────
+const BUY_CATALOG = {
+  bathroom: {
+    label:'🛁 Bathroom & Home',
+    products:[
+      {v:'Dropless Bathroom Shield',        p:'14.95', t:'🚿 Bathroom Shield 100mL — $14.95'},
+      {v:'Dropless Bathroom Shield 500mL',  p:'29.95', t:'🚿 Bathroom Shield 500mL — $29.95'},
+      {v:'Dropless Glass Pro Coat 500mL',   p:'29.95', t:'🔭 Glass Pro Coat 500mL — $29.95'},
+      {v:'Dropless Multi-Surface Coat 500mL',p:'29.95',t:'🌊 Multi-Surface Coat 500mL — $29.95'},
+      {v:'Dropless Stone Bench Guard 500mL',p:'34.95', t:'🪨 Stone & Bench Guard 500mL — $34.95'},
+      {v:'Dropless Fabric Guard 1L',        p:'39.95', t:'🛋 Fabric Guard 1 Litre — $39.95'},
+    ]
+  },
+  automotive: {
+    label:'🚗 Automotive',
+    products:[
+      {v:'Dropless RainXtreme 500mL',          p:'29.95', t:'🌧 RainXtreme 500mL — $29.95'},
+      {v:'Dropless Interior Glass Coat 500mL', p:'29.95', t:'🚗 Interior Glass Coat 500mL — $29.95'},
+      {v:'Dropless Metal Shine Plus 500mL',    p:'34.95', t:'✨ Metal Shine+ 500mL — $34.95'},
+      {v:'Dropless Leather Vinyl Guard 500mL', p:'34.95', t:'👜 Leather & Vinyl Guard 500mL — $34.95'},
+    ]
+  },
+  premium: {
+    label:'⭐ Premium Concentrates',
+    products:[
+      {v:'Dropless Ceramic Shield 500mL',    p:'39.95', t:'🏠 Ceramic Shield 500mL — $39.95'},
+      {v:'Dropless Hybrid Ultra-Long 500mL', p:'44.95', t:'🔬 Hybrid Ultra-Long 500mL — $44.95'},
+    ]
+  },
+  fragrance: {
+    label:'💨 Fragrance & Fabric',
+    products:[
+      {v:'Dropless Odour Refresher Spritzer 500mL', p:'29.95', t:'💨 Odour Refresher & Spritzer 500mL — $29.95'},
+    ]
+  },
+  specialty: {
+    label:'🔧 Specialty',
+    products:[
+      {v:'Dropless Toilet Anti-Stick Hybrid 500mL', p:'29.95', t:'🚽 Toilet Anti-Stick Hybrid 500mL — $29.95'},
+      {v:'Dropless Plastic Screen Guard 100mL',     p:'14.95', t:'📱 Plastic & Screen Guard 100mL — $14.95'},
+    ]
+  }
+};
+
+function filterBuyProducts() {
+  const cat = document.getElementById('buyCategory').value;
+  const sel = document.getElementById('buyProduct');
+  sel.innerHTML = '';
+  const cats = cat ? [BUY_CATALOG[cat]] : Object.values(BUY_CATALOG);
+  cats.forEach(c => {
+    const grp = document.createElement('optgroup');
+    grp.label = c.label;
+    c.products.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p.v;
+      opt.dataset.price = p.p;
+      opt.textContent = p.t;
+      grp.appendChild(opt);
+    });
+    sel.appendChild(grp);
+  });
+  updatePrice();
+}
+
 // ── BUY PRICE UPDATE ──────────────────────────────────────────────────────────
 function updatePrice() {
   const sel = document.getElementById('buyProduct');
+  if (!sel || !sel.options.length) return;
   const opt = sel.options[sel.selectedIndex];
   const price = opt.dataset.price || '14.95';
   document.getElementById('buyPrice').value = price;
@@ -1257,6 +1307,7 @@ function closeBanner() {
 // ── INIT ──────────────────────────────────────────────────────────────────────
 renderProducts();
 renderFaq();
+filterBuyProducts(); // Sayfa açılışında tüm ürünleri doldur
 loadFromERP(); // Arka planda ERP'den güncelle — başarısız olursa hardcoded kalır
 
 // Bundle formları için email senkronizasyonu
@@ -1264,7 +1315,6 @@ document.getElementById('musteri_email') && document.getElementById('musteri_ema
   const v = this.value;
   ['bundleEmail1','bundleEmail2'].forEach(id => { const el = document.getElementById(id); if(el) el.value = v; });
 });
-updatePrice(); // ilk açılışta fiyatı doğru göster
 </script>
 </body>
 </html>
