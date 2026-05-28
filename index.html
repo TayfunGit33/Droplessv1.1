@@ -1218,8 +1218,14 @@ function submitContact(e) {
 const ERP_API     = 'https://app.dropless.com.au/api/urun-listesi';
 const ERP_SDS_API = 'https://app.dropless.com.au/sds/api';
 
-// SDS map: { 'bathroom': 'https://app.dropless.com.au/sds/serve/bathroom', ... }
-let SDS_MAP = {};
+// SDS map: bilinen girişler hardcode — fetch yeni eklenenleri günceller
+const SDS_BASE = 'https://app.dropless.com.au/sds/serve/';
+let SDS_MAP = {
+  'bathroom':       SDS_BASE + 'bathroom',
+  'toilet':         SDS_BASE + 'toilet',
+  'fabric':         SDS_BASE + 'fabric',
+  'odour-refresher':SDS_BASE + 'odour-refresher',
+};
 
 async function loadSDS() {
   try {
@@ -1229,8 +1235,9 @@ async function loadSDS() {
     if (!res.ok) return;
     const data = await res.json();
     if (data && data.sds) {
-      SDS_MAP = data.sds;
-      renderProducts(); // SDS butonları için yeniden render
+      // Hardcode map'e yeni girişleri ekle, mevcut olanları koru
+      Object.assign(SDS_MAP, data.sds);
+      renderProducts();
     }
   } catch(e) { /* sessiz geç */ }
 }
