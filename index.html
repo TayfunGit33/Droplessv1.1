@@ -360,7 +360,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
           <div class="css-bottle-body">
             <div class="bottle-lbl">
               <div class="bottle-lbl-brand">Dropless</div>
-              <div class="bottle-lbl-prod">Bath</div>
+              <div class="bottle-lbl-prod">Bathroom Shield</div>
               <div class="bottle-lbl-vol">100 mL</div>
             </div>
           </div>
@@ -368,7 +368,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       </div>
       <div class="prod-mock-info">
         <div class="prod-mock-eyebrow">Best Seller · Glass &amp; Shower</div>
-        <div class="prod-mock-name">Dropless Bath</div>
+        <div class="prod-mock-name">Dropless Bathroom Shield</div>
         <div class="prod-mock-tagline">Professional hydrophobic glass coat</div>
         <div class="prod-mock-price-row">
           <span class="prod-mock-price">$24.99</span>
@@ -384,7 +384,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     </div>
     <div class="mock-float mf-bottom">
       <span class="mock-float-ico">📦</span>
-      <span><span class="mock-float-main">Ships AU-wide</span><span class="mock-float-sub">via Sendle · fast delivery</span></span>
+      <span><span class="mock-float-main">Ships AU-wide</span><span class="mock-float-sub">via Australia Post &amp; Sendle</span></span>
     </div>
   </div>
 </div>
@@ -440,6 +440,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <div class="eyebrow">Universal Method</div>
       <h2 class="display">Four Steps. Lasting Protection.</h2>
     </div>
+    <div style="background:#fef9c3;border:1.5px solid #f59e0b;border-radius:10px;padding:14px 18px;margin-bottom:28px;display:flex;align-items:flex-start;gap:12px;">
+      <span style="font-size:1.4rem;flex-shrink:0;">⚠️</span>
+      <p style="margin:0;color:#78350f;font-size:.93rem;line-height:1.55;"><strong>IMPORTANT:</strong> Dropless Protective Line consists of advanced nano-shield sealants, not dirt-removing soaps. Thorough pre-cleaning of the surface is strictly mandatory before application.</p>
+    </div>
     <div class="steps-grid">
       <div class="step"><div class="step-num">1</div><h3>Clean</h3><p>Clean the surface thoroughly and make sure it's completely dry.</p></div>
       <div class="step"><div class="step-num">2</div><h3>Spray</h3><p>Apply a light, even mist. Less is more — a thin coat bonds better.</p></div>
@@ -454,28 +458,35 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   <div class="buy-inner">
     <div class="eyebrow" style="color:rgba(255,255,255,.6)">Order Now</div>
     <h2 class="display">Ships from Wollongong, NSW</h2>
-    <p class="buy-sub">Free shipping on orders over $50 AUD · Australia Post tracked delivery</p>
+    <p class="buy-sub">Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post &amp; Sendle delivery network.</p>
     <div class="buy-form">
       <form action="https://app.dropless.com.au/stripe/checkout" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label>Product</label>
             <select name="urun_adi" id="buyProduct" onchange="updatePrice()">
-              <option value="Dropless Bath 100mL" data-price="24.99">💧 Dropless Bath 100mL — $24.99</option>
-              <option value="Dropless Bath 50mL" data-price="14.99">💧 Dropless Bath 50mL — $14.99</option>
-              <option value="Dropless Multi-Surface Coat" data-price="24.99">🌊 Multi-Surface Coat — $24.99</option>
-              <option value="Dropless Glass Pro Coat" data-price="24.99">🔭 Glass Pro Coat — $24.99</option>
-              <option value="Dropless Ceramic Shield" data-price="24.99">🏠 Ceramic Shield — $24.99</option>
-              <option value="Dropless Interior Glass Coat" data-price="24.99">🚗 Interior Glass Coat — $24.99</option>
-              <option value="Dropless RainXtreme" data-price="24.99">🌧 RainXtreme — $24.99</option>
-              <option value="Dropless Plastic Screen Guard" data-price="24.99">📱 Plastic &amp; Screen Guard — $24.99</option>
-              <option value="Dropless Toilet Anti-Stick Hybrid" data-price="24.99">🚽 Toilet Anti-Stick Hybrid — $24.99</option>
-              <option value="Dropless Bathroom Shield" data-price="24.99">🚿 Bathroom Shield — $24.99</option>
-              <option value="Dropless Stone Bench Guard" data-price="24.99">🪨 Stone &amp; Bench Guard — $24.99</option>
-              <option value="Dropless Metal Shine Plus" data-price="24.99">✨ Metal Shine+ — $24.99</option>
-              <option value="Dropless Leather Vinyl Guard" data-price="24.99">👜 Leather &amp; Vinyl Guard — $24.99</option>
-              <option value="Dropless Fabric Guard" data-price="24.99">🛋 Fabric Guard — $24.99</option>
-              <option value="Dropless Hybrid Ultra-Long" data-price="24.99">🔬 Hybrid Ultra-Long — $24.99</option>
+              <optgroup label="— Bathroom &amp; Home —">
+                <option value="Dropless Bathroom Shield" data-price="14.95" data-tier="standard">🚿 Bathroom Shield 100mL — $14.95</option>
+                <option value="Dropless Bathroom Shield 500mL" data-price="29.95" data-tier="standard">🚿 Bathroom Shield 500mL — $29.95</option>
+                <option value="Dropless Glass Pro Coat 500mL" data-price="29.95" data-tier="standard">🔭 Glass Pro Coat 500mL — $29.95</option>
+                <option value="Dropless Multi-Surface Coat 500mL" data-price="29.95" data-tier="standard">🌊 Multi-Surface Coat 500mL — $29.95</option>
+                <option value="Dropless Stone Bench Guard 500mL" data-price="34.95" data-tier="standard">🪨 Stone &amp; Bench Guard 500mL — $34.95</option>
+                <option value="Dropless Fabric Guard 1L" data-price="39.95" data-tier="standard">🛋 Fabric Guard 1 Litre — $39.95</option>
+              </optgroup>
+              <optgroup label="— Automotive —">
+                <option value="Dropless RainXtreme 500mL" data-price="29.95" data-tier="standard">🌧 RainXtreme 500mL — $29.95</option>
+                <option value="Dropless Interior Glass Coat 500mL" data-price="29.95" data-tier="standard">🚗 Interior Glass Coat 500mL — $29.95</option>
+                <option value="Dropless Metal Shine Plus 500mL" data-price="34.95" data-tier="standard">✨ Metal Shine+ 500mL — $34.95</option>
+                <option value="Dropless Leather Vinyl Guard 500mL" data-price="34.95" data-tier="standard">👜 Leather &amp; Vinyl Guard 500mL — $34.95</option>
+              </optgroup>
+              <optgroup label="— Premium Concentrates —">
+                <option value="Dropless Ceramic Shield 500mL" data-price="39.95" data-tier="premium">🏠 Ceramic Shield 500mL — $39.95</option>
+                <option value="Dropless Hybrid Ultra-Long 500mL" data-price="44.95" data-tier="premium">🔬 Hybrid Ultra-Long 500mL — $44.95</option>
+              </optgroup>
+              <optgroup label="— Specialty —">
+                <option value="Dropless Toilet Anti-Stick Hybrid 500mL" data-price="29.95" data-tier="standard">🚽 Toilet Anti-Stick Hybrid 500mL — $29.95</option>
+                <option value="Dropless Plastic Screen Guard 100mL" data-price="14.95" data-tier="standard">📱 Plastic &amp; Screen Guard 100mL — $14.95</option>
+              </optgroup>
             </select>
           </div>
           <div class="form-group">
@@ -491,13 +502,55 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
         </div>
         <div class="form-group" style="margin-bottom:16px;">
           <label>Your Email</label>
-          <input type="email" name="musteri_email" placeholder="you@example.com"/>
+          <input type="email" name="musteri_email" id="musteri_email" placeholder="you@example.com"/>
         </div>
-        <input type="hidden" name="tutar" id="buyPrice" value="24.99"/>
+        <input type="hidden" name="tutar" id="buyPrice" value="14.95"/>
+        <div style="text-align:center;margin-bottom:12px;font-size:1.4rem;font-weight:700;color:#fff;">
+          <span id="buyPriceDisplay">$14.95 AUD</span>
+        </div>
         <button type="submit" class="buy-submit">Proceed to Secure Payment →</button>
         <p class="buy-note">Secured by Stripe · SSL encrypted · Ships within 1–2 business days</p>
       </form>
     </div>
+
+    <!-- BUNDLES -->
+    <div style="margin-top:32px;">
+      <div style="text-align:center;color:rgba(255,255,255,.65);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;">Frequently Bought Together</div>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;">
+
+        <form action="https://app.dropless.com.au/stripe/checkout" method="POST" style="flex:1;min-width:240px;max-width:340px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;">
+          <div style="font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px;">🚿 Complete Bathroom Care Pack</div>
+          <div style="font-size:.85rem;color:rgba(255,255,255,.75);margin-bottom:14px;">1× Bathroom Shield 100mL + 1× Toilet Anti-Stick Hybrid 100mL</div>
+          <div style="font-size:1.5rem;font-weight:800;color:#5eead4;margin-bottom:14px;">$49.95 <span style="font-size:.8rem;font-weight:400;color:rgba(255,255,255,.55);">AUD · save ~$10</span></div>
+          <input type="hidden" name="urun_adi" value="Complete Bathroom Care Pack"/>
+          <input type="hidden" name="tutar" value="49.95"/>
+          <input type="hidden" name="musteri_email" id="bundleEmail1"/>
+          <select name="adet" style="margin-bottom:12px;width:100%;padding:8px;border-radius:7px;border:none;background:rgba(255,255,255,.12);color:#fff;font-size:.85rem;">
+            <option value="1">Qty: 1</option>
+            <option value="2">Qty: 2</option>
+            <option value="3">Qty: 3</option>
+          </select>
+          <button type="submit" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;">Add Bundle to Cart →</button>
+        </form>
+
+        <form action="https://app.dropless.com.au/stripe/checkout" method="POST" style="flex:1;min-width:240px;max-width:340px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;">
+          <div style="font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px;">🚗 Complete Car Care Pack</div>
+          <div style="font-size:.85rem;color:rgba(255,255,255,.75);margin-bottom:14px;">1× RainXtreme 500mL + 1× Interior Glass Coat 500mL</div>
+          <div style="font-size:1.5rem;font-weight:800;color:#5eead4;margin-bottom:14px;">$54.95 <span style="font-size:.8rem;font-weight:400;color:rgba(255,255,255,.55);">AUD · save ~$5</span></div>
+          <input type="hidden" name="urun_adi" value="Complete Car Care Pack"/>
+          <input type="hidden" name="tutar" value="54.95"/>
+          <input type="hidden" name="musteri_email" id="bundleEmail2"/>
+          <select name="adet" style="margin-bottom:12px;width:100%;padding:8px;border-radius:7px;border:none;background:rgba(255,255,255,.12);color:#fff;font-size:.85rem;">
+            <option value="1">Qty: 1</option>
+            <option value="2">Qty: 2</option>
+            <option value="3">Qty: 3</option>
+          </select>
+          <button type="submit" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;">Add Bundle to Cart →</button>
+        </form>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -807,12 +860,17 @@ const PRODUCTS = [
 
 // ── FAQ DATA ──────────────────────────────────────────────────────────────────
 const FAQS = [
-  {q:'Is this safe for all glass types?', a:'Yes. Dropless products are formulated for all glass including tempered, laminated, coated glass, mirrors, and windows. Always test on an inconspicuous area first.'},
-  {q:'How long does the protection last?', a:'In our experience so far, one application typically lasts around 1 month or more under normal conditions. Results vary depending on the surface, how often it\'s cleaned, and exposure to the elements. Reapply when water stops beading clearly — it only takes a minute.'},
-  {q:'Can I use it on my car windshield?', a:'Yes — use Dropless RainXtreme for exterior windshields. For interior glass, use Dropless Interior Glass Coat. Do not use the same product for both interior and exterior.'},
-  {q:'Why must I use a separate cloth for application?', a:'Cleaning cloths retain residues from cleaners, grease, or soap. These residues bond with the coating during application and reduce its effectiveness. Always use a fresh, clean microfiber cloth.'},
-  {q:'How long after application can I use the surface?', a:'Most products are ready in 30 minutes. RainXtreme and Hybrid Ultra-Long need 1 hour. Full cure takes 24 hours — for best results, avoid heavy contact for the first day.'},
-  {q:'Can I apply on top of an old coating?', a:'Clean the surface thoroughly first. Old coatings that are still active may interfere. For best results on previously coated surfaces, use a surface prep wipe with isopropyl alcohol before applying.'}
+  // ── Category 1: Understanding the Dropless Ecosystem
+  {q:'What are the different product lines within the Dropless brand?', a:'Dropless is a complete premium surface care ecosystem split into dedicated lines: (1) The Coating & Shield Series — specialized nano-silicone and silane barriers designed strictly to protect pre-cleaned surfaces and repel future elements. (2) The Cleaning & Prep Series — advanced high-performance detergents and prep sprays engineered to deep-clean surfaces without damaging pre-existing coatings. (3) The Odour Refresher & Spritzer Series — premium, long-lasting ambient aromatic treatments designed to neutralize bad odors and refresh indoor or automotive spaces.'},
+  {q:'Can I use a Dropless Protective Coating to clean a dirty surface?', a:'No. Our dedicated Coating/Shield series contains zero dirt-cutting detergents. Applying a protective coating over a dirty surface will trap grime under the nano-barrier. For maximum durability, always use a dedicated cleaner from our Dropless Cleaning Series to pre-clean the surface before applying any protectant line.'},
+  // ── Category 2: Coating Application & Troubleshooting
+  {q:'Why did a temporary light haze appear on the surface immediately after coating?', a:'A temporary light haze or slight cloudiness is a normal, healthy chemical reaction. It indicates that the polymer web is actively self-leveling and bonding to the microscopic pores of the surface. This haze will completely disappear within seconds or minutes upon final buffing with a clean, dry microfiber cloth.'},
+  {q:'Can I use the same microfiber cloth I used for pre-cleaning to apply a coating?', a:'Absolutely not. Standard cleaning cloths trap moisture, old detergents, and structural oils. Using a contaminated cloth will chemically shock the liquid silicone structure, causing severe streaks and poor bonding. Always use a brand-new or dedicated fresh, dry microfiber cloth to spread and buff your coatings.'},
+  {q:'How long do Dropless Protective Coatings take to fully cure?', a:'Treated surfaces are safe from immediate light water splashes after 30 minutes (2 hours for hybrid/heavy-duty products). However, the chemical cross-linking matrix requires a full 12 to 24 hours to cure completely. Maximum water-beading performance and maximum coating lifetime are reached after this window.'},
+  // ── Category 3: Surface Safety & Specialized Care
+  {q:'Can I apply Bathroom Shield or Multi-Surface Coat to my bathroom floor?', a:'No — and this is a critical safety warning. Dropless coatings lower surface energy to near-zero, creating an ultra-slick, frictionless barrier. Never apply these products to shower recess floors, bathtubs, floor tiles, stairs, vehicle pedals, or footwear as it creates an extreme slip-and-fall hazard.'},
+  {q:'Are Dropless products safe for homes with children and pets?', a:'Yes. All water-based formulas, such as Dropless Fabric Guard and our upcoming interior lines, are completely non-toxic. They are entirely safe for children, families, and pets — but ONLY after the sprayed product has completely air-dried into the surface or fabric weave (usually 12–24 hours). Avoid direct contact with raw, wet product.'},
+  {q:'Are your Odour Refreshers and Spritzers safe for fine automotive and home textiles?', a:'Yes. Our ambient spritzer line uses high-purity, fabric-safe cosmetic carriers and phthalate-free fragrance oils. They completely neutralize trapped odor molecules without altering the texture or leaving greasy ring stains on fine automotive or home upholstery.'}
 ];
 
 // ── CURRENT LANGUAGE + FILTER STATE ──────────────────────────────────────────
@@ -971,7 +1029,10 @@ window.addEventListener('scroll', () => {
 function updatePrice() {
   const sel = document.getElementById('buyProduct');
   const opt = sel.options[sel.selectedIndex];
-  document.getElementById('buyPrice').value = opt.dataset.price || '24.99';
+  const price = opt.dataset.price || '14.95';
+  document.getElementById('buyPrice').value = price;
+  const display = document.getElementById('buyPriceDisplay');
+  if (display) display.textContent = '$' + parseFloat(price).toFixed(2) + ' AUD';
 }
 
 // ── CONTACT FORM ──────────────────────────────────────────────────────────────
@@ -1090,6 +1151,13 @@ function closeBanner() {
 renderProducts();
 renderFaq();
 loadFromERP(); // Arka planda ERP'den güncelle — başarısız olursa hardcoded kalır
+
+// Bundle formları için email senkronizasyonu
+document.getElementById('musteri_email') && document.getElementById('musteri_email').addEventListener('input', function() {
+  const v = this.value;
+  ['bundleEmail1','bundleEmail2'].forEach(id => { const el = document.getElementById(id); if(el) el.value = v; });
+});
+updatePrice(); // ilk açılışta fiyatı doğru göster
 </script>
 </body>
 </html>
