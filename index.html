@@ -637,7 +637,8 @@ const CATS = {
   'multi-surface':'home','glass-pro':'bathroom','ceramic':'bathroom',
   'interior-glass':'car','rainxtreme':'car','plastic-screen':'tech',
   'toilet':'bathroom','bathroom':'bathroom','stone-bench':'home',
-  'metal-shine':'home','leather':'soft','fabric':'soft','hybrid-ultra':'home'
+  'metal-shine':'home','leather':'soft','fabric':'soft','hybrid-ultra':'home',
+  'odour-refresher':'car'
 };
 
 // Maps product id → buy form option value
@@ -654,7 +655,8 @@ const BUY_MAP = {
   'metal-shine':'Dropless Metal Shine Plus',
   'leather':'Dropless Leather Vinyl Guard',
   'fabric':'Dropless Fabric Guard',
-  'hybrid-ultra':'Dropless Hybrid Ultra-Long'
+  'hybrid-ultra':'Dropless Hybrid Ultra-Long',
+  'odour-refresher':'Dropless Odour Refresher Spritzer 500mL'
 };
 
 // ── TRANSLATIONS ──────────────────────────────────────────────────────────────
@@ -846,6 +848,108 @@ const PRODUCTS = [
   fa:{eff:'پارچه ممکن است چند دقیقه تیره‌تر به نظر برسد. این طبیعی است. پس از خشک شدن، مایعات به جای جذب، به قطره تبدیل می‌شوند.',steps:['پارچه را تمیز کرده و خشک کنید.','از ۱۵-۲۰ سانتی بدون خیس کردن اسپری کنید.','کل سطح را بپوشانید.','۱۰-۱۵ دقیقه خشک شود.','برای حداکثر حفاظت، لایه دوم بزنید.','۱ ساعت از رطوبت دور نگه دارید.']}
  }
 },
+{id:'odour-refresher', num:16, icon:'💨', name:'Dropless Odour Refresher & Spritzer',
+ surfaces:{
+  en:'Car Fabric · Home Upholstery · Ambient Air',
+  tr:'Araç Kumaşı · Ev Döşemesi · Ortam Havası',
+  ar:'أقمشة السيارة · مفروشات المنزل · الهواء المحيط',
+  zh:'汽车织物·家居软装·空气清新',
+  hi:'कार फैब्रिक · घर की असबाब · परिवेश वायु',
+  es:'Tejidos de auto · Tapicería del hogar · Aire ambiental',
+  it:'Tessuti auto · Tappezzeria casa · Aria ambiente',
+  fa:'پارچه خودرو · روکش خانگی · هوای محیط'
+ },
+ inst:{
+  en:{
+   eff:'In the first minutes, a powerful dual-action zinc and cyclodextrin web encapsulates odor molecules. The targeted bad smell will rapidly neutralize as the micro-droplets air dry.',
+   warn:'This is NOT a cleaning product. It does not remove physical stains. Wash and vacuum heavily soiled fabrics before application. Do NOT use wet brushes or dirty cleaning cloths — contaminated tools will lock old grime inside the textile fibers.',
+   steps:[
+    'Vacuum and dry the target textile or carpet thoroughly.',
+    'Shake well and spray a light, overlapping mist from 15–20 cm away.',
+    'Do NOT soak or saturate fabrics through to the internal cushions.',
+    'Allow the treated area to air dry completely for 12–24 hours.',
+    'For ambient air freshening, simply pump 3–4 fine bursts directly into the cabin space.'
+   ]
+  },
+  tr:{
+   eff:'İlk dakikalarda güçlü bir çift etkili çinko ve siklodekstrin ağı koku moleküllerini kapsüller. Mikro damlacıklar kuruyunca hedeflenen kötü koku hızla nötralize olur.',
+   warn:'Bu bir temizlik ürünü DEĞİLDİR. Fiziksel lekeler çıkarmaz. Ağır kirli kumaşları uygulamadan önce yıkayın ve elektrikle süpürün. Islak fırça veya kirli bez KULLANMAYIN — kirli aletler eski kiri lif içine kilitler.',
+   steps:[
+    'Hedef kumaşı veya halıyı iyice süpürün ve kurulayın.',
+    'Şişeyi iyice çalkalayın ve 15-20 cm mesafeden hafif, örtüşen bir sis halinde sıkın.',
+    'Kumaşları iç yastıklara kadar ıslatmayın.',
+    'İşlem gören alanın 12-24 saat boyunca tamamen havalanarak kurumasına izin verin.',
+    'Ortam kokusu tazeleme için, kabin alanına doğrudan 3-4 ince puf yapmanız yeterlidir.'
+   ]
+  },
+  ar:{
+   eff:'في الدقائق الأولى، تحاصر شبكة مزدوجة الفعالية من الزنك والسيكلوديكسترين جزيئات الرائحة. ستتعادل الرائحة الكريهة بسرعة عند تبخر الرذاذ الدقيق.',
+   warn:'هذا ليس منتج تنظيف. لا يزيل البقع المادية. اغسل الأقمشة الملوثة بشدة قبل الاستخدام. لا تستخدم فرشًا مبللة أو قطعًا متسخة.',
+   steps:[
+    'نظّف السجادة أو المنسوج بالمكنسة وجفّفه جيدًا.',
+    'هزّ الزجاجة ورش رذاذًا خفيفًا متداخلًا من 15-20 سم.',
+    'لا تُشبّع الأقمشة حتى الوسائد الداخلية.',
+    'اترك المنطقة تجف تمامًا في الهواء 12-24 ساعة.',
+    'لتحديث الهواء، انثر 3-4 رشات ناعمة مباشرة داخل المقصورة.'
+   ]
+  },
+  zh:{
+   eff:'前几分钟，强效双效锌和环糊精网络包裹气味分子。随着微液滴挥发，异味将迅速被中和。',
+   warn:'这不是清洁产品，不去除物理污渍。使用前请先清洗并吸尘重度污染织物。请勿使用湿刷子或脏布——污染工具会将旧污垢锁入纤维。',
+   steps:[
+    '彻底吸尘并晾干目标织物或地毯。',
+    '充分摇匀，从15-20厘米处喷出轻薄重叠的雾状。',
+    '请勿将织物浸湿到内部坐垫。',
+    '让处理区域自然风干12-24小时。',
+    '如需清新环境空气，直接向车厢内喷3-4下细雾。'
+   ]
+  },
+  hi:{
+   eff:'पहले कुछ मिनटों में, शक्तिशाली दोहरी-क्रिया जिंक और साइक्लोडेक्सट्रिन जाल गंध अणुओं को घेर लेता है। माइक्रो-ड्रॉपलेट सूखने पर लक्षित बुरी गंध तेजी से बेअसर हो जाती है।',
+   warn:'यह सफाई उत्पाद नहीं है। यह भौतिक दाग नहीं हटाता। आवेदन से पहले भारी गंदे कपड़ों को धोएं और वैक्यूम करें। गीले ब्रश या गंदे कपड़े का उपयोग न करें।',
+   steps:[
+    'लक्षित कपड़े या कालीन को वैक्यूम करें और अच्छी तरह सुखाएं।',
+    'बोतल को हिलाएं और 15-20 सेमी से हल्की ओवरलैपिंग धुंध स्प्रे करें।',
+    'कपड़ों को आंतरिक कुशन तक न भिगोएं।',
+    'उपचारित क्षेत्र को 12-24 घंटे तक हवा में सूखने दें।',
+    'परिवेश वायु ताज़ा करने के लिए, केबिन में 3-4 फाइन बर्स्ट पंप करें।'
+   ]
+  },
+  es:{
+   eff:'En los primeros minutos, una potente red de zinc y ciclodextrina encapsula las moléculas de olor. El mal olor se neutralizará rápidamente mientras las micro-gotas se evaporan.',
+   warn:'Este producto NO es un limpiador. No elimina manchas físicas. Lava y aspira los tejidos muy sucios antes de aplicar. No uses cepillos mojados ni paños sucios.',
+   steps:[
+    'Aspira y seca bien el tejido o alfombra objetivo.',
+    'Agita bien y rocía una neblina ligera y solapada desde 15-20 cm.',
+    'No empapes los tejidos hasta los cojines internos.',
+    'Deja que el área tratada se seque al aire completamente 12-24 horas.',
+    'Para refrescar el aire ambiental, bombea 3-4 ráfagas finas directamente al habitáculo.'
+   ]
+  },
+  it:{
+   eff:'Nei primi minuti, una potente rete a doppia azione di zinco e ciclodestrina incapsula le molecole di odore. Il cattivo odore si neutralizzerà rapidamente mentre le micro-gocce evaporano.',
+   warn:'Questo NON è un prodotto detergente. Non rimuove macchie fisiche. Lava e aspira i tessuti pesantemente sporchi prima dell\'applicazione. Non usare spazzole bagnate o panni sporchi.',
+   steps:[
+    'Aspira e asciuga bene il tessuto o tappeto target.',
+    'Agita bene e spruzza una leggera nebbia sovrapposta da 15-20 cm.',
+    'NON inzuppare i tessuti fino ai cuscini interni.',
+    'Lascia asciugare completamente all\'aria l\'area trattata per 12-24 ore.',
+    'Per rinfrescare l\'aria ambiente, pompa 3-4 raffiche fini direttamente nell\'abitacolo.'
+   ]
+  },
+  fa:{
+   eff:'در دقایق اولیه، شبکه قدرتمند دو عملکردی روی و سیکلودکسترین مولکول‌های بو را کپسوله می‌کند. بوی بد با خشک شدن ریزقطرات به سرعت خنثی می‌شود.',
+   warn:'این محصول پاک‌کننده نیست. لکه‌های فیزیکی را از بین نمی‌برد. پارچه‌های بسیار کثیف را قبل از استفاده بشویید و جاروبرقی بکشید. از برس مرطوب یا پارچه کثیف استفاده نکنید.',
+   steps:[
+    'فرش یا منسوج هدف را کاملاً جاروبرقی کشیده و خشک کنید.',
+    'بطری را خوب تکان داده و از ۱۵-۲۰ سانتی‌متر مه سبک و متداخل اسپری کنید.',
+    'پارچه‌ها را تا کوسن‌های داخلی خیس نکنید.',
+    'اجازه دهید ناحیه ۱۲-۲۴ ساعت کاملاً در هوا خشک شود.',
+    'برای تازه‌سازی هوای محیط، ۳-۴ پاف ظریف مستقیماً به فضای کابین بزنید.'
+   ]
+  }
+ }
+},
 {id:'hybrid-ultra', num:14, icon:'🔬', name:'Dropless Hybrid Ultra-Long',
  surfaces:{en:'All Hard Surfaces · Long-term Industrial Protection',tr:'Tüm Sert Yüzeyler · Uzun Vadeli Endüstriyel Koruma',ar:'جميع الأسطح الصلبة · حماية طويلة الأمد',zh:'所有硬质表面·长期工业保护',hi:'सभी कठोर सतहें · दीर्घकालिक सुरक्षा',es:'Todas las superficies duras · Protección industrial',it:'Tutte le superfici dure · Protezione a lungo termine',fa:'تمام سطوح سخت · حفاظت بلندمدت صنعتی'},
  inst:{
@@ -967,12 +1071,12 @@ function renderProducts() {
   <div class="prod-instructions" id="inst-${p.id}">
     <div class="inst-imp">
       <div class="inst-label">${T.imp_label[L]||T.imp_label.en}</div>
-      <div class="inst-text">${T.imp_text[L]||T.imp_text.en}</div>
+      <div class="inst-text">${inst.warn || T.imp_text[L]||T.imp_text.en}</div>
     </div>
-    <div class="inst-crit">
+    ${inst.warn ? '' : `<div class="inst-crit">
       <div class="inst-label">${T.crit_label[L]||T.crit_label.en}</div>
       <div class="inst-text">${T.crit_text[L]||T.crit_text.en}</div>
-    </div>
+    </div>`}
     <div class="inst-effect">
       <div class="inst-label">${T.eff_label[L]||T.eff_label.en}</div>
       <div class="inst-text">${inst.eff}</div>
