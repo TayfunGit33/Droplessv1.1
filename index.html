@@ -1218,13 +1218,26 @@ function submitContact(e) {
 const ERP_API     = 'https://app.dropless.com.au/api/urun-listesi';
 const ERP_SDS_API = 'https://app.dropless.com.au/sds/api';
 
-// SDS map: bilinen girişler hardcode — fetch yeni eklenenleri günceller
+// SDS map: tüm ürünler hardcode — fetch yeni eklenenleri günceller
 const SDS_BASE = 'https://app.dropless.com.au/sds/serve/';
 let SDS_MAP = {
-  'bathroom':       SDS_BASE + 'bathroom',
-  'toilet':         SDS_BASE + 'toilet',
-  'fabric':         SDS_BASE + 'fabric',
-  'odour-refresher':SDS_BASE + 'odour-refresher',
+  // Group 1 — Nano-Silicone Coating & Shield
+  'multi-surface':   SDS_BASE + 'multi-surface',
+  'glass-pro':       SDS_BASE + 'glass-pro',
+  'ceramic':         SDS_BASE + 'ceramic',
+  'interior-glass':  SDS_BASE + 'interior-glass',
+  'rainxtreme':      SDS_BASE + 'rainxtreme',
+  'plastic-screen':  SDS_BASE + 'plastic-screen',
+  'stone-bench':     SDS_BASE + 'stone-bench',
+  'metal-shine':     SDS_BASE + 'metal-shine',
+  'leather':         SDS_BASE + 'leather',
+  'hybrid-ultra':    SDS_BASE + 'hybrid-ultra',
+  // Group 2 — Anti-Stick & Bathroom
+  'bathroom':        SDS_BASE + 'bathroom',
+  'toilet':          SDS_BASE + 'toilet',
+  // Group 3 — Textile & Odour
+  'fabric':          SDS_BASE + 'fabric',
+  'odour-refresher': SDS_BASE + 'odour-refresher',
 };
 
 async function loadSDS() {
