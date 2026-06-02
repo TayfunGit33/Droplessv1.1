@@ -220,7 +220,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <div class="page-header">
   <div class="eyebrow">Surface Protection Technologies</div>
   <h1 class="display">Our Products</h1>
-  <p>Professional hydrophobic coatings made in Wollongong, NSW — plus carefully selected tools and accessories to complete your application.</p>
+  <p>Professional hydrophobic coatings for every surface — bathroom, automotive, marine, fabric and more. Made in Wollongong, NSW, Australia.</p>
 </div>
 
 <!-- CATEGORY TABS -->
@@ -231,6 +231,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     </button>
     <button class="cat-tab" data-cat="coating" onclick="filterCat('coating',this)">
       Surface Coatings <span class="cat-count" id="cnt-coating">0</span>
+    </button>
+    <button class="cat-tab" data-cat="prep" onclick="filterCat('prep',this)">
+      Surface Prep <span class="cat-count" id="cnt-prep">0</span>
     </button>
     <button class="cat-tab" data-cat="accessory" onclick="filterCat('accessory',this)">
       Application Tools <span class="cat-count" id="cnt-accessory">0</span>
@@ -249,7 +252,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   <button class="filter-chip" data-surface="ceramic" onclick="filterSurface('ceramic',this)">Ceramic & Tile</button>
   <button class="filter-chip" data-surface="metal" onclick="filterSurface('metal',this)">Metal</button>
   <button class="filter-chip" data-surface="automotive" onclick="filterSurface('automotive',this)">Automotive</button>
+  <button class="filter-chip" data-surface="marine" onclick="filterSurface('marine',this)">⚓ Marine</button>
   <button class="filter-chip" data-surface="fabric" onclick="filterSurface('fabric',this)">Fabric & Leather</button>
+  <button class="filter-chip" data-surface="plastic" onclick="filterSurface('plastic',this)">Plastic & Screen</button>
   <span class="filter-divider"></span>
   <button class="filter-pro-chip" id="proToggle" onclick="togglePro()">🔧 Pro Only</button>
   <span class="filter-count" id="filterCount"></span>
@@ -332,16 +337,17 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 // howToUseId: matches products.html?product=ID in how-to-use.html
 
 const PRODUCTS = [
+  // ── BATHROOM & HOME ──────────────────────────────────────────────
   {
-    id: 'bath-100',
-    name: 'Dropless Bath',
-    desc: 'Hydrophobic shield for shower glass, tiles and bathroom surfaces. Water beads and rolls off instantly.',
+    id: 'bathroom-shield',
+    name: 'Dropless Bathroom Shield',
+    desc: 'Hydrophobic shield for shower glass, tiles and bathroom surfaces. Water beads and rolls off — less scrubbing, more living.',
     icon: '🚿',
     cat: 'coating',
     origin: 'dropless',
     surfaces: ['glass','ceramic'],
     pro: false,
-    price: 24.99,
+    price: 14.95,
     size: '100 mL',
     badge: 'Best Seller',
     howToUseId: 'bathroom',
@@ -349,55 +355,105 @@ const PRODUCTS = [
     visClass: 'vis-glass'
   },
   {
-    id: 'glass-pro-100',
+    id: 'ceramic-shield',
+    name: 'Dropless Ceramic Shield',
+    desc: 'Stops soap scum and limescale bonding to ceramic tiles, sinks and kitchen splashbacks. Apply once, forget for months.',
+    icon: '🏠',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['ceramic'],
+    pro: false,
+    price: 14.95,
+    size: '100 mL',
+    badge: '',
+    howToUseId: 'ceramic',
+    stripeId: '',
+    visClass: 'vis-glass'
+  },
+  {
+    id: 'stone-bench',
+    name: 'Dropless Stone & Bench Guard',
+    desc: 'Protects granite, marble, benchtops and natural stone surfaces from water, oil and staining.',
+    icon: '🪨',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['ceramic','stone'],
+    pro: false,
+    price: 14.95,
+    size: '100 mL',
+    badge: '',
+    howToUseId: '',
+    stripeId: '',
+    visClass: 'vis-glass'
+  },
+  {
+    id: 'toilet-anti-stick',
+    name: 'Dropless Toilet Anti-Stick',
+    desc: 'Keeps toilet bowl surfaces slippery-clean. Residue cannot bond — dramatically reduces cleaning frequency.',
+    icon: '🚽',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['ceramic'],
+    pro: false,
+    price: 14.95,
+    size: '100 mL',
+    badge: 'New',
+    howToUseId: '',
+    stripeId: '',
+    visClass: 'vis-glass'
+  },
+  // ── AUTOMOTIVE & MARINE ──────────────────────────────────────────
+  {
+    id: 'rainxtreme',
+    name: 'Dropless RainXtreme',
+    desc: 'Windshield and automotive glass coating. Rain clears itself at 80+ km/h — field tested on Australian highways. Less wiping, safer driving.',
+    icon: '🌧️',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['glass','automotive'],
+    pro: false,
+    price: 14.95,
+    size: '100 mL',
+    badge: 'Field Tested',
+    howToUseId: 'rainxtreme',
+    stripeId: '',
+    visClass: 'vis-automotive'
+  },
+  {
+    id: 'marine-shield',
+    name: 'Dropless Marine Shield',
+    desc: 'Yacht windshields, boat gelcoat and coastal glass. Advanced nano + fluoropolymer formula — 4–6 months salt-spray protection.',
+    icon: '⚓',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['glass','automotive','marine'],
+    pro: true,
+    price: 14.95,
+    size: '100 mL',
+    badge: 'New',
+    howToUseId: '',
+    stripeId: '',
+    visClass: 'vis-automotive'
+  },
+  {
+    id: 'glass-pro',
     name: 'Dropless Glass Pro',
-    desc: 'Professional-grade coating for windows, shower screens and mirrors. Long-lasting clarity.',
+    desc: 'Professional-grade coating for windows, shower screens and mirrors. Long-lasting optical clarity.',
     icon: '🔭',
     cat: 'coating',
     origin: 'dropless',
     surfaces: ['glass'],
     pro: true,
-    price: 29.99,
+    price: 14.95,
     size: '100 mL',
     badge: 'Pro',
     howToUseId: 'glass-pro',
     stripeId: '',
     visClass: 'vis-glass'
   },
+  // ── METAL & SCREENS ─────────────────────────────────────────────
   {
-    id: 'ceramic-100',
-    name: 'Dropless Ceramic Shield',
-    desc: 'Stops soap scum and limescale bonding to ceramic tiles, sinks and kitchen splashbacks.',
-    icon: '🏠',
-    cat: 'coating',
-    origin: 'dropless',
-    surfaces: ['ceramic'],
-    pro: false,
-    price: 24.99,
-    size: '100 mL',
-    badge: 'New',
-    howToUseId: 'ceramic',
-    stripeId: '',
-    visClass: 'vis-glass'
-  },
-  {
-    id: 'rainxtreme-100',
-    name: 'Dropless RainXtreme',
-    desc: 'Windshield and automotive glass coating. Rain clears itself at speed — less wiping, safer driving.',
-    icon: '🌧️',
-    cat: 'coating',
-    origin: 'dropless',
-    surfaces: ['glass','automotive'],
-    pro: false,
-    price: 24.99,
-    size: '100 mL',
-    badge: '',
-    howToUseId: 'rainxtreme',
-    stripeId: '',
-    visClass: 'vis-automotive'
-  },
-  {
-    id: 'metal-shine-100',
+    id: 'metal-shine',
     name: 'Dropless Metal Shine+',
     desc: 'Protects stainless steel, aluminium and chrome from fingerprints, water spots and oxidation.',
     icon: '✨',
@@ -405,7 +461,7 @@ const PRODUCTS = [
     origin: 'dropless',
     surfaces: ['metal'],
     pro: false,
-    price: 22.99,
+    price: 14.95,
     size: '100 mL',
     badge: '',
     howToUseId: 'metal-shine',
@@ -413,13 +469,63 @@ const PRODUCTS = [
     visClass: 'vis-glass'
   },
   {
+    id: 'plastic-screen',
+    name: 'Dropless Plastic & Screen Guard',
+    desc: 'Water-repellent shield for phone screens, tablets, TV panels and plastic surfaces. Smudge resistant.',
+    icon: '📱',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['plastic'],
+    pro: false,
+    price: 14.95,
+    size: '100 mL',
+    badge: '',
+    howToUseId: '',
+    stripeId: '',
+    visClass: 'vis-glass'
+  },
+  // ── FABRIC & PREP ────────────────────────────────────────────────
+  {
+    id: 'fabric-guard',
+    name: 'Dropless Fabric Guard',
+    desc: 'Invisible waterproof shield for sofas, outdoor furniture, car seats and clothing. Spills bead and wipe away.',
+    icon: '🛋️',
+    cat: 'coating',
+    origin: 'dropless',
+    surfaces: ['fabric'],
+    pro: false,
+    price: 14.95,
+    size: '100 mL',
+    badge: '',
+    howToUseId: '',
+    stripeId: '',
+    visClass: 'vis-kit'
+  },
+  {
+    id: 'quik-clean',
+    name: 'Dropless QuiK-Clean',
+    desc: 'Prep spray that deep-cleans and lightly primes the surface before applying any Dropless coating. Use before every application.',
+    icon: '🧹',
+    cat: 'prep',
+    origin: 'dropless',
+    surfaces: ['glass','ceramic','metal','automotive','fabric','plastic'],
+    pro: false,
+    price: 14.95,
+    size: '100 mL',
+    badge: '',
+    howToUseId: '',
+    stripeId: '',
+    visClass: 'vis-kit'
+  },
+  // ── ACCESSORIES ──────────────────────────────────────────────────
+  {
     id: 'microfiber-3pk',
     name: 'Microfiber Application Cloth',
     desc: 'Ultra-soft 300 GSM microfiber cloths. Selected and tested by the Dropless team for optimal coating results.',
     icon: '🧤',
     cat: 'accessory',
     origin: 'selected',
-    surfaces: ['glass','ceramic','metal','automotive','fabric'],
+    surfaces: ['glass','ceramic','metal','automotive','fabric','plastic'],
     pro: false,
     price: 12.99,
     size: '3-pack',
@@ -432,39 +538,39 @@ const PRODUCTS = [
 
 const BUNDLES = [
   {
-    name: 'Shower Starter Kit',
-    desc: 'Everything to protect your bathroom glass and tiles from day one.',
+    name: 'Complete Bathroom Care Pack',
+    desc: 'Shower glass + ceramic tiles + toilet bowl — the full bathroom protection kit.',
     items: [
-      {icon:'🚿', name:'Dropless Bath 100 mL', tag:'You make'},
-      {icon:'🧤', name:'Microfiber Cloth (×2)', tag:'Included'}
+      {icon:'🚿', name:'Bathroom Shield 500mL', tag:'You make'},
+      {icon:'🚽', name:'Toilet Anti-Stick 500mL', tag:'You make'},
     ],
-    price: 32.99,
-    was: 37.98,
+    price: 49.95,
+    was: 59.90,
     href: '/#buy'
   },
   {
-    name: 'Automotive Glass Kit',
-    desc: 'Windshield + interior glass protection in one go.',
+    name: 'Complete Car Care Pack',
+    desc: 'Windshield rain repellent + metal & chrome protection — drive protected.',
     items: [
-      {icon:'🌧️', name:'RainXtreme 100 mL', tag:'You make'},
-      {icon:'🔭', name:'Glass Pro 100 mL', tag:'You make'},
+      {icon:'🌧️', name:'RainXtreme 500mL', tag:'You make'},
+      {icon:'✨', name:'Metal Shine+ 500mL', tag:'You make'},
       {icon:'🧤', name:'Microfiber Cloth (×2)', tag:'Included'}
     ],
-    price: 54.99,
-    was: 67.97,
+    price: 54.95,
+    was: 64.90,
     href: '/#buy'
   },
   {
     name: 'Home Protection Bundle',
-    desc: 'Glass, ceramic and metal — the full home kit.',
+    desc: 'Glass, ceramic and metal — protect every surface in one go.',
     items: [
-      {icon:'🚿', name:'Dropless Bath 100 mL', tag:'You make'},
-      {icon:'🏠', name:'Ceramic Shield 100 mL', tag:'You make'},
-      {icon:'✨', name:'Metal Shine+ 100 mL', tag:'You make'},
+      {icon:'🚿', name:'Bathroom Shield 500mL', tag:'You make'},
+      {icon:'🏠', name:'Ceramic Shield 500mL', tag:'You make'},
+      {icon:'✨', name:'Metal Shine+ 500mL', tag:'You make'},
       {icon:'🧤', name:'Microfiber Cloths (×3)', tag:'Included'}
     ],
-    price: 64.99,
-    was: 85.96,
+    price: 79.95,
+    was: 99.85,
     href: '/#buy'
   }
 ];
@@ -543,7 +649,7 @@ function matchFilter(p) {
 }
 
 function surfaceLabel(s) {
-  return {glass:'Glass',ceramic:'Ceramic & Tile',metal:'Metal',automotive:'Automotive',fabric:'Fabric & Leather'}[s] || s;
+  return {glass:'Glass',ceramic:'Ceramic & Tile',metal:'Metal',automotive:'Automotive',fabric:'Fabric & Leather',marine:'Marine',plastic:'Plastic & Screen',stone:'Stone & Bench'}[s] || s;
 }
 
 function updateCounts() {
