@@ -392,8 +392,12 @@ function renderProduct(p, lbl, el) {
     </div>`;
 }
 
-// Init
-render();
+// Init — wrapped in DOMContentLoaded for safety
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', render);
+} else {
+  render();
+}
 </script>
 </body>
 </html>

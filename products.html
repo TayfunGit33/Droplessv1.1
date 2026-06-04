@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Products — Dropless Surface Protection</title>
 <meta name="description" content="Professional hydrophobic coatings and surface protection products. Made in Wollongong, NSW Australia."/>
+<meta property="og:title" content="Products — Dropless Surface Protection"/>
+<meta property="og:description" content="Professional hydrophobic coatings for every surface. Made in Wollongong, NSW Australia."/>
+<meta property="og:url" content="https://dropless.com.au/products.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://dropless.com.au/img/dropless_logo_official.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -174,11 +179,6 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 </style>
 </head>
 <body>
-<div id="launch-banner" style="background:linear-gradient(90deg,#0f172a 0%,#0d9488 50%,#0f172a 100%);color:#fff;text-align:center;padding:10px 16px;font-family:'Geist',sans-serif;font-size:0.85rem;letter-spacing:0.02em;position:relative;z-index:9999;">
-  🚧 &nbsp;<strong>Site under development</strong> — We're putting the finishing touches on things. Full launch coming very soon!&nbsp; 🚧
-  <button onclick="document.getElementById('launch-banner').style.display='none'" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.6);font-size:1.1rem;cursor:pointer;line-height:1;" title="Close">✕</button>
-</div>
-
 <!-- NAV -->
 <nav class="nav">
   <a href="/" class="logo" style="display:flex;align-items:center;gap:6px;">
@@ -324,7 +324,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   </div>
   <div class="footer-bottom">
     <span>© 2026 Dropless. Made in Australia.</span>
-    <span>ABN applied · Wollongong NSW 2500</span>
+    <span>ABN 65 948 041 856 · Wollongong NSW 2500</span>
   </div>
 </footer>
 
@@ -625,6 +625,11 @@ function renderProducts() {
         <div class="prod-card-name">${p.name}</div>
         <div class="prod-card-desc">${p.desc}</div>
         <div class="prod-card-surfaces">${surfaceChips}</div>
+        ${['bathroom-shield','toilet-anti-stick'].includes(p.id) ? `
+        <div style="background:#fef3c7;border-left:3px solid #f59e0b;border-radius:0 4px 4px 0;
+                    padding:6px 10px;margin-top:8px;font-size:11.5px;color:#78350f;line-height:1.4;">
+          ⚠️ <strong>NOT for floor tiles, shower floors or bathtubs.</strong> Slip hazard on walking surfaces.
+        </div>` : ''}
       </div>
       <div class="prod-card-footer">
         <div class="prod-card-price">$${p.price.toFixed(2)}<span> AUD · ${p.size}</span></div>
@@ -653,7 +658,7 @@ function surfaceLabel(s) {
 }
 
 function updateCounts() {
-  const cats = ['all','coating','accessory','industrial'];
+  const cats = ['all','coating','prep','accessory','industrial'];
   cats.forEach(cat => {
     const el = document.getElementById('cnt-' + cat);
     if (!el) return;
