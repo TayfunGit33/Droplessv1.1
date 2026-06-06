@@ -186,11 +186,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <img src="img/dropless_logo_official.png" alt="Dropless" style="height:28px;border-radius:3px;">
   </a>
   <div class="nav-center">
-    <a href="products.html" class="active">Products</a>
-    <a href="/#how">How It Works</a>
-    <a href="/#buy">Buy</a>
-    <a href="/#faq">FAQ</a>
-    <a href="/#contact">Contact</a>
+    <a href="products.html" class="active" data-i18n="nav_products">Products</a>
+    <a href="/#how" data-i18n="nav_how">How It Works</a>
+    <a href="/#buy" data-i18n="nav_buy">Buy</a>
+    <a href="/#faq" data-i18n="nav_faq">FAQ</a>
+    <a href="/#contact" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="nav-right">
     <select class="lang-pick" id="globalLang" onchange="setLang(this.value)">
@@ -203,60 +203,60 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <option value="it">Italiano</option>
       <option value="fa">فارسی</option>
     </select>
-    <a href="/#buy" class="btn btn-primary nav-buy">Buy Now</a>
+    <a href="/#buy" class="btn btn-primary nav-buy" data-i18n="nav_buynow">Buy Now</a>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
 <div class="mob-overlay" id="mobOverlay">
-  <a href="products.html" onclick="toggleMenu()">Products</a>
-  <a href="/#how" onclick="toggleMenu()">How It Works</a>
-  <a href="/#buy" onclick="toggleMenu()">Buy Now</a>
-  <a href="/#faq" onclick="toggleMenu()">FAQ</a>
-  <a href="/#contact" onclick="toggleMenu()">Contact</a>
+  <a href="products.html" onclick="toggleMenu()" data-i18n="nav_products">Products</a>
+  <a href="/#how" onclick="toggleMenu()" data-i18n="nav_how">How It Works</a>
+  <a href="/#buy" onclick="toggleMenu()" data-i18n="nav_buynow">Buy Now</a>
+  <a href="/#faq" onclick="toggleMenu()" data-i18n="nav_faq">FAQ</a>
+  <a href="/#contact" onclick="toggleMenu()" data-i18n="nav_contact">Contact</a>
 </div>
 
 <!-- PAGE HEADER -->
 <div class="page-header">
-  <div class="eyebrow">Surface Protection Technologies</div>
-  <h1 class="display">Our Products</h1>
-  <p>Professional hydrophobic coatings for every surface — bathroom, automotive, marine, fabric and more. Made in Wollongong, NSW, Australia.</p>
+  <div class="eyebrow" data-i18n="ph_eyebrow">Surface Protection Technologies</div>
+  <h1 class="display" data-i18n="ph_h1">Our Products</h1>
+  <p data-i18n="ph_sub">Professional hydrophobic coatings for every surface — bathroom, automotive, marine, fabric and more. Made in Wollongong, NSW, Australia.</p>
 </div>
 
 <!-- CATEGORY TABS -->
 <div class="cat-tabs">
   <div class="cat-tabs-inner">
     <button class="cat-tab active" data-cat="all" onclick="filterCat('all',this)">
-      All Products <span class="cat-count" id="cnt-all">0</span>
+      <span data-i18n="cat_all">All Products</span> <span class="cat-count" id="cnt-all">0</span>
     </button>
     <button class="cat-tab" data-cat="coating" onclick="filterCat('coating',this)">
-      Surface Coatings <span class="cat-count" id="cnt-coating">0</span>
+      <span data-i18n="cat_coating">Surface Coatings</span> <span class="cat-count" id="cnt-coating">0</span>
     </button>
     <button class="cat-tab" data-cat="prep" onclick="filterCat('prep',this)">
-      Surface Prep <span class="cat-count" id="cnt-prep">0</span>
+      <span data-i18n="cat_prep">Surface Prep</span> <span class="cat-count" id="cnt-prep">0</span>
     </button>
     <button class="cat-tab" data-cat="accessory" onclick="filterCat('accessory',this)">
-      Application Tools <span class="cat-count" id="cnt-accessory">0</span>
+      <span data-i18n="cat_accessory">Application Tools</span> <span class="cat-count" id="cnt-accessory">0</span>
     </button>
     <button class="cat-tab" data-cat="industrial" onclick="filterCat('industrial',this)">
-      Industrial & Commercial <span class="cat-count" id="cnt-industrial">0</span>
+      <span data-i18n="cat_industrial">Industrial &amp; Commercial</span> <span class="cat-count" id="cnt-industrial">0</span>
     </button>
   </div>
 </div>
 
 <!-- FILTER BAR -->
 <div class="filter-bar" id="filterBar">
-  <span class="filter-label">Surface:</span>
-  <button class="filter-chip active" data-surface="all" onclick="filterSurface('all',this)">All</button>
-  <button class="filter-chip" data-surface="glass" onclick="filterSurface('glass',this)">Glass</button>
-  <button class="filter-chip" data-surface="ceramic" onclick="filterSurface('ceramic',this)">Ceramic & Tile</button>
-  <button class="filter-chip" data-surface="metal" onclick="filterSurface('metal',this)">Metal</button>
-  <button class="filter-chip" data-surface="automotive" onclick="filterSurface('automotive',this)">Automotive</button>
-  <button class="filter-chip" data-surface="marine" onclick="filterSurface('marine',this)">⚓ Marine</button>
-  <button class="filter-chip" data-surface="fabric" onclick="filterSurface('fabric',this)">Fabric & Leather</button>
-  <button class="filter-chip" data-surface="plastic" onclick="filterSurface('plastic',this)">Plastic & Screen</button>
+  <span class="filter-label" data-i18n="flt_surface">Surface:</span>
+  <button class="filter-chip active" data-surface="all" onclick="filterSurface('all',this)" data-i18n="flt_all">All</button>
+  <button class="filter-chip" data-surface="glass" onclick="filterSurface('glass',this)" data-i18n="flt_glass">Glass</button>
+  <button class="filter-chip" data-surface="ceramic" onclick="filterSurface('ceramic',this)" data-i18n="flt_ceramic">Ceramic &amp; Tile</button>
+  <button class="filter-chip" data-surface="metal" onclick="filterSurface('metal',this)" data-i18n="flt_metal">Metal</button>
+  <button class="filter-chip" data-surface="automotive" onclick="filterSurface('automotive',this)" data-i18n="flt_auto">Automotive</button>
+  <button class="filter-chip" data-surface="marine" onclick="filterSurface('marine',this)" data-i18n="flt_marine">⚓ Marine</button>
+  <button class="filter-chip" data-surface="fabric" onclick="filterSurface('fabric',this)" data-i18n="flt_fabric">Fabric &amp; Leather</button>
+  <button class="filter-chip" data-surface="plastic" onclick="filterSurface('plastic',this)" data-i18n="flt_plastic">Plastic &amp; Screen</button>
   <span class="filter-divider"></span>
-  <button class="filter-pro-chip" id="proToggle" onclick="togglePro()">🔧 Pro Only</button>
+  <button class="filter-pro-chip" id="proToggle" onclick="togglePro()" data-i18n="flt_pro">🔧 Pro Only</button>
   <span class="filter-count" id="filterCount"></span>
 </div>
 
@@ -264,17 +264,17 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <div class="products-section">
   <div class="products-grid" id="productsGrid"></div>
   <div class="empty-state" id="emptyState" style="display:none;">
-    <h3>No products match this filter</h3>
-    <p style="margin-top:8px;">Try selecting a different surface type or category.</p>
+    <h3 data-i18n="empty_h">No products match this filter</h3>
+    <p style="margin-top:8px;" data-i18n="empty_p">Try selecting a different surface type or category.</p>
   </div>
 </div>
 
 <!-- BUNDLES -->
 <section class="bundle-section">
   <div class="bundle-inner">
-    <div style="text-align:center;margin-bottom:8px;" class="eyebrow">Complete Solutions</div>
-    <h2 class="display" style="font-size:clamp(28px,4vw,48px);text-align:center;margin:8px 0 12px;">Curated Kits</h2>
-    <p style="text-align:center;color:var(--soft);max-width:520px;margin:0 auto;font-size:16px;">Everything you need in one kit. Coating + the right tools, picked by us.</p>
+    <div style="text-align:center;margin-bottom:8px;" class="eyebrow" data-i18n="bndl_eyebrow">Complete Solutions</div>
+    <h2 class="display" style="font-size:clamp(28px,4vw,48px);text-align:center;margin:8px 0 12px;" data-i18n="bndl_h2">Curated Kits</h2>
+    <p style="text-align:center;color:var(--soft);max-width:520px;margin:0 auto;font-size:16px;" data-i18n="bndl_sub">Everything you need in one kit. Coating + the right tools, picked by us.</p>
     <div class="bundle-grid" id="bundleGrid"></div>
   </div>
 </section>
@@ -283,18 +283,18 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <div class="b2b-strip">
   <div class="b2b-inner">
     <div class="b2b-text">
-      <h2>Wholesale & Trade Accounts</h2>
-      <p>Detailers, cleaning services, tile installers, glaziers — get trade pricing, bulk stock, and priority support.</p>
+      <h2 data-i18n="b2b_h2">Wholesale &amp; Trade Accounts</h2>
+      <p data-i18n="b2b_sub">Detailers, cleaning services, tile installers, glaziers — get trade pricing, bulk stock, and priority support.</p>
       <div class="b2b-badges">
-        <span class="b2b-badge">✓ Volume Discounts</span>
-        <span class="b2b-badge">✓ Dedicated Account Manager</span>
-        <span class="b2b-badge">✓ Priority Dispatch</span>
-        <span class="b2b-badge">✓ NET 30 Terms Available</span>
+        <span class="b2b-badge" data-i18n="b2b_b1">✓ Volume Discounts</span>
+        <span class="b2b-badge" data-i18n="b2b_b2">✓ Dedicated Account Manager</span>
+        <span class="b2b-badge" data-i18n="b2b_b3">✓ Priority Dispatch</span>
+        <span class="b2b-badge" data-i18n="b2b_b4">✓ NET 30 Terms Available</span>
       </div>
     </div>
     <div class="b2b-cta">
-      <a href="mailto:info@dropless.com.au?subject=Trade Account Enquiry" class="b2b-btn b2b-btn-primary">Apply for Trade Account →</a>
-      <a href="mailto:info@dropless.com.au" class="b2b-btn b2b-btn-ghost">or email info@dropless.com.au</a>
+      <a href="mailto:info@dropless.com.au?subject=Trade Account Enquiry" class="b2b-btn b2b-btn-primary" data-i18n="b2b_apply">Apply for Trade Account →</a>
+      <a href="mailto:info@dropless.com.au" class="b2b-btn b2b-btn-ghost" data-i18n="b2b_email">or email info@dropless.com.au</a>
     </div>
   </div>
 </div>
@@ -304,26 +304,26 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   <div class="footer-inner">
     <div>
       <div class="footer-brand"><span style="width:10px;height:14px;background:var(--teal2);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;display:inline-block;"></span>Dropless</div>
-      <p class="footer-brand-sub">Professional surface protection coatings.<br>Made in Wollongong, NSW, Australia.</p>
+      <p class="footer-brand-sub" data-i18n="footer_sub">Professional surface protection coatings.<br>Made in Wollongong, NSW, Australia.</p>
     </div>
     <div class="footer-col">
-      <h4>Products</h4>
-      <a href="products.html">All Products</a>
-      <a href="products.html?cat=coating">Surface Coatings</a>
-      <a href="products.html?cat=accessory">Application Tools</a>
-      <a href="how-to-use.html">How to Use</a>
+      <h4 data-i18n="nav_products">Products</h4>
+      <a href="products.html" data-i18n="footer_all">All Products</a>
+      <a href="products.html?cat=coating" data-i18n="cat_coating">Surface Coatings</a>
+      <a href="products.html?cat=accessory" data-i18n="cat_accessory">Application Tools</a>
+      <a href="how-to-use.html" data-i18n="footer_how">How to Use</a>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
-      <a href="/#about">About</a>
-      <a href="/#contact">Contact</a>
+      <h4 data-i18n="footer_company">Company</h4>
+      <a href="/#about" data-i18n="footer_about">About</a>
+      <a href="/#contact" data-i18n="nav_contact">Contact</a>
       <a href="mailto:info@dropless.com.au">info@dropless.com.au</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+      <a href="terms.html" data-i18n="footer_terms">Terms &amp; Conditions</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Dropless. Made in Australia.</span>
+    <span data-i18n="footer_copy">© 2026 Dropless. Made in Australia.</span>
     <span>ABN 65 948 041 856 · Wollongong NSW 2500</span>
   </div>
 </footer>
@@ -591,10 +591,10 @@ function renderProducts() {
 
     const originBadge = p.origin === 'selected'
       ? `<div class="card-badge badge-selected selected-tooltip">
-           ✦ Selected by Dropless
-           <span class="tt">Sourced and approved by the Dropless team. Every accessory we stock has been tested with our coatings for best results.</span>
+           ${t('card_selected')}
+           <span class="tt">${t('card_sel_tip')}</span>
          </div>`
-      : `<div class="card-badge badge-made">Made by Dropless</div>`;
+      : `<div class="card-badge badge-made">${t('card_made')}</div>`;
 
     const proBadge = p.pro ? `<div class="badge-pro">Pro</div>` : '';
     const newBadge = p.badge === 'New' ? `<div class="card-badge badge-new" style="left:auto;right:12px;">New</div>` : '';
@@ -604,7 +604,7 @@ function renderProducts() {
     ).join('');
 
     const howBtn = p.howToUseId
-      ? `<a href="how-to-use.html?product=${p.howToUseId}" class="pca-btn pca-how">How to Use</a>`
+      ? `<a href="how-to-use.html?product=${p.howToUseId}" class="pca-btn pca-how">${t('card_how')}</a>`
       : '';
 
     const buyUrl = p.stripeId
@@ -628,21 +628,21 @@ function renderProducts() {
         ${['bathroom-shield','toilet-anti-stick'].includes(p.id) ? `
         <div style="background:#fef3c7;border-left:3px solid #f59e0b;border-radius:0 4px 4px 0;
                     padding:6px 10px;margin-top:8px;font-size:11.5px;color:#78350f;line-height:1.4;">
-          ⚠️ <strong>NOT for floor tiles, shower floors or bathtubs.</strong> Slip hazard on walking surfaces.
+          ⚠️ <strong>${t('card_slip')}</strong>
         </div>` : ''}
       </div>
       <div class="prod-card-footer">
         <div class="prod-card-price">$${p.price.toFixed(2)}<span> AUD · ${p.size}</span></div>
         <div class="prod-card-actions">
           ${howBtn}
-          <a href="${buyUrl}" class="pca-btn pca-buy">Buy →</a>
+          <a href="${buyUrl}" class="pca-btn pca-buy">${t('card_buy')}</a>
         </div>
       </div>
     </div>`;
   }).join('');
 
   document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
-  document.getElementById('filterCount').textContent = visible + ' product' + (visible !== 1 ? 's' : '');
+  document.getElementById('filterCount').textContent = visible + ' ' + t(visible !== 1 ? 'flt_count_p' : 'flt_count_s');
   updateCounts();
 }
 
@@ -654,7 +654,7 @@ function matchFilter(p) {
 }
 
 function surfaceLabel(s) {
-  return {glass:'Glass',ceramic:'Ceramic & Tile',metal:'Metal',automotive:'Automotive',fabric:'Fabric & Leather',marine:'Marine',plastic:'Plastic & Screen',stone:'Stone & Bench'}[s] || s;
+  return (SURFACE_LABELS[s] && (SURFACE_LABELS[s][currentLang] || SURFACE_LABELS[s].en)) || s;
 }
 
 function updateCounts() {
@@ -714,10 +714,81 @@ function renderBundles() {
         <span class="bundle-price-was">$${b.was.toFixed(2)}</span>
         <span class="bundle-save">Save $${save}</span>
       </div>
-      <a href="${b.href}" class="bundle-btn">Order This Kit →</a>
+      <a href="${b.href}" class="bundle-btn">${t('bndl_order')}</a>
     </div>`;
   }).join('');
 }
+
+// ─── UI TRANSLATIONS ────────────────────────────────────────────
+const UI = {
+  nav_products: {en:'Products',tr:'Ürünler',ar:'المنتجات',zh:'产品',hi:'उत्पाद',es:'Productos',it:'Prodotti',fa:'محصولات'},
+  nav_how:      {en:'How It Works',tr:'Nasıl Çalışır',ar:'طريقة الاستخدام',zh:'使用方法',hi:'कैसे काम करता है',es:'Cómo Funciona',it:'Come Funziona',fa:'نحوه کار'},
+  nav_buy:      {en:'Buy',tr:'Satın Al',ar:'اشتري',zh:'购买',hi:'खरीदें',es:'Comprar',it:'Acquista',fa:'خرید'},
+  nav_faq:      {en:'FAQ',tr:'SSS',ar:'أسئلة شائعة',zh:'常见问题',hi:'FAQ',es:'FAQ',it:'FAQ',fa:'FAQ'},
+  nav_contact:  {en:'Contact',tr:'İletişim',ar:'اتصل بنا',zh:'联系我们',hi:'संपर्क',es:'Contacto',it:'Contatto',fa:'تماس'},
+  nav_buynow:   {en:'Buy Now',tr:'Şimdi Al',ar:'اشتري الآن',zh:'立即购买',hi:'अभी खरीदें',es:'Comprar Ahora',it:'Acquista Ora',fa:'همین حالا بخرید'},
+  ph_eyebrow:   {en:'Surface Protection Technologies',tr:'Yüzey Koruma Teknolojileri',ar:'تقنيات حماية الأسطح',zh:'表面保护技术',hi:'सतह संरक्षण तकनीक',es:'Tecnologías de Protección de Superficies',it:'Tecnologie di Protezione Superfici',fa:'فناوری‌های محافظت از سطح'},
+  ph_h1:        {en:'Our Products',tr:'Ürünlerimiz',ar:'منتجاتنا',zh:'我们的产品',hi:'हमारे उत्पाद',es:'Nuestros Productos',it:'I Nostri Prodotti',fa:'محصولات ما'},
+  ph_sub:       {en:'Professional hydrophobic coatings for every surface — bathroom, automotive, marine, fabric and more. Made in Wollongong, NSW, Australia.',tr:'Her yüzey için profesyonel hidrofobik kaplamalar — banyo, otomotiv, denizcilik, kumaş ve daha fazlası. Wollongong, NSW, Avustralya\'da üretildi.',ar:'طلاءات هيدروفوبية احترافية لكل سطح — الحمام، السيارات، البحرية، الأقمشة والمزيد. صُنعت في ولونجونج، NSW، أستراليا.',zh:'专业疏水涂层，适用于所有表面——浴室、汽车、船舶、织物等。澳大利亚新南威尔士州伍伦贡制造。',hi:'हर सतह के लिए पेशेवर हाइड्रोफोबिक कोटिंग — बाथरूम, ऑटोमोटिव, समुद्री, कपड़ा आदि। वोलोंगोंग, NSW, ऑस्ट्रेलिया में निर्मित।',es:'Recubrimientos hidrofóbicos profesionales para cada superficie — baño, automotriz, marino, tela y más. Fabricados en Wollongong, NSW, Australia.',it:'Rivestimenti idrofobi professionali per ogni superficie — bagno, auto, nautica, tessuti e altro. Prodotti a Wollongong, NSW, Australia.',fa:'پوشش‌های هیدروفوبیک حرفه‌ای برای هر سطح — حمام، خودرو، دریایی، پارچه و بیشتر. ساخته شده در ولونگونگ، NSW، استرالیا.'},
+  cat_all:      {en:'All Products',tr:'Tüm Ürünler',ar:'كل المنتجات',zh:'全部产品',hi:'सभी उत्पाद',es:'Todos los Productos',it:'Tutti i Prodotti',fa:'همه محصولات'},
+  cat_coating:  {en:'Surface Coatings',tr:'Yüzey Kaplamaları',ar:'طلاءات الأسطح',zh:'表面涂层',hi:'सतह कोटिंग',es:'Recubrimientos de Superficie',it:'Rivestimenti Superfici',fa:'پوشش سطح'},
+  cat_prep:     {en:'Surface Prep',tr:'Yüzey Hazırlık',ar:'تحضير السطح',zh:'表面预处理',hi:'सतह प्रीप',es:'Preparación de Superficie',it:'Preparazione Superfici',fa:'آماده‌سازی سطح'},
+  cat_accessory:{en:'Application Tools',tr:'Uygulama Araçları',ar:'أدوات التطبيق',zh:'涂抹工具',hi:'एप्लिकेशन टूल',es:'Herramientas de Aplicación',it:'Strumenti Applicazione',fa:'ابزار استفاده'},
+  cat_industrial:{en:'Industrial & Commercial',tr:'Endüstriyel & Ticari',ar:'صناعي وتجاري',zh:'工业与商业',hi:'औद्योगिक और व्यावसायिक',es:'Industrial & Comercial',it:'Industriale & Commerciale',fa:'صنعتی و تجاری'},
+  flt_surface:  {en:'Surface:',tr:'Yüzey:',ar:'السطح:',zh:'表面：',hi:'सतह:',es:'Superficie:',it:'Superficie:',fa:'سطح:'},
+  flt_all:      {en:'All',tr:'Tümü',ar:'الكل',zh:'全部',hi:'सभी',es:'Todo',it:'Tutti',fa:'همه'},
+  flt_glass:    {en:'Glass',tr:'Cam',ar:'زجاج',zh:'玻璃',hi:'कांच',es:'Vidrio',it:'Vetro',fa:'شیشه'},
+  flt_ceramic:  {en:'Ceramic & Tile',tr:'Seramik & Fayans',ar:'سيراميك وبلاط',zh:'陶瓷与瓷砖',hi:'सेरेमिक और टाइल',es:'Cerámica & Azulejo',it:'Ceramica & Piastrelle',fa:'سرامیک و کاشی'},
+  flt_metal:    {en:'Metal',tr:'Metal',ar:'معدن',zh:'金属',hi:'धातु',es:'Metal',it:'Metallo',fa:'فلز'},
+  flt_auto:     {en:'Automotive',tr:'Otomotiv',ar:'السيارات',zh:'汽车',hi:'ऑटोमोटिव',es:'Automotriz',it:'Automotive',fa:'خودرو'},
+  flt_marine:   {en:'⚓ Marine',tr:'⚓ Denizcilik',ar:'⚓ بحري',zh:'⚓ 船舶',hi:'⚓ समुद्री',es:'⚓ Marino',it:'⚓ Nautica',fa:'⚓ دریایی'},
+  flt_fabric:   {en:'Fabric & Leather',tr:'Kumaş & Deri',ar:'قماش وجلد',zh:'织物与皮革',hi:'फैब्रिक और चमड़ा',es:'Tela & Cuero',it:'Tessuto & Pelle',fa:'پارچه و چرم'},
+  flt_plastic:  {en:'Plastic & Screen',tr:'Plastik & Ekran',ar:'بلاستيك وشاشة',zh:'塑料与屏幕',hi:'प्लास्टिक और स्क्रीन',es:'Plástico & Pantalla',it:'Plastica & Schermo',fa:'پلاستیک و صفحه'},
+  flt_pro:      {en:'🔧 Pro Only',tr:'🔧 Sadece Pro',ar:'🔧 للمحترفين',zh:'🔧 专业版',hi:'🔧 केवल Pro',es:'🔧 Solo Pro',it:'🔧 Solo Pro',fa:'🔧 فقط حرفه‌ای'},
+  bndl_eyebrow: {en:'Complete Solutions',tr:'Eksiksiz Çözümler',ar:'حلول متكاملة',zh:'完整解决方案',hi:'पूर्ण समाधान',es:'Soluciones Completas',it:'Soluzioni Complete',fa:'راه‌حل‌های کامل'},
+  bndl_h2:      {en:'Curated Kits',tr:'Özenle Seçilmiş Setler',ar:'مجموعات مختارة',zh:'精选套装',hi:'क्यूरेटेड किट',es:'Kits Seleccionados',it:'Kit Selezionati',fa:'کیت‌های منتخب'},
+  bndl_sub:     {en:'Everything you need in one kit. Coating + the right tools, picked by us.',tr:'Bir sette ihtiyacınız olan her şey. Kaplama + doğru araçlar, bizim seçimimiz.',ar:'كل ما تحتاجه في مجموعة واحدة. طلاء + الأدوات المناسبة، اخترناها لك.',zh:'一套包含所有你需要的东西。涂层+合适的工具，由我们精选。',hi:'एक किट में सब कुछ। कोटिंग + सही टूल, हमारी पसंद।',es:'Todo lo que necesitas en un kit. Recubrimiento + las herramientas correctas, elegidas por nosotros.',it:'Tutto ciò di cui hai bisogno in un kit. Rivestimento + gli strumenti giusti, scelti da noi.',fa:'همه چیزی که نیاز دارید در یک کیت. پوشش + ابزار مناسب، انتخاب ما.'},
+  b2b_h2:       {en:'Wholesale & Trade Accounts',tr:'Toptan & Ticari Hesaplar',ar:'الجملة وحسابات التجارة',zh:'批发与贸易账户',hi:'थोक और व्यापार खाते',es:'Cuentas Mayoristas y Comerciales',it:'Conti Ingrosso e Commerciali',fa:'حساب‌های عمده‌فروشی و تجاری'},
+  b2b_sub:      {en:'Detailers, cleaning services, tile installers, glaziers — get trade pricing, bulk stock, and priority support.',tr:'Detaycılar, temizlik hizmetleri, karo montajcıları — ticari fiyat, toplu stok ve öncelikli destek alın.',ar:'المفصّلون، خدمات التنظيف، مثبتو البلاط — احصل على أسعار تجارية ومخزون ضخم ودعم أولوية.',zh:'汽车美容师、清洁服务、瓷砖安装商——获得贸易价格、批量库存和优先支持。',hi:'डिटेलर्स, सफाई सेवाएं, टाइल इंस्टालर — ट्रेड प्राइसिंग, बल्क स्टॉक और प्राथमिक सहायता पाएं।',es:'Detailers, servicios de limpieza, instaladores de azulejos — obtén precios de comercio, stock al por mayor y soporte prioritario.',it:'Detailer, servizi di pulizia, posatori — ottieni prezzi commerciali, stock all\'ingrosso e supporto prioritario.',fa:'دتیلرها، خدمات نظافت، نصاب کاشی — قیمت‌های تجاری، موجودی انبوه و پشتیبانی اولویت‌دار بگیرید.'},
+  b2b_b1:       {en:'✓ Volume Discounts',tr:'✓ Toplu Satın Alma İndirimi',ar:'✓ خصومات الكميات',zh:'✓ 批量折扣',hi:'✓ वॉल्यूम छूट',es:'✓ Descuentos por Volumen',it:'✓ Sconti Volume',fa:'✓ تخفیف حجمی'},
+  b2b_b2:       {en:'✓ Dedicated Account Manager',tr:'✓ Özel Hesap Müdürü',ar:'✓ مدير حساب مخصص',zh:'✓ 专属客户经理',hi:'✓ समर्पित खाता प्रबंधक',es:'✓ Gerente de Cuenta Dedicado',it:'✓ Account Manager Dedicato',fa:'✓ مدیر حساب اختصاصی'},
+  b2b_b3:       {en:'✓ Priority Dispatch',tr:'✓ Öncelikli Sevkiyat',ar:'✓ إرسال ذو أولوية',zh:'✓ 优先发货',hi:'✓ प्राथमिकता प्रेषण',es:'✓ Envío Prioritario',it:'✓ Spedizione Prioritaria',fa:'✓ ارسال اولویت‌دار'},
+  b2b_b4:       {en:'✓ NET 30 Terms Available',tr:'✓ NET 30 Ödeme Koşulları Mevcut',ar:'✓ شروط صافي 30 يومًا متاحة',zh:'✓ 提供NET 30付款条件',hi:'✓ NET 30 शर्तें उपलब्ध',es:'✓ Términos NET 30 Disponibles',it:'✓ Termini NET 30 Disponibili',fa:'✓ شرایط NET 30 موجود'},
+  b2b_apply:    {en:'Apply for Trade Account →',tr:'Ticari Hesap Başvurusu →',ar:'التقدم لحساب تجاري →',zh:'申请贸易账户 →',hi:'ट्रेड अकाउंट के लिए आवेदन करें →',es:'Solicitar Cuenta Comercial →',it:'Richiedi Account Commerciale →',fa:'درخواست حساب تجاری →'},
+  b2b_email:    {en:'or email info@dropless.com.au',tr:'veya info@dropless.com.au adresine yazın',ar:'أو راسل info@dropless.com.au',zh:'或发送邮件至 info@dropless.com.au',hi:'या info@dropless.com.au पर ईमेल करें',es:'o escribe a info@dropless.com.au',it:'o scrivi a info@dropless.com.au',fa:'یا ایمیل بزنید به info@dropless.com.au'},
+  footer_sub:   {en:'Professional surface protection coatings.<br>Made in Wollongong, NSW, Australia.',tr:'Profesyonel yüzey koruma kaplamaları.<br>Wollongong, NSW, Avustralya\'da üretildi.',ar:'طلاءات حماية الأسطح الاحترافية.<br>صُنعت في ولونجونج، NSW، أستراليا.',zh:'专业表面保护涂层。<br>澳大利亚新南威尔士州伍伦贡制造。',hi:'पेशेवर सतह सुरक्षा कोटिंग।<br>ऑस्ट्रेलिया में निर्मित।',es:'Recubrimientos profesionales de protección.<br>Fabricados en Wollongong, Australia.',it:'Rivestimenti professionali di protezione.<br>Prodotti a Wollongong, Australia.',fa:'پوشش‌های محافظت از سطح حرفه‌ای.<br>ساخته شده در استرالیا.'},
+  footer_all:   {en:'All Products',tr:'Tüm Ürünler',ar:'كل المنتجات',zh:'所有产品',hi:'सभी उत्पाद',es:'Todos los Productos',it:'Tutti i Prodotti',fa:'همه محصولات'},
+  footer_how:   {en:'How to Use',tr:'Nasıl Kullanılır',ar:'كيفية الاستخدام',zh:'使用说明',hi:'उपयोग कैसे करें',es:'Cómo Usar',it:'Come Usarlo',fa:'نحوه استفاده'},
+  footer_company:{en:'Company',tr:'Şirket',ar:'الشركة',zh:'公司',hi:'कंपनी',es:'Empresa',it:'Azienda',fa:'شرکت'},
+  footer_about: {en:'About',tr:'Hakkımızda',ar:'حولنا',zh:'关于我们',hi:'हमारे बारे में',es:'Acerca de',it:'Chi siamo',fa:'درباره ما'},
+  footer_privacy:{en:'Privacy Policy',tr:'Gizlilik Politikası',ar:'سياسة الخصوصية',zh:'隐私政策',hi:'गोपनीयता नीति',es:'Política de Privacidad',it:'Privacy',fa:'سیاست حریم خصوصی'},
+  footer_terms: {en:'Terms & Conditions',tr:'Şartlar & Koşullar',ar:'الشروط والأحكام',zh:'条款和条件',hi:'नियम और शर्तें',es:'Términos & Condiciones',it:'Termini & Condizioni',fa:'شرایط و ضوابط'},
+  footer_copy:  {en:'© 2026 Dropless. Made in Australia.',tr:'© 2026 Dropless. Avustralya\'da üretildi.',ar:'© 2026 Dropless. صُنع في أستراليا.',zh:'© 2026 Dropless. 澳大利亚制造。',hi:'© 2026 Dropless. ऑस्ट्रेलिया में निर्मित।',es:'© 2026 Dropless. Hecho en Australia.',it:'© 2026 Dropless. Prodotto in Australia.',fa:'© 2026 Dropless. ساخته شده در استرالیا.'},
+  card_made:    {en:'Made by Dropless',tr:'Dropless Yapımı',ar:'صنع Dropless',zh:'Dropless制造',hi:'Dropless द्वारा निर्मित',es:'Hecho por Dropless',it:'Fatto da Dropless',fa:'ساخته Dropless'},
+  card_selected:{en:'✦ Selected by Dropless',tr:'✦ Dropless Seçimi',ar:'✦ اختيار Dropless',zh:'✦ Dropless精选',hi:'✦ Dropless द्वारा चुना गया',es:'✦ Seleccionado por Dropless',it:'✦ Selezionato da Dropless',fa:'✦ انتخاب Dropless'},
+  card_sel_tip: {en:'Sourced and approved by the Dropless team. Every accessory we stock has been tested with our coatings for best results.',tr:'Dropless ekibi tarafından temin edilmiş ve onaylanmıştır. Her aksesuar, en iyi sonuçlar için kaplamalarımızla test edilmiştir.',ar:'تم توفيره والموافقة عليه من فريق Dropless. كل ملحق نخزّنه تم اختباره مع طلاءاتنا.',zh:'由Dropless团队采购和认证。我们库存的每件配件都经过与涂层配合测试。',hi:'Dropless टीम द्वारा स्रोत और अनुमोदित। हमारे पास मौजूद हर एक्सेसरी का परीक्षण हमारे कोटिंग के साथ किया गया है।',es:'Adquirido y aprobado por el equipo Dropless. Cada accesorio ha sido probado con nuestros recubrimientos.',it:'Acquistato e approvato dal team Dropless. Ogni accessorio è stato testato con i nostri rivestimenti.',fa:'توسط تیم Dropless تهیه و تأیید شده. هر اکسسوری با پوشش‌های ما آزمایش شده است.'},
+  card_how:     {en:'How to Use',tr:'Nasıl Kullanılır',ar:'كيفية الاستخدام',zh:'使用方法',hi:'उपयोग विधि',es:'Cómo Usar',it:'Come Usarlo',fa:'نحوه استفاده'},
+  card_buy:     {en:'Buy →',tr:'Satın Al →',ar:'اشتري →',zh:'购买 →',hi:'खरीदें →',es:'Comprar →',it:'Acquista →',fa:'خرید →'},
+  card_slip:    {en:'NOT for floor tiles, shower floors or bathtubs. Slip hazard on walking surfaces.',tr:'Zemin karoları, duş zeminleri veya küvetler için DEĞİLDİR. Yürüme yüzeylerinde kayma tehlikesi.',ar:'ليس لبلاط الأرضيات أو حوض الاستحمام. خطر انزلاق على الأسطح المشية.',zh:'不适用于地砖、淋浴地板或浴缸。行走表面有滑倒危险。',hi:'फर्श की टाइलों, शावर फर्श या बाथटब के लिए नहीं। चलने वाली सतहों पर फिसलन का खतरा।',es:'NO para baldosas, suelos de ducha o bañeras. Riesgo de resbalón.',it:'NON per piastrelle a terra, docce o vasche. Rischio scivolamento.',fa:'برای کف‌پوش، کف دوش یا وان نیست. خطر لغزش.'},
+  bndl_order:   {en:'Order This Kit →',tr:'Bu Seti Sipariş Et →',ar:'اطلب هذا الطقم →',zh:'订购此套装 →',hi:'यह किट ऑर्डर करें →',es:'Pedir Este Kit →',it:'Ordina Questo Kit →',fa:'این کیت را سفارش دهید →'},
+  flt_count_s:  {en:'product',tr:'ürün',ar:'منتج',zh:'款产品',hi:'उत्पाद',es:'producto',it:'prodotto',fa:'محصول'},
+  flt_count_p:  {en:'products',tr:'ürün',ar:'منتجات',zh:'款产品',hi:'उत्पाद',es:'productos',it:'prodotti',fa:'محصول'},
+  empty_h:      {en:'No products match this filter',tr:'Bu filtreye uyan ürün yok',ar:'لا توجد منتجات تطابق هذا الفلتر',zh:'没有符合此筛选条件的产品',hi:'इस फ़िल्टर से कोई उत्पाद नहीं मिला',es:'No hay productos para este filtro',it:'Nessun prodotto corrisponde a questo filtro',fa:'محصولی با این فیلتر یافت نشد'},
+  empty_p:      {en:'Try selecting a different surface type or category.',tr:'Farklı bir yüzey türü veya kategori seçmeyi deneyin.',ar:'جرب تحديد نوع سطح أو فئة مختلفة.',zh:'请尝试选择其他表面类型或类别。',hi:'कोई अन्य सतह प्रकार या श्रेणी चुनें।',es:'Prueba seleccionando otro tipo de superficie o categoría.',it:'Prova a selezionare un tipo di superficie o categoria diversa.',fa:'نوع سطح یا دسته‌بندی دیگری انتخاب کنید.'},
+};
+
+const SURFACE_LABELS = {
+  glass:      {en:'Glass',tr:'Cam',ar:'زجاج',zh:'玻璃',hi:'कांच',es:'Vidrio',it:'Vetro',fa:'شیشه'},
+  ceramic:    {en:'Ceramic & Tile',tr:'Seramik & Fayans',ar:'سيراميك وبلاط',zh:'陶瓷与瓷砖',hi:'सेरेमिक और टाइल',es:'Cerámica & Azulejo',it:'Ceramica & Piastrelle',fa:'سرامیک و کاشی'},
+  metal:      {en:'Metal',tr:'Metal',ar:'معدن',zh:'金属',hi:'धातु',es:'Metal',it:'Metallo',fa:'فلز'},
+  automotive: {en:'Automotive',tr:'Otomotiv',ar:'السيارات',zh:'汽车',hi:'ऑटोमोटिव',es:'Automotriz',it:'Automotive',fa:'خودرو'},
+  fabric:     {en:'Fabric & Leather',tr:'Kumaş & Deri',ar:'قماش وجلد',zh:'织物与皮革',hi:'फैब्रिक और चमड़ा',es:'Tela & Cuero',it:'Tessuto & Pelle',fa:'پارچه و چرم'},
+  marine:     {en:'Marine',tr:'Denizcilik',ar:'بحري',zh:'船舶',hi:'समुद्री',es:'Marino',it:'Nautica',fa:'دریایی'},
+  plastic:    {en:'Plastic & Screen',tr:'Plastik & Ekran',ar:'بلاستيك وشاشة',zh:'塑料与屏幕',hi:'प्लास्टिक और स्क्रीन',es:'Plástico & Pantalla',it:'Plastica & Schermo',fa:'پلاستیک و صفحه'},
+  stone:      {en:'Stone & Bench',tr:'Taş & Tezgah',ar:'حجر وسطح',zh:'石材与台面',hi:'पत्थर और काउंटर',es:'Piedra & Encimera',it:'Pietra & Piano',fa:'سنگ و کانتر'},
+};
+
+let currentLang = 'en';
 
 // ─── NAV & LANG ─────────────────────────────────────────────────
 function toggleMenu() {
@@ -725,9 +796,34 @@ function toggleMenu() {
   document.getElementById('mobOverlay').classList.toggle('open');
 }
 
+function t(key) {
+  return (UI[key] && (UI[key][currentLang] || UI[key].en)) || '';
+}
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = t(el.dataset.i18n);
+    if (v) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const v = t(el.dataset.i18nHtml);
+    if (v) el.innerHTML = v;
+  });
+  // footer_sub has <br> tags
+  const fs = document.querySelector('[data-i18n="footer_sub"]');
+  if (fs) fs.innerHTML = t('footer_sub');
+}
+
 function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('dropless_lang', lang);
+  const pick = document.getElementById('globalLang');
+  if (pick) pick.value = lang;
   document.body.classList.toggle('rtl', ['ar','fa'].includes(lang));
   document.documentElement.lang = lang;
+  applyTranslations();
+  renderProducts();
+  renderBundles();
 }
 
 // Handle ?cat= URL param on load
@@ -741,6 +837,13 @@ function initFromURL() {
 }
 
 // ─── INIT ───────────────────────────────────────────────────────
+const _saved = localStorage.getItem('dropless_lang') || 'en';
+currentLang = _saved;
+const _pick = document.getElementById('globalLang');
+if (_pick) _pick.value = _saved;
+document.body.classList.toggle('rtl', ['ar','fa'].includes(_saved));
+document.documentElement.lang = _saved;
+applyTranslations();
 renderProducts();
 renderBundles();
 initFromURL();

@@ -300,6 +300,7 @@ const LABELS = {
 
 function setLang(lang, btn) {
   currentLang = lang;
+  localStorage.setItem('dropless_lang', lang);
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   document.body.classList.toggle('rtl', RTL.includes(lang));
@@ -392,11 +393,21 @@ function renderProduct(p, lbl, el) {
     </div>`;
 }
 
-// Init — wrapped in DOMContentLoaded for safety
+// Init — restore language from localStorage, then render
+function init() {
+  const saved = localStorage.getItem('dropless_lang') || 'en';
+  if (saved !== 'en') {
+    const btn = document.querySelector(`.lang-btn[onclick*="'${saved}'"]`);
+    setLang(saved, btn);
+  } else {
+    render();
+  }
+}
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', render);
+  document.addEventListener('DOMContentLoaded', init);
 } else {
-  render();
+  init();
 }
 </script>
 </body>

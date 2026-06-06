@@ -318,11 +318,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <img src="img/dropless_logo_official.png" alt="Dropless" style="height:28px;border-radius:3px;">
   </a>
   <div class="nav-center">
-    <a href="products.html">Products</a>
-    <a href="#how">How It Works</a>
-    <a href="#buy">Buy</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
+    <a href="products.html" data-i18n="nav_products">Products</a>
+    <a href="#how" data-i18n="nav_how">How It Works</a>
+    <a href="#buy" data-i18n="nav_buy">Buy</a>
+    <a href="#faq" data-i18n="nav_faq">FAQ</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="nav-right">
     <select class="lang-pick" id="globalLang" onchange="setLang(this.value)">
@@ -335,7 +335,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <option value="it">Italiano</option>
       <option value="fa">فارسی</option>
     </select>
-    <a href="#buy" class="btn btn-primary nav-buy">Buy Now</a>
+    <a href="#buy" class="btn btn-primary nav-buy" data-i18n="nav_buynow">Buy Now</a>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -344,11 +344,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 
 <!-- MOBILE OVERLAY MENU -->
 <div class="mob-overlay" id="mobOverlay">
-  <a href="products.html" onclick="toggleMenu()">Products</a>
-  <a href="#how" onclick="toggleMenu()">How It Works</a>
-  <a href="#buy" onclick="toggleMenu()">Buy Now</a>
-  <a href="#faq" onclick="toggleMenu()">FAQ</a>
-  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="products.html" onclick="toggleMenu()" data-i18n="nav_products">Products</a>
+  <a href="#how" onclick="toggleMenu()" data-i18n="nav_how">How It Works</a>
+  <a href="#buy" onclick="toggleMenu()" data-i18n="mob_buynow">Buy Now</a>
+  <a href="#faq" onclick="toggleMenu()" data-i18n="nav_faq">FAQ</a>
+  <a href="#contact" onclick="toggleMenu()" data-i18n="nav_contact">Contact</a>
   <div class="mob-lang" id="mobLang">
     <button onclick="setLang('en');toggleMenu()" class="mob-lang-active">English</button>
     <button onclick="setLang('tr');toggleMenu()">Türkçe</button>
@@ -364,18 +364,18 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <!-- HERO -->
 <div class="hero">
   <div class="hero-text">
-    <div class="eyebrow">Made in Wollongong, NSW · Australia</div>
+    <div class="eyebrow" data-i18n="hero_eyebrow">Made in Wollongong, NSW · Australia</div>
     <h1 class="display">Less Scrubbing.<br><em>More Living.</em></h1>
-    <p class="hero-sub">Professional hydrophobic coatings for every surface. Apply once — water beads, stains slide off, surfaces stay clean for months.</p>
+    <p class="hero-sub" data-i18n="hero_sub">Professional hydrophobic coatings for every surface. Apply once — water beads, stains slide off, surfaces stay clean for months.</p>
     <div class="hero-btns">
-      <a href="#buy" class="btn btn-primary">Shop Now <span>→</span></a>
-      <a href="#products" class="btn btn-ghost">See All Products</a>
+      <a href="#buy" class="btn btn-primary" data-i18n="hero_cta1">Shop Now →</a>
+      <a href="#products" class="btn btn-ghost" data-i18n="hero_cta2">See All Products</a>
     </div>
     <div class="trust-row">
-      <span class="trust-badge"><span class="tbico">🇦🇺</span> Made in Australia</span>
-      <span class="trust-badge"><span class="tbico">🔒</span> Stripe Secured</span>
-      <span class="trust-badge"><span class="tbico">🚚</span> Ships AU-wide</span>
-      <span class="trust-badge"><span class="tbico">⭐</span> Months of Protection</span>
+      <span class="trust-badge"><span class="tbico">🇦🇺</span> <span data-i18n="trust_au">Made in Australia</span></span>
+      <span class="trust-badge"><span class="tbico">🔒</span> <span data-i18n="trust_stripe">Stripe Secured</span></span>
+      <span class="trust-badge"><span class="tbico">🚚</span> <span data-i18n="trust_ships">Ships AU-wide</span></span>
+      <span class="trust-badge"><span class="tbico">⭐</span> <span data-i18n="trust_months">Months of Protection</span></span>
     </div>
   </div>
   <div class="hero-visual">
@@ -393,7 +393,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
           <span class="prod-mock-price">$14.95</span>
           <span class="prod-mock-price-detail">AUD · 100 mL</span>
         </div>
-        <a href="#buy" class="prod-mock-btn">Order Now →</a>
+        <a href="#buy" class="prod-mock-btn" data-i18n="hero_order">Order Now →</a>
         <div class="prod-mock-tags">
           <span class="prod-mock-tag">💧 Water Repellent</span>
           <span class="prod-mock-tag">✓ Months of Protection</span>
@@ -403,7 +403,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     </div>
     <div class="mock-float mf-bottom">
       <span class="mock-float-ico">📦</span>
-      <span><span class="mock-float-main">Ships AU-wide</span><span class="mock-float-sub">via Australia Post &amp; Sendle</span></span>
+      <span><span class="mock-float-main" data-i18n="ships_au">Ships AU-wide</span><span class="mock-float-sub" data-i18n="ships_sub">via Australia Post &amp; Sendle</span></span>
     </div>
   </div>
 </div>
@@ -411,10 +411,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <!-- STATS -->
 <div class="stats">
   <div class="stats-inner">
-    <div><div class="stat-num">14</div><div class="stat-lbl">Products</div></div>
-    <div><div class="stat-num">8</div><div class="stat-lbl">Languages</div></div>
-    <div><div class="stat-num">AU</div><div class="stat-lbl">Made in Australia</div></div>
-    <div><div class="stat-num">1mo+</div><div class="stat-lbl">Protection Per Apply</div></div>
+    <div><div class="stat-num">14</div><div class="stat-lbl" data-i18n="stat_products">Products</div></div>
+    <div><div class="stat-num">8</div><div class="stat-lbl" data-i18n="stat_languages">Languages</div></div>
+    <div><div class="stat-num">AU</div><div class="stat-lbl" data-i18n="stat_made_in">Made in Australia</div></div>
+    <div><div class="stat-num">1mo+</div><div class="stat-lbl" data-i18n="stat_protection">Protection Per Apply</div></div>
   </div>
 </div>
 
@@ -422,35 +422,35 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <section class="duo-section">
   <div class="duo-inner">
     <div class="duo-head">
-      <div class="eyebrow">The 2-Step System</div>
-      <h2 class="display">The Perfect Duo</h2>
-      <p class="duo-sub">Maximum protection starts with maximum cleanliness. Our two-step protocol is the professional standard.</p>
+      <div class="eyebrow" data-i18n="duo_eyebrow">The 2-Step System</div>
+      <h2 class="display" data-i18n="duo_h2">The Perfect Duo</h2>
+      <p class="duo-sub" data-i18n="duo_sub">Maximum protection starts with maximum cleanliness. Our two-step protocol is the professional standard.</p>
     </div>
     <div class="duo-steps">
       <div class="duo-step">
         <div class="duo-step-num">01</div>
         <div class="duo-step-icon">🧹</div>
-        <div class="duo-step-label">DEEP CLEAN &amp; STRIP</div>
-        <h3 class="duo-step-name">Dropless Prep</h3>
-        <p class="duo-step-desc">Eliminates deep grease, lime residue, and old cleaners to expose a bare, chemically neutral foundation — ready for bonding.</p>
-        <div class="duo-step-tag">Step 1 · Always First</div>
+        <div class="duo-step-label" data-i18n="duo_s1_lbl">DEEP CLEAN &amp; STRIP</div>
+        <h3 class="duo-step-name" data-i18n="duo_s1_name">Dropless Prep</h3>
+        <p class="duo-step-desc" data-i18n="duo_s1_desc">Eliminates deep grease, lime residue, and old cleaners to expose a bare, chemically neutral foundation — ready for bonding.</p>
+        <div class="duo-step-tag" data-i18n="duo_s1_tag">Step 1 · Always First</div>
       </div>
       <div class="duo-arrow">→</div>
       <div class="duo-step duo-step-seal">
         <div class="duo-step-num">02</div>
         <div class="duo-step-icon">🛡</div>
-        <div class="duo-step-label">SEAL &amp; PROTECT</div>
-        <h3 class="duo-step-name">Dropless Shield</h3>
-        <p class="duo-step-desc">Bonds chemically to the bare surface for maximum hydrophobic cross-linkage. Water beads. Stains slide off. Lasts months.</p>
-        <div class="duo-step-tag">Step 2 · Apply Once</div>
+        <div class="duo-step-label" data-i18n="duo_s2_lbl">SEAL &amp; PROTECT</div>
+        <h3 class="duo-step-name" data-i18n="duo_s2_name">Dropless Shield</h3>
+        <p class="duo-step-desc" data-i18n="duo_s2_desc">Bonds chemically to the bare surface for maximum hydrophobic cross-linkage. Water beads. Stains slide off. Lasts months.</p>
+        <div class="duo-step-tag" data-i18n="duo_s2_tag">Step 2 · Apply Once</div>
       </div>
     </div>
     <div class="duo-bundle">
       <div class="duo-bundle-text">
-        <strong>Complete Bathroom Care Pack — $49.95</strong>
-        <span>Dropless Prep ($19.95) + Bathroom Shield ($29.95) — save $19.90 vs buying separately. Everything you need for a professional result.</span>
+        <strong data-i18n="duo_bundle_title">Complete Bathroom Care Pack — $49.95</strong>
+        <span data-i18n="duo_bundle_sub">Dropless Prep ($19.95) + Bathroom Shield ($29.95) — save $19.90 vs buying separately. Everything you need for a professional result.</span>
       </div>
-      <a href="#buy" class="duo-bundle-btn">Shop the Bundle — $49.95 AUD →</a>
+      <a href="#buy" class="duo-bundle-btn" data-i18n="duo_bundle_btn">Shop the Bundle — $49.95 AUD →</a>
     </div>
   </div>
 </section>
@@ -459,21 +459,21 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <section id="products">
   <div class="section-inner">
     <div class="section-head">
-      <div class="eyebrow">Product Range</div>
-      <h2 class="display">Protection for Every Surface</h2>
-      <p>Professional-grade hydrophobic coatings. Select a product below to view instructions in your language.</p>
+      <div class="eyebrow" data-i18n="prods_eyebrow">Product Range</div>
+      <h2 class="display" data-i18n="prods_h2">Protection for Every Surface</h2>
+      <p data-i18n="prods_sub">Professional-grade hydrophobic coatings. Select a product below to view instructions in your language.</p>
     </div>
     <div class="prod-search-wrap">
       <span class="prod-search-ico">🔍</span>
-      <input type="text" class="prod-search" id="prodSearch" placeholder="Search products..." oninput="filterProducts()">
+      <input type="text" class="prod-search" id="prodSearch" placeholder="Search products..." oninput="filterProducts()" data-i18n-placeholder="prods_search">
     </div>
     <div class="cat-filter">
-      <button class="cat-btn active" onclick="setCat('all',this)">All Products</button>
-      <button class="cat-btn" onclick="setCat('bathroom',this)">🛁 Bathroom</button>
-      <button class="cat-btn" onclick="setCat('car',this)">🚗 Car & Auto</button>
-      <button class="cat-btn" onclick="setCat('home',this)">🏠 Home & Kitchen</button>
-      <button class="cat-btn" onclick="setCat('soft',this)">🛋 Soft Surfaces</button>
-      <button class="cat-btn" onclick="setCat('tech',this)">📱 Screens</button>
+      <button class="cat-btn active" onclick="setCat('all',this)" data-i18n="cat_all">All Products</button>
+      <button class="cat-btn" onclick="setCat('bathroom',this)" data-i18n="cat_bathroom">🛁 Bathroom</button>
+      <button class="cat-btn" onclick="setCat('car',this)" data-i18n="cat_car">🚗 Car & Auto</button>
+      <button class="cat-btn" onclick="setCat('home',this)" data-i18n="cat_home">🏠 Home & Kitchen</button>
+      <button class="cat-btn" onclick="setCat('soft',this)" data-i18n="cat_soft">🛋 Soft Surfaces</button>
+      <button class="cat-btn" onclick="setCat('tech',this)" data-i18n="cat_tech">📱 Screens</button>
     </div>
     <div class="lang-tabs" id="inlineLangTabs">
       <button class="lang-tab active" data-lang="en" onclick="setLang('en')">🇦🇺 EN</button>
@@ -493,18 +493,18 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <section id="how" class="how">
   <div class="section-inner">
     <div class="section-head">
-      <div class="eyebrow">Universal Method</div>
-      <h2 class="display">Four Steps. Lasting Protection.</h2>
+      <div class="eyebrow" data-i18n="how_eyebrow">Universal Method</div>
+      <h2 class="display" data-i18n="how_h2">Four Steps. Lasting Protection.</h2>
     </div>
     <div style="background:#fef9c3;border:1.5px solid #f59e0b;border-radius:10px;padding:14px 18px;margin-bottom:28px;display:flex;align-items:flex-start;gap:12px;">
       <span style="font-size:1.4rem;flex-shrink:0;">⚠️</span>
-      <p style="margin:0;color:#78350f;font-size:.93rem;line-height:1.55;"><strong>IMPORTANT:</strong> Dropless Protective Line consists of advanced nano-shield sealants, not dirt-removing soaps. Thorough pre-cleaning of the surface is strictly mandatory before application.</p>
+      <p style="margin:0;color:#78350f;font-size:.93rem;line-height:1.55;" data-i18n-html="how_warn"><strong>IMPORTANT:</strong> Dropless Protective Line consists of advanced nano-shield sealants, not dirt-removing soaps. Thorough pre-cleaning of the surface is strictly mandatory before application.</p>
     </div>
     <div class="steps-grid">
-      <div class="step"><div class="step-num">1</div><h3>Clean</h3><p>Clean the surface thoroughly and make sure it's completely dry.</p></div>
-      <div class="step"><div class="step-num">2</div><h3>Spray</h3><p>Apply a light, even mist. Less is more — a thin coat bonds better.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Spread</h3><p>Use a clean microfiber cloth (not the cleaning cloth) to spread evenly.</p></div>
-      <div class="step"><div class="step-num">4</div><h3>Buff</h3><p>Buff until clear. Avoid water for 30–60 min. Done.</p></div>
+      <div class="step"><div class="step-num">1</div><h3 data-i18n="how_s1_h">Clean</h3><p data-i18n="how_s1_p">Clean the surface thoroughly and make sure it's completely dry.</p></div>
+      <div class="step"><div class="step-num">2</div><h3 data-i18n="how_s2_h">Spray</h3><p data-i18n="how_s2_p">Apply a light, even mist. Less is more — a thin coat bonds better.</p></div>
+      <div class="step"><div class="step-num">3</div><h3 data-i18n="how_s3_h">Spread</h3><p data-i18n="how_s3_p">Use a clean microfiber cloth (not the cleaning cloth) to spread evenly.</p></div>
+      <div class="step"><div class="step-num">4</div><h3 data-i18n="how_s4_h">Buff</h3><p data-i18n="how_s4_p">Buff until clear. Avoid water for 30–60 min. Done.</p></div>
     </div>
   </div>
 </section>
@@ -512,13 +512,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <!-- BUY -->
 <section id="buy" class="buy">
   <div class="buy-inner">
-    <div class="eyebrow" style="color:rgba(255,255,255,.6)">Order Now</div>
+    <div class="eyebrow" style="color:rgba(255,255,255,.6)" data-i18n="buy_eyebrow">Order Now</div>
     <h2 class="display">Ships from Wollongong, NSW</h2>
-    <p class="buy-sub">Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post &amp; Sendle delivery network.</p>
+    <p class="buy-sub" data-i18n="buy_sub">Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post &amp; Sendle delivery network.</p>
     <div class="buy-form">
       <form action="https://app.dropless.com.au/stripe/checkout" method="POST">
         <div class="form-group" style="margin-bottom:14px;">
-          <label>Category</label>
+          <label data-i18n="buy_lbl_cat">Category</label>
           <select id="buyCategory" onchange="filterBuyProducts()">
             <option value="">🛍 All Products</option>
             <option value="bathroom">🛁 Bathroom &amp; Home</option>
@@ -530,11 +530,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Product</label>
+            <label data-i18n="buy_lbl_prod">Product</label>
             <select name="urun_adi" id="buyProduct" onchange="updatePrice()"></select>
           </div>
           <div class="form-group">
-            <label>Quantity</label>
+            <label data-i18n="buy_lbl_qty">Quantity</label>
             <select name="adet">
               <option value="1">1</option>
               <option value="2">2</option>
@@ -545,21 +545,21 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
           </div>
         </div>
         <div class="form-group" style="margin-bottom:16px;">
-          <label>Your Email</label>
+          <label data-i18n="buy_lbl_email">Your Email</label>
           <input type="email" name="musteri_email" id="musteri_email" placeholder="you@example.com"/>
         </div>
         <input type="hidden" name="tutar" id="buyPrice" value="14.95"/>
         <div style="text-align:center;margin-bottom:12px;font-size:1.4rem;font-weight:700;color:#fff;">
           <span id="buyPriceDisplay">$14.95 AUD</span>
         </div>
-        <button type="submit" class="buy-submit">Proceed to Secure Payment →</button>
-        <p class="buy-note">Secured by Stripe · SSL encrypted · Ships within 1–2 business days</p>
+        <button type="submit" class="buy-submit" data-i18n="buy_submit">Proceed to Secure Payment →</button>
+        <p class="buy-note" data-i18n="buy_note">Secured by Stripe · SSL encrypted · Ships within 1–2 business days</p>
       </form>
     </div>
 
     <!-- BUNDLES -->
     <div style="margin-top:32px;">
-      <div style="text-align:center;color:rgba(255,255,255,.65);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;">Frequently Bought Together</div>
+      <div style="text-align:center;color:rgba(255,255,255,.65);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;" data-i18n="buy_fbt">Frequently Bought Together</div>
       <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;">
 
         <form action="https://app.dropless.com.au/stripe/checkout" method="POST" style="flex:1;min-width:240px;max-width:340px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;">
@@ -574,7 +574,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
             <option value="2">Qty: 2</option>
             <option value="3">Qty: 3</option>
           </select>
-          <button type="submit" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;">Add Bundle to Cart →</button>
+          <button type="submit" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;" data-i18n="buy_add_cart">Add Bundle to Cart →</button>
         </form>
 
         <form action="https://app.dropless.com.au/stripe/checkout" method="POST" style="flex:1;min-width:240px;max-width:340px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;">
@@ -589,7 +589,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
             <option value="2">Qty: 2</option>
             <option value="3">Qty: 3</option>
           </select>
-          <button type="submit" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;">Add Bundle to Cart →</button>
+          <button type="submit" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;" data-i18n="buy_add_cart">Add Bundle to Cart →</button>
         </form>
 
       </div>
@@ -603,7 +603,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   <div class="section-inner">
     <div class="section-head">
       <div class="eyebrow">FAQ</div>
-      <h2 class="display">Common Questions</h2>
+      <h2 class="display" data-i18n="faq_h2">Common Questions</h2>
     </div>
     <div class="faq-list" id="faqList"></div>
   </div>
@@ -613,20 +613,20 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <section id="contact" class="contact">
   <div class="contact-grid">
     <div class="contact-info">
-      <div class="eyebrow">Get in Touch</div>
-      <h2 class="display">We're here to help.</h2>
-      <p>Questions about which product suits your surface? Want wholesale pricing? Reach out anytime.</p>
+      <div class="eyebrow" data-i18n="contact_eyebrow">Get in Touch</div>
+      <h2 class="display" data-i18n="contact_h2">We're here to help.</h2>
+      <p data-i18n="contact_sub">Questions about which product suits your surface? Want wholesale pricing? Reach out anytime.</p>
       <div class="contact-detail">📧 <a href="mailto:info@dropless.com.au">info@dropless.com.au</a></div>
       <div class="contact-detail">📍 Wollongong, NSW 2500, Australia</div>
-      <div class="contact-detail">🚚 Ships Australia-wide</div>
+      <div class="contact-detail">🚚 <span data-i18n="contact_ships">Ships Australia-wide</span></div>
     </div>
     <div class="contact-form-wrap">
       <form id="contactForm" onsubmit="submitContact(event)">
-        <div class="cf-group"><label>Name</label><input type="text" name="name" required placeholder="Your name"/></div>
-        <div class="cf-group"><label>Email</label><input type="email" name="email" required placeholder="your@email.com"/></div>
-        <div class="cf-group"><label>Message</label><textarea name="message" required placeholder="How can we help?"></textarea></div>
-        <button type="submit" class="cf-submit">Send Message</button>
-        <div class="contact-success" id="contactSuccess">✅ Your message is ready — check your email client to send it.</div>
+        <div class="cf-group"><label data-i18n="contact_name">Name</label><input type="text" name="name" required placeholder="Your name" data-i18n-placeholder="contact_ph_name"/></div>
+        <div class="cf-group"><label data-i18n="contact_email">Email</label><input type="email" name="email" required placeholder="your@email.com" data-i18n-placeholder="contact_ph_email"/></div>
+        <div class="cf-group"><label data-i18n="contact_msg">Message</label><textarea name="message" required placeholder="How can we help?" data-i18n-placeholder="contact_ph_msg"></textarea></div>
+        <button type="submit" class="cf-submit" data-i18n="contact_send">Send Message</button>
+        <div class="contact-success" id="contactSuccess" data-i18n="contact_success">✅ Your message is ready — check your email client to send it.</div>
       </form>
     </div>
   </div>
@@ -637,24 +637,24 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   <div class="footer-inner">
     <div>
       <div class="footer-brand">💧 Dropless</div>
-      <div class="footer-brand-sub">Professional hydrophobic protection.<br>Made in Wollongong, NSW, Australia.<br>© 2026 Dropless. All rights reserved.</div>
+      <div class="footer-brand-sub" data-i18n-html="footer_sub">Professional hydrophobic protection.<br>Made in Wollongong, NSW, Australia.<br>© 2026 Dropless. All rights reserved.</div>
     </div>
     <div class="footer-col">
-      <h4>Products</h4>
-      <a href="#products">All Products</a>
-      <a href="#buy">Buy Now</a>
-      <a href="#how">How It Works</a>
+      <h4 data-i18n="footer_products">Products</h4>
+      <a href="#products" data-i18n="footer_all_prods">All Products</a>
+      <a href="#buy" data-i18n="footer_buy_now">Buy Now</a>
+      <a href="#how" data-i18n="footer_how">How It Works</a>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
+      <h4 data-i18n="footer_contact">Contact</h4>
       <a href="mailto:info@dropless.com.au">info@dropless.com.au</a>
-      <a href="#contact">Send a Message</a>
-      <a href="#faq">FAQ</a>
+      <a href="#contact" data-i18n="footer_send_msg">Send a Message</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms &amp; Conditions</a>
     </div>
     <div class="footer-col">
-      <h4>Safety &amp; Legal</h4>
+      <h4 data-i18n="footer_safety">Safety &amp; Legal</h4>
       <a href="https://app.dropless.com.au/sds/serve/bathroom" target="_blank" rel="noopener">📄 Safety Data Sheet (SDS)</a>
       <a href="tel:131126" style="color:rgba(255,100,100,.85);font-weight:600;">🚨 Poisons Info: 13 11 26</a>
       <span style="font-size:12.5px;color:rgba(255,255,255,.4);display:block;margin-top:4px;">ABN 65 948 041 856</span>
@@ -672,11 +672,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 
 <!-- MOBILE NAV -->
 <nav class="mob-nav">
-  <a href="#" class="mob-nav-item"><span class="mob-nav-icon">🏠</span>Home</a>
-  <a href="#products" class="mob-nav-item"><span class="mob-nav-icon">📦</span>Products</a>
-  <a href="#buy" class="mob-nav-item"><span class="mob-nav-icon">🛒</span>Buy</a>
-  <a href="#faq" class="mob-nav-item"><span class="mob-nav-icon">❓</span>FAQ</a>
-  <a href="#contact" class="mob-nav-item"><span class="mob-nav-icon">✉</span>Contact</a>
+  <a href="#" class="mob-nav-item"><span class="mob-nav-icon">🏠</span><span data-i18n="mobnav_home">Home</span></a>
+  <a href="#products" class="mob-nav-item"><span class="mob-nav-icon">📦</span><span data-i18n="mobnav_products">Products</span></a>
+  <a href="#buy" class="mob-nav-item"><span class="mob-nav-icon">🛒</span><span data-i18n="mobnav_buy">Buy</span></a>
+  <a href="#faq" class="mob-nav-item"><span class="mob-nav-icon">❓</span><span data-i18n="mobnav_faq">FAQ</span></a>
+  <a href="#contact" class="mob-nav-item"><span class="mob-nav-icon">✉</span><span data-i18n="mobnav_contact">Contact</span></a>
 </nav>
 
 <script>
@@ -708,6 +708,131 @@ const BUY_MAP = {
   'hybrid-ultra':'Dropless Hybrid Ultra-Long',
   'odour-refresher':'Dropless Odour Refresher Spritzer 500mL'
 };
+
+// ── UI TRANSLATIONS (page-level static text) ──────────────────────────────────
+const UI = {
+  // Navigation
+  nav_products: {en:'Products',tr:'Ürünler',ar:'المنتجات',zh:'产品',hi:'उत्पाद',es:'Productos',it:'Prodotti',fa:'محصولات'},
+  nav_how:      {en:'How It Works',tr:'Nasıl Çalışır',ar:'طريقة الاستخدام',zh:'使用方法',hi:'कैसे काम करता है',es:'Cómo Funciona',it:'Come Funziona',fa:'نحوه کار'},
+  nav_buy:      {en:'Buy',tr:'Satın Al',ar:'اشتري',zh:'购买',hi:'खरीदें',es:'Comprar',it:'Acquista',fa:'خرید'},
+  nav_faq:      {en:'FAQ',tr:'SSS',ar:'أسئلة شائعة',zh:'常见问题',hi:'सामान्य प्रश्न',es:'Preguntas',it:'Domande',fa:'سوالات'},
+  nav_contact:  {en:'Contact',tr:'İletişim',ar:'اتصل بنا',zh:'联系我们',hi:'संपर्क',es:'Contacto',it:'Contatto',fa:'تماس'},
+  nav_buynow:   {en:'Buy Now',tr:'Şimdi Al',ar:'اشتري الآن',zh:'立即购买',hi:'अभी खरीदें',es:'Comprar Ahora',it:'Acquista Ora',fa:'همین حالا بخرید'},
+  mob_buynow:   {en:'Buy Now',tr:'Şimdi Al',ar:'اشتري الآن',zh:'立即购买',hi:'अभी खरीदें',es:'Comprar Ahora',it:'Acquista Ora',fa:'همین حالا بخرید'},
+  // Hero
+  hero_eyebrow: {en:'Made in Wollongong, NSW · Australia',tr:'Wollongong, NSW · Avustralya\'da Üretildi',ar:'صُنع في ولونجونج، NSW · أستراليا',zh:'澳大利亚新南威尔士州伍伦贡制造',hi:'वोलोंगोंग, NSW · ऑस्ट्रेलिया में निर्मित',es:'Fabricado en Wollongong, NSW · Australia',it:'Prodotto a Wollongong, NSW · Australia',fa:'ساخته شده در ولونگونگ، NSW · استرالیا'},
+  hero_sub:     {en:'Professional hydrophobic coatings for every surface. Apply once — water beads, stains slide off, surfaces stay clean for months.',tr:'Her yüzey için profesyonel hidrofobik kaplamalar. Bir kez uygulayın — su boncuklanır, lekeler kayar, yüzeyler aylarca temiz kalır.',ar:'طلاءات هيدروفوبية احترافية لكل سطح. طبّق مرة واحدة — الماء يتكوّر، البقع تنزلق، الأسطح تبقى نظيفة لأشهر.',zh:'专业疏水涂层，适用于所有表面。一次涂抹——水珠滚落，污渍滑走，表面几个月保持清洁。',hi:'हर सतह के लिए पेशेवर हाइड्रोफोबिक कोटिंग। एक बार लगाएं — पानी बूंदों में बदले, दाग फिसलें, सतहें महीनों तक साफ रहें।',es:'Recubrimientos hidrofóbicos profesionales para cada superficie. Aplica una vez — el agua forma gotas, las manchas se deslizan, las superficies se mantienen limpias durante meses.',it:'Rivestimenti idrofobi professionali per ogni superficie. Applica una volta — l\'acqua forma gocce, le macchie scivolano, le superfici restano pulite per mesi.',fa:'پوشش‌های هیدروفوبیک حرفه‌ای برای هر سطحی. یک بار بزنید — آب قطره می‌شود، لک‌ها می‌لغزند، سطوح ماه‌ها تمیز می‌مانند.'},
+  hero_cta1:    {en:'Shop Now →',tr:'Hemen Al →',ar:'تسوّق الآن →',zh:'立即购买 →',hi:'अभी खरीदें →',es:'Compra Ahora →',it:'Acquista Ora →',fa:'همین حالا بخرید →'},
+  hero_cta2:    {en:'See All Products',tr:'Tüm Ürünleri Gör',ar:'عرض جميع المنتجات',zh:'查看所有产品',hi:'सभी उत्पाद देखें',es:'Ver Todos los Productos',it:'Vedi Tutti i Prodotti',fa:'مشاهده همه محصولات'},
+  trust_au:     {en:'Made in Australia',tr:'Avustralya\'da Üretildi',ar:'صُنع في أستراليا',zh:'澳大利亚制造',hi:'ऑस्ट्रेलिया में निर्मित',es:'Hecho en Australia',it:'Prodotto in Australia',fa:'ساخته شده در استرالیا'},
+  trust_stripe: {en:'Stripe Secured',tr:'Stripe Güvenceli',ar:'مدفوعات آمنة',zh:'Stripe 安全支付',hi:'Stripe सुरक्षित',es:'Pago Seguro',it:'Pagamento Sicuro',fa:'پرداخت امن'},
+  trust_ships:  {en:'Ships AU-wide',tr:'Avustralya\'ya Kargo',ar:'شحن في أستراليا',zh:'全澳配送',hi:'ऑस्ट्रेलिया-भर में शिपिंग',es:'Envío en Australia',it:'Spedizione in Australia',fa:'ارسال سراسر استرالیا'},
+  trust_months: {en:'Months of Protection',tr:'Aylarca Koruma',ar:'حماية لأشهر',zh:'数月保护',hi:'महीनों तक सुरक्षा',es:'Meses de Protección',it:'Mesi di Protezione',fa:'ماه‌ها محافظت'},
+  hero_order:   {en:'Order Now →',tr:'Sipariş Ver →',ar:'اطلب الآن →',zh:'立即订购 →',hi:'अभी ऑर्डर करें →',es:'Pedir Ahora →',it:'Ordina Ora →',fa:'همین حالا سفارش دهید →'},
+  ships_au:     {en:'Ships AU-wide',tr:'Avustralya\'ya Kargo',ar:'شحن أستراليا',zh:'全澳配送',hi:'ऑस्ट्रेलिया-भर में',es:'Envío Australia',it:'Spedizione Australia',fa:'ارسال سراسر استرالیا'},
+  ships_sub:    {en:'via Australia Post & Sendle',tr:'Australia Post ve Sendle ile',ar:'عبر Australia Post و Sendle',zh:'通过 Australia Post 和 Sendle',hi:'Australia Post और Sendle के जरिए',es:'via Australia Post y Sendle',it:'tramite Australia Post e Sendle',fa:'از طریق Australia Post و Sendle'},
+  // Stats
+  stat_products:   {en:'Products',tr:'Ürün',ar:'منتجات',zh:'款产品',hi:'उत्पाद',es:'Productos',it:'Prodotti',fa:'محصول'},
+  stat_languages:  {en:'Languages',tr:'Dil',ar:'لغات',zh:'种语言',hi:'भाषाएं',es:'Idiomas',it:'Lingue',fa:'زبان'},
+  stat_made_in:    {en:'Made in Australia',tr:'Avustralya\'da Üretildi',ar:'صُنع في أستراليا',zh:'澳大利亚制造',hi:'ऑस्ट्रेलिया में निर्मित',es:'Hecho en Australia',it:'Prodotto in Australia',fa:'ساخته شده در استرالیا'},
+  stat_protection: {en:'Protection Per Apply',tr:'Uygulama Başına Koruma',ar:'حماية لكل تطبيق',zh:'每次涂抹保护',hi:'प्रत्येक प्रयोग पर सुरक्षा',es:'Protección por Aplicación',it:'Protezione per Applicazione',fa:'محافظت در هر بار استفاده'},
+  // Perfect Duo
+  duo_eyebrow:      {en:'The 2-Step System',tr:'2 Adımlı Sistem',ar:'نظام الخطوتين',zh:'两步系统',hi:'2-चरण प्रणाली',es:'El Sistema de 2 Pasos',it:'Il Sistema in 2 Passi',fa:'سیستم ۲ مرحله‌ای'},
+  duo_h2:           {en:'The Perfect Duo',tr:'Mükemmel İkili',ar:'الثنائي المثالي',zh:'完美组合',hi:'परफेक्ट डुओ',es:'El Dúo Perfecto',it:'Il Duo Perfetto',fa:'دوگانه کامل'},
+  duo_sub:          {en:'Maximum protection starts with maximum cleanliness. Our two-step protocol is the professional standard.',tr:'Maksimum koruma, maksimum temizlikle başlar. İki adımlı protokolümüz profesyonel standarttır.',ar:'تبدأ الحماية القصوى بالنظافة القصوى. بروتوكولنا المكوّن من خطوتين هو المعيار الاحترافي.',zh:'最大保护始于最彻底的清洁。我们的两步法是专业标准。',hi:'अधिकतम सुरक्षा अधिकतम सफाई से शुरू होती है। हमारा दो-चरण प्रोटोकॉल पेशेवर मानक है।',es:'La protección máxima comienza con la máxima limpieza. Nuestro protocolo de dos pasos es el estándar profesional.',it:'La protezione massima inizia con la massima pulizia. Il nostro protocollo in due passi è lo standard professionale.',fa:'حداکثر محافظت با حداکثر تمیزی شروع می‌شود. پروتکل دو مرحله‌ای ما استاندارد حرفه‌ای است.'},
+  duo_s1_lbl:       {en:'DEEP CLEAN & STRIP',tr:'DERİN TEMİZLEME',ar:'تنظيف عميق',zh:'深层清洁',hi:'गहरी सफाई',es:'LIMPIEZA PROFUNDA',it:'PULIZIA PROFONDA',fa:'پاک‌سازی عمیق'},
+  duo_s1_name:      {en:'Dropless Prep',tr:'Dropless Prep',ar:'Dropless Prep',zh:'Dropless Prep',hi:'Dropless Prep',es:'Dropless Prep',it:'Dropless Prep',fa:'Dropless Prep'},
+  duo_s1_desc:      {en:'Eliminates deep grease, lime residue, and old cleaners to expose a bare, chemically neutral foundation — ready for bonding.',tr:'Bağlanmaya hazır, kimyasal olarak nötr bir yüzey oluşturmak için derin yağ, kireç kalıntısı ve eski temizleyicileri yok eder.',ar:'يزيل الشحوم العميقة ورواسب الكلس والمنظفات القديمة لكشف أساس كيميائي محايد جاهز للترابط.',zh:'清除深层油脂、石灰残渣和旧清洁剂，露出光洁的化学中性基底——准备好粘合。',hi:'बंधन के लिए तैयार रासायनिक रूप से तटस्थ सतह बनाने के लिए गहरी चर्बी, चूने और पुराने क्लीनर हटाता है।',es:'Elimina la grasa profunda, los residuos de cal y los limpiadores viejos para exponer una base químicamente neutra lista para adherirse.',it:'Elimina grasso profondo, residui di calcare e vecchi detergenti per esporre una base chimicamente neutra pronta per l\'adesione.',fa:'چربی عمیق، رسوبات آهک و پاک‌کننده‌های قدیمی را حذف می‌کند تا پایه خنثی شیمیایی برای پیوند آماده شود.'},
+  duo_s1_tag:       {en:'Step 1 · Always First',tr:'Adım 1 · Her Zaman Önce',ar:'الخطوة 1 · دائمًا أولاً',zh:'步骤1 · 始终首先',hi:'चरण 1 · हमेशा पहले',es:'Paso 1 · Siempre Primero',it:'Passo 1 · Sempre Prima',fa:'مرحله ۱ · همیشه اول'},
+  duo_s2_lbl:       {en:'SEAL & PROTECT',tr:'YAPISTIR & KORU',ar:'ختم وحماية',zh:'密封保护',hi:'सील और सुरक्षित करें',es:'SELLAR Y PROTEGER',it:'SIGILLA E PROTEGGI',fa:'آب‌بندی و محافظت'},
+  duo_s2_name:      {en:'Dropless Shield',tr:'Dropless Shield',ar:'Dropless Shield',zh:'Dropless Shield',hi:'Dropless Shield',es:'Dropless Shield',it:'Dropless Shield',fa:'Dropless Shield'},
+  duo_s2_desc:      {en:'Bonds chemically to the bare surface for maximum hydrophobic cross-linkage. Water beads. Stains slide off. Lasts months.',tr:'Maksimum hidrofobik çapraz bağlantı için yüzeye kimyasal olarak yapışır. Su boncuklanır. Lekeler kayar. Aylarca sürer.',ar:'يرتبط كيميائيًا بالسطح لأقصى ترابط هيدروفوبي. الماء يتكوّر. البقع تنزلق. يدوم لأشهر.',zh:'与裸表面化学结合实现最大疏水交联。水珠滚落。污渍滑走。持续数月。',hi:'अधिकतम हाइड्रोफोबिक क्रॉस-लिंकेज के लिए सतह से रासायनिक रूप से जुड़ता है। पानी बूंदों में। दाग फिसलते हैं। महीनों चलता है।',es:'Se adhiere químicamente a la superficie para máxima reticulación hidrófoba. El agua forma gotas. Las manchas se deslizan. Dura meses.',it:'Si lega chimicamente alla superficie per la massima reticolazione idrofoba. L\'acqua forma gocce. Le macchie scivolano. Dura mesi.',fa:'به سطح به‌طور شیمیایی متصل می‌شود. آب قطره می‌شود. لک‌ها می‌لغزند. ماه‌ها دوام می‌آورد.'},
+  duo_s2_tag:       {en:'Step 2 · Apply Once',tr:'Adım 2 · Bir Kez Uygula',ar:'الخطوة 2 · طبّق مرة واحدة',zh:'步骤2 · 涂抹一次',hi:'चरण 2 · एक बार लगाएं',es:'Paso 2 · Aplica una Vez',it:'Passo 2 · Applica una Volta',fa:'مرحله ۲ · یک بار بزنید'},
+  duo_bundle_title: {en:'Complete Bathroom Care Pack — $49.95',tr:'Tam Banyo Bakım Seti — $49.95',ar:'طقم العناية الكاملة بالحمام — $49.95',zh:'完整浴室护理套装 — $49.95',hi:'पूर्ण बाथरूम केयर पैक — $49.95',es:'Pack Completo Baño — $49.95',it:'Kit Completo Bagno — $49.95',fa:'پکیج کامل مراقبت از حمام — $49.95'},
+  duo_bundle_sub:   {en:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — save $19.90 vs buying separately. Everything you need for a professional result.',tr:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — ayrı alımdan $19.90 tasarruf. Profesyonel sonuç için gereken her şey.',ar:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — وفر $19.90 مقارنة بالشراء المنفصل.',zh:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — 比单独购买节省$19.90。',hi:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — अलग से खरीदने पर $19.90 की बचत।',es:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — ahorra $19.90 vs compra separada.',it:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — risparmia $19.90 rispetto all\'acquisto separato.',fa:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — ۱۹.۹۰ دلار صرفه‌جویی نسبت به خرید جداگانه.'},
+  duo_bundle_btn:   {en:'Shop the Bundle — $49.95 AUD →',tr:'Seti Satın Al — $49.95 AUD →',ar:'تسوّق الحزمة — $49.95 AUD →',zh:'购买套装 — $49.95 AUD →',hi:'बंडल खरीदें — $49.95 AUD →',es:'Comprar el Pack — $49.95 AUD →',it:'Acquista il Kit — $49.95 AUD →',fa:'خرید پکیج — $49.95 AUD →'},
+  // Products section
+  prods_eyebrow: {en:'Product Range',tr:'Ürün Yelpazesi',ar:'مجموعة المنتجات',zh:'产品系列',hi:'उत्पाद श्रेणी',es:'Gama de Productos',it:'Gamma Prodotti',fa:'محدوده محصولات'},
+  prods_h2:      {en:'Protection for Every Surface',tr:'Her Yüzey İçin Koruma',ar:'حماية لكل سطح',zh:'保护每一个表面',hi:'हर सतह के लिए सुरक्षा',es:'Protección para Cada Superficie',it:'Protezione per Ogni Superficie',fa:'محافظت برای هر سطحی'},
+  prods_sub:     {en:'Professional-grade hydrophobic coatings. Select a product below to view instructions in your language.',tr:'Profesyonel hidrofobik kaplamalar. Dilinizde talimatları görüntülemek için aşağıdan bir ürün seçin.',ar:'طلاءات هيدروفوبية احترافية. اختر منتجًا أدناه لعرض التعليمات بلغتك.',zh:'专业级疏水涂层。选择下方产品以查看您语言的说明。',hi:'पेशेवर हाइड्रोफोबिक कोटिंग। अपनी भाषा में निर्देश देखने के लिए नीचे उत्पाद चुनें।',es:'Recubrimientos hidrofóbicos de grado profesional. Selecciona un producto para ver las instrucciones en tu idioma.',it:'Rivestimenti idrofobi di grado professionale. Seleziona un prodotto per vedere le istruzioni nella tua lingua.',fa:'پوشش‌های هیدروفوبیک حرفه‌ای. برای مشاهده دستورالعمل به زبان خود محصول انتخاب کنید.'},
+  prods_search:  {en:'Search products...',tr:'Ürün ara...',ar:'ابحث عن منتج...',zh:'搜索产品...',hi:'उत्पाद खोजें...',es:'Buscar productos...',it:'Cerca prodotti...',fa:'جستجوی محصولات...'},
+  cat_all:       {en:'All Products',tr:'Tüm Ürünler',ar:'كل المنتجات',zh:'全部产品',hi:'सभी उत्पाद',es:'Todos los Productos',it:'Tutti i Prodotti',fa:'همه محصولات'},
+  cat_bathroom:  {en:'🛁 Bathroom',tr:'🛁 Banyo',ar:'🛁 الحمام',zh:'🛁 浴室',hi:'🛁 बाथरूम',es:'🛁 Baño',it:'🛁 Bagno',fa:'🛁 حمام'},
+  cat_car:       {en:'🚗 Car & Auto',tr:'🚗 Araç & Oto',ar:'🚗 السيارة',zh:'🚗 汽车',hi:'🚗 कार और ऑटो',es:'🚗 Auto & Vehículo',it:'🚗 Auto & Veicoli',fa:'🚗 خودرو'},
+  cat_home:      {en:'🏠 Home & Kitchen',tr:'🏠 Ev & Mutfak',ar:'🏠 البيت والمطبخ',zh:'🏠 家居厨房',hi:'🏠 घर और रसोई',es:'🏠 Hogar y Cocina',it:'🏠 Casa e Cucina',fa:'🏠 خانه و آشپزخانه'},
+  cat_soft:      {en:'🛋 Soft Surfaces',tr:'🛋 Yumuşak Yüzeyler',ar:'🛋 الأسطح الناعمة',zh:'🛋 软质表面',hi:'🛋 मुलायम सतहें',es:'🛋 Superficies Blandas',it:'🛋 Superfici Morbide',fa:'🛋 سطوح نرم'},
+  cat_tech:      {en:'📱 Screens',tr:'📱 Ekranlar',ar:'📱 الشاشات',zh:'📱 屏幕',hi:'📱 स्क्रीन',es:'📱 Pantallas',it:'📱 Schermi',fa:'📱 صفحه‌نمایش'},
+  // How It Works
+  how_eyebrow: {en:'Universal Method',tr:'Evrensel Yöntem',ar:'الطريقة العالمية',zh:'通用方法',hi:'सार्वभौमिक विधि',es:'Método Universal',it:'Metodo Universale',fa:'روش جهانی'},
+  how_h2:      {en:'Four Steps. Lasting Protection.',tr:'Dört Adım. Kalıcı Koruma.',ar:'أربع خطوات. حماية دائمة.',zh:'四个步骤。持久保护。',hi:'चार चरण। स्थायी सुरक्षा।',es:'Cuatro Pasos. Protección Duradera.',it:'Quattro Passi. Protezione Duratura.',fa:'چهار مرحله. محافظت ماندگار.'},
+  how_warn:    {en:'<strong>IMPORTANT:</strong> Dropless Protective Line consists of advanced nano-shield sealants, not dirt-removing soaps. Thorough pre-cleaning of the surface is strictly mandatory before application.',tr:'<strong>ÖNEMLİ:</strong> Dropless Koruyucu Serisi, kir giderici sabunlar değil, gelişmiş nano kalkan sealant\'lardır. Uygulamadan önce yüzeyin iyice temizlenmesi zorunludur.',ar:'<strong>مهم:</strong> خط Dropless الوقائي يتكون من مانعات تسرب نانو متقدمة، وليس صابونًا مزيلًا للأوساخ. التنظيف المسبق الشامل إلزامي.',zh:'<strong>重要提示：</strong>Dropless 保护系列是先进的纳米盾牌密封剂，不是去污皂。使用前必须彻底预清洁表面。',hi:'<strong>महत्वपूर्ण:</strong> Dropless सुरक्षात्मक श्रृंखला उन्नत नैनो-शील्ड सीलेंट से बनी है, न कि गंदगी हटाने वाले साबुन। आवेदन से पहले सतह की गहन पूर्व-सफाई अनिवार्य है।',es:'<strong>IMPORTANTE:</strong> La Línea Protectora Dropless son sellantes avanzados de nano-escudo, no jabones quitamanchas. La pre-limpieza exhaustiva es estrictamente obligatoria.',it:'<strong>IMPORTANTE:</strong> La Linea Protettiva Dropless è composta da sigillanti avanzati nano-shield, non da saponi detergenti. La pre-pulizia approfondita è obbligatoria.',fa:'<strong>مهم:</strong> خط محافظتی Dropless از سیلرهای پیشرفته نانو-شیلد تشکیل شده است، نه صابون‌های پاک‌کننده. پاک‌سازی کامل قبل از استفاده الزامی است.'},
+  how_s1_h:    {en:'Clean',tr:'Temizle',ar:'نظّف',zh:'清洁',hi:'साफ करें',es:'Limpiar',it:'Pulire',fa:'تمیز کن'},
+  how_s1_p:    {en:'Clean the surface thoroughly and make sure it\'s completely dry.',tr:'Yüzeyi iyice temizleyin ve tamamen kuru olduğundan emin olun.',ar:'نظّف السطح جيدًا وتأكد من جفافه التام.',zh:'彻底清洁表面，确保完全干燥。',hi:'सतह को अच्छी तरह साफ करें और पूरी तरह सूखा सुनिश्चित करें।',es:'Limpia la superficie a fondo y asegúrate de que esté completamente seca.',it:'Pulisci la superficie accuratamente e assicurati che sia completamente asciutta.',fa:'سطح را کاملاً تمیز کنید و مطمئن شوید کاملاً خشک است.'},
+  how_s2_h:    {en:'Spray',tr:'Sık',ar:'رش',zh:'喷涂',hi:'स्प्रे करें',es:'Rociar',it:'Spruzzare',fa:'اسپری کن'},
+  how_s2_p:    {en:'Apply a light, even mist. Less is more — a thin coat bonds better.',tr:'Hafif, eşit bir sis uygulayın. Az çoktur — ince kat daha iyi yapışır.',ar:'طبّق رذاذًا خفيفًا متساويًا. القليل أكثر — الطبقة الرقيقة تترابط أفضل.',zh:'喷一层轻薄均匀的雾。少即是多——薄涂层粘合更好。',hi:'हल्की, समान धुंध लगाएं। कम ज्यादा है — पतली परत बेहतर बंधती है।',es:'Aplica una neblina ligera y uniforme. Menos es más — una capa fina se adhiere mejor.',it:'Applica una leggera nebbia uniforme. Meno è di più — uno strato sottile si lega meglio.',fa:'یک لایه مه سبک بپاشید. کمتر بهتر است — لایه نازک‌تر بهتر متصل می‌شود.'},
+  how_s3_h:    {en:'Spread',tr:'Yay',ar:'وزّع',zh:'涂抹',hi:'फैलाएं',es:'Extender',it:'Distribuire',fa:'پخش کن'},
+  how_s3_p:    {en:'Use a clean microfiber cloth (not the cleaning cloth) to spread evenly.',tr:'Eşit yaymak için temiz bir mikrofiber bez (temizlik bezi değil) kullanın.',ar:'استخدم مايكروفايبر نظيفة (غير قطعة التنظيف) للتوزيع المتساوي.',zh:'用干净的超细纤维布（不是清洁布）均匀涂抹。',hi:'समान रूप से फैलाने के लिए साफ माइक्रोफ़ाइबर (सफाई वाला नहीं) उपयोग करें।',es:'Usa un paño de microfibra limpio (no el de limpieza) para extender de forma uniforme.',it:'Usa un panno in microfibra pulito (non quello delle pulizie) per distribuire uniformemente.',fa:'از یک پارچه میکروفایبر تمیز (نه پارچه تمیزکاری) برای پخش یکنواخت استفاده کنید.'},
+  how_s4_h:    {en:'Buff',tr:'Parlatın',ar:'امسح',zh:'抛光',hi:'बफ करें',es:'Pulir',it:'Lucidare',fa:'پولیش کن'},
+  how_s4_p:    {en:'Buff until clear. Avoid water for 30–60 min. Done.',tr:'Şeffaflaşana dek parlatın. 30–60 dakika su değdirmeyin. Bitti.',ar:'امسح حتى يصبح شفافًا. تجنب الماء 30–60 دقيقة. تم.',zh:'抛光至透明。避免接触水30-60分钟。完成。',hi:'शफाफ होने तक बफ करें। 30-60 मिनट पानी से बचाएं। हो गया।',es:'Pule hasta que quede claro. Evita el agua 30-60 min. ¡Listo!',it:'Lucida fino a trasparenza. Evita acqua 30–60 min. Fatto.',fa:'تا شفاف شدن پولیش کنید. ۳۰-۶۰ دقیقه از آب دور نگه دارید. تمام.'},
+  // Buy section
+  buy_eyebrow:   {en:'Order Now',tr:'Hemen Sipariş Ver',ar:'اطلب الآن',zh:'立即订购',hi:'अभी ऑर्डर करें',es:'Pide Ahora',it:'Ordina Ora',fa:'همین حالا سفارش دهید'},
+  buy_sub:       {en:'Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post & Sendle delivery network.',tr:'$50 AUD üzeri siparişlerde ücretsiz kargo · Avustralya genelinde Australia Post & Sendle ile takipli kargo.',ar:'شحن مجاني للطلبات التي تتجاوز $50 AUD · شحن في أنحاء أستراليا عبر Australia Post و Sendle.',zh:'$50 AUD以上免运费 · 通过跟踪澳大利亚邮政和Sendle全澳发货。',hi:'$50 AUD से ऊपर मुफ्त शिपिंग · Australia Post और Sendle से ऑस्ट्रेलिया-भर में ट्रैक्ड डिलीवरी।',es:'Envío gratuito en pedidos superiores a $50 AUD · Envío a toda Australia via Australia Post y Sendle.',it:'Spedizione gratuita per ordini superiori a $50 AUD · Spedizione in tutta Australia tramite Australia Post e Sendle.',fa:'ارسال رایگان برای سفارشات بیش از $50 AUD · ارسال سراسر استرالیا از طریق Australia Post و Sendle.'},
+  buy_lbl_cat:   {en:'Category',tr:'Kategori',ar:'الفئة',zh:'类别',hi:'श्रेणी',es:'Categoría',it:'Categoria',fa:'دسته‌بندی'},
+  buy_lbl_prod:  {en:'Product',tr:'Ürün',ar:'المنتج',zh:'产品',hi:'उत्पाद',es:'Producto',it:'Prodotto',fa:'محصول'},
+  buy_lbl_qty:   {en:'Quantity',tr:'Adet',ar:'الكمية',zh:'数量',hi:'मात्रा',es:'Cantidad',it:'Quantità',fa:'تعداد'},
+  buy_lbl_email: {en:'Your Email',tr:'E-posta Adresiniz',ar:'بريدك الإلكتروني',zh:'您的邮箱',hi:'आपका ईमेल',es:'Tu Email',it:'La tua Email',fa:'ایمیل شما'},
+  buy_submit:    {en:'Proceed to Secure Payment →',tr:'Güvenli Ödemeye Geç →',ar:'المضي إلى الدفع الآمن →',zh:'前往安全支付 →',hi:'सुरक्षित भुगतान के लिए आगे बढ़ें →',es:'Proceder al Pago Seguro →',it:'Procedi al Pagamento Sicuro →',fa:'ادامه به پرداخت امن →'},
+  buy_note:      {en:'Secured by Stripe · SSL encrypted · Ships within 1–2 business days',tr:'Stripe güvenceli · SSL şifreli · 1-2 iş günü içinde kargo',ar:'مؤمَّن بـ Stripe · مشفر SSL · يُشحن خلال 1-2 أيام عمل',zh:'Stripe 安全保障 · SSL 加密 · 1-2 个工作日内发货',hi:'Stripe सुरक्षित · SSL एन्क्रिप्टेड · 1-2 दिनों में शिपिंग',es:'Protegido por Stripe · SSL · Envío en 1-2 días hábiles',it:'Protetto da Stripe · SSL · Spedizione entro 1-2 giorni',fa:'امن با Stripe · SSL · ارسال ظرف ۱-۲ روز کاری'},
+  buy_fbt:       {en:'Frequently Bought Together',tr:'Sıkça Birlikte Alınanlar',ar:'يُشترى معًا في الغالب',zh:'经常一起购买',hi:'अक्सर एक साथ खरीदे जाते हैं',es:'Comprado Frecuentemente Juntos',it:'Acquistati Spesso Insieme',fa:'اغلب با هم خریداری می‌شوند'},
+  buy_add_cart:  {en:'Add Bundle to Cart →',tr:'Seti Sepete Ekle →',ar:'أضف الحزمة →',zh:'加入购物车 →',hi:'कार्ट में जोड़ें →',es:'Añadir al Carrito →',it:'Aggiungi al Carrello →',fa:'افزودن به سبد →'},
+  // FAQ
+  faq_h2: {en:'Common Questions',tr:'Sık Sorulan Sorular',ar:'أسئلة شائعة',zh:'常见问题',hi:'सामान्य प्रश्न',es:'Preguntas Frecuentes',it:'Domande Frequenti',fa:'سوالات متداول'},
+  // Contact
+  contact_eyebrow: {en:'Get in Touch',tr:'İletişime Geçin',ar:'تواصل معنا',zh:'联系我们',hi:'संपर्क करें',es:'Contáctanos',it:'Contattaci',fa:'با ما تماس بگیرید'},
+  contact_h2:      {en:'We\'re here to help.',tr:'Yardım etmek için buradayız.',ar:'نحن هنا للمساعدة.',zh:'我们随时为您服务。',hi:'हम यहाँ मदद के लिए हैं।',es:'Estamos aquí para ayudar.',it:'Siamo qui per aiutarti.',fa:'ما اینجا برای کمک هستیم.'},
+  contact_sub:     {en:'Questions about which product suits your surface? Want wholesale pricing? Reach out anytime.',tr:'Hangi ürünün yüzeyinize uygun olduğunu merak mı ediyorsunuz? Toptan fiyat mı istiyorsunuz? Her zaman ulaşın.',ar:'أسئلة حول المنتج المناسب لسطحك؟ تريد أسعار الجملة؟ تواصل معنا في أي وقت.',zh:'关于哪款产品适合您的表面有疑问？想要批发价格？随时联系我们。',hi:'अपनी सतह के लिए कौन सा उत्पाद? थोक मूल्य चाहते हैं? कभी भी संपर्क करें।',es:'¿Preguntas sobre qué producto se adapta? ¿Precios al por mayor? Escríbenos cuando quieras.',it:'Domande su quale prodotto si adatta? Prezzi all\'ingrosso? Contattaci quando vuoi.',fa:'سوال دارید کدام محصول مناسب است؟ قیمت عمده می‌خواهید؟ هر وقت تماس بگیرید.'},
+  contact_ships:   {en:'Ships Australia-wide',tr:'Avustralya\'ya Kargo',ar:'شحن في أستراليا',zh:'全澳配送',hi:'ऑस्ट्रेलिया-भर में शिपिंग',es:'Envío a toda Australia',it:'Spedizione in tutta Australia',fa:'ارسال سراسر استرالیا'},
+  contact_name:    {en:'Name',tr:'Ad Soyad',ar:'الاسم',zh:'姓名',hi:'नाम',es:'Nombre',it:'Nome',fa:'نام'},
+  contact_email:   {en:'Email',tr:'E-posta',ar:'البريد الإلكتروني',zh:'邮箱',hi:'ईमेल',es:'Correo',it:'Email',fa:'ایمیل'},
+  contact_msg:     {en:'Message',tr:'Mesaj',ar:'الرسالة',zh:'留言',hi:'संदेश',es:'Mensaje',it:'Messaggio',fa:'پیام'},
+  contact_ph_name: {en:'Your name',tr:'Adınız',ar:'اسمك',zh:'您的姓名',hi:'आपका नाम',es:'Tu nombre',it:'Il tuo nome',fa:'نام شما'},
+  contact_ph_email:{en:'your@email.com',tr:'eposta@ornek.com',ar:'email@example.com',zh:'your@email.com',hi:'your@email.com',es:'tu@email.com',it:'tuo@email.com',fa:'email@example.com'},
+  contact_ph_msg:  {en:'How can we help?',tr:'Nasıl yardımcı olabiliriz?',ar:'كيف يمكننا مساعدتك؟',zh:'我们能为您做什么？',hi:'हम कैसे मदद कर सकते हैं?',es:'¿Cómo podemos ayudarte?',it:'Come possiamo aiutarti?',fa:'چطور می‌توانیم کمک کنیم؟'},
+  contact_send:    {en:'Send Message',tr:'Mesaj Gönder',ar:'إرسال الرسالة',zh:'发送消息',hi:'संदेश भेजें',es:'Enviar Mensaje',it:'Invia Messaggio',fa:'ارسال پیام'},
+  contact_success: {en:'✅ Your message is ready — check your email client to send it.',tr:'✅ Mesajınız hazır — göndermek için e-posta istemcinizi açın.',ar:'✅ رسالتك جاهزة — افتح برنامج بريدك الإلكتروني لإرسالها.',zh:'✅ 您的消息已准备好 — 请检查您的电子邮件客户端发送。',hi:'✅ आपका संदेश तैयार है — भेजने के लिए अपना ईमेल क्लाइंट खोलें।',es:'✅ Tu mensaje está listo — revisa tu email para enviarlo.',it:'✅ Il tuo messaggio è pronto — controlla il tuo client email per inviarlo.',fa:'✅ پیام آماده است — برای ارسال کلاینت ایمیل خود را باز کنید.'},
+  // Footer
+  footer_sub:       {en:'Professional hydrophobic protection.<br>Made in Wollongong, NSW, Australia.<br>© 2026 Dropless. All rights reserved.',tr:'Profesyonel hidrofobik koruma.<br>Wollongong, NSW, Avustralya\'da üretildi.<br>© 2026 Dropless. Tüm hakları saklıdır.',ar:'حماية هيدروفوبية احترافية.<br>صُنع في ولونجونج، NSW، أستراليا.<br>© 2026 Dropless. جميع الحقوق محفوظة.',zh:'专业疏水保护。<br>澳大利亚制造。<br>© 2026 Dropless. 保留所有权利。',hi:'पेशेवर हाइड्रोफोबिक सुरक्षा।<br>ऑस्ट्रेलिया में निर्मित।<br>© 2026 Dropless. सर्वाधिकार सुरक्षित।',es:'Protección hidrofóbica profesional.<br>Fabricado en Wollongong, Australia.<br>© 2026 Dropless. Todos los derechos reservados.',it:'Protezione idrofoba professionale.<br>Prodotto a Wollongong, Australia.<br>© 2026 Dropless. Tutti i diritti riservati.',fa:'محافظت هیدروفوبیک حرفه‌ای.<br>ساخته شده در استرالیا.<br>© 2026 Dropless. تمامی حقوق محفوظ است.'},
+  footer_products:  {en:'Products',tr:'Ürünler',ar:'المنتجات',zh:'产品',hi:'उत्पाद',es:'Productos',it:'Prodotti',fa:'محصولات'},
+  footer_contact:   {en:'Contact',tr:'İletişim',ar:'اتصل بنا',zh:'联系',hi:'संपर्क',es:'Contacto',it:'Contatto',fa:'تماس'},
+  footer_safety:    {en:'Safety & Legal',tr:'Güvenlik & Yasal',ar:'الأمان والقانوني',zh:'安全与法律',hi:'सुरक्षा और कानूनी',es:'Seguridad y Legal',it:'Sicurezza e Legale',fa:'ایمنی و قانونی'},
+  footer_all_prods: {en:'All Products',tr:'Tüm Ürünler',ar:'كل المنتجات',zh:'所有产品',hi:'सभी उत्पाद',es:'Todos los Productos',it:'Tutti i Prodotti',fa:'همه محصولات'},
+  footer_buy_now:   {en:'Buy Now',tr:'Şimdi Al',ar:'اشتري الآن',zh:'立即购买',hi:'अभी खरीदें',es:'Comprar Ahora',it:'Acquista Ora',fa:'همین حالا بخرید'},
+  footer_how:       {en:'How It Works',tr:'Nasıl Çalışır',ar:'طريقة الاستخدام',zh:'使用方法',hi:'कैसे काम करता है',es:'Cómo Funciona',it:'Come Funziona',fa:'نحوه کار'},
+  footer_send_msg:  {en:'Send a Message',tr:'Mesaj Gönder',ar:'أرسل رسالة',zh:'发送消息',hi:'संदेश भेजें',es:'Enviar Mensaje',it:'Invia Messaggio',fa:'ارسال پیام'},
+  // Mobile bottom nav
+  mobnav_home:     {en:'Home',tr:'Ana Sayfa',ar:'الرئيسية',zh:'首页',hi:'होम',es:'Inicio',it:'Home',fa:'خانه'},
+  mobnav_products: {en:'Products',tr:'Ürünler',ar:'المنتجات',zh:'产品',hi:'उत्पाद',es:'Productos',it:'Prodotti',fa:'محصولات'},
+  mobnav_buy:      {en:'Buy',tr:'Satın Al',ar:'اشتري',zh:'购买',hi:'खरीदें',es:'Comprar',it:'Acquista',fa:'خرید'},
+  mobnav_faq:      {en:'FAQ',tr:'SSS',ar:'أسئلة',zh:'问答',hi:'FAQ',es:'FAQ',it:'FAQ',fa:'FAQ'},
+  mobnav_contact:  {en:'Contact',tr:'İletişim',ar:'تواصل',zh:'联系',hi:'संपर्क',es:'Contacto',it:'Contatto',fa:'تماس'},
+};
+
+function applyTranslations(lang) {
+  const L = lang;
+  function t(key) { return (UI[key] && (UI[key][L] || UI[key].en)) || ''; }
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = t(el.dataset.i18n);
+    if (v) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const v = t(el.dataset.i18nHtml);
+    if (v) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const v = t(el.dataset.i18nPlaceholder);
+    if (v) el.placeholder = v;
+  });
+}
 
 // ── TRANSLATIONS ──────────────────────────────────────────────────────────────
 const T = {
@@ -1042,8 +1167,10 @@ const RTL = ['ar','fa'];
 
 function setLang(lang) {
   currentLang = lang;
+  localStorage.setItem('dropless_lang', lang);
   const pick = document.getElementById('globalLang');
   if (pick) pick.value = lang;
+  document.documentElement.lang = lang;
   document.body.classList.toggle('rtl', RTL.includes(lang));
   // Update mobile lang buttons
   document.querySelectorAll('.mob-lang button').forEach(b => {
@@ -1053,6 +1180,7 @@ function setLang(lang) {
   document.querySelectorAll('#inlineLangTabs .lang-tab').forEach(b => {
     b.classList.toggle('active', b.dataset.lang === lang);
   });
+  applyTranslations(lang);
   renderProducts();
 }
 
@@ -1439,6 +1567,11 @@ function closeBanner() {
 })();
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
+// Restore saved language preference
+const _savedLang = localStorage.getItem('dropless_lang') || 'en';
+if (_savedLang !== 'en') setLang(_savedLang);
+else applyTranslations('en');
+
 renderProducts();
 renderFaq();
 filterBuyProducts(); // Sayfa açılışında tüm ürünleri doldur
