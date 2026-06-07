@@ -116,6 +116,19 @@ const RTL = ['ar','fa'];
 let currentLang = 'en';
 
 const PRODUCTS = [
+{id:'surface-prep',icon:'🧹',name:'Dropless Prep (Step 1 — Surface Decontaminant)',
+ surfaces:{en:'Glass · Chrome · Stainless · Ceramic · Acrylic · Hard Plastics',tr:'Cam · Krom · Paslanmaz Çelik · Seramik · Akrilik · Sert Plastikler',ar:'زجاج · كروم · فولاذ · سيراميك · أكريليك',zh:'玻璃·铬·不锈钢·陶瓷·亚克力',hi:'कांच · क्रोम · स्टेनलेस · सेरेमिक · एक्रिलिक',es:'Vidrio · Cromo · Acero · Cerámica · Acrílico',it:'Vetro · Cromo · Acciaio · Ceramica · Acrilico',fa:'شیشه · کروم · فولاد · سرامیک · آکریلیک'},
+ inst:{
+  en:{eff:'⚠️ NOT a coating — this is Step 1 only. Strips grease, water spots, soap scum and old residues, leaving a 100% bare substrate for maximum Dropless Shield adhesion. Flash-dries streak-free.',steps:['Rinse surface to remove loose dirt and debris','Shake bottle well before use','Spray Dropless Prep generously — hold 10–15 cm from surface','Allow 10–15 seconds for the formula to break down contaminants','Wipe immediately with a clean dry microfibre cloth in one direction','Check for residue streaks — repeat if necessary','Allow to flash-dry completely (30–60 sec) then apply Dropless Shield']},
+  tr:{eff:'⚠️ Bu bir kaplama DEĞİLDİR — sadece Adım 1\'dir. Yağ, su lekesi ve eski kalıntıları temizler. Dropless Shield için %100 temiz yüzey bırakır.',steps:['Yüzeyi durulayın','Şişeyi çalkalayın, 10–15 cm mesafeden cömertçe püskürtün','10–15 saniye bekleyin','Mikrofiber bezle tek yönde silin','Gerekirse tekrarlayın','30–60 sn kurumaya bırakın, ardından Dropless Shield uygulayın']},
+  ar:{eff:'⚠️ ليس طلاءً — هذه الخطوة 1 فقط. تُزيل الشحوم والبقع.',steps:['اشطف السطح.','رج الزجاجة ورش بسخاء.','انتظر 10-15 ثانية.','امسح بمايكروفايبر.','كرر إذا لزم.','اتركه يجف 30-60 ثانية ثم ضع Dropless Shield.']},
+  zh:{eff:'⚠️ 非涂层 — 这是第1步。去除污染物，为Dropless Shield创造完美基底。',steps:['冲洗表面。','摇瓶后慷慨喷洒。','等待10-15秒。','用超细纤维擦拭。','必要时重复。','晾干30-60秒后涂Dropless Shield。']},
+  hi:{eff:'⚠️ यह कोटिंग नहीं — केवल चरण 1 है। सतह साफ करता है।',steps:['सतह धोएं।','बोतल हिलाएं और छिड़कें।','10-15 सेकंड प्रतीक्षा करें।','माइक्रोफ़ाइबर से पोंछें।','जरूरत हो तो दोहराएं।','30-60 सेकंड सूखने दें फिर Dropless Shield लगाएं।']},
+  es:{eff:'⚠️ No es un recubrimiento — solo Paso 1. Elimina contaminantes.',steps:['Enjuaga la superficie.','Agita y rocía generosamente.','Espera 10-15 segundos.','Limpia con microfibra.','Repite si es necesario.','Seca 30-60 segundos y aplica Dropless Shield.']},
+  it:{eff:'⚠️ Non è un rivestimento — solo Fase 1. Rimuove contaminanti.',steps:['Sciacqua la superficie.','Agita e spruzza.','Attendi 10-15 secondi.','Asciuga con microfibra.','Ripeti se necessario.','Lascia asciugare 30-60 sec poi applica Dropless Shield.']},
+  fa:{eff:'⚠️ پوشش نیست — فقط مرحله ۱. آلاینده‌ها را حذف می‌کند.',steps:['سطح را بشویید.','بطری را تکان دهید و اسپری کنید.','۱۰-۱۵ ثانیه صبر کنید.','با میکروفایبر پاک کنید.','در صورت نیاز تکرار کنید.','۳۰-۶۰ ثانیه خشک شود سپس Dropless Shield بزنید.']}
+ }
+},
 {id:'multi-surface',icon:'🌊',name:'Dropless Multi-Surface Coat',
  surfaces:{en:'Glass · Mirror · Tile · Stainless Steel',tr:'Cam · Ayna · Fayans · Paslanmaz Çelik',ar:'زجاج · مرايا · بلاط · فولاذ',zh:'玻璃·镜子·瓷砖·不锈钢',hi:'कांच · दर्पण · टाइल · स्टील',es:'Vidrio · Espejo · Cerámica · Acero',it:'Vetro · Specchio · Piastrelle · Acciaio',fa:'شیشه · آینه · کاشی · فولاد'},
  inst:{
