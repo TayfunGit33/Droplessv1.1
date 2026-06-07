@@ -319,7 +319,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   </a>
   <div class="nav-center">
     <a href="products.html" data-i18n="nav_products">Products</a>
-    <a href="#how" data-i18n="nav_how">How It Works</a>
+    <a href="how-to-use.html" data-i18n="nav_how">Instructions</a>
     <a href="#buy" data-i18n="nav_buy">Buy</a>
     <a href="#faq" data-i18n="nav_faq">FAQ</a>
     <a href="#contact" data-i18n="nav_contact">Contact</a>
@@ -345,7 +345,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <!-- MOBILE OVERLAY MENU -->
 <div class="mob-overlay" id="mobOverlay">
   <a href="products.html" onclick="toggleMenu()" data-i18n="nav_products">Products</a>
-  <a href="#how" onclick="toggleMenu()" data-i18n="nav_how">How It Works</a>
+  <a href="how-to-use.html" onclick="toggleMenu()" data-i18n="nav_how">Instructions</a>
   <a href="#buy" onclick="toggleMenu()" data-i18n="mob_buynow">Buy Now</a>
   <a href="#faq" onclick="toggleMenu()" data-i18n="nav_faq">FAQ</a>
   <a href="#contact" onclick="toggleMenu()" data-i18n="nav_contact">Contact</a>
@@ -369,7 +369,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <p class="hero-sub" data-i18n="hero_sub">Professional hydrophobic coatings for every surface. Apply once — water beads, stains slide off, surfaces stay clean for months.</p>
     <div class="hero-btns">
       <a href="#buy" class="btn btn-primary" data-i18n="hero_cta1">Shop Now →</a>
-      <a href="#products" class="btn btn-ghost" data-i18n="hero_cta2">See All Products</a>
+      <a href="how-to-use.html" class="btn btn-ghost" data-i18n="hero_cta2">📋 How to Use</a>
     </div>
     <div class="trust-row">
       <span class="trust-badge"><span class="tbico">🇦🇺</span> <span data-i18n="trust_au">Made in Australia</span></span>
@@ -643,7 +643,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <h4 data-i18n="footer_products">Products</h4>
       <a href="#products" data-i18n="footer_all_prods">All Products</a>
       <a href="#buy" data-i18n="footer_buy_now">Buy Now</a>
-      <a href="#how" data-i18n="footer_how">How It Works</a>
+      <a href="how-to-use.html" data-i18n="footer_how">Instructions</a>
     </div>
     <div class="footer-col">
       <h4 data-i18n="footer_contact">Contact</h4>
@@ -713,7 +713,7 @@ const BUY_MAP = {
 const UI = {
   // Navigation
   nav_products: {en:'Products',tr:'Ürünler',ar:'المنتجات',zh:'产品',hi:'उत्पाद',es:'Productos',it:'Prodotti',fa:'محصولات'},
-  nav_how:      {en:'How It Works',tr:'Nasıl Çalışır',ar:'طريقة الاستخدام',zh:'使用方法',hi:'कैसे काम करता है',es:'Cómo Funciona',it:'Come Funziona',fa:'نحوه کار'},
+  nav_how:      {en:'Instructions',tr:'Kullanım Kılavuzu',ar:'تعليمات الاستخدام',zh:'使用说明',hi:'उपयोग निर्देश',es:'Instrucciones',it:'Istruzioni',fa:'دستورالعمل‌ها'},
   nav_buy:      {en:'Buy',tr:'Satın Al',ar:'اشتري',zh:'购买',hi:'खरीदें',es:'Comprar',it:'Acquista',fa:'خرید'},
   nav_faq:      {en:'FAQ',tr:'SSS',ar:'أسئلة شائعة',zh:'常见问题',hi:'सामान्य प्रश्न',es:'Preguntas',it:'Domande',fa:'سوالات'},
   nav_contact:  {en:'Contact',tr:'İletişim',ar:'اتصل بنا',zh:'联系我们',hi:'संपर्क',es:'Contacto',it:'Contatto',fa:'تماس'},
@@ -723,7 +723,7 @@ const UI = {
   hero_eyebrow: {en:'Made in Wollongong, NSW · Australia',tr:'Wollongong, NSW · Avustralya\'da Üretildi',ar:'صُنع في ولونجونج، NSW · أستراليا',zh:'澳大利亚新南威尔士州伍伦贡制造',hi:'वोलोंगोंग, NSW · ऑस्ट्रेलिया में निर्मित',es:'Fabricado en Wollongong, NSW · Australia',it:'Prodotto a Wollongong, NSW · Australia',fa:'ساخته شده در ولونگونگ، NSW · استرالیا'},
   hero_sub:     {en:'Professional hydrophobic coatings for every surface. Apply once — water beads, stains slide off, surfaces stay clean for months.',tr:'Her yüzey için profesyonel hidrofobik kaplamalar. Bir kez uygulayın — su boncuklanır, lekeler kayar, yüzeyler aylarca temiz kalır.',ar:'طلاءات هيدروفوبية احترافية لكل سطح. طبّق مرة واحدة — الماء يتكوّر، البقع تنزلق، الأسطح تبقى نظيفة لأشهر.',zh:'专业疏水涂层，适用于所有表面。一次涂抹——水珠滚落，污渍滑走，表面几个月保持清洁。',hi:'हर सतह के लिए पेशेवर हाइड्रोफोबिक कोटिंग। एक बार लगाएं — पानी बूंदों में बदले, दाग फिसलें, सतहें महीनों तक साफ रहें।',es:'Recubrimientos hidrofóbicos profesionales para cada superficie. Aplica una vez — el agua forma gotas, las manchas se deslizan, las superficies se mantienen limpias durante meses.',it:'Rivestimenti idrofobi professionali per ogni superficie. Applica una volta — l\'acqua forma gocce, le macchie scivolano, le superfici restano pulite per mesi.',fa:'پوشش‌های هیدروفوبیک حرفه‌ای برای هر سطحی. یک بار بزنید — آب قطره می‌شود، لک‌ها می‌لغزند، سطوح ماه‌ها تمیز می‌مانند.'},
   hero_cta1:    {en:'Shop Now →',tr:'Hemen Al →',ar:'تسوّق الآن →',zh:'立即购买 →',hi:'अभी खरीदें →',es:'Compra Ahora →',it:'Acquista Ora →',fa:'همین حالا بخرید →'},
-  hero_cta2:    {en:'See All Products',tr:'Tüm Ürünleri Gör',ar:'عرض جميع المنتجات',zh:'查看所有产品',hi:'सभी उत्पाद देखें',es:'Ver Todos los Productos',it:'Vedi Tutti i Prodotti',fa:'مشاهده همه محصولات'},
+  hero_cta2:    {en:'📋 How to Use',tr:'📋 Nasıl Kullanılır',ar:'📋 كيفية الاستخدام',zh:'📋 使用说明',hi:'📋 उपयोग कैसे करें',es:'📋 Cómo Usarlo',it:'📋 Come Usarlo',fa:'📋 نحوه استفاده'},
   trust_au:     {en:'Made in Australia',tr:'Avustralya\'da Üretildi',ar:'صُنع في أستراليا',zh:'澳大利亚制造',hi:'ऑस्ट्रेलिया में निर्मित',es:'Hecho en Australia',it:'Prodotto in Australia',fa:'ساخته شده در استرالیا'},
   trust_stripe: {en:'Stripe Secured',tr:'Stripe Güvenceli',ar:'مدفوعات آمنة',zh:'Stripe 安全支付',hi:'Stripe सुरक्षित',es:'Pago Seguro',it:'Pagamento Sicuro',fa:'پرداخت امن'},
   trust_ships:  {en:'Ships AU-wide',tr:'Avustralya\'ya Kargo',ar:'شحن في أستراليا',zh:'全澳配送',hi:'ऑस्ट्रेलिया-भर में शिपिंग',es:'Envío en Australia',it:'Spedizione in Australia',fa:'ارسال سراسر استرالیا'},
@@ -807,7 +807,7 @@ const UI = {
   footer_safety:    {en:'Safety & Legal',tr:'Güvenlik & Yasal',ar:'الأمان والقانوني',zh:'安全与法律',hi:'सुरक्षा और कानूनी',es:'Seguridad y Legal',it:'Sicurezza e Legale',fa:'ایمنی و قانونی'},
   footer_all_prods: {en:'All Products',tr:'Tüm Ürünler',ar:'كل المنتجات',zh:'所有产品',hi:'सभी उत्पाद',es:'Todos los Productos',it:'Tutti i Prodotti',fa:'همه محصولات'},
   footer_buy_now:   {en:'Buy Now',tr:'Şimdi Al',ar:'اشتري الآن',zh:'立即购买',hi:'अभी खरीदें',es:'Comprar Ahora',it:'Acquista Ora',fa:'همین حالا بخرید'},
-  footer_how:       {en:'How It Works',tr:'Nasıl Çalışır',ar:'طريقة الاستخدام',zh:'使用方法',hi:'कैसे काम करता है',es:'Cómo Funciona',it:'Come Funziona',fa:'نحوه کار'},
+  footer_how:       {en:'Instructions',tr:'Kullanım Kılavuzu',ar:'تعليمات الاستخدام',zh:'使用说明',hi:'उपयोग निर्देश',es:'Instrucciones',it:'Istruzioni',fa:'دستورالعمل‌ها'},
   footer_send_msg:  {en:'Send a Message',tr:'Mesaj Gönder',ar:'أرسل رسالة',zh:'发送消息',hi:'संदेश भेजें',es:'Enviar Mensaje',it:'Invia Messaggio',fa:'ارسال پیام'},
   // Mobile bottom nav
   mobnav_home:     {en:'Home',tr:'Ana Sayfa',ar:'الرئيسية',zh:'首页',hi:'होम',es:'Inicio',it:'Home',fa:'خانه'},
