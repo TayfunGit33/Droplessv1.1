@@ -107,6 +107,7 @@ body.rtl .steps-list{padding-right:0;}
   <button class="lang-btn" onclick="setLang('ar',this)">العربية</button>
   <button class="lang-btn" onclick="setLang('hi',this)">हिन्दी</button>
   <button class="lang-btn" onclick="setLang('fa',this)">فارسی</button>
+  <button class="lang-btn" onclick="setLang('fr',this)">Français</button>
 </div>
 
 <div id="mainContent"></div>
@@ -117,7 +118,7 @@ let currentLang = 'en';
 
 const PRODUCTS = [
 {id:'surface-prep',icon:'🧹',name:'Dropless Prep (Step 1 — Surface Decontaminant)',
- surfaces:{en:'Glass · Chrome · Stainless · Ceramic · Acrylic · Hard Plastics',tr:'Cam · Krom · Paslanmaz Çelik · Seramik · Akrilik · Sert Plastikler',ar:'زجاج · كروم · فولاذ · سيراميك · أكريليك',zh:'玻璃·铬·不锈钢·陶瓷·亚克力',hi:'कांच · क्रोम · स्टेनलेस · सेरेमिक · एक्रिलिक',es:'Vidrio · Cromo · Acero · Cerámica · Acrílico',it:'Vetro · Cromo · Acciaio · Ceramica · Acrilico',fa:'شیشه · کروم · فولاد · سرامیک · آکریلیک'},
+ surfaces:{en:'Glass · Chrome · Stainless · Ceramic · Acrylic · Hard Plastics',tr:'Cam · Krom · Paslanmaz Çelik · Seramik · Akrilik · Sert Plastikler',ar:'زجاج · كروم · فولاذ · سيراميك · أكريليك',zh:'玻璃·铬·不锈钢·陶瓷·亚克力',hi:'कांच · क्रोम · स्टेनलेस · सेरेमिक · एक्रिलिक',es:'Vidrio · Cromo · Acero · Cerámica · Acrílico',it:'Vetro · Cromo · Acciaio · Ceramica · Acrilico',fa:'شیشه · کروم · فولاد · سرامیک · آکریلیک',fr:'Verre · Chrome · Inox · Céramique · Acrylique · Plastiques durs'},
  inst:{
   en:{eff:'⚠️ NOT a coating — this is Step 1 only. Strips grease, water spots, soap scum and old residues, leaving a 100% bare substrate for maximum Dropless Shield adhesion. Flash-dries streak-free.',steps:['Rinse surface to remove loose dirt and debris','Shake bottle well before use','Spray Dropless Prep generously — hold 10–15 cm from surface','Allow 10–15 seconds for the formula to break down contaminants','Wipe immediately with a clean dry microfibre cloth in one direction','Check for residue streaks — repeat if necessary','Allow to flash-dry completely (30–60 sec) then apply Dropless Shield']},
   tr:{eff:'⚠️ Bu bir kaplama DEĞİLDİR — sadece Adım 1\'dir. Yağ, su lekesi ve eski kalıntıları temizler. Dropless Shield için %100 temiz yüzey bırakır.',steps:['Yüzeyi durulayın','Şişeyi çalkalayın, 10–15 cm mesafeden cömertçe püskürtün','10–15 saniye bekleyin','Mikrofiber bezle tek yönde silin','Gerekirse tekrarlayın','30–60 sn kurumaya bırakın, ardından Dropless Shield uygulayın']},
@@ -126,11 +127,12 @@ const PRODUCTS = [
   hi:{eff:'⚠️ यह कोटिंग नहीं — केवल चरण 1 है। सतह साफ करता है।',steps:['सतह धोएं।','बोतल हिलाएं और छिड़कें।','10-15 सेकंड प्रतीक्षा करें।','माइक्रोफ़ाइबर से पोंछें।','जरूरत हो तो दोहराएं।','30-60 सेकंड सूखने दें फिर Dropless Shield लगाएं।']},
   es:{eff:'⚠️ No es un recubrimiento — solo Paso 1. Elimina contaminantes.',steps:['Enjuaga la superficie.','Agita y rocía generosamente.','Espera 10-15 segundos.','Limpia con microfibra.','Repite si es necesario.','Seca 30-60 segundos y aplica Dropless Shield.']},
   it:{eff:'⚠️ Non è un rivestimento — solo Fase 1. Rimuove contaminanti.',steps:['Sciacqua la superficie.','Agita e spruzza.','Attendi 10-15 secondi.','Asciuga con microfibra.','Ripeti se necessario.','Lascia asciugare 30-60 sec poi applica Dropless Shield.']},
-  fa:{eff:'⚠️ پوشش نیست — فقط مرحله ۱. آلاینده‌ها را حذف می‌کند.',steps:['سطح را بشویید.','بطری را تکان دهید و اسپری کنید.','۱۰-۱۵ ثانیه صبر کنید.','با میکروفایبر پاک کنید.','در صورت نیاز تکرار کنید.','۳۰-۶۰ ثانیه خشک شود سپس Dropless Shield بزنید.']}
+  fa:{eff:'⚠️ پوشش نیست — فقط مرحله ۱. آلاینده‌ها را حذف می‌کند.',steps:['سطح را بشویید.','بطری را تکان دهید و اسپری کنید.','۱۰-۱۵ ثانیه صبر کنید.','با میکروفایبر پاک کنید.','در صورت نیاز تکرار کنید.','۳۰-۶۰ ثانیه خشک شود سپس Dropless Shield بزنید.']},
+  fr:{eff:'⚠️ CE N\'EST PAS un revêtement — c\'est uniquement l\'Étape 1. Élimine graisses, taches d\'eau et résidus anciens, laissant un substrat 100% propre pour une adhésion maximale. Sèche sans traces.',steps:['Rincez la surface pour éliminer les saletés.','Secouez bien le flacon avant utilisation.','Vaporisez généreusement à 10–15 cm de la surface.','Laissez agir 10–15 secondes.','Essuyez immédiatement avec un chiffon microfibre propre en un seul sens.','Vérifiez les traces et répétez si nécessaire.','Laissez sécher 30–60 sec puis appliquez Dropless Shield.']}
  }
 },
 {id:'multi-surface',icon:'🌊',name:'Dropless Multi-Surface Coat',
- surfaces:{en:'Glass · Mirror · Tile · Stainless Steel',tr:'Cam · Ayna · Fayans · Paslanmaz Çelik',ar:'زجاج · مرايا · بلاط · فولاذ',zh:'玻璃·镜子·瓷砖·不锈钢',hi:'कांच · दर्पण · टाइल · स्टील',es:'Vidrio · Espejo · Cerámica · Acero',it:'Vetro · Specchio · Piastrelle · Acciaio',fa:'شیشه · آینه · کاشی · فولاد'},
+ surfaces:{en:'Glass · Mirror · Tile · Stainless Steel',tr:'Cam · Ayna · Fayans · Paslanmaz Çelik',ar:'زجاج · مرايا · بلاط · فولاذ',zh:'玻璃·镜子·瓷砖·不锈钢',hi:'कांच · दर्पण · टाइल · स्टील',es:'Vidrio · Espejo · Cerámica · Acero',it:'Vetro · Specchio · Piastrelle · Acciaio',fa:'شیشه · آینه · کاشی · فولاد',fr:'Verre · Miroir · Carrelage · Acier inox'},
  inst:{
   en:{eff:'In the first minutes, you may notice faint streaks or uneven reflections. This is normal — the coating will level out as it dries. Water will bead and roll off treated surfaces.',steps:['Clean and dry all surfaces thoroughly.','Spray a light, even layer.','Spread with a clean microfiber cloth.','Buff until clear.','Avoid water for 30 minutes.']},
   tr:{eff:'İlk dakikalarda hafif izler veya düzensiz yansımalar görebilirsiniz. Bu normaldir — kaplama kurudukça yüzeye oturur.',steps:['Tüm yüzeyleri iyice temizleyin ve kurutun.','İnce ve eşit bir tabaka halinde sıkın.','Temiz bir mikrofiber bezle yayın.','Şeffaflaşana dek parlatın.','30 dakika su değdirmeyin.']},
@@ -139,11 +141,12 @@ const PRODUCTS = [
   hi:{eff:'शुरुआती मिनटों में हल्की धारियाँ दिख सकती हैं। यह सामान्य है।',steps:['सभी सतहों को अच्छी तरह साफ करें और सुखाएं।','हल्की और समान परत स्प्रे करें।','साफ माइक्रोफ़ाइबर से फैलाएं।','शफाफ होने तक पॉलिश करें।','30 मिनट तक पानी से बचाएं।']},
   es:{eff:'Pueden aparecer líneas leves en los primeros minutos. Es normal.',steps:['Limpia y seca todas las superficies.','Rocía una capa ligera y uniforme.','Esparce con un paño de microfibra limpio.','Pule hasta que quede transparente.','Evita el agua por 30 minutos.']},
   it:{eff:'Nei primi minuti possono comparire striature. È normale — il rivestimento si uniformerà.',steps:['Pulisci e asciuga tutte le superfici.','Spruzza uno strato leggero e uniforme.','Distribuisci con un panno in microfibra.','Lucida fino a trasparenza.','Evita acqua per 30 minuti.']},
-  fa:{eff:'در دقایق اولیه ممکن است خطوط کم‌رنگ مشاهده شود. این طبیعی است.',steps:['تمام سطوح را کاملاً تمیز و خشک کنید.','یک لایه سبک اسپری کنید.','با پارچه میکروفایبر تمیز بمالید.','تا شفاف شدن پولیش کنید.','به مدت ۳۰ دقیقه از تماس با آب خودداری کنید.']}
+  fa:{eff:'در دقایق اولیه ممکن است خطوط کم‌رنگ مشاهده شود. این طبیعی است.',steps:['تمام سطوح را کاملاً تمیز و خشک کنید.','یک لایه سبک اسپری کنید.','با پارچه میکروفایبر تمیز بمالید.','تا شفاف شدن پولیش کنید.','به مدت ۳۰ دقیقه از تماس با آب خودداری کنید.']},
+  fr:{eff:'Dans les premières minutes, de légères traces ou des reflets inégaux peuvent apparaître. C\'est normal — le revêtement se nivellera en séchant. L\'eau perlera sur les surfaces traitées.',steps:['Nettoyez et séchez toutes les surfaces.','Vaporisez une couche légère et uniforme.','Étalez avec un chiffon en microfibre propre.','Polissez jusqu\'à transparence.','Évitez l\'eau pendant 30 minutes.']}
  }
 },
 {id:'glass-pro',icon:'🔭',name:'Dropless Glass Pro Coat',
- surfaces:{en:'Shower Glass · Windows · Mirrors · Glass Splashbacks',tr:'Duş Camı · Pencere · Ayna · Cam Panel',ar:'زجاج الدش · النوافذ · المرايا',zh:'淋浴玻璃·窗户·镜子',hi:'शावर ग्लास · खिड़कियाँ · दर्पण',es:'Vidrio de ducha · Ventanas · Espejos',it:'Vetro doccia · Finestre · Specchi',fa:'شیشه دوش · پنجره · آینه'},
+ surfaces:{en:'Shower Glass · Windows · Mirrors · Glass Splashbacks',tr:'Duş Camı · Pencere · Ayna · Cam Panel',ar:'زجاج الدش · النوافذ · المرايا',zh:'淋浴玻璃·窗户·镜子',hi:'शावर ग्लास · खिड़कियाँ · दर्पण',es:'Vidrio de ducha · Ventanas · Espejos',it:'Vetro doccia · Finestre · Specchi',fa:'شیشه دوش · پنجره · آینه',fr:'Verre de douche · Fenêtres · Miroirs · Crédences en verre'},
  inst:{
   en:{eff:'In the first minutes, you may notice faint streaks. This is normal — the coating will level out and become smooth as it dries. Water droplets will bead and disappear without leaving marks.',steps:['Clean and dry the glass.','Apply a light mist.','Spread evenly with a clean microfiber cloth.','Buff thoroughly for a clear, streak-free finish.','Avoid water for 30 minutes.']},
   tr:{eff:'İlk dakikalarda hafif çizgi benzeri izler görebilirsiniz. Bu normaldir.',steps:['Camı temizleyin ve tamamen kurutun.','İnce bir sis tabakası halinde sıkın.','Temiz mikrofiber bezle eşit yayın.','İzsiz görünüm için iyice parlatın.','30 dakika su değdirmeyin.']},
@@ -152,11 +155,12 @@ const PRODUCTS = [
   hi:{eff:'शुरुआती मिनटों में हल्की धारियाँ दिख सकती हैं। यह सामान्य है।',steps:['कांच को साफ करें और सुखाएं।','हल्की धुंध जैसी परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','पूरी तरह पॉलिश करें।','30 मिनट तक पानी से बचाएं।']},
   es:{eff:'Pueden aparecer líneas en los primeros minutos. Es normal.',steps:['Limpia y seca el vidrio.','Rocía una ligera neblina.','Esparce con microfibra.','Pule bien.','Evita el agua 30 minutos.']},
   it:{eff:'Nei primi minuti possono comparire striature. È normale.',steps:['Pulisci e asciuga il vetro.','Spruzza una leggera nebbiolina.','Distribuisci con microfibra.','Lucida bene.','Evita acqua 30 minuti.']},
-  fa:{eff:'در دقایق اولیه ممکن است خطوط کم‌رنگ مشاهده شود. این طبیعی است.',steps:['شیشه را تمیز کرده و خشک کنید.','یک مه سبک اسپری کنید.','با پارچه میکروفایبر بمالید.','کاملاً پولیش کنید.','۳۰ دقیقه از تماس با آب خودداری کنید.']}
+  fa:{eff:'در دقایق اولیه ممکن است خطوط کم‌رنگ مشاهده شود. این طبیعی است.',steps:['شیشه را تمیز کرده و خشک کنید.','یک مه سبک اسپری کنید.','با پارچه میکروفایبر بمالید.','کاملاً پولیش کنید.','۳۰ دقیقه از تماس با آب خودداری کنید.']},
+  fr:{eff:'Dans les premières minutes, de légères traces peuvent apparaître. C\'est normal — le revêtement se nivellera. L\'eau perlera et disparaîtra sans laisser de marques.',steps:['Nettoyez et séchez le verre.','Appliquez une légère brume.','Étalez uniformément avec un chiffon microfibre.','Polissez soigneusement pour un fini sans traces.','Évitez l\'eau pendant 30 minutes.']}
  }
 },
 {id:'ceramic',icon:'🏠',name:'Dropless Ceramic Shield',
- surfaces:{en:'Ceramic Tiles · Sinks · Shower Walls · Benchtops',tr:'Seramik Karo · Lavabo · Duş Duvarı · Tezgah',ar:'بلاط خزفي · أحواض · جدران الدش',zh:'陶瓷砖·洗手盆·淋浴墙',hi:'सेरेमिक टाइल · सिंक · शावर वॉल',es:'Azulejos · Lavabo · Paredes de ducha',it:'Piastrelle · Lavandino · Pareti doccia',fa:'کاشی سرامیک · سینک · دیوار دوش'},
+ surfaces:{en:'Ceramic Tiles · Sinks · Shower Walls · Benchtops',tr:'Seramik Karo · Lavabo · Duş Duvarı · Tezgah',ar:'بلاط خزفي · أحواض · جدران الدش',zh:'陶瓷砖·洗手盆·淋浴墙',hi:'सेरेमिक टाइल · सिंक · शावर वॉल',es:'Azulejos · Lavabo · Paredes de ducha',it:'Piastrelle · Lavandino · Pareti doccia',fa:'کاشی سرامیک · سینک · دیوار دوش',fr:'Carrelage céramique · Lavabos · Parois de douche · Plans de travail'},
  inst:{
   en:{eff:'In the first minutes, the surface may appear slightly hazy. This is normal — once cured, water and soap scum will not adhere to the ceramic.',steps:['Clean and dry the ceramic surface.','Spray a light, even layer.','Spread with a clean microfiber cloth.','Buff until clear.','Avoid water for 30 minutes.']},
   tr:{eff:'İlk dakikalarda yüzey hafif mat görünebilir. Bu normaldir.',steps:['Seramik yüzeyi temizleyin ve kurutun.','İnce tabaka sıkın.','Mikrofiber bezle yayın.','Şeffaflaşana dek parlatın.','30 dakika su değdirmeyin.']},
@@ -165,11 +169,12 @@ const PRODUCTS = [
   hi:{eff:'शुरुआती मिनटों में सतह धुंधली लग सकती है। यह सामान्य है।',steps:['सेरेमिक सतह साफ करें।','हल्की परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','पॉलिश करें।','30 मिनट पानी से बचाएं।']},
   es:{eff:'La superficie puede verse algo nublada. Es normal.',steps:['Limpia y seca la cerámica.','Rocía capa ligera.','Esparce con microfibra.','Pule.','Evita agua 30 min.']},
   it:{eff:'La superficie può apparire leggermente opaca. È normale.',steps:['Pulisci e asciuga la ceramica.','Spruzza strato leggero.','Distribuisci con microfibra.','Lucida.','Evita acqua 30 min.']},
-  fa:{eff:'سطح ممکن است کمی مات به نظر برسد. این طبیعی است.',steps:['سطح سرامیک را تمیز کنید.','یک لایه سبک اسپری کنید.','با میکروفایبر بمالید.','پولیش کنید.','۳۰ دقیقه از آب دور بمانید.']}
+  fa:{eff:'سطح ممکن است کمی مات به نظر برسد. این طبیعی است.',steps:['سطح سرامیک را تمیز کنید.','یک لایه سبک اسپری کنید.','با میکروفایبر بمالید.','پولیش کنید.','۳۰ دقیقه از آب دور بمانید.']},
+  fr:{eff:'Dans les premières minutes, la surface peut sembler légèrement voilée. C\'est normal — une fois durci, l\'eau et les dépôts de savon n\'adhèrent plus à la céramique.',steps:['Nettoyez et séchez la surface céramique.','Vaporisez une couche légère.','Étalez avec un chiffon microfibre.','Polissez jusqu\'à transparence.','Évitez l\'eau pendant 30 minutes.']}
  }
 },
 {id:'interior-glass',icon:'🚗',name:'Dropless Interior Glass Coat',
- surfaces:{en:'Car Interior Glass · Dashboard Glass · Rear Windows',tr:'Araç İç Camı · Arka Cam',ar:'زجاج داخلي للسيارة',zh:'汽车内玻璃·后窗',hi:'कार इंटीरियर ग्लास',es:'Vidrio interior de auto',it:'Vetro interno auto',fa:'شیشه داخلی خودرو'},
+ surfaces:{en:'Car Interior Glass · Dashboard Glass · Rear Windows',tr:'Araç İç Camı · Arka Cam',ar:'زجاج داخلي للسيارة',zh:'汽车内玻璃·后窗',hi:'कार इंटीरियर ग्लास',es:'Vidrio interior de auto',it:'Vetro interno auto',fa:'شیشه داخلی خودرو',fr:'Vitres intérieures voiture · Tableau de bord · Vitres arrière'},
  inst:{
   en:{eff:'In the first minutes, you may notice faint fog. This is normal — once cured, the glass will resist interior condensation and fogging.',steps:['Clean and dry the interior glass.','Apply a light mist.','Spread evenly with a clean microfiber cloth.','Buff thoroughly until clear.','Avoid moisture for 30 minutes.']},
   tr:{eff:'İlk dakikalarda hafif buğulanma görebilirsiniz. Bu normaldir.',steps:['İç cam yüzeyini temizleyin.','İnce sis tabakası uygulayın.','Mikrofiber bezle yayın.','Şeffaflaşana dek parlatın.','30 dakika nemden uzak tutun.']},
@@ -178,11 +183,12 @@ const PRODUCTS = [
   hi:{eff:'शुरुआत में हल्की धुंध दिख सकती है। यह सामान्य है।',steps:['अंदर के कांच को साफ करें।','हल्की धुंध लगाएं।','माइक्रोफ़ाइबर से फैलाएं।','पूरी तरह पॉलिश करें।','30 मिनट नमी से बचाएं।']},
   es:{eff:'Puede aparecer neblina. Es normal.',steps:['Limpia y seca el vidrio interior.','Aplica neblina ligera.','Esparce con microfibra.','Pule completamente.','Evita humedad 30 min.']},
   it:{eff:'Può comparire appannamento. È normale.',steps:['Pulisci il vetro interno.','Applica leggera nebbia.','Distribuisci con microfibra.','Lucida accuratamente.','Evita umidità 30 min.']},
-  fa:{eff:'مه خفیف ممکن است مشاهده شود. طبیعی است.',steps:['شیشه داخلی را تمیز کنید.','مه سبک بپاشید.','با میکروفایبر بمالید.','کاملاً پولیش کنید.','۳۰ دقیقه از رطوبت دور بمانید.']}
+  fa:{eff:'مه خفیف ممکن است مشاهده شود. طبیعی است.',steps:['شیشه داخلی را تمیز کنید.','مه سبک بپاشید.','با میکروفایبر بمالید.','کاملاً پولیش کنید.','۳۰ دقیقه از رطوبت دور بمانید.']},
+  fr:{eff:'Dans les premières minutes, une légère buée peut apparaître. C\'est normal — une fois durci, le verre résistera à la condensation et à la buée intérieure.',steps:['Nettoyez et séchez le verre intérieur.','Appliquez une légère brume.','Étalez uniformément avec un chiffon microfibre.','Polissez soigneusement jusqu\'à transparence.','Évitez l\'humidité pendant 30 minutes.']}
  }
 },
 {id:'rainxtreme',icon:'🌧',name:'Dropless RainXtreme',
- surfaces:{en:'Windshield · Exterior Car Glass · Motorbike Visors',tr:'Ön Cam · Araç Dış Camı · Motosiklet Vizörü',ar:'الزجاج الأمامي · زجاج السيارة الخارجي',zh:'挡风玻璃·汽车外玻璃',hi:'विंडशील्ड · कार एक्सटीरियर ग्लास',es:'Parabrisas · Vidrio exterior',it:'Parabrezza · Vetri esterni',fa:'شیشه جلو · شیشه خارجی خودرو'},
+ surfaces:{en:'Windshield · Exterior Car Glass · Motorbike Visors',tr:'Ön Cam · Araç Dış Camı · Motosiklet Vizörü',ar:'الزجاج الأمامي · زجاج السيارة الخارجي',zh:'挡风玻璃·汽车外玻璃',hi:'विंडशील्ड · कार एक्सटीरियर ग्लास',es:'Parabrisas · Vidrio exterior',it:'Parabrezza · Vetri esterni',fa:'شیشه جلو · شیشه خارجی خودرو',fr:'Pare-brise · Vitres extérieures · Visières moto'},
  inst:{
   en:{eff:'In the first minutes, you may notice streaks or haze. This is normal. At speed above 70 km/h, rain will bead and clear without wipers in many conditions.',steps:['Clean and dry the windshield.','Spray a thin, even layer.','Spread with a clean microfiber cloth.','Buff thoroughly until streak-free.','Avoid water for 1 hour.']},
   tr:{eff:'İlk dakikalarda çizgi veya buğulanma görebilirsiniz. Bu normaldir.',steps:['Ön camı temizleyin ve kurutun.','İnce tabaka sıkın.','Mikrofiber bezle yayın.','İzsiz olana dek parlatın.','1 saat su değdirmeyin.']},
@@ -191,11 +197,12 @@ const PRODUCTS = [
   hi:{eff:'शुरुआत में धारियाँ दिख सकती हैं। यह सामान्य है।',steps:['विंडशील्ड साफ करें।','पतली परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','धारियाँ-मुक्त पॉलिश करें।','1 घंटे पानी से बचाएं।']},
   es:{eff:'Pueden aparecer rayas. Es normal.',steps:['Limpia el parabrisas.','Capa fina y uniforme.','Esparce con microfibra.','Pule sin rayas.','Evita agua 1 hora.']},
   it:{eff:'Possono comparire striature. È normale.',steps:['Pulisci il parabrezza.','Strato sottile uniforme.','Distribuisci con microfibra.','Lucida senza striature.','Evita acqua 1 ora.']},
-  fa:{eff:'خطوط ممکن است مشاهده شود. طبیعی است.',steps:['شیشه جلو را تمیز کنید.','لایه نازک بپاشید.','با میکروفایبر بمالید.','تا بدون خط پولیش کنید.','۱ ساعت از آب دور بمانید.']}
+  fa:{eff:'خطوط ممکن است مشاهده شود. طبیعی است.',steps:['شیشه جلو را تمیز کنید.','لایه نازک بپاشید.','با میکروفایبر بمالید.','تا بدون خط پولیش کنید.','۱ ساعت از آب دور بمانید.']},
+  fr:{eff:'Dans les premières minutes, des traces ou une brume peuvent apparaître. C\'est normal. À plus de 70 km/h, la pluie perlera sans essuie-glaces dans de nombreuses conditions.',steps:['Nettoyez et séchez le pare-brise.','Vaporisez une couche fine et uniforme.','Étalez avec un chiffon microfibre.','Polissez jusqu\'à disparition des traces.','Évitez l\'eau pendant 1 heure.']}
  }
 },
 {id:'plastic-screen',icon:'📱',name:'Dropless Plastic & Screen Guard',
- surfaces:{en:'Phone · Tablet · TV Screens · Plastic Panels',tr:'Telefon · Tablet · TV Ekranı',ar:'شاشات الهاتف · التلفاز',zh:'手机·平板·电视屏幕',hi:'फोन · टैबलेट · स्क्रीन',es:'Pantallas · Plásticos · TV',it:'Schermi · Plastica · TV',fa:'صفحه نمایش · پلاستیک'},
+ surfaces:{en:'Phone · Tablet · TV Screens · Plastic Panels',tr:'Telefon · Tablet · TV Ekranı',ar:'شاشات الهاتف · التلفاز',zh:'手机·平板·电视屏幕',hi:'फोन · टैबलेट · स्क्रीन',es:'Pantallas · Plásticos · TV',it:'Schermi · Plastica · TV',fa:'صفحه نمایش · پلاستیک',fr:'Téléphone · Tablette · Écrans TV · Panneaux plastiques'},
  inst:{
   en:{eff:'In the first minutes, you may notice slight hazing. This is normal. Once settled, the surface will resist fingerprints and water marks.',steps:['Clean and dry the plastic/screen surface.','Apply a very light mist.','Spread gently with a clean microfiber cloth.','Buff until clear.','Avoid moisture for 30 minutes.']},
   tr:{eff:'İlk dakikalarda hafif buğulanma görülebilir. Bu normaldir.',steps:['Plastik/ekranı temizleyin ve kurutun.','Çok ince sis uygulayın.','Nazikçe mikrofiber bezle yayın.','Şeffaflaşana dek parlatın.','30 dakika nemden uzak tutun.']},
@@ -204,11 +211,12 @@ const PRODUCTS = [
   hi:{eff:'हल्का धुंधलापन दिख सकता है। यह सामान्य है।',steps:['सतह साफ करें।','बहुत हल्की धुंध लगाएं।','धीरे माइक्रोफ़ाइबर से फैलाएं।','पॉलिश करें।','30 मिनट नमी से बचाएं।']},
   es:{eff:'Puede aparecer neblina leve. Es normal.',steps:['Limpia la superficie.','Neblina muy ligera.','Esparce suavemente.','Pule.','Evita humedad 30 min.']},
   it:{eff:'Può comparire leggero appannamento. È normale.',steps:['Pulisci la superficie.','Nebbia molto leggera.','Distribuisci delicatamente.','Lucida.','Evita umidità 30 min.']},
-  fa:{eff:'کمی مات ممکن است دیده شود. طبیعی است.',steps:['سطح را تمیز کنید.','مه بسیار سبک بپاشید.','به آرامی با میکروفایبر بمالید.','پولیش کنید.','۳۰ دقیقه از رطوبت دور بمانید.']}
+  fa:{eff:'کمی مات ممکن است دیده شود. طبیعی است.',steps:['سطح را تمیز کنید.','مه بسیار سبک بپاشید.','به آرامی با میکروفایبر بمالید.','پولیش کنید.','۳۰ دقیقه از رطوبت دور بمانید.']},
+  fr:{eff:'Dans les premières minutes, un léger voile peut apparaître. C\'est normal. Une fois stabilisé, la surface résistera aux empreintes et aux taches d\'eau.',steps:['Nettoyez et séchez la surface.','Appliquez une très légère brume.','Étalez délicatement avec un chiffon microfibre.','Polissez jusqu\'à transparence.','Évitez l\'humidité pendant 30 minutes.']}
  }
 },
 {id:'toilet',icon:'🚽',name:'Dropless Toilet Anti-Stick Hybrid',
- surfaces:{en:'Toilet Bowl · Toilet Pan',tr:'Klozet · Tuvalet Taşı',ar:'كرسي المرحاض',zh:'马桶内壁',hi:'टॉयलेट बाउल',es:'Inodoro',it:'WC',fa:'کاسه توالت'},
+ surfaces:{en:'Toilet Bowl · Toilet Pan',tr:'Klozet · Tuvalet Taşı',ar:'كرسي المرحاض',zh:'马桶内壁',hi:'टॉयलेट बाउल',es:'Inodoro',it:'WC',fa:'کاسه توالت',fr:'Cuvette de WC · Abattant'},
  inst:{
   en:{eff:'After application the bowl may look slightly different for a few minutes. This is normal — once cured, waste will not stick and cleaning time is dramatically reduced.',steps:['Clean the toilet bowl thoroughly and dry.','Apply a light spray around the bowl interior.','Spread with a clean applicator cloth.','Allow 10 minutes to cure.','Avoid flushing for 30 minutes after application.']},
   tr:{eff:'Uygulamadan sonra klozet birkaç dakika farklı görünebilir. Bu normaldir.',steps:['Klozeti iyice temizleyin ve kurutun.','İç yüzeye hafif sprey uygulayın.','Uygulama beziyle yayın.','10 dakika kurumaya bırakın.','30 dakika sifon çekmeyin.']},
@@ -217,11 +225,12 @@ const PRODUCTS = [
   hi:{eff:'कुछ मिनट अलग दिख सकता है। यह सामान्य है।',steps:['टॉयलेट साफ करें।','अंदर हल्का स्प्रे करें।','कपड़े से फैलाएं।','10 मिनट ठीक होने दें।','30 मिनट फ्लश न करें।']},
   es:{eff:'El inodoro puede verse diferente. Es normal.',steps:['Limpia a fondo y seca.','Spray ligero interior.','Esparce con paño.','10 min curar.','No tirar cadena 30 min.']},
   it:{eff:'Il WC può apparire diverso. È normale.',steps:['Pulisci e asciuga.','Spray leggero interno.','Distribuisci con panno.','10 min indurire.','No sciacquone 30 min.']},
-  fa:{eff:'کاسه توالت ممکن است متفاوت به نظر برسد. طبیعی است.',steps:['کاملاً تمیز کنید.','اسپری داخل کاسه.','با پارچه بمالید.','۱۰ دقیقه صبر کنید.','۳۰ دقیقه فلاش نکنید.']}
+  fa:{eff:'کاسه توالت ممکن است متفاوت به نظر برسد. طبیعی است.',steps:['کاملاً تمیز کنید.','اسپری داخل کاسه.','با پارچه بمالید.','۱۰ دقیقه صبر کنید.','۳۰ دقیقه فلاش نکنید.']},
+  fr:{eff:'Après application, la cuvette peut sembler légèrement différente quelques minutes. C\'est normal — une fois durci, les dépôts n\'adhèrent plus et le nettoyage est grandement simplifié.',steps:['Nettoyez et séchez la cuvette.','Vaporisez légèrement à l\'intérieur.','Étalez avec un applicateur propre.','Laissez durcir 10 minutes.','Évitez de tirer la chasse d\'eau pendant 30 minutes.']}
  }
 },
 {id:'bathroom',icon:'🚿',name:'Dropless Bathroom Shield',
- surfaces:{en:'Bathroom Tiles · Shower Glass · Bath · Vanity',tr:'Banyo Karosu · Duş Camı · Küvet',ar:'بلاط الحمام · زجاج الدش',zh:'浴室瓷砖·淋浴玻璃',hi:'बाथरूम टाइल्स · शावर ग्लास',es:'Azulejos baño · Vidrio ducha',it:'Piastrelle bagno · Doccia',fa:'کاشی حمام · شیشه دوش'},
+ surfaces:{en:'Bathroom Tiles · Shower Glass · Bath · Vanity',tr:'Banyo Karosu · Duş Camı · Küvet',ar:'بلاط الحمام · زجاج الدش',zh:'浴室瓷砖·淋浴玻璃',hi:'बाथरूम टाइल्स · शावर ग्लास',es:'Azulejos baño · Vidrio ducha',it:'Piastrelle bagno · Doccia',fa:'کاشی حمام · شیشه دوش',fr:'Carrelage salle de bain · Verre de douche · Bain · Vasque'},
  inst:{
   en:{eff:'In the first minutes, surfaces may appear slightly wet or uneven. This is normal — the coating will become invisible as it dries. Water will bead and soap scum will not adhere.',steps:['Clean and dry all bathroom surfaces.','Spray a light, even layer.','Spread with a clean microfiber cloth.','Buff until the surface is clear.','Avoid water for 30 minutes.']},
   tr:{eff:'İlk dakikalarda yüzeyler hafif ıslak görünebilir. Bu normaldir.',steps:['Tüm banyo yüzeylerini temizleyin.','İnce tabaka sıkın.','Mikrofiber bezle yayın.','Şeffaflaşana dek parlatın.','30 dakika su değdirmeyin.']},
@@ -230,11 +239,12 @@ const PRODUCTS = [
   hi:{eff:'सतहें थोड़ी गीली लग सकती हैं। यह सामान्य है।',steps:['सभी सतहें साफ करें।','हल्की परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','पॉलिश करें।','30 मिनट पानी से बचाएं।']},
   es:{eff:'Las superficies pueden verse húmedas. Es normal.',steps:['Limpia todo.','Capa ligera.','Microfibra.','Pule.','30 min sin agua.']},
   it:{eff:'Le superfici possono apparire umide. È normale.',steps:['Pulisci tutto.','Strato leggero.','Microfibra.','Lucida.','30 min senza acqua.']},
-  fa:{eff:'سطوح ممکن است مرطوب به نظر برسند. طبیعی است.',steps:['همه سطوح را تمیز کنید.','یک لایه سبک بپاشید.','با میکروفایبر بمالید.','پولیش کنید.','۳۰ دقیقه از آب دور بمانید.']}
+  fa:{eff:'سطوح ممکن است مرطوب به نظر برسند. طبیعی است.',steps:['همه سطوح را تمیز کنید.','یک لایه سبک بپاشید.','با میکروفایبر بمالید.','پولیش کنید.','۳۰ دقیقه از آب دور بمانید.']},
+  fr:{eff:'Dans les premières minutes, les surfaces peuvent sembler légèrement humides ou inégales. C\'est normal — le revêtement deviendra invisible en séchant. L\'eau perlera et les dépôts de savon n\'adhèreront plus.',steps:['Nettoyez et séchez toutes les surfaces de la salle de bain.','Vaporisez une couche légère et uniforme.','Étalez avec un chiffon microfibre.','Polissez jusqu\'à transparence.','Évitez l\'eau pendant 30 minutes.']}
  }
 },
 {id:'stone-bench',icon:'🪨',name:'Dropless Stone & Bench Guard',
- surfaces:{en:'Marble · Granite · Quartz · Kitchen Benchtops',tr:'Mermer · Granit · Kuvars · Mutfak Tezgahı',ar:'رخام · جرانيت · أسطح المطبخ',zh:'大理石·花岗岩·厨房台面',hi:'मार्बल · ग्रेनाइट · किचन काउंटर',es:'Mármol · Granito · Encimeras',it:'Marmo · Granito · Piano cucina',fa:'مرمر · گرانیت · کانتر آشپزخانه'},
+ surfaces:{en:'Marble · Granite · Quartz · Kitchen Benchtops',tr:'Mermer · Granit · Kuvars · Mutfak Tezgahı',ar:'رخام · جرانيت · أسطح المطبخ',zh:'大理石·花岗岩·厨房台面',hi:'मार्बल · ग्रेनाइट · किचन काउंटर',es:'Mármol · Granito · Encimeras',it:'Marmo · Granito · Piano cucina',fa:'مرمر · گرانیت · کانتر آشپزخانه',fr:'Marbre · Granit · Quartz · Plans de travail'},
  inst:{
   en:{eff:'In the first minutes, you may notice faint marks. This is normal — the coating will level out. Water droplets will bead and disappear without leaving marks.',steps:['Clean and dry the stone surface.','Spray a light, even layer.','Spread evenly with a clean microfiber cloth.','Buff thoroughly for clarity.','Avoid water for 30 minutes.']},
   tr:{eff:'İlk dakikalarda hafif izler görebilirsiniz. Bu normaldir.',steps:['Taş/tezgahı temizleyin.','İnce tabaka sıkın.','Mikrofiber bezle yayın.','Netlik için parlatın.','30 dakika su değdirmeyin.']},
@@ -243,11 +253,12 @@ const PRODUCTS = [
   hi:{eff:'हल्के निशान दिख सकते हैं। यह सामान्य है।',steps:['सतह साफ करें।','हल्की परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','पॉलिश करें।','30 मिनट पानी से बचाएं।']},
   es:{eff:'Pueden aparecer marcas leves. Es normal.',steps:['Limpia la superficie.','Capa ligera.','Microfibra.','Pule.','30 min sin agua.']},
   it:{eff:'Possono comparire lievi segni. È normale.',steps:['Pulisci la superficie.','Strato leggero.','Microfibra.','Lucida.','30 min senza acqua.']},
-  fa:{eff:'علائم خفیف ممکن است مشاهده شود. طبیعی است.',steps:['سطح را تمیز کنید.','لایه سبک بپاشید.','با میکروفایبر بمالید.','پولیش کنید.','۳۰ دقیقه از آب دور بمانید.']}
+  fa:{eff:'علائم خفیف ممکن است مشاهده شود. طبیعی است.',steps:['سطح را تمیز کنید.','لایه سبک بپاشید.','با میکروفایبر بمالید.','پولیش کنید.','۳۰ دقیقه از آب دور بمانید.']},
+  fr:{eff:'Dans les premières minutes, de légères marques peuvent apparaître. C\'est normal — le revêtement se nivellera. L\'eau perlera sans laisser de traces.',steps:['Nettoyez et séchez la surface.','Vaporisez une couche légère.','Étalez uniformément avec un chiffon microfibre.','Polissez soigneusement.','Évitez l\'eau pendant 30 minutes.']}
  }
 },
 {id:'metal-shine',icon:'✨',name:'Dropless Metal Shine+',
- surfaces:{en:'Stainless Steel · Aluminium · Brass · Chrome',tr:'Paslanmaz Çelik · Alüminyum · Krom',ar:'فولاذ · ألومنيوم · كروم',zh:'不锈钢·铝·铬',hi:'स्टेनलेस स्टील · एल्युमिनियम · क्रोम',es:'Acero inox · Aluminio · Cromo',it:'Acciaio · Alluminio · Cromo',fa:'فولاد ضد زنگ · آلومینیوم · کروم'},
+ surfaces:{en:'Stainless Steel · Aluminium · Brass · Chrome',tr:'Paslanmaz Çelik · Alüminyum · Krom',ar:'فولاذ · ألومنيوم · كروم',zh:'不锈钢·铝·铬',hi:'स्टेनलेस स्टील · एल्युमिनियम · क्रोम',es:'Acero inox · Aluminio · Cromo',it:'Acciaio · Alluminio · Cromo',fa:'فولاد ضد زنگ · آلومینیوم · کروم',fr:'Acier inox · Aluminium · Laiton · Chrome'},
  inst:{
   en:{eff:'In the first minutes, you may notice faint haze. This is normal. Once settled, the metal will appear glossier and resist fingerprints and water marks.',steps:['Clean and dry the metal surface.','Spray a light, even layer.','Spread with a clean microfiber cloth.','Buff thoroughly to activate the shine.','Avoid water for 30 minutes.']},
   tr:{eff:'İlk dakikalarda hafif buğulanma görebilirsiniz. Bu normaldir.',steps:['Metal yüzeyi temizleyin.','İnce tabaka sıkın.','Mikrofiber bezle yayın.','Parlaklığı aktive etmek için parlatın.','30 dakika su değdirmeyin.']},
@@ -256,11 +267,12 @@ const PRODUCTS = [
   hi:{eff:'हल्का धुंधलापन दिख सकता है। यह सामान्य है।',steps:['धातु साफ करें।','हल्की परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','चमक के लिए पॉलिश करें।','30 मिनट पानी से बचाएं।']},
   es:{eff:'Puede aparecer neblina. Es normal.',steps:['Limpia el metal.','Capa ligera.','Microfibra.','Pule para brillo.','30 min sin agua.']},
   it:{eff:'Può comparire leggero appannamento. È normale.',steps:['Pulisci il metallo.','Strato leggero.','Microfibra.','Lucida per brillantezza.','30 min senza acqua.']},
-  fa:{eff:'مه خفیف ممکن است دیده شود. طبیعی است.',steps:['فلز را تمیز کنید.','لایه سبک بپاشید.','با میکروفایبر بمالید.','برای درخشندگی پولیش کنید.','۳۰ دقیقه از آب دور بمانید.']}
+  fa:{eff:'مه خفیف ممکن است دیده شود. طبیعی است.',steps:['فلز را تمیز کنید.','لایه سبک بپاشید.','با میکروفایبر بمالید.','برای درخشندگی پولیش کنید.','۳۰ دقیقه از آب دور بمانید.']},
+  fr:{eff:'Dans les premières minutes, une légère buée peut apparaître. C\'est normal. Une fois stabilisé, le métal sera plus brillant et résistera aux empreintes.',steps:['Nettoyez et séchez la surface métallique.','Vaporisez une couche légère.','Étalez avec un chiffon microfibre.','Polissez pour activer le brillant.','Évitez l\'eau pendant 30 minutes.']}
  }
 },
 {id:'leather',icon:'👜',name:'Dropless Leather & Vinyl Guard',
- surfaces:{en:'Leather Seats · Vinyl Upholstery · Car Interior · Bags',tr:'Deri Koltuk · Vinil · Araç İçi',ar:'مقاعد جلدية · فينيل',zh:'皮革座椅·乙烯基',hi:'चमड़ा सीट · विनाइल',es:'Cuero · Vinilo · Interior auto',it:'Pelle · Vinile · Auto',fa:'چرم · وینیل · خودرو'},
+ surfaces:{en:'Leather Seats · Vinyl Upholstery · Car Interior · Bags',tr:'Deri Koltuk · Vinil · Araç İçi',ar:'مقاعد جلدية · فينيل',zh:'皮革座椅·乙烯基',hi:'चमड़ा सीट · विनाइल',es:'Cuero · Vinilo · Interior auto',it:'Pelle · Vinile · Auto',fa:'چرم · وینیل · خودرو',fr:'Sièges cuir · Vinyle · Intérieur voiture · Sacs'},
  inst:{
   en:{eff:'In the first minutes, you may notice slight darkening. This is normal — once settled, the surface will feel smoother, resist stains, and repel water.',steps:['Clean and dry the leather/vinyl surface.','Spray a light, even layer.','Spread gently with a clean microfiber cloth.','Allow 5 minutes to settle.','Buff lightly for a natural finish.','Avoid moisture for 30 minutes.']},
   tr:{eff:'İlk dakikalarda hafif koyulaşma görebilirsiniz. Bu normaldir.',steps:['Deri/vinili temizleyin.','İnce tabaka sıkın.','Nazikçe mikrofiber bezle yayın.','5 dakika oturmasına izin verin.','Hafifçe parlatın.','30 dakika nemden uzak tutun.']},
@@ -269,11 +281,12 @@ const PRODUCTS = [
   hi:{eff:'थोड़ा गहरा दिख सकता है। यह सामान्य है।',steps:['सतह साफ करें।','हल्की परत स्प्रे करें।','धीरे माइक्रोफ़ाइबर से फैलाएं।','5 मिनट सेट होने दें।','हल्के पॉलिश करें।','30 मिनट नमी से बचाएं।']},
   es:{eff:'Puede aparecer oscurecimiento leve. Es normal.',steps:['Limpia y seca.','Capa ligera.','Esparce suavemente.','5 min reposo.','Pule ligeramente.','30 min sin humedad.']},
   it:{eff:'Può comparire leggero scurimento. È normale.',steps:['Pulisci e asciuga.','Strato leggero.','Distribuisci delicatamente.','5 min.','Lucida leggermente.','30 min senza umidità.']},
-  fa:{eff:'کمی تیره‌تر شدن طبیعی است.',steps:['تمیز و خشک کنید.','لایه سبک بپاشید.','به آرامی بمالید.','۵ دقیقه صبر کنید.','به آرامی پولیش کنید.','۳۰ دقیقه از رطوبت دور بمانید.']}
+  fa:{eff:'کمی تیره‌تر شدن طبیعی است.',steps:['تمیز و خشک کنید.','لایه سبک بپاشید.','به آرامی بمالید.','۵ دقیقه صبر کنید.','به آرامی پولیش کنید.','۳۰ دقیقه از رطوبت دور بمانید.']},
+  fr:{eff:'Dans les premières minutes, un léger assombrissement peut apparaître. C\'est normal — une fois stabilisé, la surface semblera plus douce et résistera aux taches.',steps:['Nettoyez et séchez le cuir/vinyle.','Vaporisez une couche légère.','Étalez délicatement avec un chiffon microfibre.','Laissez reposer 5 minutes.','Polissez légèrement pour un fini naturel.','Évitez l\'humidité pendant 30 minutes.']}
  }
 },
 {id:'fabric',icon:'🛋',name:'Dropless Fabric Guard',
- surfaces:{en:'Sofas · Cushions · Car Seats · Outdoor Fabric',tr:'Kanepe · Yastık · Araba Koltuğu',ar:'الكنب · الوسائد',zh:'沙发·靠垫·汽车座椅',hi:'सोफा · कुशन · कार सीट',es:'Sofás · Cojines · Asientos auto',it:'Divani · Cuscini · Sedili auto',fa:'مبل · کوسن · صندلی خودرو'},
+ surfaces:{en:'Sofas · Cushions · Car Seats · Outdoor Fabric',tr:'Kanepe · Yastık · Araba Koltuğu',ar:'الكنب · الوسائد',zh:'沙发·靠垫·汽车座椅',hi:'सोफा · कुशन · कार सीट',es:'Sofás · Cojines · Asientos auto',it:'Divani · Cuscini · Sedili auto',fa:'مبل · کوسن · صندلی خودرو',fr:'Canapés · Coussins · Sièges auto · Tissu extérieur'},
  inst:{
   en:{eff:'The fabric may appear slightly darker for a few minutes. This is normal — once settled, liquids will bead on the surface instead of soaking in.',steps:['Clean and dry the fabric surface.','Spray a light, even mist from 15–20 cm distance.','Ensure full coverage without soaking the fabric.','Allow 10–15 minutes to dry.','For maximum protection, apply a second light coat.','Avoid moisture for 1 hour.']},
   tr:{eff:'Kumaş ilk dakikalarda hafif koyulaşabilir. Bu normaldir.',steps:['Kumaşı temizleyin ve kurutun.','15–20 cm mesafeden ince sis sıkın.','Kumaşı ıslatmadan tüm yüzeyi kaplayın.','10–15 dakika kurumaya bırakın.','Maksimum koruma için ikinci kat uygulayın.','1 saat nemden uzak tutun.']},
@@ -282,11 +295,12 @@ const PRODUCTS = [
   hi:{eff:'पारचे कुछ मिनट गहरा दिख सकता है। यह सामान्य है।',steps:['कपड़े साफ करें।','15-20 सेमी से हल्की धुंध।','बिना भिगोए ढकें।','10-15 मिनट सूखने दें।','दूसरी परत लगाएं।','1 घंटे नमी से बचाएं।']},
   es:{eff:'La tela puede verse más oscura. Es normal.',steps:['Limpia la tela.','Rocía desde 15-20 cm.','Cubre sin empapar.','10-15 min secar.','Segunda capa opcional.','1 hora sin humedad.']},
   it:{eff:'Il tessuto può apparire più scuro. È normale.',steps:['Pulisci il tessuto.','Spruzza da 15-20 cm.','Copri senza bagnare.','10-15 min asciugare.','Secondo strato opzionale.','1 ora senza umidità.']},
-  fa:{eff:'پارچه ممکن است تیره‌تر به نظر برسد. طبیعی است.',steps:['پارچه را تمیز کنید.','از ۱۵-۲۰ سانتی بپاشید.','بدون خیس کردن بپوشانید.','۱۰-۱۵ دقیقه خشک شود.','لایه دوم اختیاری.','۱ ساعت از رطوبت دور بمانید.']}
+  fa:{eff:'پارچه ممکن است تیره‌تر به نظر برسد. طبیعی است.',steps:['پارچه را تمیز کنید.','از ۱۵-۲۰ سانتی بپاشید.','بدون خیس کردن بپوشانید.','۱۰-۱۵ دقیقه خشک شود.','لایه دوم اختیاری.','۱ ساعت از رطوبت دور بمانید.']},
+  fr:{eff:'Le tissu peut sembler légèrement plus sombre quelques minutes. C\'est normal — une fois stabilisé, les liquides perleront au lieu de s\'imbiber.',steps:['Nettoyez et séchez le tissu.','Vaporisez à 15–20 cm de distance.','Couvrez sans détrémper.','Laissez sécher 10–15 minutes.','Pour une protection maximale, appliquez une deuxième couche légère.','Évitez l\'humidité pendant 1 heure.']}
  }
 },
 {id:'hybrid-ultra',icon:'🔬',name:'Dropless Hybrid Ultra-Long',
- surfaces:{en:'All Hard Surfaces · Long-term Industrial Protection',tr:'Tüm Sert Yüzeyler · Uzun Vadeli Koruma',ar:'جميع الأسطح الصلبة',zh:'所有硬质表面',hi:'सभी कठोर सतहें',es:'Todas las superficies duras',it:'Tutte le superfici dure',fa:'تمام سطوح سخت'},
+ surfaces:{en:'All Hard Surfaces · Long-term Industrial Protection',tr:'Tüm Sert Yüzeyler · Uzun Vadeli Koruma',ar:'جميع الأسطح الصلبة',zh:'所有硬质表面',hi:'सभी कठोर सतहें',es:'Todas las superficies duras',it:'Tutte le superfici dure',fa:'تمام سطوح سخت',fr:'Toutes surfaces dures · Protection industrielle longue durée'},
  inst:{
   en:{eff:'In the first minutes, the hybrid film may look slightly uneven. This is normal — the VG/PG + silicone matrix will level out and bond as it dries, providing ultra-long durability.',steps:['Clean and dry the surface thoroughly.','Spray a thin, even layer.','Spread with a clean microfiber cloth.','Allow 5–10 minutes for the hybrid matrix to settle.','Buff lightly for a smooth finish.','Avoid water for 1 hour.']},
   tr:{eff:'İlk dakikalarda hibrit film hafif düzensiz görünebilir. Bu normaldir.',steps:['Yüzeyi iyice temizleyin ve kurutun.','İnce eşit tabaka sıkın.','Mikrofiber bezle yayın.','5–10 dakika bekleyin.','Hafifçe parlatın.','1 saat su değdirmeyin.']},
@@ -295,7 +309,8 @@ const PRODUCTS = [
   hi:{eff:'हाइब्रिड फिल्म थोड़ी अनियमित दिख सकती है। यह सामान्य है।',steps:['सतह को अच्छी तरह साफ करें।','पतली परत स्प्रे करें।','माइक्रोफ़ाइबर से फैलाएं।','5-10 मिनट सेट होने दें।','हल्के पॉलिश करें।','1 घंटे पानी से बचाएं।']},
   es:{eff:'La película puede verse irregular. Es normal.',steps:['Limpia bien.','Capa fina.','Microfibra.','5-10 min.','Pule suavemente.','1 hora sin agua.']},
   it:{eff:'Il film può apparire irregolare. È normale.',steps:['Pulisci bene.','Strato sottile.','Microfibra.','5-10 min.','Lucida leggermente.','1 ora senza acqua.']},
-  fa:{eff:'فیلم ممکن است ناهموار به نظر برسد. طبیعی است.',steps:['کاملاً تمیز کنید.','لایه نازک بپاشید.','با میکروفایبر بمالید.','۵-۱۰ دقیقه صبر کنید.','به آرامی پولیش کنید.','۱ ساعت از آب دور بمانید.']}
+  fa:{eff:'فیلم ممکن است ناهموار به نظر برسد. طبیعی است.',steps:['کاملاً تمیز کنید.','لایه نازک بپاشید.','با میکروفایبر بمالید.','۵-۱۰ دقیقه صبر کنید.','به آرامی پولیش کنید.','۱ ساعت از آب دور بمانید.']},
+  fr:{eff:'Dans les premières minutes, le film hybride peut sembler inégal. C\'est normal — la matrice VG/PG + silicone se nivellera en séchant pour une durabilité extrême.',steps:['Nettoyez et séchez soigneusement la surface.','Vaporisez une couche fine et uniforme.','Étalez avec un chiffon microfibre.','Laissez reposer 5–10 minutes pour que la matrice se stabilise.','Polissez légèrement pour un fini lisse.','Évitez l\'eau pendant 1 heure.']}
  }
 }
 ];
@@ -308,7 +323,8 @@ const LABELS = {
   hi:{title:'उपयोग विधि',select:'निर्देश देखने के लिए अपना उत्पाद चुनें:',effect:'क्या उम्मीद करें',steps:'आवेदन के चरण',tips:'प्रो टिप',tip_text:'हमेशा साफ और सूखे माइक्रोफ़ाइबर कपड़े का उपयोग करें।',buy:'एक और बोतल चाहिए?',buy_sub:'ऑस्ट्रेलिया में मुफ़्त शिपिंग।',buy_btn:'अभी खरीदें →',surfaces:'इन पर काम करता है',back:'← सभी उत्पाद',back_site:'← साइट पर वापस',lang_label:'भाषा:'},
   es:{title:'Cómo Usar',select:'Selecciona tu producto para ver las instrucciones:',effect:'Qué esperar',steps:'Pasos de aplicación',tips:'Consejo pro',tip_text:'Usa siempre un paño de microfibra limpio y seco.',buy:'¿Necesitas otra botella?',buy_sub:'Envío gratis en Australia.',buy_btn:'Comprar →',surfaces:'Funciona en',back:'← Todos los productos',back_site:'← Volver al sitio',lang_label:'Idioma:'},
   it:{title:'Come Usarlo',select:'Seleziona il tuo prodotto per vedere le istruzioni:',effect:'Cosa aspettarsi',steps:'Passi di applicazione',tips:'Consiglio pro',tip_text:'Usa sempre un panno in microfibra pulito e asciutto.',buy:'Hai bisogno di un\'altra bottiglia?',buy_sub:'Spedizione gratuita in Australia.',buy_btn:'Acquista →',surfaces:'Funziona su',back:'← Tutti i prodotti',back_site:'← Torna al sito',lang_label:'Lingua:'},
-  fa:{title:'نحوه استفاده',select:'محصول خود را برای مشاهده دستورالعمل انتخاب کنید:',effect:'چه انتظاری داشته باشید',steps:'مراحل استفاده',tips:'نکته حرفه‌ای',tip_text:'همیشه از پارچه میکروفایبر تمیز و خشک استفاده کنید.',buy:'به یک بطری دیگر نیاز دارید؟',buy_sub:'ارسال رایگان در استرالیا.',buy_btn:'خرید کنید ←',surfaces:'مناسب برای',back:'← همه محصولات',back_site:'← بازگشت به سایت',lang_label:'زبان:'}
+  fa:{title:'نحوه استفاده',select:'محصول خود را برای مشاهده دستورالعمل انتخاب کنید:',effect:'چه انتظاری داشته باشید',steps:'مراحل استفاده',tips:'نکته حرفه‌ای',tip_text:'همیشه از پارچه میکروفایبر تمیز و خشک استفاده کنید.',buy:'به یک بطری دیگر نیاز دارید؟',buy_sub:'ارسال رایگان در استرالیا.',buy_btn:'خرید کنید ←',surfaces:'مناسب برای',back:'← همه محصولات',back_site:'← بازگشت به سایت',lang_label:'زبان:'},
+  fr:{title:'Comment utiliser',select:'Sélectionnez votre produit pour voir les instructions :',effect:'À quoi s\'attendre',steps:'Étapes d\'application',tips:'Conseil pro',tip_text:'Utilisez toujours un chiffon en microfibre propre et sec. Les résidus de produits nettoyants peuvent réduire l\'efficacité du revêtement.',buy:'Besoin d\'une autre bouteille ?',buy_sub:'Livraison gratuite en Australie.',buy_btn:'Acheter maintenant →',surfaces:'Fonctionne sur',back:'← Tous les produits',back_site:'← Retour au site',lang_label:'Langue :'}
 };
 
 function setLang(lang, btn) {
