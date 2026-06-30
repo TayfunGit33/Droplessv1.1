@@ -335,6 +335,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <option value="ar">العربية</option>
       <option value="hi">हिन्दी</option>
       <option value="fa">فارسی</option>
+      <option value="tl">Tagalog</option>
+      <option value="vi">Tiếng Việt</option>
+      <option value="ko">한국어</option>
+      <option value="pt">Português</option>
     </select>
     <a href="#buy" class="btn btn-primary nav-buy" data-i18n="nav_buynow">Buy Now</a>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -360,6 +364,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <button onclick="setLang('ar');toggleMenu()">العربية</button>
     <button onclick="setLang('hi');toggleMenu()">हिन्दी</button>
     <button onclick="setLang('fa');toggleMenu()">فارسی</button>
+    <button onclick="setLang('tl');toggleMenu()">Tagalog</button>
+    <button onclick="setLang('vi');toggleMenu()">Tiếng Việt</button>
+    <button onclick="setLang('ko');toggleMenu()">한국어</button>
+    <button onclick="setLang('pt');toggleMenu()">Português</button>
   </div>
 </div>
 
@@ -414,7 +422,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <div class="stats">
   <div class="stats-inner">
     <div><div class="stat-num">14</div><div class="stat-lbl" data-i18n="stat_products">Products</div></div>
-    <div><div class="stat-num">8</div><div class="stat-lbl" data-i18n="stat_languages">Languages</div></div>
+    <div><div class="stat-num">12</div><div class="stat-lbl" data-i18n="stat_languages">Languages</div></div>
     <div><div class="stat-num">AU</div><div class="stat-lbl" data-i18n="stat_made_in">Made in Australia</div></div>
     <div><div class="stat-num">1mo+</div><div class="stat-lbl" data-i18n="stat_protection">Protection Per Apply</div></div>
   </div>
@@ -487,6 +495,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <button class="lang-tab" data-lang="ar" onclick="setLang('ar')">🇸🇦 AR</button>
       <button class="lang-tab" data-lang="hi" onclick="setLang('hi')">🇮🇳 HI</button>
       <button class="lang-tab" data-lang="fa" onclick="setLang('fa')">🇮🇷 FA</button>
+      <button class="lang-tab" data-lang="tl" onclick="setLang('tl')">🇵🇭 TL</button>
+      <button class="lang-tab" data-lang="vi" onclick="setLang('vi')">🇻🇳 VI</button>
+      <button class="lang-tab" data-lang="ko" onclick="setLang('ko')">🇰🇷 KO</button>
+      <button class="lang-tab" data-lang="pt" onclick="setLang('pt')">🇧🇷 PT</button>
     </div>
     <div class="products-grid" id="productsGrid"></div>
   </div>
@@ -1601,6 +1613,325 @@ function closeBanner() {
 const _savedLang = localStorage.getItem('dropless_lang') || 'en';
 if (_savedLang !== 'en') setLang(_savedLang);
 else applyTranslations('en');
+
+// ── NEW LANGUAGES: Tagalog (tl), Vietnamese (vi), Korean (ko), Portuguese/BR (pt) ──
+(function(){
+  // UI key translations
+  const UI_TL = {
+    nav_products:'Mga Produkto',nav_how:'Mga Tagubilin',nav_buy:'Bumili',nav_faq:'FAQ',nav_contact:'Makipag-ugnayan',nav_buynow:'Bumili Ngayon',mob_buynow:'Bumili Ngayon',
+    hero_eyebrow:'Gawa sa Wollongong, NSW · Australia',
+    hero_sub:'Propesyonal na hydrophobic coatings para sa bawat ibabaw. Mag-apply nang isang beses — binibinat ang tubig, nag-aalis ng mantsa, nananatiling malinis ng ilang buwan.',
+    hero_cta1:'Mamili Ngayon →',hero_cta2:'📋 Paano Gamitin',
+    trust_au:'Gawa sa Australia',trust_stripe:'Stripe Secured',trust_ships:'Nagpapadala sa buong AU',trust_months:'Buwan ng Proteksyon',
+    hero_order:'Umorder Ngayon →',ships_au:'Nagpapadala sa buong AU',ships_sub:'sa pamamagitan ng Australia Post at Sendle',
+    stat_products:'Mga Produkto',stat_languages:'Mga Wika',stat_made_in:'Gawa sa Australia',stat_protection:'Proteksyon sa Bawat Apply',
+    duo_eyebrow:'Ang 2-Hakbang na Sistema',duo_h2:'Ang Perpektong Duo',
+    duo_sub:'Ang pinakamataas na proteksyon ay nagsisimula sa pinakamataas na kalinisan. Ang aming two-step protocol ay ang propesyonal na pamantayan.',
+    duo_s1_lbl:'MALALIM NA PAGLILINIS',duo_s1_name:'Dropless Prep',
+    duo_s1_desc:'Inaaalis ang malalim na taba, labo ng apog, at lumang panglinis upang maihanda ang chemically neutral na pundasyon — handa na para sa bonding.',
+    duo_s1_tag:'Hakbang 1 · Laging Una',duo_s2_lbl:'I-SEAL AT PROTEKTAHAN',duo_s2_name:'Dropless Shield',
+    duo_s2_desc:'Nagbubuklod nang kemikal sa ibabaw para sa pinakamataas na hydrophobic cross-linkage. Binibinat ang tubig. Nag-aalis ng mantsa. Tumatagal ng maraming buwan.',
+    duo_s2_tag:'Hakbang 2 · Mag-apply Nang Isang Beses',
+    duo_bundle_title:'Complete Bathroom Care Pack — $49.95',
+    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — makatipid ng $19.90 kumpara sa hiwalay na pagbili.',
+    duo_bundle_btn:'I-shop ang Bundle — $49.95 AUD →',
+    prods_eyebrow:'Hanay ng Produkto',prods_h2:'Proteksyon para sa Bawat Ibabaw',
+    prods_sub:'Propesyonal na hydrophobic coatings. Pumili ng produkto upang makita ang mga tagubilin sa iyong wika.',
+    prods_search:'Maghanap ng mga produkto...',
+    cat_all:'Lahat ng Produkto',cat_bathroom:'🛁 Banyo',cat_car:'🚗 Sasakyan',cat_home:'🏠 Bahay at Kusina',cat_soft:'🛋 Malambot na Ibabaw',cat_tech:'📱 Screen',
+    how_eyebrow:'Universal na Pamamaraan',how_h2:'Apat na Hakbang. Pangmatagalang Proteksyon.',
+    how_warn:'<strong>MAHALAGA:</strong> Ang Dropless Protective Line ay binubuo ng mga advanced na nano-shield sealant, hindi mga sabon na pangalis ng dumi. Ang masusing pre-cleaning ng ibabaw ay mahigpit na kinakailangan bago mag-apply.',
+    how_s1_h:'Linisin',how_s1_p:'Linisin ang ibabaw nang lubusan at tiyaking ganap na tuyo.',
+    how_s2_h:'I-spray',how_s2_p:'Mag-apply ng magaan, pantay na mist. Mas kaunti ay mas mabuti — mas mahusay na nagbubuklod ang manipis na layer.',
+    how_s3_h:'Ikalat',how_s3_p:'Gumamit ng malinis na microfiber cloth upang maikalat nang pantay.',
+    how_s4_h:'I-buff',how_s4_p:'I-buff hanggang malinaw. Iwasan ang tubig sa loob ng 30–60 min. Tapos na.',
+    buy_eyebrow:'Umorder Ngayon',
+    buy_sub:'Libreng shipping para sa mga order na higit sa $50 AUD · Nagpapadala sa buong Australia sa pamamagitan ng tracked Australia Post at Sendle.',
+    buy_lbl_cat:'Kategorya',buy_lbl_prod:'Produkto',buy_lbl_qty:'Dami',buy_lbl_email:'Iyong Email',
+    buy_submit:'Magpatuloy sa Secure na Pagbabayad →',
+    buy_note:'Sinigurado ng Stripe · SSL encrypted · Nagpapadala sa loob ng 1–2 araw ng negosyo',
+    buy_fbt:'Madalas na Binibili Nang Magkasama',buy_add_cart:'Idagdag ang Bundle sa Cart →',
+    faq_h2:'Mga Karaniwang Tanong',
+    contact_eyebrow:'Makipag-ugnayan',contact_h2:'Nandito kami para tumulong.',
+    contact_sub:'Mga tanong tungkol sa kung aling produkto ang angkop? Gusto ng wholesale na presyo? Makipag-ugnayan anumang oras.',
+    contact_ships:'Nagpapadala sa buong Australia',contact_name:'Pangalan',contact_email:'Email',contact_msg:'Mensahe',
+    contact_ph_name:'Iyong pangalan',contact_ph_email:'your@email.com',contact_ph_msg:'Paano namin matutulungan?',
+    contact_send:'Magpadala ng Mensahe',
+    contact_success:'✅ Handa na ang iyong mensahe — tingnan ang iyong email client upang ipadala ito.',
+    footer_sub:'Propesyonal na hydrophobic proteksyon.<br>Gawa sa Wollongong, NSW, Australia.<br>© 2026 Dropless. Lahat ng karapatan ay nakalaan.',
+    footer_products:'Mga Produkto',footer_contact:'Makipag-ugnayan',footer_safety:'Kaligtasan at Legal',
+    footer_all_prods:'Lahat ng Produkto',footer_buy_now:'Bumili Ngayon',footer_how:'Mga Tagubilin',footer_send_msg:'Magpadala ng Mensahe',
+    mobnav_home:'Home',mobnav_products:'Mga Produkto',mobnav_buy:'Bumili',mobnav_faq:'FAQ',mobnav_contact:'Ugnayan'
+  };
+  const UI_VI = {
+    nav_products:'Sản Phẩm',nav_how:'Hướng Dẫn',nav_buy:'Mua',nav_faq:'FAQ',nav_contact:'Liên Hệ',nav_buynow:'Mua Ngay',mob_buynow:'Mua Ngay',
+    hero_eyebrow:'Sản xuất tại Wollongong, NSW · Úc',
+    hero_sub:'Lớp phủ kỵ nước chuyên nghiệp cho mọi bề mặt. Áp dụng một lần — nước đọng thành giọt, vết bẩn trượt đi, bề mặt sạch bóng nhiều tháng.',
+    hero_cta1:'Mua Ngay →',hero_cta2:'📋 Cách Sử Dụng',
+    trust_au:'Sản xuất tại Úc',trust_stripe:'Bảo mật Stripe',trust_ships:'Giao hàng toàn AU',trust_months:'Bảo vệ nhiều tháng',
+    hero_order:'Đặt Hàng Ngay →',ships_au:'Giao hàng toàn AU',ships_sub:'qua Australia Post & Sendle',
+    stat_products:'Sản Phẩm',stat_languages:'Ngôn Ngữ',stat_made_in:'Sản xuất tại Úc',stat_protection:'Bảo vệ mỗi lần dùng',
+    duo_eyebrow:'Hệ thống 2 bước',duo_h2:'Bộ đôi hoàn hảo',
+    duo_sub:'Bảo vệ tối đa bắt đầu từ sự sạch bóng tối đa. Quy trình hai bước là tiêu chuẩn chuyên nghiệp.',
+    duo_s1_lbl:'LÀM SẠCH SÂU',duo_s1_name:'Dropless Prep',
+    duo_s1_desc:'Loại bỏ dầu mỡ sâu, cặn vôi và chất tẩy cũ để tạo nền tảng trung tính về hóa học — sẵn sàng để kết dính.',
+    duo_s1_tag:'Bước 1 · Luôn Đầu Tiên',duo_s2_lbl:'BÍT KÍN & BẢO VỆ',duo_s2_name:'Dropless Shield',
+    duo_s2_desc:'Liên kết hóa học với bề mặt để tạo liên kết kỵ nước tối đa. Nước đọng thành giọt. Vết bẩn trượt đi. Kéo dài nhiều tháng.',
+    duo_s2_tag:'Bước 2 · Chỉ Dùng Một Lần',
+    duo_bundle_title:'Bộ Chăm Sóc Phòng Tắm Hoàn Chỉnh — $49.95',
+    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — tiết kiệm $19.90 so với mua riêng lẻ.',
+    duo_bundle_btn:'Mua Bộ — $49.95 AUD →',
+    prods_eyebrow:'Dòng Sản Phẩm',prods_h2:'Bảo vệ mọi bề mặt',
+    prods_sub:'Lớp phủ kỵ nước chuyên nghiệp. Chọn sản phẩm để xem hướng dẫn bằng ngôn ngữ của bạn.',
+    prods_search:'Tìm kiếm sản phẩm...',
+    cat_all:'Tất Cả Sản Phẩm',cat_bathroom:'🛁 Phòng Tắm',cat_car:'🚗 Xe Hơi',cat_home:'🏠 Nhà & Bếp',cat_soft:'🛋 Bề Mặt Mềm',cat_tech:'📱 Màn Hình',
+    how_eyebrow:'Phương Pháp Toàn Cầu',how_h2:'Bốn Bước. Bảo Vệ Lâu Dài.',
+    how_warn:'<strong>QUAN TRỌNG:</strong> Dòng Bảo Vệ Dropless là chất bịt kín nano-shield tiên tiến, không phải xà phòng tẩy bẩn. Làm sạch bề mặt kỹ lưỡng trước khi sử dụng là bắt buộc.',
+    how_s1_h:'Làm Sạch',how_s1_p:'Làm sạch bề mặt thật kỹ và đảm bảo khô hoàn toàn.',
+    how_s2_h:'Xịt',how_s2_p:'Phun lớp sương nhẹ, đều. Ít hơn là tốt hơn — lớp mỏng kết dính tốt hơn.',
+    how_s3_h:'Phết Đều',how_s3_p:'Dùng khăn microfiber sạch để phết đều.',
+    how_s4_h:'Đánh Bóng',how_s4_p:'Đánh bóng cho đến khi trong suốt. Tránh nước 30–60 phút. Xong.',
+    buy_eyebrow:'Đặt Hàng Ngay',
+    buy_sub:'Miễn phí vận chuyển cho đơn hàng trên $50 AUD · Giao hàng toàn Úc qua Australia Post & Sendle có tracking.',
+    buy_lbl_cat:'Danh Mục',buy_lbl_prod:'Sản Phẩm',buy_lbl_qty:'Số Lượng',buy_lbl_email:'Email của bạn',
+    buy_submit:'Tiến hành Thanh Toán An Toàn →',
+    buy_note:'Bảo mật bởi Stripe · Mã hóa SSL · Giao hàng trong 1–2 ngày làm việc',
+    buy_fbt:'Thường Mua Cùng Nhau',buy_add_cart:'Thêm Bộ vào Giỏ →',
+    faq_h2:'Câu Hỏi Thường Gặp',
+    contact_eyebrow:'Liên Hệ',contact_h2:'Chúng tôi luôn sẵn sàng giúp đỡ.',
+    contact_sub:'Câu hỏi về sản phẩm phù hợp? Muốn giá bán buôn? Liên hệ bất cứ lúc nào.',
+    contact_ships:'Giao hàng toàn Úc',contact_name:'Tên',contact_email:'Email',contact_msg:'Tin nhắn',
+    contact_ph_name:'Tên của bạn',contact_ph_email:'your@email.com',contact_ph_msg:'Chúng tôi có thể giúp gì?',
+    contact_send:'Gửi Tin Nhắn',
+    contact_success:'✅ Tin nhắn của bạn đã sẵn sàng — kiểm tra email client để gửi.',
+    footer_sub:'Bảo vệ kỵ nước chuyên nghiệp.<br>Sản xuất tại Wollongong, NSW, Úc.<br>© 2026 Dropless. Bảo lưu mọi quyền.',
+    footer_products:'Sản Phẩm',footer_contact:'Liên Hệ',footer_safety:'An Toàn & Pháp Lý',
+    footer_all_prods:'Tất Cả Sản Phẩm',footer_buy_now:'Mua Ngay',footer_how:'Hướng Dẫn',footer_send_msg:'Gửi Tin Nhắn',
+    mobnav_home:'Trang Chủ',mobnav_products:'Sản Phẩm',mobnav_buy:'Mua',mobnav_faq:'FAQ',mobnav_contact:'Liên Hệ'
+  };
+  const UI_KO = {
+    nav_products:'제품',nav_how:'사용법',nav_buy:'구매',nav_faq:'FAQ',nav_contact:'문의',nav_buynow:'지금 구매',mob_buynow:'지금 구매',
+    hero_eyebrow:'호주 뉴사우스웨일스 울런공 제조',
+    hero_sub:'모든 표면을 위한 전문 발수 코팅. 한 번 바르면 — 물방울이 맺히고, 얼룩이 미끄러지며, 몇 달 동안 표면이 깨끗합니다.',
+    hero_cta1:'지금 쇼핑 →',hero_cta2:'📋 사용 방법',
+    trust_au:'호주 제조',trust_stripe:'Stripe 보안',trust_ships:'호주 전역 배송',trust_months:'수개월간 보호',
+    hero_order:'지금 주문 →',ships_au:'호주 전역 배송',ships_sub:'Australia Post & Sendle 이용',
+    stat_products:'제품',stat_languages:'언어',stat_made_in:'호주 제조',stat_protection:'1회 도포 보호 기간',
+    duo_eyebrow:'2단계 시스템',duo_h2:'완벽한 듀오',
+    duo_sub:'최대 보호는 최대한의 청결에서 시작됩니다. 당사의 2단계 프로토콜은 전문가 표준입니다.',
+    duo_s1_lbl:'딥 클린',duo_s1_name:'Dropless Prep',
+    duo_s1_desc:'깊은 기름기, 석회 잔여물, 오래된 세제를 제거하여 접착 준비가 된 화학적으로 중립적인 표면을 만듭니다.',
+    duo_s1_tag:'1단계 · 항상 먼저',duo_s2_lbl:'밀봉 & 보호',duo_s2_name:'Dropless Shield',
+    duo_s2_desc:'최대 발수 결합을 위해 표면에 화학적으로 결합합니다. 물방울이 맺힙니다. 얼룩이 미끄러집니다. 몇 달간 지속됩니다.',
+    duo_s2_tag:'2단계 · 한 번만 도포',
+    duo_bundle_title:'욕실 완전 케어 세트 — $49.95',
+    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — 개별 구매 대비 $19.90 절약.',
+    duo_bundle_btn:'세트 구매 — $49.95 AUD →',
+    prods_eyebrow:'제품 라인',prods_h2:'모든 표면을 위한 보호',
+    prods_sub:'전문가급 발수 코팅. 아래에서 제품을 선택하여 귀하의 언어로 사용 지침을 확인하세요.',
+    prods_search:'제품 검색...',
+    cat_all:'전체 제품',cat_bathroom:'🛁 욕실',cat_car:'🚗 자동차',cat_home:'🏠 가정 & 주방',cat_soft:'🛋 소프트 표면',cat_tech:'📱 화면',
+    how_eyebrow:'범용 방법',how_h2:'네 단계. 지속적인 보호.',
+    how_warn:'<strong>중요:</strong> Dropless 보호 라인은 고급 나노 실드 실란트로, 오염 제거 비누가 아닙니다. 사용 전 표면을 철저히 사전 세척하는 것이 반드시 필요합니다.',
+    how_s1_h:'세척',how_s1_p:'표면을 완전히 세척하고 건조시키세요.',
+    how_s2_h:'스프레이',how_s2_p:'가볍고 균일한 미스트를 도포하세요. 적게 바를수록 좋습니다 — 얇은 층이 더 잘 결합됩니다.',
+    how_s3_h:'펴바르기',how_s3_p:'깨끗한 마이크로파이버 천으로 균일하게 펴바르세요.',
+    how_s4_h:'버핑',how_s4_p:'투명해질 때까지 버핑하세요. 30–60분간 물을 피하세요. 완료.',
+    buy_eyebrow:'지금 주문',
+    buy_sub:'$50 AUD 이상 주문 시 무료 배송 · Australia Post & Sendle을 통해 호주 전역 추적 배송.',
+    buy_lbl_cat:'카테고리',buy_lbl_prod:'제품',buy_lbl_qty:'수량',buy_lbl_email:'이메일',
+    buy_submit:'안전 결제 진행 →',
+    buy_note:'Stripe 보안 · SSL 암호화 · 1–2 영업일 내 배송',
+    buy_fbt:'자주 함께 구매',buy_add_cart:'세트 장바구니 담기 →',
+    faq_h2:'자주 묻는 질문',
+    contact_eyebrow:'문의하기',contact_h2:'언제든지 도와드립니다.',
+    contact_sub:'어떤 제품이 표면에 맞는지 궁금하신가요? 도매가를 원하시나요? 언제든지 연락주세요.',
+    contact_ships:'호주 전역 배송',contact_name:'이름',contact_email:'이메일',contact_msg:'메시지',
+    contact_ph_name:'이름을 입력하세요',contact_ph_email:'your@email.com',contact_ph_msg:'어떻게 도와드릴까요?',
+    contact_send:'메시지 보내기',
+    contact_success:'✅ 메시지가 준비되었습니다 — 이메일 클라이언트를 확인하여 보내세요.',
+    footer_sub:'전문 발수 보호.<br>호주 울런공 NSW 제조.<br>© 2026 Dropless. 모든 권리 보유.',
+    footer_products:'제품',footer_contact:'문의',footer_safety:'안전 & 법적 사항',
+    footer_all_prods:'전체 제품',footer_buy_now:'지금 구매',footer_how:'사용법',footer_send_msg:'메시지 보내기',
+    mobnav_home:'홈',mobnav_products:'제품',mobnav_buy:'구매',mobnav_faq:'FAQ',mobnav_contact:'문의'
+  };
+  const UI_PT = {
+    nav_products:'Produtos',nav_how:'Instruções',nav_buy:'Comprar',nav_faq:'FAQ',nav_contact:'Contato',nav_buynow:'Comprar Agora',mob_buynow:'Comprar Agora',
+    hero_eyebrow:'Fabricado em Wollongong, NSW · Austrália',
+    hero_sub:'Revestimentos hidrofóbicos profissionais para cada superfície. Aplique uma vez — a água forma gotas, manchas deslizam, superfícies ficam limpas por meses.',
+    hero_cta1:'Comprar Agora →',hero_cta2:'📋 Como Usar',
+    trust_au:'Fabricado na Austrália',trust_stripe:'Pagamento Stripe',trust_ships:'Entrega em toda a AU',trust_months:'Meses de Proteção',
+    hero_order:'Pedir Agora →',ships_au:'Entrega em toda a AU',ships_sub:'via Australia Post & Sendle',
+    stat_products:'Produtos',stat_languages:'Idiomas',stat_made_in:'Fabricado na Austrália',stat_protection:'Proteção por Aplicação',
+    duo_eyebrow:'O Sistema de 2 Etapas',duo_h2:'A Dupla Perfeita',
+    duo_sub:'A máxima proteção começa com a máxima limpeza. Nosso protocolo de duas etapas é o padrão profissional.',
+    duo_s1_lbl:'LIMPEZA PROFUNDA',duo_s1_name:'Dropless Prep',
+    duo_s1_desc:'Elimina gordura profunda, resíduos de cal e limpadores antigos para expor uma base quimicamente neutra — pronta para a adesão.',
+    duo_s1_tag:'Etapa 1 · Sempre Primeiro',duo_s2_lbl:'SELAR & PROTEGER',duo_s2_name:'Dropless Shield',
+    duo_s2_desc:'Liga-se quimicamente à superfície para máxima reticulação hidrofóbica. A água forma gotas. As manchas deslizam. Dura meses.',
+    duo_s2_tag:'Etapa 2 · Aplique Uma Vez',
+    duo_bundle_title:'Kit Completo para o Banheiro — $49.95',
+    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — economize $19.90 em relação à compra separada.',
+    duo_bundle_btn:'Comprar o Kit — $49.95 AUD →',
+    prods_eyebrow:'Linha de Produtos',prods_h2:'Proteção para Cada Superfície',
+    prods_sub:'Revestimentos hidrofóbicos de nível profissional. Selecione um produto para ver as instruções no seu idioma.',
+    prods_search:'Pesquisar produtos...',
+    cat_all:'Todos os Produtos',cat_bathroom:'🛁 Banheiro',cat_car:'🚗 Carro & Auto',cat_home:'🏠 Casa & Cozinha',cat_soft:'🛋 Superfícies Macias',cat_tech:'📱 Telas',
+    how_eyebrow:'Método Universal',how_h2:'Quatro Etapas. Proteção Duradoura.',
+    how_warn:'<strong>IMPORTANTE:</strong> A Linha Protetora Dropless é composta por selantes nano-shield avançados, não por sabões removedores de sujeira. A pré-limpeza completa da superfície é estritamente obrigatória antes da aplicação.',
+    how_s1_h:'Limpar',how_s1_p:'Limpe a superfície minuciosamente e certifique-se de que está completamente seca.',
+    how_s2_h:'Borrifar',how_s2_p:'Aplique uma névoa leve e uniforme. Menos é mais — uma camada fina adere melhor.',
+    how_s3_h:'Espalhar',how_s3_p:'Use um pano de microfibra limpo para espalhar uniformemente.',
+    how_s4_h:'Polir',how_s4_p:'Polir até ficar transparente. Evite água por 30–60 min. Pronto.',
+    buy_eyebrow:'Pedir Agora',
+    buy_sub:'Frete grátis em pedidos acima de $50 AUD · Entrega em toda a Austrália via Australia Post & Sendle com rastreamento.',
+    buy_lbl_cat:'Categoria',buy_lbl_prod:'Produto',buy_lbl_qty:'Quantidade',buy_lbl_email:'Seu Email',
+    buy_submit:'Ir para Pagamento Seguro →',
+    buy_note:'Protegido por Stripe · Criptografado SSL · Envio em 1–2 dias úteis',
+    buy_fbt:'Comprados Frequentemente Juntos',buy_add_cart:'Adicionar Kit ao Carrinho →',
+    faq_h2:'Perguntas Frequentes',
+    contact_eyebrow:'Entre em Contato',contact_h2:'Estamos aqui para ajudar.',
+    contact_sub:'Dúvidas sobre qual produto serve para sua superfície? Quer preço no atacado? Entre em contato a qualquer momento.',
+    contact_ships:'Entrega em toda a Austrália',contact_name:'Nome',contact_email:'Email',contact_msg:'Mensagem',
+    contact_ph_name:'Seu nome',contact_ph_email:'seu@email.com',contact_ph_msg:'Como podemos ajudar?',
+    contact_send:'Enviar Mensagem',
+    contact_success:'✅ Sua mensagem está pronta — verifique seu cliente de email para enviá-la.',
+    footer_sub:'Proteção hidrofóbica profissional.<br>Fabricado em Wollongong, NSW, Austrália.<br>© 2026 Dropless. Todos os direitos reservados.',
+    footer_products:'Produtos',footer_contact:'Contato',footer_safety:'Segurança e Legal',
+    footer_all_prods:'Todos os Produtos',footer_buy_now:'Comprar Agora',footer_how:'Instruções',footer_send_msg:'Enviar Mensagem',
+    mobnav_home:'Início',mobnav_products:'Produtos',mobnav_buy:'Comprar',mobnav_faq:'FAQ',mobnav_contact:'Contato'
+  };
+  // Apply UI patches
+  const _UP = {tl:UI_TL, vi:UI_VI, ko:UI_KO, pt:UI_PT};
+  Object.keys(_UP).forEach(lang => {
+    Object.keys(_UP[lang]).forEach(k => { if(UI[k]) UI[k][lang] = _UP[lang][k]; });
+  });
+
+  // T object patches
+  const _TP = {
+    imp_label:{tl:'MAHALAGA',vi:'QUAN TRỌNG',ko:'중요',pt:'IMPORTANTE'},
+    crit_label:{tl:'KRITIKAL',vi:'CỰC KỲ QUAN TRỌNG',ko:'중요 경고',pt:'CRÍTICO'},
+    eff_label:{tl:'NORMAL NA EPEKTO',vi:'HIỆU ỨNG BÌNH THƯỜNG',ko:'정상 효과',pt:'EFEITO NORMAL'},
+    dir_label:{tl:'MGA DIREKSYON',vi:'HƯỚNG DẪN',ko:'사용 지침',pt:'INSTRUÇÕES'},
+    imp_text:{
+      tl:'Ito ay HINDI isang produktong panglinig. Linisin muna ang ibabaw at tiyaking ganap na tuyo.',
+      vi:'Đây KHÔNG phải sản phẩm tẩy rửa. Hãy làm sạch bề mặt trước và đảm bảo khô hoàn toàn.',
+      ko:'이것은 세정 제품이 아닙니다. 먼저 표면을 닦고 완전히 건조시키세요.',
+      pt:'Este NÃO é um produto de limpeza. Limpe a superfície primeiro e certifique-se de que está completamente seca.'
+    },
+    crit_text:{
+      tl:'HUWAG gamitin ang parehong tela na ginamit sa paglilinis. Ang mga tela sa paglilinis ay naglalaman ng natitirang sangkap na nakakasagabal sa patong.',
+      vi:'KHÔNG dùng cùng một khăn đã dùng để lau. Khăn lau có cặn bẩn sẽ cản trở lớp phủ.',
+      ko:'청소에 사용한 천을 절대 사용하지 마세요. 청소 천의 잔여물이 코팅을 방해합니다.',
+      pt:'NÃO use o mesmo pano utilizado para a limpeza. Os panos de limpeza contêm resíduos que interferem no revestimento.'
+    },
+    show_inst:{tl:'Ipakita ang Mga Tagubilin ▾',vi:'Xem Hướng Dẫn ▾',ko:'지침 보기 ▾',pt:'Ver Instruções ▾'},
+    hide_inst:{tl:'Itago ang Mga Tagubilin ▴',vi:'Ẩn Hướng Dẫn ▴',ko:'지침 숨기기 ▴',pt:'Ocultar Instruções ▴'},
+    buy_now:{tl:'Bumili Ngayon',vi:'Mua Ngay',ko:'지금 구매',pt:'Comprar Agora'}
+  };
+  Object.keys(_TP).forEach(k => { if(T[k]) Object.assign(T[k], _TP[k]); });
+
+  // Shared step sets
+  const _S = {
+    tl:['Linisin at tuuyin ang ibabaw.','Mag-spray ng magaan at pantay na layer.','Ikalat gamit ang malinis na microfiber cloth.','I-buff hanggang malinaw.','Iwasan ang tubig sa loob ng 30 minuto.'],
+    vi:['Làm sạch và lau khô bề mặt.','Xịt một lớp nhẹ, đều.','Phết đều bằng khăn microfiber sạch.','Đánh bóng cho đến khi trong suốt.','Tránh nước trong 30 phút.'],
+    ko:['표면을 깨끗이 닦고 건조시키세요.','가볍고 균일한 층으로 스프레이하세요.','깨끗한 마이크로파이버 천으로 펴바르세요.','투명해질 때까지 버핑하세요.','30분간 물을 피하세요.'],
+    pt:['Limpe e seque a superfície.','Borrife uma camada leve e uniforme.','Espalhe com um pano de microfibra limpo.','Polir até ficar transparente.','Evite água por 30 minutos.']
+  };
+  const _E = {
+    tl:'Sa unang ilang minuto, maaari kang makapansin ng mahinang mga guhit o hindi pantay na mga pagmumuni-muni. Ito ay normal — ang patong ay magiging antas habang natutuyo. Ang tubig ay magiging bola at mabilis na maglalabas sa mga natratonong ibabaw.',
+    vi:'Trong những phút đầu, bạn có thể thấy các vệt mờ hoặc phản chiếu không đều. Đây là điều bình thường — lớp phủ sẽ phẳng khi khô. Nước sẽ đọng thành giọt trên các bề mặt đã xử lý.',
+    ko:'처음 몇 분간 희미한 줄무늬나 고르지 않은 반사가 보일 수 있습니다. 이는 정상입니다 — 코팅이 건조되면서 평평해집니다. 처리된 표면에서 물이 구슬처럼 맺혀 굴러 내립니다.',
+    pt:'Nos primeiros minutos, você pode notar leves estrias ou reflexos irregulares. Isso é normal — o revestimento se nivelará ao secar. A água se formará em gotas e deslizará sobre as superfícies tratadas.'
+  };
+
+  // Product patches: [id, surfaces_patch, inst_patch_by_lang]
+  const _PRODS = {
+    'multi-surface':{
+      surf:{tl:'Salamin · Tile · Stainless Steel',vi:'Kính · Gương · Gạch · Thép không gỉ',ko:'유리 · 거울 · 타일 · 스테인리스',pt:'Vidro · Espelho · Azulejo · Aço Inox'},
+      inst:{tl:{eff:_E.tl,steps:_S.tl},vi:{eff:_E.vi,steps:_S.vi},ko:{eff:_E.ko,steps:_S.ko},pt:{eff:_E.pt,steps:_S.pt}}
+    },
+    'glass-pro':{
+      surf:{tl:'Salaming Shower · Bintana · Salamin',vi:'Kính phòng tắm · Cửa sổ · Gương',ko:'샤워 유리 · 창문 · 거울',pt:'Vidro de duche · Janelas · Espelhos'},
+      inst:{
+        tl:{eff:'Sa unang ilang minuto, maaari kang makapansin ng mahinang mga guhit. Ito ay normal. Ang mga patak ng tubig ay mabilis na mawawala nang walang marka.',steps:['Linisin at tuuyin ang salamin.','Mag-apply ng magaan na mist.','Ikalat gamit ang malinis na microfiber.','I-buff para sa malinaw at walang guhit na resulta.','Iwasan ang tubig sa loob ng 30 minuto.']},
+        vi:{eff:'Trong những phút đầu có thể thấy vệt mờ. Điều này bình thường. Các giọt nước sẽ trượt đi mà không để lại dấu vết.',steps:['Làm sạch và lau khô kính.','Xịt một lớp sương nhẹ.','Phết đều bằng khăn microfiber sạch.','Đánh bóng cho kết quả trong suốt, không có vệt.','Tránh nước trong 30 phút.']},
+        ko:{eff:'처음 몇 분간 희미한 줄무늬가 보일 수 있습니다. 정상입니다. 물방울이 흔적 없이 미끄러집니다.',steps:['유리를 깨끗이 닦고 건조시키세요.','가볍게 미스트를 뿌리세요.','깨끗한 마이크로파이버로 펴바르세요.','줄 없이 투명해질 때까지 버핑하세요.','30분간 물을 피하세요.']},
+        pt:{eff:'Nos primeiros minutos podem aparecer leves estrias. É normal. As gotas de água deslizarão sem deixar marcas.',steps:['Limpe e seque o vidro.','Aplique uma névoa leve.','Espalhe com microfibra limpa.','Polir para acabamento claro e sem riscos.','Evite água por 30 minutos.']}
+      }
+    },
+    'ceramic':{
+      surf:{tl:'Ceramic Tiles · Sink · Shower Walls',vi:'Gạch gốm sứ · Bồn rửa · Tường phòng tắm',ko:'세라믹 타일 · 세면대 · 샤워 벽',pt:'Azulejos Cerâmicos · Pias · Paredes de Duche'},
+      inst:{tl:{eff:'Sa unang ilang minuto, ang ibabaw ay maaaring mukhang bahagyang maulap. Ito ay normal.',steps:_S.tl},vi:{eff:'Trong những phút đầu, bề mặt có thể hơi mờ. Điều này bình thường.',steps:_S.vi},ko:{eff:'처음 몇 분간 표면이 약간 뿌옇게 보일 수 있습니다. 정상입니다.',steps:_S.ko},pt:{eff:'Nos primeiros minutos a superfície pode parecer levemente turva. É normal.',steps:_S.pt}}
+    },
+    'interior-glass':{
+      surf:{tl:'Car Interior Glass · Rear Windows',vi:'Kính nội thất xe · Cửa sổ sau',ko:'차량 내부 유리 · 후면 유리',pt:'Vidro Interior do Carro · Janelas Traseiras'},
+      inst:{
+        tl:{eff:'Sa unang ilang minuto, maaaring mapansin ang bahagyang ambon. Ito ay normal. Pagkatapos maging mature, ang salamin ay lalabanan ang condensasyon.',steps:['Linisin ang interior na salamin at tuuyin.','Mag-apply ng magaan na mist.','Ikalat gamit ang malinis na microfiber.','I-buff nang lubusan hanggang malinaw.','Iwasan ang kahalumigmigan sa loob ng 30 minuto.']},
+        vi:{eff:'Trong những phút đầu có thể thấy một chút mờ. Điều này bình thường. Sau khi khô, kính sẽ chống sương.',steps:['Làm sạch và lau khô kính nội thất.','Xịt một lớp sương nhẹ.','Phết đều bằng microfiber sạch.','Đánh bóng hoàn toàn cho đến khi trong suốt.','Tránh độ ẩm trong 30 phút.']},
+        ko:{eff:'처음 몇 분간 약간의 안개가 보일 수 있습니다. 정상입니다. 건조 후 유리가 결로에 저항합니다.',steps:['차량 내부 유리를 깨끗이 닦고 건조하세요.','가볍게 미스트를 뿌리세요.','깨끗한 마이크로파이버로 펴바르세요.','완전히 투명해질 때까지 버핑하세요.','30분간 습기를 피하세요.']},
+        pt:{eff:'Nos primeiros minutos pode aparecer leve névoa. É normal. Após curar, o vidro resistirá à condensação.',steps:['Limpe e seque o vidro interior.','Aplique névoa leve.','Espalhe com microfibra.','Polir completamente.','Evite humidade 30 minutos.']}
+      }
+    },
+    'rainxtreme':{
+      surf:{tl:'Windshield · Exterior Car Glass · Motorbike Visors',vi:'Kính chắn gió · Kính ngoại thất xe · Kính mũ bảo hiểm',ko:'앞유리 · 차량 외부 유리 · 오토바이 바이저',pt:'Para-brisas · Vidro Exterior do Carro · Viseiras de Moto'},
+      inst:{
+        tl:{eff:'Sa unang ilang minuto, maaaring mapansin ang mga guhit o ambon. Ito ay normal. Sa bilis na higit sa 70 km/h, ang ulan ay lalabas nang walang mga wiper.',steps:['Linisin at tuuyin ang windshield.','Mag-spray ng manipis at pantay na layer.','Ikalat gamit ang malinis na microfiber.','I-buff nang lubusan hanggang walang guhit.','Iwasan ang tubig sa loob ng 1 oras.']},
+        vi:{eff:'Trong những phút đầu có thể thấy vệt hoặc mờ. Điều này bình thường. Trên 70 km/h, mưa sẽ trượt mà không cần gạt nước.',steps:['Làm sạch và lau khô kính chắn gió.','Xịt một lớp mỏng, đều.','Phết đều bằng microfiber sạch.','Đánh bóng hoàn toàn không có vệt.','Tránh nước trong 1 giờ.']},
+        ko:{eff:'처음 몇 분간 줄무늬나 안개가 보일 수 있습니다. 정상입니다. 70km/h 이상에서 비가 와이퍼 없이 제거됩니다.',steps:['앞유리를 깨끗이 닦고 건조하세요.','얇고 균일한 층으로 스프레이하세요.','깨끗한 마이크로파이버로 펴바르세요.','줄 없이 완전히 버핑하세요.','1시간 동안 물을 피하세요.']},
+        pt:{eff:'Nos primeiros minutos podem aparecer estrias ou névoa. É normal. Acima de 70 km/h, a chuva deslizará sem limpadores.',steps:['Limpe e seque o para-brisas.','Aplique camada fina e uniforme.','Espalhe com microfibra.','Polir sem deixar riscos.','Evite água por 1 hora.']}
+      }
+    },
+    'plastic-screen':{
+      surf:{tl:'Phone · Tablet · TV Screens · Plastic Panels',vi:'Điện thoại · Máy tính bảng · Màn hình TV',ko:'폰 · 태블릿 · TV 화면 · 플라스틱',pt:'Ecrãs · Plásticos · TV · Tablets'},
+      inst:{tl:{eff:'Sa unang ilang minuto, maaaring mapansin ang bahagyang pag-aalburoto. Ito ay normal. Pagkatapos maging mature, ang ibabaw ay lalabanan ang mga fingerprint.',steps:['Linisin at tuuyin ang ibabaw.','Mag-apply ng napakagaan na mist.','Ikalat nang marahil gamit ang malinis na microfiber.','I-buff hanggang malinaw.','Iwasan ang kahalumigmigan sa loob ng 30 minuto.']},vi:{eff:'Trong những phút đầu có thể thấy hơi mờ nhẹ. Điều này bình thường. Sau khi khô, chống dấu ngón tay.',steps:['Làm sạch và lau khô bề mặt.','Xịt lớp sương rất nhẹ.','Phết nhẹ nhàng bằng microfiber.','Đánh bóng.','Tránh độ ẩm trong 30 phút.']},ko:{eff:'처음 몇 분간 약간 뿌옇게 보일 수 있습니다. 정상입니다. 건조 후 지문에 저항합니다.',steps:['표면을 닦고 건조하세요.','아주 가볍게 미스트를 뿌리세요.','마이크로파이버로 조심스럽게 펴바르세요.','버핑하세요.','30분간 습기를 피하세요.']},pt:{eff:'Nos primeiros minutos pode aparecer leve névoa. É normal. Após curar, resiste a impressões digitais.',steps:['Limpe e seque a superfície.','Aplique névoa muito leve.','Espalhe suavemente com microfibra.','Polir.','Evite humidade 30 minutos.']}}
+    },
+    'toilet':{
+      surf:{tl:'Toilet Bowl',vi:'Bồn cầu vệ sinh',ko:'변기',pt:'Vaso Sanitário'},
+      inst:{tl:{eff:'Sa unang ilang minuto, ang mangkok ay maaaring mukhang bahagyang iba. Ito ay normal. Pagkatapos maging mature, ang mga basura ay hindi makakapit.',steps:['Linisin ang toilet bowl nang lubusan at tuuyin.','Mag-apply ng magaan na spray sa loob ng mangkok.','Ikalat gamit ang malinis na applicator cloth.','Hayaang mag-cure ng 10 minuto.','Iwasan ang pag-flush sa loob ng 30 minuto.']},vi:{eff:'Sau khi dùng, bồn cầu có thể trông hơi khác trong vài phút. Điều này bình thường. Sau khi khô, chất thải sẽ không bám.',steps:['Làm sạch bồn cầu và lau khô.','Xịt nhẹ vào trong bồn.','Phết bằng khăn applicator sạch.','Để khô 10 phút.','Tránh xả nước trong 30 phút.']},ko:{eff:'적용 후 변기가 몇 분간 약간 달라 보일 수 있습니다. 정상입니다. 건조 후 오물이 달라붙지 않습니다.',steps:['변기를 깨끗이 닦고 건조하세요.','변기 내부에 가볍게 스프레이하세요.','깨끗한 어플리케이터 천으로 펴바르세요.','10분간 경화시키세요.','적용 후 30분간 물을 내리지 마세요.']},pt:{eff:'Após a aplicação, o vaso pode parecer ligeiramente diferente por alguns minutos. É normal. Após curar, os resíduos não aderirão.',steps:['Limpe o vaso sanitário e seque.','Aplique spray leve no interior.','Espalhe com pano applicador limpo.','Deixe curar 10 minutos.','Evite dar descarga por 30 minutos.']}}
+    },
+    'bathroom':{
+      surf:{tl:'Bathroom Tiles · Shower Glass · Bath · Vanity',vi:'Gạch phòng tắm · Kính đứng tắm · Bồn tắm',ko:'욕실 타일 · 샤워 유리 · 욕조',pt:'Azulejos do Banheiro · Vidro de Duche · Banheira'},
+      inst:{tl:{eff:'Sa unang ilang minuto, ang mga ibabaw ay maaaring mukhang bahagyang basa. Ito ay normal.',steps:['Linisin at tuuyin ang lahat ng ibabaw ng banyo.','Mag-spray ng magaan at pantay na layer.','Ikalat gamit ang malinis na microfiber.','I-buff hanggang malinaw ang ibabaw.','Iwasan ang tubig sa loob ng 30 minuto.']},vi:{eff:'Trong những phút đầu, các bề mặt có thể trông hơi ẩm. Điều này bình thường.',steps:['Làm sạch và lau khô tất cả bề mặt phòng tắm.','Xịt một lớp nhẹ, đều.','Phết đều bằng microfiber sạch.','Đánh bóng cho đến khi trong suốt.','Tránh nước trong 30 phút.']},ko:{eff:'처음 몇 분간 표면이 약간 젖어 보일 수 있습니다. 정상입니다.',steps:['모든 욕실 표면을 닦고 건조하세요.','가볍고 균일한 층으로 스프레이하세요.','깨끗한 마이크로파이버로 펴바르세요.','투명해질 때까지 버핑하세요.','30분간 물을 피하세요.']},pt:{eff:'Nos primeiros minutos as superfícies podem parecer levemente úmidas. É normal.',steps:['Limpe e seque todas as superfícies do banheiro.','Borrife uma camada leve.','Espalhe com microfibra.','Polir até transparência.','Evite água por 30 minutos.']}}
+    },
+    'stone-bench':{
+      surf:{tl:'Marble · Granite · Quartz · Kitchen Benchtops',vi:'Đá cẩm thạch · Đá hoa cương · Thạch anh · Mặt bàn bếp',ko:'대리석 · 화강암 · 석영 · 주방 카운터',pt:'Mármore · Granito · Quartzo · Bancadas de Cozinha'},
+      inst:{tl:{eff:'Sa unang ilang minuto, maaaring mapansin ang mahinang mga marka. Ito ay normal.',steps:_S.tl},vi:{eff:'Trong những phút đầu có thể thấy vệt nhẹ. Điều này bình thường.',steps:_S.vi},ko:{eff:'처음 몇 분간 희미한 흔적이 보일 수 있습니다. 정상입니다.',steps:_S.ko},pt:{eff:'Nos primeiros minutos podem aparecer leves marcas. É normal.',steps:_S.pt}}
+    },
+    'metal-shine':{
+      surf:{tl:'Stainless Steel · Aluminium · Brass · Chrome',vi:'Thép không gỉ · Nhôm · Đồng thau · Chrome',ko:'스테인리스 · 알루미늄 · 황동 · 크롬',pt:'Aço Inox · Alumínio · Latão · Cromo'},
+      inst:{tl:{eff:'Sa unang ilang minuto, maaaring mapansin ang bahagyang ambon. Ito ay normal. Pagkatapos maging mature, ang metal ay mas maliwanag at lalabanan ang mga fingerprint.',steps:['Linisin at tuuyin ang metal na ibabaw.','Mag-spray ng magaan at pantay na layer.','Ikalat gamit ang malinis na microfiber.','I-buff nang lubusan upang ma-activate ang ningning.','Iwasan ang tubig sa loob ng 30 minuto.']},vi:{eff:'Trong những phút đầu có thể thấy hơi mờ. Điều này bình thường. Sau khi khô, kim loại sáng bóng hơn và chống dấu ngón tay.',steps:['Làm sạch và lau khô bề mặt kim loại.','Xịt lớp nhẹ, đều.','Phết bằng microfiber sạch.','Đánh bóng để kích hoạt độ sáng.','Tránh nước trong 30 phút.']},ko:{eff:'처음 몇 분간 약간의 안개가 보일 수 있습니다. 정상입니다. 건조 후 금속이 더 빛나고 지문에 저항합니다.',steps:['금속 표면을 닦고 건조하세요.','가볍고 균일한 층으로 스프레이하세요.','마이크로파이버로 펴바르세요.','광택을 활성화하기 위해 버핑하세요.','30분간 물을 피하세요.']},pt:{eff:'Nos primeiros minutos pode aparecer leve névoa. É normal. Após curar, o metal ficará mais brilhante e resistirá a impressões digitais.',steps:['Limpe e seque a superfície metálica.','Borrife camada leve.','Espalhe com microfibra.','Polir para ativar o brilho.','Evite água por 30 minutos.']}}
+    },
+    'leather':{
+      surf:{tl:'Leather Seats · Vinyl · Car Interior · Bags',vi:'Ghế da · Vinyl · Nội thất xe · Túi xách',ko:'가죽 시트 · 비닐 · 차량 내장 · 가방',pt:'Assentos de Couro · Vinil · Interior do Carro · Bolsas'},
+      inst:{tl:{eff:'Sa unang ilang minuto, maaaring mapansin ang bahagyang pagdidilim. Ito ay normal.',steps:['Linisin at tuuyin ang ibabaw.','Mag-spray ng magaan at pantay na layer.','Ikalat nang marahil gamit ang malinis na microfiber.','Hayaan itong maging matatag ng 5 minuto.','I-buff nang bahagya para sa natural na hitsura.','Iwasan ang kahalumigmigan sa loob ng 30 minuto.']},vi:{eff:'Trong những phút đầu có thể thấy hơi tối. Điều này bình thường.',steps:['Làm sạch và lau khô bề mặt.','Xịt lớp nhẹ, đều.','Phết nhẹ nhàng bằng microfiber.','Để ổn định 5 phút.','Đánh bóng nhẹ.','Tránh độ ẩm 30 phút.']},ko:{eff:'처음 몇 분간 약간 어두워질 수 있습니다. 정상입니다.',steps:['표면을 닦고 건조하세요.','가볍고 균일한 층으로 스프레이하세요.','마이크로파이버로 조심스럽게 펴바르세요.','5분간 안정시키세요.','가볍게 버핑하세요.','30분간 습기를 피하세요.']},pt:{eff:'Nos primeiros minutos pode aparecer leve escurecimento. É normal.',steps:['Limpe e seque a superfície.','Borrife camada leve.','Espalhe suavemente com microfibra.','Deixe repousar 5 minutos.','Polir levemente.','Evite humidade 30 minutos.']}}
+    },
+    'fabric':{
+      surf:{tl:'Sofas · Cushions · Car Seats · Outdoor Fabric',vi:'Ghế sofa · Đệm · Ghế ô tô · Vải ngoài trời',ko:'소파 · 쿠션 · 자동차 시트 · 야외 패브릭',pt:'Sofás · Almofadas · Assentos de Carro · Tecidos Externos'},
+      inst:{tl:{eff:'Ang tela ay maaaring mukhang bahagyang mas madilim sa loob ng ilang minuto. Ito ay normal. Pagkatapos maging mature, ang mga likido ay magiging bola sa ibabaw.',steps:['Linisin at tuuyin ang ibabaw ng tela.','Mag-spray ng magaan na mist mula 15–20 cm na layo.','Tiyaking kumpleto ang coverage nang hindi binabasa ang tela.','Hayaang matuyo ng 10–15 minuto.','Para sa pinakamataas na proteksyon, mag-apply ng pangalawang magaan na coat.','Iwasan ang kahalumigmigan sa loob ng 1 oras.']},vi:{eff:'Vải có thể hơi tối màu trong vài phút. Điều này bình thường. Sau khi khô, chất lỏng đọng trên bề mặt.',steps:['Làm sạch và lau khô vải.','Xịt từ 15-20 cm mà không làm ướt.','Phủ đều toàn bộ bề mặt.','Để khô 10-15 phút.','Để bảo vệ tối đa, thêm lớp thứ hai.','Tránh độ ẩm 1 giờ.']},ko:{eff:'패브릭이 몇 분간 약간 어두워질 수 있습니다. 정상입니다. 건조 후 액체가 흡수되지 않고 구슬처럼 맺힙니다.',steps:['패브릭을 닦고 건조하세요.','15-20cm 거리에서 가볍게 스프레이하세요.','패브릭을 흠뻑 적시지 않고 전체를 덮으세요.','10-15분 건조하세요.','최대 보호를 위해 두 번째 얇은 층을 도포하세요.','1시간 동안 습기를 피하세요.']},pt:{eff:'O tecido pode parecer ligeiramente mais escuro por alguns minutos. É normal. Após curar, os líquidos formarão gotas na superfície.',steps:['Limpe e seque o tecido.','Borrife de 15-20 cm sem encharcar.','Cubra toda a superfície.','Deixe secar 10-15 minutos.','Para máxima proteção, aplique segunda camada.','Evite humidade 1 hora.']}}
+    },
+    'odour-refresher':{
+      surf:{tl:'Car Fabric · Home Upholstery · Ambient Air',vi:'Vải ô tô · Nội thất nhà · Không khí xung quanh',ko:'자동차 패브릭 · 가정 실내 · 실내 공기',pt:'Tecido do Carro · Estofado Doméstico · Ar Ambiente'},
+      inst:{
+        tl:{eff:'Sa unang ilang minuto, isang makapangyarihang dual-action na zinc at cyclodextrin web ang nagkakapsule ng mga molekula ng amoy. Ang masamang amoy ay mabilis na mana-neutralize.',warn:'Ito ay HINDI isang produktong panglinig. I-vacuum at tuuyin ang lubhang marumihang tela bago mag-apply. HUWAG gumamit ng basang brush o marumihang tela.',steps:['I-vacuum at tuuyin ang target na tela o karpet.','Kalugin nang mabuti at mag-spray ng magaan na mist mula 15–20 cm.','HUWAG basain ang tela hanggang sa mga panloob na unan.','Hayaan ang treated na lugar na matuyo sa hangin ng 12–24 oras.','Para sa ambient air, pumpahin ng 3–4 mahinang bursts sa cabin.']},
+        vi:{eff:'Trong những phút đầu, mạng kép zinc và cyclodextrin mạnh mẽ bao bọc các phân tử mùi. Mùi hôi sẽ nhanh chóng được trung hòa.',warn:'Đây KHÔNG phải sản phẩm tẩy rửa. Hút bụi và làm khô vải bẩn nặng trước khi sử dụng. KHÔNG dùng bàn chải ướt hoặc khăn bẩn.',steps:['Hút bụi và làm khô hoàn toàn vải hoặc thảm.','Lắc đều và xịt lớp sương nhẹ từ 15-20 cm.','KHÔNG làm ướt vải đến đệm bên trong.','Để khu vực được xử lý khô hoàn toàn trong 12-24 giờ.','Để làm mới không khí, bơm 3-4 lần xịt nhẹ vào cabin.']},
+        ko:{eff:'처음 몇 분간 아연과 사이클로덱스트린의 강력한 이중 작용 망이 냄새 분자를 캡슐화합니다. 냄새가 빠르게 중화됩니다.',warn:'이것은 세정 제품이 아닙니다. 심하게 오염된 패브릭을 세탁하고 청소기로 청소하세요. 젖은 브러시나 더러운 천을 사용하지 마세요.',steps:['대상 직물이나 카펫을 청소기로 청소하고 건조하세요.','잘 흔들고 15-20cm 거리에서 가볍게 뿌리세요.','패브릭을 내부 쿠션까지 흠뻑 적시지 마세요.','처리 부위를 12-24시간 동안 자연 건조시키세요.','실내 공기 청정을 위해 3-4번 가볍게 뿌리세요.']},
+        pt:{eff:'Nos primeiros minutos, uma poderosa rede de dupla ação de zinco e ciclodextrina encapsula as moléculas de odor.',warn:'Este produto NÃO é um limpador. Aspire e seque tecidos muito sujos antes. NÃO use escovas molhadas ou panos sujos.',steps:['Aspire e seque bem o tecido ou tapete.','Agite bem e borrife névoa leve de 15-20 cm.','NÃO encharque os tecidos até os almofadões.','Deixe a área tratada secar ao ar por 12-24 horas.','Para refrescar o ar ambiente, aplique 3-4 jatos finos no habitáculo.']}
+      }
+    },
+    'hybrid-ultra':{
+      surf:{tl:'Lahat ng Matigas na Ibabaw · Pangmatagalang Industriyal na Proteksyon',vi:'Tất cả bề mặt cứng · Bảo vệ công nghiệp lâu dài',ko:'모든 단단한 표면 · 장기 산업 보호',pt:'Todas as Superfícies Duras · Proteção Industrial de Longa Duração'},
+      inst:{tl:{eff:'Sa unang ilang minuto, ang hybrid na pelikula ay maaaring mukhang bahagyang maliwanag. Ito ay normal. Pagkatapos maging mature, ang patong ay nagbibigay ng ultra-matagal na tibay.',steps:['Linisin at tuuyin ang ibabaw nang lubusan.','Mag-spray ng manipis at pantay na layer.','Ikalat gamit ang malinis na microfiber.','Hayaan ang 5–10 minuto para maging stable ang hybrid matrix.','I-buff nang bahagya para sa maayos na hitsura.','Iwasan ang tubig sa loob ng 1 oras.']},vi:{eff:'Trong những phút đầu, màng hybrid có thể hơi bóng. Điều này bình thường. Sau khi khô, lớp phủ cung cấp độ bền siêu lâu dài.',steps:['Làm sạch và lau khô bề mặt hoàn toàn.','Xịt lớp mỏng, đều.','Phết bằng microfiber sạch.','Để 5-10 phút cho ma trận hybrid ổn định.','Đánh bóng nhẹ.','Tránh nước 1 giờ.']},ko:{eff:'처음 몇 분간 하이브리드 필름이 약간 빛날 수 있습니다. 정상입니다. 건조 후 초장기 내구성과 강력한 발수성을 제공합니다.',steps:['표면을 완전히 닦고 건조하세요.','얇고 균일한 층으로 스프레이하세요.','마이크로파이버로 펴바르세요.','하이브리드 매트릭스가 안정되도록 5-10분 기다리세요.','가볍게 버핑하세요.','1시간 동안 물을 피하세요.']},pt:{eff:'Nos primeiros minutos o filme híbrido pode parecer brilhante. É normal. Após curar, proporciona durabilidade ultra-longa.',steps:['Limpe e seque bem a superfície.','Aplique camada fina e uniforme.','Espalhe com microfibra.','Aguarde 5-10 minutos para o matriz híbrido estabilizar.','Polir levemente.','Evite água 1 hora.']}}
+    }
+  };
+  // Apply product patches
+  PRODUCTS.forEach(p => {
+    const patch = _PRODS[p.id];
+    if (!patch) return;
+    if (patch.surf) Object.assign(p.surfaces, patch.surf);
+    if (patch.inst) ['tl','vi','ko','pt'].forEach(lang => { if(patch.inst[lang]) p.inst[lang] = patch.inst[lang]; });
+  });
+})();
 
 renderProducts();
 renderFaq();
