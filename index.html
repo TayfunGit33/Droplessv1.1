@@ -326,19 +326,23 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   </div>
   <div class="nav-right">
     <select class="lang-pick" id="globalLang" onchange="setLang(this.value)">
-      <option value="en">English</option>
-      <option value="fr">Français</option>
-      <option value="tr">Türkçe</option>
-      <option value="es">Español</option>
-      <option value="it">Italiano</option>
-      <option value="zh">中文</option>
-      <option value="ar">العربية</option>
-      <option value="hi">हिन्दी</option>
-      <option value="fa">فارسی</option>
-      <option value="tl">Tagalog</option>
-      <option value="vi">Tiếng Việt</option>
-      <option value="ko">한국어</option>
-      <option value="pt">Português</option>
+      <optgroup label="Latin Script">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="tr">Türkçe</option>
+        <option value="es">Español</option>
+        <option value="it">Italiano</option>
+        <option value="tl">Tagalog</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="pt">Português</option>
+      </optgroup>
+      <optgroup label="Other Scripts">
+        <option value="ar">العربية</option>
+        <option value="zh">中文</option>
+        <option value="hi">हिन्दी</option>
+        <option value="ko">한국어</option>
+        <option value="fa">فارسی</option>
+      </optgroup>
     </select>
     <a href="#buy" class="btn btn-primary nav-buy" data-i18n="nav_buynow">Buy Now</a>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -360,14 +364,15 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <button onclick="setLang('tr');toggleMenu()">Türkçe</button>
     <button onclick="setLang('es');toggleMenu()">Español</button>
     <button onclick="setLang('it');toggleMenu()">Italiano</button>
-    <button onclick="setLang('zh');toggleMenu()">中文</button>
-    <button onclick="setLang('ar');toggleMenu()">العربية</button>
-    <button onclick="setLang('hi');toggleMenu()">हिन्दी</button>
-    <button onclick="setLang('fa');toggleMenu()">فارسی</button>
     <button onclick="setLang('tl');toggleMenu()">Tagalog</button>
     <button onclick="setLang('vi');toggleMenu()">Tiếng Việt</button>
-    <button onclick="setLang('ko');toggleMenu()">한국어</button>
     <button onclick="setLang('pt');toggleMenu()">Português</button>
+    <hr style="width:100%;border:none;border-top:1px solid rgba(255,255,255,.15);margin:4px 0;">
+    <button onclick="setLang('ar');toggleMenu()">العربية</button>
+    <button onclick="setLang('zh');toggleMenu()">中文</button>
+    <button onclick="setLang('hi');toggleMenu()">हिन्दी</button>
+    <button onclick="setLang('ko');toggleMenu()">한국어</button>
+    <button onclick="setLang('fa');toggleMenu()">فارسی</button>
   </div>
 </div>
 
@@ -491,14 +496,15 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <button class="lang-tab" data-lang="tr" onclick="setLang('tr')">🇹🇷 TR</button>
       <button class="lang-tab" data-lang="es" onclick="setLang('es')">🇪🇸 ES</button>
       <button class="lang-tab" data-lang="it" onclick="setLang('it')">🇮🇹 IT</button>
-      <button class="lang-tab" data-lang="zh" onclick="setLang('zh')">🇨🇳 ZH</button>
-      <button class="lang-tab" data-lang="ar" onclick="setLang('ar')">🇸🇦 AR</button>
-      <button class="lang-tab" data-lang="hi" onclick="setLang('hi')">🇮🇳 HI</button>
-      <button class="lang-tab" data-lang="fa" onclick="setLang('fa')">🇮🇷 FA</button>
       <button class="lang-tab" data-lang="tl" onclick="setLang('tl')">🇵🇭 TL</button>
       <button class="lang-tab" data-lang="vi" onclick="setLang('vi')">🇻🇳 VI</button>
-      <button class="lang-tab" data-lang="ko" onclick="setLang('ko')">🇰🇷 KO</button>
       <button class="lang-tab" data-lang="pt" onclick="setLang('pt')">🇧🇷 PT</button>
+      <span style="display:inline-block;width:1px;height:18px;background:var(--line);margin:0 2px;vertical-align:middle;"></span>
+      <button class="lang-tab" data-lang="ar" onclick="setLang('ar')">🇸🇦 AR</button>
+      <button class="lang-tab" data-lang="zh" onclick="setLang('zh')">🇨🇳 ZH</button>
+      <button class="lang-tab" data-lang="hi" onclick="setLang('hi')">🇮🇳 HI</button>
+      <button class="lang-tab" data-lang="ko" onclick="setLang('ko')">🇰🇷 KO</button>
+      <button class="lang-tab" data-lang="fa" onclick="setLang('fa')">🇮🇷 FA</button>
     </div>
     <div class="products-grid" id="productsGrid"></div>
   </div>
