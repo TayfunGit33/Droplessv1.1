@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Returns &amp; Refunds — Dropless</title>
+<meta name="description" content="Dropless Returns and Refunds Policy — cancellations, change of mind, faulty products, and your rights under Australian Consumer Law."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#f4f1ec;--bg2:#eae5dc;--ink:#0d2027;--soft:#2c3e44;--muted:#6d7a7e;--line:#d8d2c6;--teal:#1a5d6e;--teal2:#4ea8b0;--white:#fefdfb;--r:3px;--max:1240px;--pad:clamp(16px,4vw,48px);}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Geist',system-ui,sans-serif;font-size:17px;line-height:1.55;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.display{font-family:'Fraunces',Georgia,serif;font-weight:400;letter-spacing:-.02em;line-height:1.05;}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(244,241,236,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.logo{font-family:'Fraunces',serif;font-size:22px;font-weight:500;letter-spacing:-.02em;display:flex;align-items:center;gap:7px;}
+.logo-drop{width:12px;height:16px;background:var(--teal);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;position:relative;top:-1px;}
+.nav-center{display:flex;gap:24px;font-size:13.5px;color:var(--soft);}
+.nav-center a:hover{color:var(--teal);}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;font-family:'Geist',sans-serif;font-size:13.5px;font-weight:500;border-radius:999px;cursor:pointer;transition:transform .2s,background .2s;border:1.5px solid var(--ink);}
+.btn-primary{background:var(--ink);color:var(--white);}
+.btn-primary:hover{background:var(--teal);border-color:var(--teal);}
+@media(max-width:760px){.nav-center{display:none;}}
+.page-wrap{max-width:760px;margin:0 auto;padding:110px var(--pad) 80px;}
+.page-hero{margin-bottom:52px;}
+.page-hero h1{font-family:'Fraunces',serif;font-size:clamp(36px,5vw,56px);font-weight:400;margin:12px 0 16px;line-height:1.1;}
+.page-hero p{font-size:15px;color:var(--muted);}
+.pp-section{margin-bottom:40px;}
+.pp-section h2{font-family:'Fraunces',serif;font-size:22px;font-weight:400;color:var(--ink);margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+.pp-section p{color:var(--soft);font-size:15.5px;margin:0 0 12px;}
+.pp-section ul{color:var(--soft);font-size:15.5px;margin:0 0 12px;padding-left:20px;}
+.pp-section ul li{margin-bottom:6px;}
+.pp-section a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;}
+.info-box{background:var(--bg2);border-radius:10px;padding:18px 20px;margin:16px 0;font-size:15px;color:var(--soft);}
+.info-box strong{color:var(--ink);}
+.acl-box{background:#e6f4f1;border:1px solid #9dd4cc;border-radius:10px;padding:18px 20px;margin:20px 0;font-size:15px;color:#1a3d38;}
+.acl-box strong{color:#0d2a26;}
+.scenario-table{width:100%;border-collapse:collapse;font-size:14.5px;margin:16px 0;}
+.scenario-table th{background:var(--bg2);text-align:left;padding:10px 14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+.scenario-table td{padding:11px 14px;border-top:1px solid var(--line);color:var(--soft);vertical-align:top;}
+.scenario-table tr:first-child td{border-top:none;}
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;}
+.badge-green{background:#dcfce7;color:#166534;}
+.badge-amber{background:#fef9c3;color:#854d0e;}
+.badge-red{background:#fee2e2;color:#991b1b;}
+footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad) 32px;}
+.footer-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;}
+@media(max-width:640px){.footer-inner{grid-template-columns:1fr;}}
+.footer-brand{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:var(--white);margin-bottom:10px;}
+.footer-brand-sub{font-size:13px;line-height:1.6;}
+.footer-col h4{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:12px;}
+.footer-col a{display:block;font-size:14px;margin-bottom:8px;color:rgba(255,255,255,.6);transition:color .2s;}
+.footer-col a:hover{color:var(--white);}
+.footer-bottom{max-width:var(--max);margin:32px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;font-size:12.5px;flex-wrap:wrap;gap:8px;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="logo"><span class="logo-drop"></span>Dropless</a>
+  <div class="nav-center">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="how-to-use.html">How It Works</a>
+  </div>
+  <div>
+    <a href="index.html#buy" class="btn btn-primary">Buy Now</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="page-wrap">
+
+  <div class="page-hero">
+    <div class="eyebrow">Customer Support</div>
+    <h1>Returns &amp; Refunds</h1>
+    <p>Last updated: July 2026 &nbsp;·&nbsp; Applies to all orders placed on dropless.com.au</p>
+  </div>
+
+  <div class="acl-box">
+    <strong>🇦🇺 Your rights under Australian Consumer Law:</strong> Our products come with guarantees that cannot be excluded under the Australian Consumer Law. You are entitled to a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or damage. You are also entitled to have the goods repaired or replaced if the goods fail to be of acceptable quality and the failure does not amount to a major failure.
+  </div>
+
+  <!-- 1 -->
+  <div class="pp-section">
+    <h2>1. Order Cancellations</h2>
+    <p>We process and dispatch orders quickly — usually within 1–2 business days. Cancellation availability depends on order status:</p>
+    <table class="scenario-table">
+      <thead><tr><th>Status</th><th>Can I cancel?</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Not yet dispatched</strong></td><td><span class="badge badge-green">✓ Yes — full refund</span></td><td>No cost to you</td></tr>
+        <tr><td><strong>Already dispatched</strong></td><td><span class="badge badge-amber">Partial — see returns</span></td><td>Return shipping at your cost</td></tr>
+      </tbody>
+    </table>
+    <p>To cancel, email <a href="mailto:info@dropless.com.au">info@dropless.com.au</a> as soon as possible with your order number. We will confirm cancellation or advise if the order has already shipped.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="pp-section">
+    <h2>2. Returns — Change of Mind</h2>
+    <p>While Australian Consumer Law does not require a change-of-mind return policy for online purchases, we offer a <strong>30-day change-of-mind return</strong> on unopened products as a courtesy.</p>
+    <ul>
+      <li>The product must be <strong>unopened, unused, and in original condition</strong> (seal intact)</li>
+      <li>Return must be initiated within <strong>30 days</strong> of delivery</li>
+      <li><strong>You pay return shipping</strong> — we recommend using a tracked service</li>
+      <li>Refund is issued once we receive and inspect the item (typically within 3–5 business days)</li>
+      <li>Opened or used products are not eligible for change-of-mind returns due to the nature of chemical formulations</li>
+    </ul>
+    <p>To start a return, email <a href="mailto:info@dropless.com.au">info@dropless.com.au</a> with your order number and reason. We will provide the return address.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="pp-section">
+    <h2>3. Faulty, Damaged or Incorrect Items</h2>
+    <p>If your product arrives damaged, is faulty, or is not as described, we will make it right at no cost to you. This is your right under Australian Consumer Law.</p>
+    <table class="scenario-table">
+      <thead><tr><th>Issue</th><th>Resolution</th><th>Who pays return shipping?</th></tr></thead>
+      <tbody>
+        <tr><td>Arrived damaged or leaking</td><td>Full refund or replacement — your choice</td><td><span class="badge badge-green">We pay</span></td></tr>
+        <tr><td>Product faulty / does not work as described</td><td>Replacement or full refund</td><td><span class="badge badge-green">We pay</span></td></tr>
+        <tr><td>Wrong product sent</td><td>Correct item sent immediately + return label</td><td><span class="badge badge-green">We pay</span></td></tr>
+        <tr><td>Lost in transit (no delivery after 15 business days)</td><td>Replacement or refund</td><td>N/A</td></tr>
+      </tbody>
+    </table>
+    <p>Please contact us within <strong>14 days of receiving</strong> your order if there is an issue. Photos of damage or defects are helpful but not always required.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="pp-section">
+    <h2>4. Refund Processing</h2>
+    <ul>
+      <li>Refunds are processed to your <strong>original payment method</strong> via Stripe</li>
+      <li>Processing time: typically <strong>3–5 business days</strong> after we confirm the return or issue</li>
+      <li>Your bank may take an additional 2–5 days to show the funds</li>
+      <li>We do not issue refunds as store credit unless you specifically request it</li>
+    </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="pp-section">
+    <h2>5. eBay &amp; Etsy Orders</h2>
+    <p>Orders placed through eBay or Etsy are subject to the returns and buyer protection policies of those platforms, in addition to this policy and Australian Consumer Law:</p>
+    <ul>
+      <li><strong>eBay:</strong> Covered by eBay Money Back Guarantee — 30-day returns for items not as described</li>
+      <li><strong>Etsy:</strong> Contact us directly via Etsy messaging; we follow Etsy's dispute resolution process</li>
+    </ul>
+    <p>In all cases, Australian Consumer Law applies regardless of platform policy.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="pp-section">
+    <h2>6. Items Not Eligible for Return</h2>
+    <ul>
+      <li>Opened or used chemical products (for safety and hygiene reasons), unless faulty</li>
+      <li>Products purchased more than 30 days ago (change-of-mind only; statutory rights still apply)</li>
+      <li>Items damaged due to misuse or application contrary to instructions</li>
+    </ul>
+  </div>
+
+  <!-- 7 -->
+  <div class="pp-section">
+    <h2>7. How to Contact Us</h2>
+    <div class="info-box">
+      <strong>Email:</strong> <a href="mailto:info@dropless.com.au">info@dropless.com.au</a><br>
+      <strong>Include in your message:</strong> order number, description of the issue, and (if applicable) photos.<br>
+      <strong>Response time:</strong> We aim to respond within 1 business day.
+    </div>
+    <p>For urgent safety concerns about a product, call the Poisons Information Centre: <a href="tel:131126" style="color:var(--teal);font-weight:600;">13 11 26</a> (24 hours, Australia).</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="pp-section">
+    <h2>8. Australian Consumer Law Statement</h2>
+    <p>Our goods come with guarantees that cannot be excluded under the Australian Consumer Law (Schedule 2 of the <em>Competition and Consumer Act 2010</em> (Cth)). You are entitled to a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or damage. You are also entitled to have the goods repaired or replaced if the goods fail to be of acceptable quality and the failure does not amount to a major failure.</p>
+    <p>Nothing in this policy limits or excludes your rights under Australian Consumer Law.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">💧 Dropless</div>
+      <div class="footer-brand-sub">Professional hydrophobic protection.<br>Made in Wollongong, NSW, Australia.<br>© 2026 Dropless. All rights reserved.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="index.html#products">All Products</a>
+      <a href="index.html#buy">Buy Now</a>
+      <a href="how-to-use.html">Instructions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support &amp; Legal</h4>
+      <a href="mailto:info@dropless.com.au">info@dropless.com.au</a>
+      <a href="returns.html" style="color:rgba(255,255,255,.9);font-weight:600;">Returns &amp; Refunds</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Safety &amp; Legal</h4>
+      <a href="https://app.dropless.com.au/sds/serve/bathroom" target="_blank" rel="noopener">📄 Safety Data Sheet (SDS)</a>
+      <a href="tel:131126" style="color:rgba(255,100,100,.85);font-weight:600;">🚨 Poisons Info: 13 11 26</a>
+      <span style="font-size:12.5px;color:rgba(255,255,255,.4);display:block;margin-top:4px;">ABN 65 948 041 856</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>dropless.com.au · Wollongong, NSW, Australia</span>
+    <span>ABN 65 948 041 856 · Made with ❤ in Wollongong</span>
+  </div>
+</footer>
+
+</body>
+</html>
