@@ -476,7 +476,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
         <strong data-i18n="duo_bundle_title">Complete Bathroom Care Pack — $49.95</strong>
         <span data-i18n="duo_bundle_sub">Dropless Prep ($19.95) + Bathroom Shield ($29.95) — save $19.90 vs buying separately. Everything you need for a professional result.</span>
       </div>
-      <a href="#buy" class="duo-bundle-btn" data-i18n="duo_bundle_btn">Shop the Bundle — $49.95 AUD →</a>
+      <a href="#buy" class="duo-bundle-btn" data-i18n="duo_bundle_btn" onclick="addDuoToCart()">Shop the Bundle — $49.95 AUD →</a>
     </div>
   </div>
 </section>
@@ -629,7 +629,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
             <option value="2">Qty: 2</option>
             <option value="3">Qty: 3</option>
           </select>
-          <button type="submit" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;" data-i18n="buy_add_cart">Add Bundle to Cart →</button>
+          <button type="button" onclick="addBundleToCart('Complete Bathroom Care Pack', 49.95, this)" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;" data-i18n="buy_add_cart">Add Bundle to Cart →</button>
         </form>
 
         <form action="https://app.dropless.com.au/stripe/checkout" method="POST" style="flex:1;min-width:240px;max-width:340px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;">
@@ -644,7 +644,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
             <option value="2">Qty: 2</option>
             <option value="3">Qty: 3</option>
           </select>
-          <button type="submit" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;" data-i18n="buy_add_cart">Add Bundle to Cart →</button>
+          <button type="button" onclick="addBundleToCart('Complete Car Care Pack', 54.95, this)" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;" data-i18n="buy_add_cart">Add Bundle to Cart →</button>
         </form>
 
       </div>
@@ -2038,6 +2038,25 @@ function prepareCheckout() {
   // Sepet doluysa JSON gönder (backend çoklu line_item açar); boşsa eski tek-ürün akışı
   document.getElementById('sepetInput').value = CART.length ? JSON.stringify(CART) : '';
   return true;
+}
+
+// Perfect Duo "Shop the Bundle" — seti sepete ekler, sonra #buy'a kayar (href ile)
+function addDuoToCart() {
+  const name = 'Bathroom Care Pack (Dropless Prep + Bathroom Shield 500mL)';
+  const mevcut = CART.find(k => k.urun_adi === name);
+  if (mevcut) { mevcut.adet = Math.min(20, mevcut.adet + 1); }
+  else { CART.push({ urun_adi: name, tutar: 49.95, adet: 1 }); }
+  renderCart();
+}
+
+// "Frequently Bought Together" paketleri — sepete ekler, sepet kutusuna kaydırır
+function addBundleToCart(name, price, btn) {
+  const qty = parseInt(btn.closest('form').querySelector('[name=adet]').value || '1');
+  const mevcut = CART.find(k => k.urun_adi === name);
+  if (mevcut) { mevcut.adet = Math.min(20, mevcut.adet + qty); }
+  else { CART.push({ urun_adi: name, tutar: price, adet: qty }); }
+  renderCart();
+  document.getElementById('miniCart').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 // Kayan Buy Now butonu — 500px kaydırınca belirir, buy bölümü ekrandayken gizlenir
