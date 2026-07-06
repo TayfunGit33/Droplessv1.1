@@ -81,6 +81,16 @@ body.rtl .steps-list{padding-right:0;}
 
 @keyframes rise{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 .inst-wrap{animation:rise .5s ease both;}
+
+/* BUY NOW HIGHLIGHT — logo turuncusu + nabız efekti */
+.nav-buy.btn-primary{background:#e0762e;border-color:#e0762e;animation:buyPulse 2.6s ease-in-out infinite;}
+.nav-buy.btn-primary:hover{background:#c96524;border-color:#c96524;}
+@keyframes buyPulse{0%,100%{box-shadow:0 0 0 0 rgba(224,118,46,.45);}50%{box-shadow:0 0 0 9px rgba(224,118,46,0);}}
+/* FLOATING BUY — kaydırınca sağ altta belirir */
+.float-buy{position:fixed;right:20px;bottom:20px;z-index:300;display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:#e0762e;color:#fff;border-radius:40px;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 6px 22px rgba(13,32,39,.28);opacity:0;transform:translateY(80px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;animation:buyPulse 2.6s ease-in-out infinite;}
+.float-buy.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.float-buy:hover{background:#c96524;}
+@media(max-width:640px){.float-buy{right:14px;bottom:14px;padding:11px 18px;font-size:13px;}}
 </style>
 </head>
 <body>
@@ -452,5 +462,16 @@ if (document.readyState === 'loading') {
   </div>
 </footer>
 
+
+<!-- FLOATING BUY — kaydırınca belirir, index'teki buy formuna götürür -->
+<a href="/#buy" class="float-buy" id="floatBuy">🛒 <span data-i18n="nav_buynow">Buy Now</span></a>
+<script>
+(function(){
+  const fb = document.getElementById('floatBuy');
+  function upd(){ fb.classList.toggle('show', window.scrollY > 400); }
+  window.addEventListener('scroll', upd, { passive: true });
+  upd();
+})();
+</script>
 </body>
 </html>

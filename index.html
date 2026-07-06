@@ -302,6 +302,17 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 .mob-nav-item:hover{color:var(--teal);}
 .mob-nav-icon{font-size:20px;}
 @media(max-width:640px){.mob-nav{display:grid;}body{padding-bottom:64px;}}
+
+/* BUY NOW HIGHLIGHT — logo turuncusu + nabız efekti (navbar butonu) */
+.nav-buy.btn-primary{background:#e0762e;border-color:#e0762e;animation:buyPulse 2.6s ease-in-out infinite;}
+.nav-buy.btn-primary:hover{background:#c96524;border-color:#c96524;}
+@keyframes buyPulse{0%,100%{box-shadow:0 0 0 0 rgba(224,118,46,.45);}50%{box-shadow:0 0 0 9px rgba(224,118,46,0);}}
+
+/* FLOATING BUY — sayfa kaydırılınca sağ altta belirir, buy bölümünde gizlenir */
+.float-buy{position:fixed;right:20px;bottom:20px;z-index:300;display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:#e0762e;color:#fff;border-radius:40px;font-family:'Geist',sans-serif;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 6px 22px rgba(13,32,39,.28);opacity:0;transform:translateY(80px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;animation:buyPulse 2.6s ease-in-out infinite;}
+.float-buy.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.float-buy:hover{background:#c96524;}
+@media(max-width:640px){.float-buy{display:none;}} /* mobilde alt menüde 🛒 Buy zaten var */
 </style>
 </head>
 <body>
@@ -692,6 +703,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 
 <!-- BACK TO TOP -->
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<!-- FLOATING BUY — kaydırınca sağ altta belirir -->
+<a href="#buy" class="float-buy" id="floatBuy">🛒 <span data-i18n="nav_buynow">Buy Now</span></a>
 
 <!-- MOBILE NAV -->
 <nav class="mob-nav">
@@ -1953,6 +1967,25 @@ document.getElementById('musteri_email') && document.getElementById('musteri_ema
   const v = this.value;
   ['bundleEmail1','bundleEmail2'].forEach(id => { const el = document.getElementById(id); if(el) el.value = v; });
 });
+
+// Kayan Buy Now butonu — 500px kaydırınca belirir, buy bölümü ekrandayken gizlenir
+(function(){
+  const fb = document.getElementById('floatBuy');
+  const buySec = document.getElementById('buy');
+  if (!fb || !buySec) return;
+  let buyVisible = false;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      buyVisible = entries[0].isIntersecting;
+      updateFloatBuy();
+    }, { threshold: 0.05 }).observe(buySec);
+  }
+  function updateFloatBuy() {
+    fb.classList.toggle('show', window.scrollY > 500 && !buyVisible);
+  }
+  window.addEventListener('scroll', updateFloatBuy, { passive: true });
+  updateFloatBuy();
+})();
 </script>
 </body>
 </html>
