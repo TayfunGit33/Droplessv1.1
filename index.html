@@ -548,7 +548,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <h2 class="display">Ships from Wollongong, NSW</h2>
     <p class="buy-sub" data-i18n="buy_sub">Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post &amp; Sendle delivery network.</p>
     <div class="buy-form">
-      <form action="https://app.dropless.com.au/stripe/checkout" method="POST">
+      <form action="https://app.dropless.com.au/stripe/checkout" method="POST" id="buyForm" onsubmit="return prepareCheckout()">
         <div class="form-group" style="margin-bottom:14px;">
           <label data-i18n="buy_lbl_cat">Category</label>
           <select id="buyCategory" onchange="filterBuyProducts()">
@@ -567,7 +567,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
           </div>
           <div class="form-group">
             <label data-i18n="buy_lbl_qty">Quantity</label>
-            <select name="adet">
+            <select name="adet" id="buyQty">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -576,6 +576,28 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
             </select>
           </div>
         </div>
+        <!-- Sepete ekle — birden fazla farklı ürün tek siparişte -->
+        <div style="text-align:right;margin:-4px 0 14px;">
+          <button type="button" onclick="addToCart()"
+                  style="background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);color:#fff;
+                         padding:8px 16px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;">
+            ➕ Add to Cart
+          </button>
+        </div>
+        <!-- MINI CART -->
+        <div id="miniCart" style="display:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
+             border-radius:10px;padding:12px 14px;margin-bottom:14px;text-align:left;">
+          <div style="font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px;">
+            🛒 Your Cart</div>
+          <div id="cartItems"></div>
+          <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.25);
+                      padding-top:8px;margin-top:8px;font-weight:700;color:#fff;">
+            <span>Total</span><span id="cartTotal">$0.00 AUD</span>
+          </div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:4px;">
+            Free shipping over $50 AUD — calculated at checkout</div>
+        </div>
+        <input type="hidden" name="sepet" id="sepetInput" value=""/>
         <div class="form-group" style="margin-bottom:16px;">
           <label data-i18n="buy_lbl_email">Your Email</label>
           <input type="email" name="musteri_email" id="musteri_email" placeholder="you@example.com"/>
@@ -1967,6 +1989,56 @@ document.getElementById('musteri_email') && document.getElementById('musteri_ema
   const v = this.value;
   ['bundleEmail1','bundleEmail2'].forEach(id => { const el = document.getElementById(id); if(el) el.value = v; });
 });
+
+// ── MİNİ SEPET — birden fazla farklı ürün tek Stripe checkout'ta ─────────────
+let CART = [];
+
+function addToCart() {
+  const sel = document.getElementById('buyProduct');
+  const opt = sel.options[sel.selectedIndex];
+  if (!opt) return;
+  const qty   = parseInt(document.getElementById('buyQty').value || '1');
+  const name  = opt.value;
+  const price = parseFloat(opt.dataset.price || '0');
+  if (!name || !price) return;
+  const mevcut = CART.find(k => k.urun_adi === name);
+  if (mevcut) { mevcut.adet = Math.min(20, mevcut.adet + qty); }
+  else { CART.push({ urun_adi: name, tutar: price, adet: qty }); }
+  renderCart();
+}
+
+function removeFromCart(i) { CART.splice(i, 1); renderCart(); }
+
+function renderCart() {
+  const box = document.getElementById('miniCart');
+  const list = document.getElementById('cartItems');
+  const btn = document.querySelector('#buyForm .buy-submit');
+  if (!CART.length) {
+    box.style.display = 'none';
+    if (btn) btn.textContent = 'Proceed to Secure Payment →';
+    return;
+  }
+  box.style.display = 'block';
+  let toplam = 0;
+  list.innerHTML = CART.map((k, i) => {
+    const sat = k.tutar * k.adet; toplam += sat;
+    return `<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;
+                        padding:4px 0;font-size:.85rem;color:rgba(255,255,255,.9);">
+      <span style="flex:1;">${k.urun_adi.replace('Dropless ','')} × ${k.adet}</span>
+      <span>$${sat.toFixed(2)}</span>
+      <span onclick="removeFromCart(${i})" style="cursor:pointer;color:#fca5a5;font-weight:700;padding:0 4px;">✕</span>
+    </div>`;
+  }).join('');
+  document.getElementById('cartTotal').textContent = '$' + toplam.toFixed(2) + ' AUD';
+  const adetToplam = CART.reduce((a, k) => a + k.adet, 0);
+  if (btn) btn.textContent = `Checkout ${adetToplam} item${adetToplam > 1 ? 's' : ''} — $${toplam.toFixed(2)} →`;
+}
+
+function prepareCheckout() {
+  // Sepet doluysa JSON gönder (backend çoklu line_item açar); boşsa eski tek-ürün akışı
+  document.getElementById('sepetInput').value = CART.length ? JSON.stringify(CART) : '';
+  return true;
+}
 
 // Kayan Buy Now butonu — 500px kaydırınca belirir, buy bölümü ekrandayken gizlenir
 (function(){
