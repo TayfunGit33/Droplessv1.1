@@ -331,6 +331,16 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 @media(min-width:761px){.nav{top:34px;}body{padding-top:34px;}}
 @media(max-width:760px){.promo-bar{display:none;}}
 
+/* PFAS TOOLTIP — üzerine gelince "PFAS nedir" açıklaması */
+.pfas-tip{position:relative;cursor:help;border-bottom:1px dotted rgba(255,255,255,.55);}
+.pfas-pop{display:none;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
+  width:320px;max-width:86vw;background:#0d2027;color:rgba(255,255,255,.92);border:1px solid #e0762e;
+  border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;letter-spacing:0;text-align:left;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);z-index:420;}
+.pfas-pop::before{content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(45deg);
+  width:10px;height:10px;background:#0d2027;border-left:1px solid #e0762e;border-top:1px solid #e0762e;}
+.pfas-tip:hover .pfas-pop,.pfas-tip.open .pfas-pop{display:block;}
+
 /* KART İÇİ SATIN ALMA — ürün kartında boyut seçici + sepete ekle */
 .card-buy-row{display:flex;gap:8px;width:calc(100% - 48px);margin:0 24px 16px;}
 .card-size-sel{flex:1;padding:9px 10px;border:1px solid var(--line);border-radius:6px;background:var(--white);
@@ -359,7 +369,18 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 </head>
 <body>
 <!-- PROMO BAR -->
-<div class="promo-bar">🚚 Free shipping over $50 AUD &nbsp;·&nbsp; 🇦🇺 Made in Wollongong, NSW &nbsp;·&nbsp; ✅ PFAS-free formulas</div>
+<div class="promo-bar">🚚 Free shipping over $50 AUD &nbsp;·&nbsp; 🇦🇺 Made in Wollongong, NSW &nbsp;·&nbsp;
+  <span class="pfas-tip" onclick="this.classList.toggle('open')">✅ PFAS-free formulas
+    <span class="pfas-pop">
+      <strong style="color:#f0a35e;">What are PFAS?</strong><br>
+      PFAS — often called <em>"forever chemicals"</em> — are fluorinated compounds used in many
+      traditional water-repellent coatings. They never break down in nature, accumulate in people
+      and wildlife, and are being phased out across Australia.<br>
+      <strong>Dropless contains zero PFAS</strong> — the same water-beading protection,
+      without the forever chemicals.
+    </span>
+  </span>
+</div>
 <!-- ORDER RESULT BANNER -->
 <div class="order-banner" id="orderBanner">
   <span id="orderBannerMsg"></span>
