@@ -601,6 +601,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
           <div class="form-group">
             <label data-i18n="buy_lbl_size">Size</label>
             <select id="buySize" onchange="updatePrice()"></select>
+            <input type="number" id="customMl" min="50" max="5000" step="10" placeholder="Enter size in mL (e.g. 750)"
+                   oninput="updatePrice()"
+                   style="display:none; width:100%; margin-top:6px; padding:10px 12px; border-radius:8px;
+                          border:1.5px solid #e0762e; background:rgba(255,255,255,.12); color:#fff; font-size:.9rem;"/>
           </div>
           <div class="form-group">
             <label data-i18n="buy_lbl_qty">Quantity</label>
@@ -613,8 +617,14 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
             </select>
           </div>
         </div>
+        <!-- Özel boyut uyarısı — standart dışı paket seçilince görünür -->
+        <div id="customSizeWarn" style="display:none;background:rgba(224,118,46,.15);border:1px solid #e0762e;
+             border-radius:8px;padding:10px 14px;margin:-4px 0 12px;font-size:.8rem;color:#fcd9b8;line-height:1.5;">
+          ⚠️ <strong>Non-standard size</strong> — payment is taken now; your request will be
+          reviewed and we'll contact you before dispatch if anything needs adjusting.
+        </div>
         <p style="font-size:.75rem;color:rgba(255,255,255,.55);margin:-6px 0 12px;">
-          Need more than 1 litre? <a href="mailto:info@dropless.com.au?subject=Trade%20pricing%20enquiry"
+          Need more than 5 litres? <a href="mailto:info@dropless.com.au?subject=Trade%20pricing%20enquiry"
           style="color:rgba(255,255,255,.85);text-decoration:underline;text-underline-offset:2px;">Email us for trade pricing</a>
         </p>
         <input type="hidden" name="urun_adi" id="buyProductName" value=""/>
@@ -1547,6 +1557,14 @@ const BUY_SIZES = [
 // .95'e yuvarlanmış boyut fiyatı (29.95 × 0.7 = 20.965 → 20.95)
 function sizePrice(base, mult) { return Math.floor(base * mult) + 0.95; }
 
+// Özel (standart dışı) boyut çarpanı — sabit çarpanlardan geçen sürekli eğri:
+// (100,0.5) (250,0.68) (500,0.99) (1000,1.6) noktalarına oturan doğrusal model.
+// Çok alan litre başına daha az öder; 50–5000 mL aralığına sıkıştırılır.
+function customMult(ml) {
+  ml = Math.max(50, Math.min(5000, ml));
+  return 0.3778 + 0.0012222 * ml;
+}
+
 // Ürünün web'de sunulan boyutları — ERP'den geldiyse onun listesi, yoksa hepsi
 function prodSizes(p) {
   if (p.sizes && p.sizes.length) {
@@ -1584,26 +1602,58 @@ function fillBuySizes() {
     if (s.ml === 500) opt.selected = true;  // varsayılan 500 mL
     sizeSel.appendChild(opt);
   });
+  // Standart dışı boyut — müşteri kendi mL değerini girer
+  const ozel = document.createElement('option');
+  ozel.value = 'custom';
+  ozel.textContent = '✏️ Custom size — enter your own mL';
+  sizeSel.appendChild(ozel);
   updatePrice();
+}
+
+// Seçili boyut (mL) — custom seçiliyse input'tan okunur
+function secilenMl() {
+  const sizeSel = document.getElementById('buySize');
+  if (sizeSel.value === 'custom') {
+    return Math.max(50, Math.min(5000, parseInt(document.getElementById('customMl').value || '0')));
+  }
+  return parseInt(sizeSel.value || '500');
 }
 
 // Seçili ürün + boyutun sepete girecek adı: "Dropless RainXtreme 500mL"
 function buySelectionName() {
   const prodSel = document.getElementById('buyProduct');
   const sizeSel = document.getElementById('buySize');
-  const ml = parseInt(sizeSel.value || '500');
-  return prodSel.value + ' ' + (ml === 1000 ? '1L' : ml + 'mL');
+  const ml = secilenMl();
+  const ozelMi = sizeSel.value === 'custom';
+  const boyutTxt = ml >= 1000 ? (ml / 1000) + 'L' : ml + 'mL';
+  return prodSel.value + ' ' + boyutTxt + (ozelMi ? ' (custom size)' : '');
+}
+
+// Seçili ürün + boyutun fiyatı — standart boyutta tablodan, custom'da eğriden
+function secilenFiyat() {
+  const prodSel = document.getElementById('buyProduct');
+  const sizeSel = document.getElementById('buySize');
+  const prod = BUY_PRODUCTS[parseInt(prodSel.options[prodSel.selectedIndex].dataset.idx)];
+  if (sizeSel.value === 'custom') {
+    const ml = secilenMl();
+    return ml >= 50 ? sizePrice(prod.base, customMult(ml)) : 0;
+  }
+  return parseFloat(sizeSel.options[sizeSel.selectedIndex].dataset.price || '0');
 }
 
 // ── BUY PRICE UPDATE ──────────────────────────────────────────────────────────
 function updatePrice() {
   const sizeSel = document.getElementById('buySize');
   if (!sizeSel || !sizeSel.options.length) return;
-  const price = sizeSel.options[sizeSel.selectedIndex].dataset.price || '29.95';
-  document.getElementById('buyPrice').value = price;
+  const ozelMi = sizeSel.value === 'custom';
+  // Custom input + uyarı kutusunu göster/gizle
+  document.getElementById('customMl').style.display = ozelMi ? 'block' : 'none';
+  document.getElementById('customSizeWarn').style.display = ozelMi ? 'block' : 'none';
+  const price = secilenFiyat();
+  document.getElementById('buyPrice').value = price ? price.toFixed(2) : '';
   document.getElementById('buyProductName').value = buySelectionName();
   const display = document.getElementById('buyPriceDisplay');
-  if (display) display.textContent = '$' + parseFloat(price).toFixed(2) + ' AUD';
+  if (display) display.textContent = price ? ('$' + price.toFixed(2) + ' AUD') : 'Enter size above';
 }
 
 // ── CONTACT FORM ──────────────────────────────────────────────────────────────
@@ -2135,9 +2185,13 @@ function showCartToast(name) {
 function addToCart() {
   const sizeSel = document.getElementById('buySize');
   if (!sizeSel || !sizeSel.options.length) return;
+  if (sizeSel.value === 'custom' && secilenMl() < 50) {
+    document.getElementById('customMl').focus();
+    return;  // custom seçildi ama mL girilmedi
+  }
   const qty   = parseInt(document.getElementById('buyQty').value || '1');
   const name  = buySelectionName();
-  const price = parseFloat(sizeSel.options[sizeSel.selectedIndex].dataset.price || '0');
+  const price = secilenFiyat();
   if (!name || !price) return;
   const mevcut = CART.find(k => k.urun_adi === name);
   if (mevcut) { mevcut.adet = Math.min(20, mevcut.adet + qty); }
