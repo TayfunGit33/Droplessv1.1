@@ -200,6 +200,18 @@ body.rtl .inst-steps{padding-left:0;padding-right:20px;}
 .form-group input::placeholder{opacity:.5;}
 .buy-submit{width:100%;padding:15px;background:var(--white);color:var(--teal);border:none;border-radius:999px;font-family:'Geist',sans-serif;font-size:15px;font-weight:600;cursor:pointer;margin-top:8px;transition:transform .2s,background .2s;}
 .buy-submit:hover{background:var(--bg);transform:translateY(-1px);}
+/* Stripe güven rozeti + tooltip */
+.stripe-trust{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:12px;font-size:12.5px;color:rgba(255,255,255,.7);}
+.stripe-trust .st-badge{display:inline-flex;align-items:center;gap:4px;}
+.stripe-trust .st-info{position:relative;cursor:help;color:rgba(255,255,255,.6);font-style:normal;outline:none;}
+.stripe-trust .st-pop{position:absolute;bottom:135%;left:50%;transform:translateX(-50%) translateY(6px);
+  width:270px;max-width:78vw;background:#0d2027;color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;padding:13px 15px;font-size:12.5px;line-height:1.55;text-align:left;font-style:normal;
+  box-shadow:0 12px 34px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;}
+.stripe-trust .st-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:7px solid transparent;border-top-color:#0d2027;}
+.stripe-trust .st-info:hover .st-pop,.stripe-trust .st-info:focus .st-pop,.stripe-trust.open .st-pop{
+  opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
 .buy-note{font-size:12px;opacity:.65;text-align:center;margin-top:12px;}
 
 /* FAQ */
@@ -899,6 +911,19 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
           <span id="buyPriceDisplay">$14.95 AUD</span>
         </div>
         <button type="submit" class="buy-submit" data-i18n="buy_submit">Proceed to Secure Payment →</button>
+        <!-- STRIPE GÜVEN ROZETİ — tooltip ile Stripe'ı tanımayanlara güven verir -->
+        <div class="stripe-trust" onclick="this.classList.toggle('open')">
+          <span class="st-badge">🔒 <strong>Powered by Stripe</strong></span>
+          <span class="st-info" tabindex="0" aria-label="What is Stripe?">ⓘ
+            <span class="st-pop">
+              <strong style="color:#fff;">Your payment is in safe hands.</strong><br>
+              Stripe is one of the world's most trusted payment platforms, securing payments for
+              <strong style="color:#a5b4fc;">Amazon, Google, Shopify, Uber, Zoom, Booking.com</strong> and millions more.
+              Your card details are sent directly to Stripe over a bank-grade encrypted connection —
+              <strong style="color:#5eead4;">Dropless never sees or stores your card number.</strong>
+            </span>
+          </span>
+        </div>
         <p class="buy-note" data-i18n="buy_note">Secured by Stripe · SSL encrypted · Ships within 1–2 business days</p>
         <p class="buy-note" style="margin-top:6px; opacity:.55;">By placing an order you agree to our <a href="returns.html" style="color:rgba(255,255,255,.8); text-decoration:underline; text-underline-offset:2px;">Returns &amp; Refunds Policy</a> and <a href="terms.html" style="color:rgba(255,255,255,.8); text-decoration:underline; text-underline-offset:2px;">Terms &amp; Conditions</a>. Your rights under Australian Consumer Law are always protected.</p>
       </form>
