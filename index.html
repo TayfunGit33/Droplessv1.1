@@ -9,6 +9,17 @@
 <meta property="og:description" content="Professional hydrophobic coatings. Apply once, forget for months."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://dropless.com.au"/>
+<meta property="og:site_name" content="Dropless"/>
+<link rel="canonical" href="https://dropless.com.au/"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[
+ {"@type":"Product","position":1,"name":"Dropless Bathroom Shield","brand":{"@type":"Brand","name":"Dropless"},"description":"Hydrophobic protection spray for shower glass, tiles and bathroom surfaces. PFAS-free, made in Wollongong NSW Australia.","offers":{"@type":"AggregateOffer","priceCurrency":"AUD","lowPrice":"14.95","highPrice":"47.95","availability":"https://schema.org/InStock","url":"https://dropless.com.au/#buy"}},
+ {"@type":"Product","position":2,"name":"Dropless RainXtreme","brand":{"@type":"Brand","name":"Dropless"},"description":"Windscreen and exterior glass water repellent. Rain beads and rolls away at speed. PFAS-free, made in Australia.","offers":{"@type":"AggregateOffer","priceCurrency":"AUD","lowPrice":"14.95","highPrice":"47.95","availability":"https://schema.org/InStock","url":"https://dropless.com.au/#buy"}},
+ {"@type":"Product","position":3,"name":"Dropless Toilet Anti-Stick Hybrid","brand":{"@type":"Brand","name":"Dropless"},"description":"Anti-stick hydrophobic coating for toilet bowls — less scrubbing, longer lasting cleanliness.","offers":{"@type":"AggregateOffer","priceCurrency":"AUD","lowPrice":"14.95","highPrice":"47.95","availability":"https://schema.org/InStock","url":"https://dropless.com.au/#buy"}},
+ {"@type":"Product","position":4,"name":"Dropless Hybrid Ultra-Long","brand":{"@type":"Brand","name":"Dropless"},"description":"Flagship ultra-long-lasting hydrophobic surface protection.","offers":{"@type":"AggregateOffer","priceCurrency":"AUD","lowPrice":"22.95","highPrice":"71.95","availability":"https://schema.org/InStock","url":"https://dropless.com.au/#buy"}},
+ {"@type":"Product","position":5,"name":"Dropless Prep","brand":{"@type":"Brand","name":"Dropless"},"description":"Step 1 surface preparation cleaner — removes residue so coatings bond properly.","offers":{"@type":"AggregateOffer","priceCurrency":"AUD","lowPrice":"9.95","highPrice":"31.95","availability":"https://schema.org/InStock","url":"https://dropless.com.au/#buy"}}
+]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -314,6 +325,21 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 .float-buy:hover{background:#c96524;}
 @media(max-width:640px){.float-buy{display:none;}} /* mobilde alt menüde 🛒 Buy zaten var */
 
+/* PROMO BAR — üstte ince duyuru şeridi (yalnız desktop; mobil zaten yoğun) */
+.promo-bar{position:fixed;top:0;left:0;right:0;z-index:210;height:34px;display:flex;align-items:center;
+  justify-content:center;gap:6px;background:var(--ink);color:#fff;font-size:12.5px;letter-spacing:.03em;}
+@media(min-width:761px){.nav{top:34px;}body{padding-top:34px;}}
+@media(max-width:760px){.promo-bar{display:none;}}
+
+/* CART TOAST — ürün eklenince 2 sn görünüp kaybolan bildirim */
+.cart-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(16px);z-index:400;
+  background:#0d2027;color:#fff;border:2px solid #e0762e;border-radius:40px;padding:10px 22px;
+  font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:0;pointer-events:none;
+  transition:opacity .25s,transform .25s;display:flex;align-items:center;gap:8px;max-width:88vw;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;}
+.cart-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+@media(max-width:640px){.cart-toast{bottom:76px;}} /* mobil alt menünün üstünde */
+
 /* MINI CART — turuncu çerçeve; ürün eklenince parlama animasyonu */
 @keyframes cartFlash{
   0%{box-shadow:0 0 0 0 rgba(224,118,46,.75);transform:scale(1);}
@@ -324,6 +350,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 </style>
 </head>
 <body>
+<!-- PROMO BAR -->
+<div class="promo-bar">🚚 Free shipping over $50 AUD &nbsp;·&nbsp; 🇦🇺 Made in Wollongong, NSW &nbsp;·&nbsp; ✅ PFAS-free formulas</div>
 <!-- ORDER RESULT BANNER -->
 <div class="order-banner" id="orderBanner">
   <span id="orderBannerMsg"></span>
@@ -481,10 +509,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     </div>
     <div class="duo-bundle">
       <div class="duo-bundle-text">
-        <strong data-i18n="duo_bundle_title">Complete Bathroom Care Pack — $49.95</strong>
-        <span data-i18n="duo_bundle_sub">Dropless Prep ($19.95) + Bathroom Shield ($29.95) — save $19.90 vs buying separately. Everything you need for a professional result.</span>
+        <strong data-i18n="duo_bundle_title">Complete Bathroom Care Pack — $44.95</strong>
+        <span data-i18n="duo_bundle_sub">Dropless Prep ($19.95) + Bathroom Shield ($29.95) — save $4.95 vs buying separately. Everything you need for a professional result.</span>
       </div>
-      <a href="#buy" class="duo-bundle-btn" data-i18n="duo_bundle_btn" onclick="addDuoToCart()">Shop the Bundle — $49.95 AUD →</a>
+      <a href="#buy" class="duo-bundle-btn" data-i18n="duo_bundle_btn" onclick="addDuoToCart()">Shop the Bundle — $44.95 AUD →</a>
     </div>
   </div>
 </section>
@@ -558,20 +586,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <div class="buy-form">
       <form action="https://app.dropless.com.au/stripe/checkout" method="POST" id="buyForm" onsubmit="return prepareCheckout()">
         <div class="form-group" style="margin-bottom:14px;">
-          <label data-i18n="buy_lbl_cat">Category</label>
-          <select id="buyCategory" onchange="filterBuyProducts()">
-            <option value="">🛍 All Products</option>
-            <option value="bathroom">🛁 Bathroom &amp; Home</option>
-            <option value="automotive">🚗 Automotive</option>
-            <option value="premium">⭐ Premium Concentrates</option>
-            <option value="fragrance">💨 Fragrance &amp; Fabric</option>
-            <option value="specialty">🔧 Specialty</option>
-          </select>
+          <label data-i18n="buy_lbl_prod">Product</label>
+          <select id="buyProduct" onchange="fillBuySizes()"></select>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label data-i18n="buy_lbl_prod">Product</label>
-            <select name="urun_adi" id="buyProduct" onchange="updatePrice()"></select>
+            <label data-i18n="buy_lbl_size">Size</label>
+            <select id="buySize" onchange="updatePrice()"></select>
           </div>
           <div class="form-group">
             <label data-i18n="buy_lbl_qty">Quantity</label>
@@ -584,6 +605,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
             </select>
           </div>
         </div>
+        <p style="font-size:.75rem;color:rgba(255,255,255,.55);margin:-6px 0 12px;">
+          Need more than 1 litre? <a href="mailto:info@dropless.com.au?subject=Trade%20pricing%20enquiry"
+          style="color:rgba(255,255,255,.85);text-decoration:underline;text-underline-offset:2px;">Email us for trade pricing</a>
+        </p>
+        <input type="hidden" name="urun_adi" id="buyProductName" value=""/>
         <!-- Sepete ekle — birden fazla farklı ürün tek siparişte -->
         <div style="text-align:right;margin:-4px 0 14px;">
           <button type="button" onclick="addToCart()"
@@ -610,7 +636,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
         <input type="hidden" name="sepet" id="sepetInput" value=""/>
         <div class="form-group" style="margin-bottom:16px;">
           <label data-i18n="buy_lbl_email">Your Email</label>
-          <input type="email" name="musteri_email" id="musteri_email" placeholder="you@example.com"/>
+          <input type="email" name="musteri_email" id="musteri_email" placeholder="you@example.com" required/>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.5);margin:4px 0 0;">
+            Your receipt and tracking number will be sent here.</p>
         </div>
         <input type="hidden" name="tutar" id="buyPrice" value="14.95"/>
         <div style="text-align:center;margin-bottom:12px;font-size:1.4rem;font-weight:700;color:#fff;">
@@ -627,35 +655,29 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <div style="text-align:center;color:rgba(255,255,255,.65);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;" data-i18n="buy_fbt">Frequently Bought Together</div>
       <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;">
 
-        <form action="https://app.dropless.com.au/stripe/checkout" method="POST" style="flex:1;min-width:240px;max-width:340px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;">
-          <div style="font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px;">🚿 Complete Bathroom Care Pack</div>
-          <div style="font-size:.85rem;color:rgba(255,255,255,.75);margin-bottom:14px;">Bathroom Shield 500mL ($29.95) + Toilet Anti-Stick 500mL ($29.95)</div>
+        <div style="flex:1;min-width:240px;max-width:340px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;">
+          <div style="font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px;">🚿 Bathroom Duo Pack</div>
+          <div style="font-size:.85rem;color:rgba(255,255,255,.75);margin-bottom:14px;">Bathroom Shield 500mL ($29.95) + Toilet Anti-Stick Hybrid 500mL ($29.95)</div>
           <div style="font-size:1.5rem;font-weight:800;color:#5eead4;margin-bottom:14px;">$49.95 <span style="font-size:.8rem;font-weight:400;color:rgba(255,255,255,.55);">AUD · normally $59.90 · save $9.95</span></div>
-          <input type="hidden" name="urun_adi" value="Complete Bathroom Care Pack"/>
-          <input type="hidden" name="tutar" value="49.95"/>
-          <input type="hidden" name="musteri_email" id="bundleEmail1"/>
-          <select name="adet" style="margin-bottom:12px;width:100%;padding:8px;border-radius:7px;border:none;background:rgba(255,255,255,.12);color:#fff;font-size:.85rem;">
+          <select id="bathroomDuoQty" style="margin-bottom:12px;width:100%;padding:8px;border-radius:7px;border:none;background:rgba(255,255,255,.12);color:#fff;font-size:.85rem;">
             <option value="1">Qty: 1</option>
             <option value="2">Qty: 2</option>
             <option value="3">Qty: 3</option>
           </select>
-          <button type="button" onclick="addBundleToCart('Complete Bathroom Care Pack', 49.95, this)" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;" data-i18n="buy_add_cart">Add Bundle to Cart →</button>
-        </form>
+          <button type="button" onclick="addBundleToCart('Bathroom Duo Pack (Shield + Toilet Anti-Stick)', 49.95, this)" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;" data-i18n="buy_add_cart">Add Bundle to Cart →</button>
+        </div>
 
-        <form action="https://app.dropless.com.au/stripe/checkout" method="POST" style="flex:1;min-width:240px;max-width:340px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;">
+        <!-- Car Care Pack — Interior Glass Coat üretime girene kadar satışta değil -->
+        <div style="flex:1;min-width:240px;max-width:340px;background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.25);border-radius:14px;padding:18px 20px;opacity:.75;">
           <div style="font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px;">🚗 Complete Car Care Pack</div>
-          <div style="font-size:.85rem;color:rgba(255,255,255,.75);margin-bottom:14px;">RainXtreme 500mL ($34.95) + Interior Glass Coat 500mL ($29.95)</div>
-          <div style="font-size:1.5rem;font-weight:800;color:#5eead4;margin-bottom:14px;">$54.95 <span style="font-size:.8rem;font-weight:400;color:rgba(255,255,255,.55);">AUD · normally $64.90 · save $9.95</span></div>
-          <input type="hidden" name="urun_adi" value="Complete Car Care Pack"/>
-          <input type="hidden" name="tutar" value="54.95"/>
-          <input type="hidden" name="musteri_email" id="bundleEmail2"/>
-          <select name="adet" style="margin-bottom:12px;width:100%;padding:8px;border-radius:7px;border:none;background:rgba(255,255,255,.12);color:#fff;font-size:.85rem;">
-            <option value="1">Qty: 1</option>
-            <option value="2">Qty: 2</option>
-            <option value="3">Qty: 3</option>
-          </select>
-          <button type="button" onclick="addBundleToCart('Complete Car Care Pack', 54.95, this)" style="width:100%;padding:11px;border-radius:8px;border:none;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:.9rem;" data-i18n="buy_add_cart">Add Bundle to Cart →</button>
-        </form>
+          <div style="font-size:.85rem;color:rgba(255,255,255,.75);margin-bottom:14px;">RainXtreme 500mL ($29.95) + Interior Glass Coat 500mL ($29.95)</div>
+          <div style="font-size:1.5rem;font-weight:800;color:rgba(255,255,255,.6);margin-bottom:14px;">$49.95 <span style="font-size:.8rem;font-weight:400;color:rgba(255,255,255,.45);">AUD · normally $59.90</span></div>
+          <div style="width:100%;padding:11px;border-radius:8px;border:1px dashed rgba(255,255,255,.35);background:transparent;color:rgba(255,255,255,.7);font-weight:700;font-size:.9rem;text-align:center;">🔜 Coming Soon</div>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.5);margin:8px 0 0;text-align:center;">
+            Interior Glass Coat is in production —
+            <a href="mailto:info@dropless.com.au?subject=Car%20Care%20Pack%20waitlist" style="color:rgba(255,255,255,.8);">email us to reserve</a>
+          </p>
+        </div>
 
       </div>
     </div>
@@ -761,22 +783,16 @@ const CATS = {
 };
 
 // Maps product id → buy form option value
+// Satın alınabilir ürünler (üretimi olanlar) — kart id → buy dropdown değeri
 const BUY_MAP = {
-  'multi-surface':'Dropless Multi-Surface Coat',
-  'glass-pro':'Dropless Glass Pro Coat',
-  'ceramic':'Dropless Ceramic Shield',
-  'interior-glass':'Dropless Interior Glass Coat',
   'rainxtreme':'Dropless RainXtreme',
-  'plastic-screen':'Dropless Plastic Screen Guard',
   'toilet':'Dropless Toilet Anti-Stick Hybrid',
   'bathroom':'Dropless Bathroom Shield',
-  'stone-bench':'Dropless Stone Bench Guard',
-  'metal-shine':'Dropless Metal Shine Plus',
-  'leather':'Dropless Leather Vinyl Guard',
-  'fabric':'Dropless Fabric Guard',
   'hybrid-ultra':'Dropless Hybrid Ultra-Long',
-  'odour-refresher':'Dropless Odour Refresher Spritzer 500mL'
 };
+// Henüz üretimde olmayan ürünler — kartlarda "Coming Soon" rozeti, satın alınamaz
+const SOON_IDS = ['multi-surface','glass-pro','ceramic','interior-glass','plastic-screen',
+                  'stone-bench','metal-shine','leather','fabric','odour-refresher'];
 
 // ── UI TRANSLATIONS (page-level static text) ──────────────────────────────────
 const UI = {
@@ -817,9 +833,9 @@ const UI = {
   duo_s2_name:      {en:'Dropless Shield',fr:'Dropless Shield',tr:'Dropless Shield',ar:'Dropless Shield',zh:'Dropless Shield',hi:'Dropless Shield',es:'Dropless Shield',it:'Dropless Shield',fa:'Dropless Shield'},
   duo_s2_desc:      {en:'Bonds chemically to the bare surface for maximum hydrophobic cross-linkage. Water beads. Stains slide off. Lasts months.',fr:'Se lie chimiquement à la surface pour une réticulation hydrophobe maximale. L\'eau perle. Les taches glissent. Dure des mois.',tr:'Maksimum hidrofobik çapraz bağlantı için yüzeye kimyasal olarak yapışır. Su boncuklanır. Lekeler kayar. Aylarca sürer.',ar:'يرتبط كيميائيًا بالسطح لأقصى ترابط هيدروفوبي. الماء يتكوّر. البقع تنزلق. يدوم لأشهر.',zh:'与裸表面化学结合实现最大疏水交联。水珠滚落。污渍滑走。持续数月。',hi:'अधिकतम हाइड्रोफोबिक क्रॉस-लिंकेज के लिए सतह से रासायनिक रूप से जुड़ता है। पानी बूंदों में। दाग फिसलते हैं। महीनों चलता है।',es:'Se adhiere químicamente a la superficie para máxima reticulación hidrófoba. El agua forma gotas. Las manchas se deslizan. Dura meses.',it:'Si lega chimicamente alla superficie per la massima reticolazione idrofoba. L\'acqua forma gocce. Le macchie scivolano. Dura mesi.',fa:'به سطح به‌طور شیمیایی متصل می‌شود. آب قطره می‌شود. لک‌ها می‌لغزند. ماه‌ها دوام می‌آورد.'},
   duo_s2_tag:       {en:'Step 2 · Apply Once',fr:'Étape 2 · Appliquer une fois',tr:'Adım 2 · Bir Kez Uygula',ar:'الخطوة 2 · طبّق مرة واحدة',zh:'步骤2 · 涂抹一次',hi:'चरण 2 · एक बार लगाएं',es:'Paso 2 · Aplica una Vez',it:'Passo 2 · Applica una Volta',fa:'مرحله ۲ · یک بار بزنید'},
-  duo_bundle_title: {en:'Complete Bathroom Care Pack — $49.95',fr:'Pack complet soin de la salle de bain — $49.95',tr:'Tam Banyo Bakım Seti — $49.95',ar:'طقم العناية الكاملة بالحمام — $49.95',zh:'完整浴室护理套装 — $49.95',hi:'पूर्ण बाथरूम केयर पैक — $49.95',es:'Pack Completo Baño — $49.95',it:'Kit Completo Bagno — $49.95',fa:'پکیج کامل مراقبت از حمام — $49.95'},
-  duo_bundle_sub:   {en:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — save $19.90 vs buying separately. Everything you need for a professional result.',fr:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — économisez $19.90 par rapport à l\'achat séparé. Tout le nécessaire pour un résultat professionnel.',tr:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — ayrı alımdan $19.90 tasarruf. Profesyonel sonuç için gereken her şey.',ar:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — وفر $19.90 مقارنة بالشراء المنفصل.',zh:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — 比单独购买节省$19.90。',hi:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — अलग से खरीदने पर $19.90 की बचत।',es:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — ahorra $19.90 vs compra separada.',it:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — risparmia $19.90 rispetto all\'acquisto separato.',fa:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — ۱۹.۹۰ دلار صرفه‌جویی نسبت به خرید جداگانه.'},
-  duo_bundle_btn:   {en:'Shop the Bundle — $49.95 AUD →',fr:'Acheter le pack — $49.95 AUD →',tr:'Seti Satın Al — $49.95 AUD →',ar:'تسوّق الحزمة — $49.95 AUD →',zh:'购买套装 — $49.95 AUD →',hi:'बंडल खरीदें — $49.95 AUD →',es:'Comprar el Pack — $49.95 AUD →',it:'Acquista il Kit — $49.95 AUD →',fa:'خرید پکیج — $49.95 AUD →'},
+  duo_bundle_title: {en:'Complete Bathroom Care Pack — $44.95',fr:'Pack complet soin de la salle de bain — $44.95',tr:'Tam Banyo Bakım Seti — $44.95',ar:'طقم العناية الكاملة بالحمام — $44.95',zh:'完整浴室护理套装 — $44.95',hi:'पूर्ण बाथरूम केयर पैक — $44.95',es:'Pack Completo Baño — $44.95',it:'Kit Completo Bagno — $44.95',fa:'پکیج کامل مراقبت از حمام — $44.95'},
+  duo_bundle_sub:   {en:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — save $4.95 vs buying separately. Everything you need for a professional result.',fr:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — économisez $4.95 par rapport à l\'achat séparé. Tout le nécessaire pour un résultat professionnel.',tr:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — ayrı alımdan $4.95 tasarruf. Profesyonel sonuç için gereken her şey.',ar:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — وفر $4.95 مقارنة بالشراء المنفصل.',zh:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — 比单独购买节省$4.95。',hi:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — अलग से खरीदने पर $4.95 की बचत।',es:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — ahorra $4.95 vs compra separada.',it:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — risparmia $4.95 rispetto all\'acquisto separato.',fa:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — ۱۹.۹۰ دلار صرفه‌جویی نسبت به خرید جداگانه.'},
+  duo_bundle_btn:   {en:'Shop the Bundle — $44.95 AUD →',fr:'Acheter le pack — $44.95 AUD →',tr:'Seti Satın Al — $44.95 AUD →',ar:'تسوّق الحزمة — $44.95 AUD →',zh:'购买套装 — $44.95 AUD →',hi:'बंडल खरीदें — $44.95 AUD →',es:'Comprar el Pack — $44.95 AUD →',it:'Acquista il Kit — $44.95 AUD →',fa:'خرید پکیج — $44.95 AUD →'},
   // Products section
   prods_eyebrow: {en:'Product Range',fr:'Gamme de produits',tr:'Ürün Yelpazesi',ar:'مجموعة المنتجات',zh:'产品系列',hi:'उत्पाद श्रेणी',es:'Gama de Productos',it:'Gamma Prodotti',fa:'محدوده محصولات'},
   prods_h2:      {en:'Protection for Every Surface',fr:'Protection pour chaque surface',tr:'Her Yüzey İçin Koruma',ar:'حماية لكل سطح',zh:'保护每一个表面',hi:'हर सतह के लिए सुरक्षा',es:'Protección para Cada Superficie',it:'Protezione per Ogni Superficie',fa:'محافظت برای هر سطحی'},
@@ -1253,7 +1269,7 @@ const FAQS = [
   // ── Category 4: The Perfect Duo / 2-Step System
   {q:'What is the Dropless 2-Step System?', a:'The Dropless 2-Step System is the professional method for maximum protection results. Step 1 — Deep Clean &amp; Strip: Use Dropless Prep to eliminate grease, lime scale, and old cleaner residues, exposing a bare, chemically neutral surface. Step 2 — Seal &amp; Protect: Apply your chosen Dropless Shield or Coating directly onto the bare surface. This allows the hydrophobic polymer to bond fully, delivering maximum water repellency and durability lasting months.'},
   {q:'Why must I clean before applying a Dropless Coating?', a:'A coating applied over contamination is bonding to dirt — not to the surface itself. This dramatically shortens durability and causes uneven water-beading. Our Dropless Prep strip cuts through mineral deposits, soap scum, and grease down to the raw substrate, giving the Shield formula a clean, porous anchor point for true chemical bonding. Skip the prep step and you will see results that last weeks instead of months.'},
-  {q:'Is the Complete Bathroom Care Pack the best value way to do the 2-Step System?', a:'Yes. The Complete Bathroom Care Pack ($49.95) bundles Dropless Prep and Dropless Bathroom Shield together at a saving versus buying separately. It contains everything you need to professionally prep, seal, and protect your bathroom glass and tile surfaces in one purchase.'}
+  {q:'Is the Complete Bathroom Care Pack the best value way to do the 2-Step System?', a:'Yes. The Complete Bathroom Care Pack ($44.95) bundles Dropless Prep and Dropless Bathroom Shield together at a saving versus buying separately. It contains everything you need to professionally prep, seal, and protect your bathroom glass and tile surfaces in one purchase.'}
 ];
 
 // ── CURRENT LANGUAGE + FILTER STATE ──────────────────────────────────────────
@@ -1300,7 +1316,7 @@ function quickBuy(prodId) {
     for (let i = 0; i < sel.options.length; i++) {
       if (sel.options[i].value === val) { sel.selectedIndex = i; break; }
     }
-    updatePrice();
+    fillBuySizes();  // boyut fiyatları seçilen ürünün çapasına göre yenilenir
   }
   document.getElementById('buy').scrollIntoView({behavior:'smooth'});
 }
@@ -1369,7 +1385,9 @@ function renderProducts() {
     <div class="inst-steps-title">${T.dir_label[L]||T.dir_label.en}</div>
     <ol class="inst-steps">${stepsHtml}</ol>
   </div>
-  <button class="prod-buy-btn" onclick="quickBuy('${p.id}')">🛒 ${buyTxt}</button>
+  ${SOON_IDS.includes(p.id)
+    ? `<div style="display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 48px);margin:0 24px 16px;padding:10px;background:var(--bg2);color:var(--muted);border:1px dashed var(--line);border-radius:6px;font-size:13px;font-weight:500;">🔜 Coming Soon</div>`
+    : `<button class="prod-buy-btn" onclick="quickBuy('${p.id}')">🛒 ${buyTxt}</button>`}
   ${SDS_MAP[p.id] ? `<div class="sds-btns">
     <a class="sds-btn-read" href="${SDS_MAP[p.id]}" target="_blank" rel="noopener">📄 Safety Data Sheet</a>
     <a class="sds-btn-dl"   href="${SDS_MAP[p.id].replace('/serve/','/download/')}" download>⬇️ Download PDF</a>
@@ -1421,78 +1439,72 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// ── BUY CATALOG (add new categories/products here) ───────────────────────────
-const BUY_CATALOG = {
-  bathroom: {
-    label:'🛁 Bathroom & Home',
-    products:[
-      {v:'Dropless Bathroom Shield',        p:'14.95', t:'🚿 Bathroom Shield 100mL — $14.95'},
-      {v:'Dropless Bathroom Shield 500mL',  p:'29.95', t:'🚿 Bathroom Shield 500mL — $29.95'},
-      {v:'Dropless Glass Pro Coat 500mL',   p:'29.95', t:'🔭 Glass Pro Coat 500mL — $29.95'},
-      {v:'Dropless Multi-Surface Coat 500mL',p:'29.95',t:'🌊 Multi-Surface Coat 500mL — $29.95'},
-      {v:'Dropless Stone Bench Guard 500mL',p:'34.95', t:'🪨 Stone & Bench Guard 500mL — $34.95'},
-      {v:'Dropless Fabric Guard 1L',        p:'39.95', t:'🛋 Fabric Guard 1 Litre — $39.95'},
-    ]
-  },
-  automotive: {
-    label:'🚗 Automotive',
-    products:[
-      {v:'Dropless RainXtreme 500mL',                   p:'29.95', t:'🌧 RainXtreme 500mL — $29.95'},
-      {v:'Dropless Interior Glass Coat 500mL',          p:'29.95', t:'🚗 Interior Glass Coat 500mL — $29.95'},
-      {v:'Dropless Metal Shine Plus 500mL',             p:'34.95', t:'✨ Metal Shine+ 500mL — $34.95'},
-      {v:'Dropless Leather Vinyl Guard 500mL',          p:'34.95', t:'👜 Leather & Vinyl Guard 500mL — $34.95'},
-      {v:'Dropless Odour Refresher Spritzer 500mL',     p:'29.95', t:'💨 Odour Refresher & Spritzer 500mL — $29.95'},
-    ]
-  },
-  premium: {
-    label:'⭐ Premium Concentrates',
-    products:[
-      {v:'Dropless Ceramic Shield 500mL',    p:'39.95', t:'🏠 Ceramic Shield 500mL — $39.95'},
-      {v:'Dropless Hybrid Ultra-Long 500mL', p:'44.95', t:'🔬 Hybrid Ultra-Long 500mL — $44.95'},
-    ]
-  },
-  fragrance: {
-    label:'💨 Fragrance & Fabric',
-    products:[
-      {v:'Dropless Odour Refresher Spritzer 500mL', p:'29.95', t:'💨 Odour Refresher & Spritzer 500mL — $29.95'},
-    ]
-  },
-  specialty: {
-    label:'🔧 Specialty',
-    products:[
-      {v:'Dropless Toilet Anti-Stick Hybrid 500mL', p:'29.95', t:'🚽 Toilet Anti-Stick Hybrid 500mL — $29.95'},
-      {v:'Dropless Plastic Screen Guard 100mL',     p:'14.95', t:'📱 Plastic & Screen Guard 100mL — $14.95'},
-    ]
-  }
-};
+// ── BUY CATALOG — ürün + boyut sistemi ────────────────────────────────────────
+// Sadece üretimi olan ürünler satılır; 500mL çapa fiyatından boyut fiyatları türetilir.
+const BUY_PRODUCTS = [
+  {v:'Dropless Bathroom Shield',          icon:'🚿', base:29.95},
+  {v:'Dropless Toilet Anti-Stick Hybrid', icon:'🚽', base:29.95},
+  {v:'Dropless RainXtreme',               icon:'🌧', base:29.95},
+  {v:'Dropless Hybrid Ultra-Long',        icon:'🔬', base:44.95},
+  {v:'Dropless Prep',                     icon:'🧴', base:19.95},
+];
+// Boyut çarpanları — az alan litre başına daha çok öder, çok alan kazanır
+const BUY_SIZES = [
+  {ml:100,  mult:0.5, t:'100 mL'},
+  {ml:250,  mult:0.7, t:'250 mL'},
+  {ml:500,  mult:1.0, t:'500 mL'},
+  {ml:1000, mult:1.6, t:'1 Litre'},
+];
+// .95'e yuvarlanmış boyut fiyatı (29.95 × 0.7 = 20.965 → 20.95)
+function sizePrice(base, mult) { return Math.floor(base * mult) + 0.95; }
 
-function filterBuyProducts() {
-  const cat = document.getElementById('buyCategory').value;
+function fillBuyProducts() {
   const sel = document.getElementById('buyProduct');
   sel.innerHTML = '';
-  const cats = cat ? [BUY_CATALOG[cat]] : Object.values(BUY_CATALOG);
-  cats.forEach(c => {
-    const grp = document.createElement('optgroup');
-    grp.label = c.label;
-    c.products.forEach(p => {
-      const opt = document.createElement('option');
-      opt.value = p.v;
-      opt.dataset.price = p.p;
-      opt.textContent = p.t;
-      grp.appendChild(opt);
-    });
-    sel.appendChild(grp);
+  BUY_PRODUCTS.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.v;
+    opt.dataset.base = p.base;
+    opt.textContent = p.icon + ' ' + p.v.replace('Dropless ', '');
+    sel.appendChild(opt);
   });
+  fillBuySizes();
+}
+
+function fillBuySizes() {
+  const prodSel = document.getElementById('buyProduct');
+  const sizeSel = document.getElementById('buySize');
+  if (!prodSel.options.length) return;
+  const base = parseFloat(prodSel.options[prodSel.selectedIndex].dataset.base);
+  const onceki = sizeSel.selectedIndex >= 0 ? sizeSel.selectedIndex : 2;
+  sizeSel.innerHTML = '';
+  BUY_SIZES.forEach(s => {
+    const opt = document.createElement('option');
+    const fiyat = sizePrice(base, s.mult);
+    opt.value = s.ml;
+    opt.dataset.price = fiyat.toFixed(2);
+    opt.textContent = s.t + ' — $' + fiyat.toFixed(2);
+    sizeSel.appendChild(opt);
+  });
+  sizeSel.selectedIndex = onceki >= 0 && onceki < BUY_SIZES.length ? onceki : 2;
   updatePrice();
+}
+
+// Seçili ürün + boyutun sepete girecek adı: "Dropless RainXtreme 500mL"
+function buySelectionName() {
+  const prodSel = document.getElementById('buyProduct');
+  const sizeSel = document.getElementById('buySize');
+  const ml = parseInt(sizeSel.value || '500');
+  return prodSel.value + ' ' + (ml === 1000 ? '1L' : ml + 'mL');
 }
 
 // ── BUY PRICE UPDATE ──────────────────────────────────────────────────────────
 function updatePrice() {
-  const sel = document.getElementById('buyProduct');
-  if (!sel || !sel.options.length) return;
-  const opt = sel.options[sel.selectedIndex];
-  const price = opt.dataset.price || '14.95';
+  const sizeSel = document.getElementById('buySize');
+  if (!sizeSel || !sizeSel.options.length) return;
+  const price = sizeSel.options[sizeSel.selectedIndex].dataset.price || '29.95';
   document.getElementById('buyPrice').value = price;
+  document.getElementById('buyProductName').value = buySelectionName();
   const display = document.getElementById('buyPriceDisplay');
   if (display) display.textContent = '$' + parseFloat(price).toFixed(2) + ' AUD';
 }
@@ -1687,9 +1699,9 @@ else applyTranslations('en');
     duo_s1_tag:'Hakbang 1 · Laging Una',duo_s2_lbl:'I-SEAL AT PROTEKTAHAN',duo_s2_name:'Dropless Shield',
     duo_s2_desc:'Nagbubuklod nang kemikal sa ibabaw para sa pinakamataas na hydrophobic cross-linkage. Binibinat ang tubig. Nag-aalis ng mantsa. Tumatagal ng maraming buwan.',
     duo_s2_tag:'Hakbang 2 · Mag-apply Nang Isang Beses',
-    duo_bundle_title:'Complete Bathroom Care Pack — $49.95',
-    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — makatipid ng $19.90 kumpara sa hiwalay na pagbili.',
-    duo_bundle_btn:'I-shop ang Bundle — $49.95 AUD →',
+    duo_bundle_title:'Complete Bathroom Care Pack — $44.95',
+    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — makatipid ng $4.95 kumpara sa hiwalay na pagbili.',
+    duo_bundle_btn:'I-shop ang Bundle — $44.95 AUD →',
     prods_eyebrow:'Hanay ng Produkto',prods_h2:'Proteksyon para sa Bawat Ibabaw',
     prods_sub:'Propesyonal na hydrophobic coatings. Pumili ng produkto upang makita ang mga tagubilin sa iyong wika.',
     prods_search:'Maghanap ng mga produkto...',
@@ -1733,9 +1745,9 @@ else applyTranslations('en');
     duo_s1_tag:'Bước 1 · Luôn Đầu Tiên',duo_s2_lbl:'BÍT KÍN & BẢO VỆ',duo_s2_name:'Dropless Shield',
     duo_s2_desc:'Liên kết hóa học với bề mặt để tạo liên kết kỵ nước tối đa. Nước đọng thành giọt. Vết bẩn trượt đi. Kéo dài nhiều tháng.',
     duo_s2_tag:'Bước 2 · Chỉ Dùng Một Lần',
-    duo_bundle_title:'Bộ Chăm Sóc Phòng Tắm Hoàn Chỉnh — $49.95',
-    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — tiết kiệm $19.90 so với mua riêng lẻ.',
-    duo_bundle_btn:'Mua Bộ — $49.95 AUD →',
+    duo_bundle_title:'Bộ Chăm Sóc Phòng Tắm Hoàn Chỉnh — $44.95',
+    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — tiết kiệm $4.95 so với mua riêng lẻ.',
+    duo_bundle_btn:'Mua Bộ — $44.95 AUD →',
     prods_eyebrow:'Dòng Sản Phẩm',prods_h2:'Bảo vệ mọi bề mặt',
     prods_sub:'Lớp phủ kỵ nước chuyên nghiệp. Chọn sản phẩm để xem hướng dẫn bằng ngôn ngữ của bạn.',
     prods_search:'Tìm kiếm sản phẩm...',
@@ -1779,9 +1791,9 @@ else applyTranslations('en');
     duo_s1_tag:'1단계 · 항상 먼저',duo_s2_lbl:'밀봉 & 보호',duo_s2_name:'Dropless Shield',
     duo_s2_desc:'최대 발수 결합을 위해 표면에 화학적으로 결합합니다. 물방울이 맺힙니다. 얼룩이 미끄러집니다. 몇 달간 지속됩니다.',
     duo_s2_tag:'2단계 · 한 번만 도포',
-    duo_bundle_title:'욕실 완전 케어 세트 — $49.95',
-    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — 개별 구매 대비 $19.90 절약.',
-    duo_bundle_btn:'세트 구매 — $49.95 AUD →',
+    duo_bundle_title:'욕실 완전 케어 세트 — $44.95',
+    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — 개별 구매 대비 $4.95 절약.',
+    duo_bundle_btn:'세트 구매 — $44.95 AUD →',
     prods_eyebrow:'제품 라인',prods_h2:'모든 표면을 위한 보호',
     prods_sub:'전문가급 발수 코팅. 아래에서 제품을 선택하여 귀하의 언어로 사용 지침을 확인하세요.',
     prods_search:'제품 검색...',
@@ -1825,9 +1837,9 @@ else applyTranslations('en');
     duo_s1_tag:'Etapa 1 · Sempre Primeiro',duo_s2_lbl:'SELAR & PROTEGER',duo_s2_name:'Dropless Shield',
     duo_s2_desc:'Liga-se quimicamente à superfície para máxima reticulação hidrofóbica. A água forma gotas. As manchas deslizam. Dura meses.',
     duo_s2_tag:'Etapa 2 · Aplique Uma Vez',
-    duo_bundle_title:'Kit Completo para o Banheiro — $49.95',
-    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — economize $19.90 em relação à compra separada.',
-    duo_bundle_btn:'Comprar o Kit — $49.95 AUD →',
+    duo_bundle_title:'Kit Completo para o Banheiro — $44.95',
+    duo_bundle_sub:'Dropless Prep ($19.95) + Bathroom Shield ($29.95) — economize $4.95 em relação à compra separada.',
+    duo_bundle_btn:'Comprar o Kit — $44.95 AUD →',
     prods_eyebrow:'Linha de Produtos',prods_h2:'Proteção para Cada Superfície',
     prods_sub:'Revestimentos hidrofóbicos de nível profissional. Selecione um produto para ver as instruções no seu idioma.',
     prods_search:'Pesquisar produtos...',
@@ -1990,7 +2002,8 @@ else applyTranslations('en');
 
 renderProducts();
 renderFaq();
-filterBuyProducts(); // Sayfa açılışında tüm ürünleri doldur
+fillBuyProducts();   // Ürün + boyut dropdown'larını doldur
+renderCart();        // localStorage'daki sepeti geri yükle
 loadFromERP();  // Arka planda ERP'den güncelle — başarısız olursa hardcoded kalır
 loadSDS();      // SDS PDF linklerini ERP'den çek
 
@@ -2001,25 +2014,44 @@ document.getElementById('musteri_email') && document.getElementById('musteri_ema
 });
 
 // ── MİNİ SEPET — birden fazla farklı ürün tek Stripe checkout'ta ─────────────
+// Sepet localStorage'da saklanır — sayfa yenilense de kaybolmaz
 let CART = [];
+try { CART = JSON.parse(localStorage.getItem('dropless_cart') || '[]') || []; } catch (e) { CART = []; }
+let cartToastTimer = null;
+
+// Ürün eklenince tıklama gerektirmeden 2 sn görünüp kaybolan bildirim
+function showCartToast(name) {
+  let t = document.getElementById('cartToast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'cartToast';
+    t.className = 'cart-toast';
+    document.body.appendChild(t);
+  }
+  t.innerHTML = '✅ <span>Added to cart — ' + name.replace('Dropless ', '') + '</span>';
+  t.classList.add('show');
+  clearTimeout(cartToastTimer);
+  cartToastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+}
 
 function addToCart() {
-  const sel = document.getElementById('buyProduct');
-  const opt = sel.options[sel.selectedIndex];
-  if (!opt) return;
+  const sizeSel = document.getElementById('buySize');
+  if (!sizeSel || !sizeSel.options.length) return;
   const qty   = parseInt(document.getElementById('buyQty').value || '1');
-  const name  = opt.value;
-  const price = parseFloat(opt.dataset.price || '0');
+  const name  = buySelectionName();
+  const price = parseFloat(sizeSel.options[sizeSel.selectedIndex].dataset.price || '0');
   if (!name || !price) return;
   const mevcut = CART.find(k => k.urun_adi === name);
   if (mevcut) { mevcut.adet = Math.min(20, mevcut.adet + qty); }
   else { CART.push({ urun_adi: name, tutar: price, adet: qty }); }
   renderCart(true);
+  showCartToast(name);
 }
 
 function removeFromCart(i) { CART.splice(i, 1); renderCart(); }
 
 function renderCart(flash) {
+  try { localStorage.setItem('dropless_cart', JSON.stringify(CART)); } catch (e) {}
   const box = document.getElementById('miniCart');
   const list = document.getElementById('cartItems');
   const btn = document.querySelector('#buyForm .buy-submit');
@@ -2057,6 +2089,9 @@ function renderCart(flash) {
 function prepareCheckout() {
   // Sepet doluysa JSON gönder (backend çoklu line_item açar); boşsa eski tek-ürün akışı
   document.getElementById('sepetInput').value = CART.length ? JSON.stringify(CART) : '';
+  document.getElementById('buyProductName').value = buySelectionName();
+  // Ödemeye gidince saklanan sepeti temizle — dönüşte çift sipariş riskini önler
+  try { localStorage.removeItem('dropless_cart'); } catch (e) {}
   return true;
 }
 
@@ -2065,17 +2100,20 @@ function addDuoToCart() {
   const name = 'Bathroom Care Pack (Dropless Prep + Bathroom Shield 500mL)';
   const mevcut = CART.find(k => k.urun_adi === name);
   if (mevcut) { mevcut.adet = Math.min(20, mevcut.adet + 1); }
-  else { CART.push({ urun_adi: name, tutar: 49.95, adet: 1 }); }
+  else { CART.push({ urun_adi: name, tutar: 44.95, adet: 1 }); }
   renderCart(true);
+  showCartToast(name);
 }
 
 // "Frequently Bought Together" paketleri — sepete ekler, sepet kutusuna kaydırır
 function addBundleToCart(name, price, btn) {
-  const qty = parseInt(btn.closest('form').querySelector('[name=adet]').value || '1');
+  const qtySel = btn.parentElement.querySelector('select');
+  const qty = parseInt((qtySel && qtySel.value) || '1');
   const mevcut = CART.find(k => k.urun_adi === name);
   if (mevcut) { mevcut.adet = Math.min(20, mevcut.adet + qty); }
   else { CART.push({ urun_adi: name, tutar: price, adet: qty }); }
   renderCart(true);
+  showCartToast(name);
   document.getElementById('miniCart').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
