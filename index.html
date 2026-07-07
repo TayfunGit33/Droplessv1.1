@@ -380,18 +380,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <body>
 <!-- PROMO BAR -->
 <div class="promo-bar">🚚 Free shipping over $50 AUD &nbsp;·&nbsp; 🇦🇺 Made in Wollongong, NSW &nbsp;·&nbsp;
-  <span class="pfas-tip" onclick="this.classList.toggle('open')">✅ PFAS-free formulas
-    <span class="pfas-pop">
-      <span class="pfas-leaf">🌿</span>
-      <strong style="color:#86efac;">🌱 What are PFAS?</strong><br>
-      PFAS — often called <em style="color:#bbf7d0;">"forever chemicals"</em> — are fluorinated
-      compounds used in many traditional water-repellent coatings. They never break down in
-      nature, accumulate in people and wildlife, and are being phased out across Australia.<br>
-      <strong style="color:#86efac;">Dropless contains zero PFAS</strong> — the same
-      water-beading protection, without the forever chemicals.
-      <span class="pfas-eko">💚 Kinder to you, your home &amp; Australian waterways</span>
-    </span>
-  </span>
+  <span class="pfas-tip" onclick="this.classList.toggle('open')">✅ <span data-i18n="pfas_badge">PFAS-free formulas</span><span class="pfas-pop" data-i18n-html="pfas_pop"><span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 What are PFAS?</strong><br>PFAS — often called <em style="color:#bbf7d0;">"forever chemicals"</em> — are fluorinated compounds used in many traditional water-repellent coatings. They never break down in nature, accumulate in people and wildlife, and are being phased out worldwide.<br><strong style="color:#86efac;">Dropless contains zero PFAS</strong> — the same water-beading protection, without the forever chemicals.<span class="pfas-eko">💚 Kinder to you, your home & the planet</span></span></span>
 </div>
 <!-- ORDER RESULT BANNER -->
 <div class="order-banner" id="orderBanner">
@@ -916,6 +905,8 @@ function loadKatalog() {
 
 // ── UI TRANSLATIONS (page-level static text) ──────────────────────────────────
 const UI = {
+  pfas_badge: {en:'PFAS-free formulas',fr:'Formules sans PFAS',tr:'PFAS içermeyen formüller',ar:'تركيبات خالية من PFAS',zh:'不含PFAS配方',hi:'PFAS-मुक्त फ़ॉर्मूले',es:'Fórmulas sin PFAS',it:'Formule senza PFAS',fa:'فرمول‌های بدون PFAS'},
+  pfas_pop: {en:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 What are PFAS?</strong><br>PFAS — often called <em style="color:#bbf7d0;">"forever chemicals"</em> — are fluorinated compounds used in many traditional water-repellent coatings. They never break down in nature, accumulate in people and wildlife, and are being phased out worldwide.<br><strong style="color:#86efac;">Dropless contains zero PFAS</strong> — the same water-beading protection, without the forever chemicals.<span class="pfas-eko">💚 Kinder to you, your home & the planet</span>',fr:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 Que sont les PFAS ?</strong><br>Les PFAS — dits <em style="color:#bbf7d0;">« produits chimiques éternels »</em> — sont des composés fluorés utilisés dans de nombreux revêtements hydrofuges traditionnels. Ils ne se dégradent jamais dans la nature, s\'accumulent chez l\'homme et la faune, et sont progressivement interdits dans le monde.<br><strong style="color:#86efac;">Dropless ne contient aucun PFAS</strong> — la même protection perlante, sans produits chimiques éternels.<span class="pfas-eko">💚 Plus doux pour vous, votre maison et la planète</span>',tr:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 PFAS nedir?</strong><br>PFAS — <em style="color:#bbf7d0;">"sonsuz kimyasallar"</em> olarak da bilinir — birçok geleneksel su itici kaplamada kullanılan florlu bileşiklerdir. Doğada asla çözünmezler, insanlarda ve doğal yaşamda birikirler; dünya genelinde aşamalı olarak yasaklanıyorlar.<br><strong style="color:#86efac;">Dropless sıfır PFAS içerir</strong> — aynı su itici koruma, sonsuz kimyasallar olmadan.<span class="pfas-eko">💚 Size, evinize ve gezegene daha nazik</span>',ar:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 ما هي PFAS؟</strong><br>PFAS — تُعرف بـ<em style="color:#bbf7d0;">"المواد الكيميائية الأبدية"</em> — مركبات مفلورة تُستخدم في كثير من الطلاءات الطاردة للماء التقليدية. لا تتحلل في الطبيعة وتتراكم في الإنسان والحياة البرية، ويجري التخلص منها تدريجياً حول العالم.<br><strong style="color:#86efac;">Dropless خالٍ تماماً من PFAS</strong> — نفس الحماية الطاردة للماء، دون المواد الأبدية.<span class="pfas-eko">💚 ألطف بك وببيتك وبالكوكب</span>',zh:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 PFAS是什么？</strong><br>PFAS——常被称为<em style="color:#bbf7d0;">"永久化学品"</em>——是许多传统防水涂层中使用的含氟化合物。它们在自然界中永不降解，会在人体和野生动物体内积累，正在全球范围内被逐步淘汰。<br><strong style="color:#86efac;">Dropless 完全不含 PFAS</strong> — 同样的疏水保护，没有永久化学品。<span class="pfas-eko">💚 对您、您的家和地球更友好</span>',hi:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 PFAS क्या हैं?</strong><br>PFAS — जिन्हें <em style="color:#bbf7d0;">"फॉरएवर केमिकल्स"</em> कहा जाता है — कई पारंपरिक जल-प्रतिरोधी कोटिंग्स में इस्तेमाल होने वाले फ्लोरिनेटेड यौगिक हैं। ये प्रकृति में कभी नहीं टूटते, लोगों और वन्यजीवों में जमा होते हैं, और दुनिया भर में चरणबद्ध रूप से हटाए जा रहे हैं।<br><strong style="color:#86efac;">Dropless में शून्य PFAS है</strong> — वही वॉटर-बीडिंग सुरक्षा, फॉरएवर केमिकल्स के बिना।<span class="pfas-eko">💚 आपके, आपके घर और ग्रह के लिए बेहतर</span>',es:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 ¿Qué son los PFAS?</strong><br>Los PFAS — llamados <em style="color:#bbf7d0;">"químicos eternos"</em> — son compuestos fluorados usados en muchos recubrimientos hidrófugos tradicionales. Nunca se degradan en la naturaleza, se acumulan en personas y fauna, y se están eliminando en todo el mundo.<br><strong style="color:#86efac;">Dropless no contiene PFAS</strong> — la misma protección repelente, sin químicos eternos.<span class="pfas-eko">💚 Más amable con usted, su hogar y el planeta</span>',it:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 Cosa sono i PFAS?</strong><br>I PFAS — dette <em style="color:#bbf7d0;">"sostanze chimiche eterne"</em> — sono composti fluorurati usati in molti rivestimenti idrorepellenti tradizionali. Non si degradano mai in natura, si accumulano nelle persone e nella fauna e vengono eliminati in tutto il mondo.<br><strong style="color:#86efac;">Dropless non contiene PFAS</strong> — la stessa protezione idrorepellente, senza sostanze eterne.<span class="pfas-eko">💚 Più gentile con te, la tua casa e il pianeta</span>',fa:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 PFAS چیست؟</strong><br>PFAS — معروف به <em style="color:#bbf7d0;">«مواد شیمیایی ابدی»</em> — ترکیبات فلوئوردار در بسیاری از پوشش‌های ضدآب سنتی هستند. در طبیعت هرگز تجزیه نمی‌شوند، در بدن انسان و حیات وحش انباشته می‌شوند و در سراسر جهان در حال حذف‌اند.<br><strong style="color:#86efac;">Dropless بدون PFAS است</strong> — همان محافظت آب‌گریز، بدون مواد ابدی.<span class="pfas-eko">💚 مهربان‌تر با شما، خانه‌تان و زمین</span>'},
   // Navigation
   nav_products: {en:'Products',fr:'Produits',tr:'Ürünler',ar:'المنتجات',zh:'产品',hi:'उत्पाद',es:'Productos',it:'Prodotti',fa:'محصولات'},
   nav_how:      {en:'Instructions',fr:'Instructions',tr:'Kullanım Kılavuzu',ar:'تعليمات الاستخدام',zh:'使用说明',hi:'उपयोग निर्देश',es:'Instrucciones',it:'Istruzioni',fa:'دستورالعمل‌ها'},
@@ -1883,6 +1874,7 @@ else applyTranslations('en');
 (function(){
   // UI key translations
   const UI_TL = {
+    pfas_badge:'Mga pormulang walang PFAS',pfas_pop:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 Ano ang PFAS?</strong><br>Ang PFAS — tinatawag na <em style="color:#bbf7d0;">"forever chemicals"</em> — ay mga fluorinated compound na ginagamit sa maraming tradisyonal na water-repellent coating. Hindi ito nabubulok sa kalikasan, naiipon sa tao at hayop, at inaalis na sa buong mundo.<br><strong style="color:#86efac;">Walang PFAS ang Dropless</strong> — parehong proteksyon, walang forever chemicals.<span class="pfas-eko">💚 Mas mabait sa iyo, sa iyong tahanan at sa planeta</span>',
     nav_products:'Mga Produkto',nav_how:'Mga Tagubilin',nav_buy:'Bumili',nav_faq:'FAQ',nav_contact:'Makipag-ugnayan',nav_buynow:'Bumili Ngayon',mob_buynow:'Bumili Ngayon',
     hero_eyebrow:'Gawa sa Wollongong, NSW · Australia',
     hero_sub:'Propesyonal na hydrophobic coatings para sa bawat ibabaw. Mag-apply nang isang beses — binibinat ang tubig, nag-aalis ng mantsa, nananatiling malinis ng ilang buwan.',
@@ -1929,6 +1921,7 @@ else applyTranslations('en');
     mobnav_home:'Home',mobnav_products:'Mga Produkto',mobnav_buy:'Bumili',mobnav_faq:'FAQ',mobnav_contact:'Ugnayan'
   };
   const UI_VI = {
+    pfas_badge:'Công thức không PFAS',pfas_pop:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 PFAS là gì?</strong><br>PFAS — thường gọi là <em style="color:#bbf7d0;">"hóa chất vĩnh cửu"</em> — là các hợp chất flo dùng trong nhiều lớp phủ chống nước truyền thống. Chúng không bao giờ phân hủy trong tự nhiên, tích tụ trong con người và động vật hoang dã, và đang bị loại bỏ trên toàn cầu.<br><strong style="color:#86efac;">Dropless hoàn toàn không chứa PFAS</strong> — cùng khả năng chống nước, không hóa chất vĩnh cửu.<span class="pfas-eko">💚 Thân thiện hơn với bạn, ngôi nhà và hành tinh</span>',
     nav_products:'Sản Phẩm',nav_how:'Hướng Dẫn',nav_buy:'Mua',nav_faq:'FAQ',nav_contact:'Liên Hệ',nav_buynow:'Mua Ngay',mob_buynow:'Mua Ngay',
     hero_eyebrow:'Sản xuất tại Wollongong, NSW · Úc',
     hero_sub:'Lớp phủ kỵ nước chuyên nghiệp cho mọi bề mặt. Áp dụng một lần — nước đọng thành giọt, vết bẩn trượt đi, bề mặt sạch bóng nhiều tháng.',
@@ -1975,6 +1968,7 @@ else applyTranslations('en');
     mobnav_home:'Trang Chủ',mobnav_products:'Sản Phẩm',mobnav_buy:'Mua',mobnav_faq:'FAQ',mobnav_contact:'Liên Hệ'
   };
   const UI_KO = {
+    pfas_badge:'PFAS 무함유 포뮬러',pfas_pop:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 PFAS란 무엇인가요?</strong><br>PFAS — 흔히 <em style="color:#bbf7d0;">"영원한 화학물질"</em>이라 불리는 — 은 많은 전통적 발수 코팅에 쓰이는 불소 화합물입니다. 자연에서 분해되지 않고 사람과 야생동물에 축적되며, 전 세계적으로 퇴출되고 있습니다.<br><strong style="color:#86efac;">Dropless는 PFAS가 전혀 없습니다</strong> — 같은 발수 보호, 영원한 화학물질 없이.<span class="pfas-eko">💚 당신과 집, 지구에 더 다정하게</span>',
     nav_products:'제품',nav_how:'사용법',nav_buy:'구매',nav_faq:'FAQ',nav_contact:'문의',nav_buynow:'지금 구매',mob_buynow:'지금 구매',
     hero_eyebrow:'호주 뉴사우스웨일스 울런공 제조',
     hero_sub:'모든 표면을 위한 전문 발수 코팅. 한 번 바르면 — 물방울이 맺히고, 얼룩이 미끄러지며, 몇 달 동안 표면이 깨끗합니다.',
@@ -2021,6 +2015,7 @@ else applyTranslations('en');
     mobnav_home:'홈',mobnav_products:'제품',mobnav_buy:'구매',mobnav_faq:'FAQ',mobnav_contact:'문의'
   };
   const UI_PT = {
+    pfas_badge:'Fórmulas sem PFAS',pfas_pop:'<span class="pfas-leaf">🌿</span><strong style="color:#86efac;">🌱 O que são PFAS?</strong><br>PFAS — os <em style="color:#bbf7d0;">"químicos eternos"</em> — são compostos fluorados usados em muitos revestimentos repelentes tradicionais. Nunca se degradam na natureza, acumulam-se em pessoas e na fauna e estão sendo eliminados no mundo todo.<br><strong style="color:#86efac;">Dropless não contém PFAS</strong> — a mesma proteção repelente, sem químicos eternos.<span class="pfas-eko">💚 Mais gentil com você, sua casa e o planeta</span>',
     nav_products:'Produtos',nav_how:'Instruções',nav_buy:'Comprar',nav_faq:'FAQ',nav_contact:'Contato',nav_buynow:'Comprar Agora',mob_buynow:'Comprar Agora',
     hero_eyebrow:'Fabricado em Wollongong, NSW · Austrália',
     hero_sub:'Revestimentos hidrofóbicos profissionais para cada superfície. Aplique uma vez — a água forma gotas, manchas deslizam, superfícies ficam limpas por meses.',
