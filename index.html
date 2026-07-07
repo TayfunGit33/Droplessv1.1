@@ -473,7 +473,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     </div>
     <div class="mock-float mf-bottom">
       <span class="mock-float-ico">📦</span>
-      <span><span class="mock-float-main" data-i18n="ships_au">Ships AU-wide</span><span class="mock-float-sub" data-i18n="ships_sub">via Australia Post &amp; Sendle</span></span>
+      <span><span class="mock-float-main" data-i18n="ships_au">Ships AU-wide</span><span class="mock-float-sub" data-i18n="ships_sub">via Australia Post</span></span>
     </div>
   </div>
 </div>
@@ -590,7 +590,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   <div class="buy-inner">
     <div class="eyebrow" style="color:rgba(255,255,255,.6)" data-i18n="buy_eyebrow">Order Now</div>
     <h2 class="display">Ships from Wollongong, NSW</h2>
-    <p class="buy-sub" data-i18n="buy_sub">Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post &amp; Sendle delivery network.</p>
+    <p class="buy-sub" data-i18n="buy_sub">Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post delivery network.</p>
     <div class="buy-form">
       <form action="https://app.dropless.com.au/stripe/checkout" method="POST" id="buyForm" onsubmit="return prepareCheckout()">
         <div class="form-group" style="margin-bottom:14px;">
@@ -652,6 +652,21 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
             Free shipping over $50 AUD — calculated at checkout</div>
         </div>
         <input type="hidden" name="sepet" id="sepetInput" value=""/>
+        <!-- PREP ÖNERİSİ — sepette/seçimde Prep yoksa görünür (2 adımlı sistem upsell'i) -->
+        <div id="prepUpsell" style="display:none;background:rgba(94,234,212,.08);border:1px dashed rgba(94,234,212,.5);
+             border-radius:10px;padding:11px 14px;margin-bottom:14px;text-align:left;">
+          <div style="font-size:.82rem;color:rgba(255,255,255,.9);line-height:1.5;margin-bottom:8px;">
+            🧴 <strong style="color:#5eead4;">Recommended: add Dropless Prep</strong> —
+            Step 1 cleaning spray that removes soap scum, oils and residue on glass, tile,
+            ceramic, metal and most hard surfaces. A clean surface makes your coating bond
+            stronger and last longer.
+          </div>
+          <button type="button" onclick="addPrepToCart()" id="prepUpsellBtn"
+                  style="background:#5eead4;color:#0d2027;border:none;border-radius:8px;
+                         padding:8px 16px;font-size:.85rem;font-weight:700;cursor:pointer;">
+            + Add Dropless Prep 500mL — $19.95
+          </button>
+        </div>
         <div class="form-group" style="margin-bottom:16px;">
           <label data-i18n="buy_lbl_email">Your Email</label>
           <input type="email" name="musteri_email" id="musteri_email" placeholder="you@example.com" required/>
@@ -764,7 +779,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
       <a href="https://app.dropless.com.au/sds/serve/bathroom" target="_blank" rel="noopener">📄 Safety Data Sheet (SDS)</a>
       <a href="tel:131126" style="color:rgba(255,100,100,.85);font-weight:600;">🚨 Poisons Info: 13 11 26</a>
       <span style="font-size:12.5px;color:rgba(255,255,255,.4);display:block;margin-top:4px;">ABN 65 948 041 856</span>
-      <span style="font-size:12px;color:rgba(255,255,255,.4);display:block;margin-top:2px;">Shipping via Australia Post &amp; Sendle · LQ Compliant</span>
+      <span style="font-size:12px;color:rgba(255,255,255,.4);display:block;margin-top:2px;">Shipping via Australia Post · LQ Compliant</span>
     </div>
   </div>
   <div class="footer-bottom">
@@ -885,7 +900,7 @@ const UI = {
   trust_months: {en:'Months of Protection',fr:'Des mois de protection',tr:'Aylarca Koruma',ar:'حماية لأشهر',zh:'数月保护',hi:'महीनों तक सुरक्षा',es:'Meses de Protección',it:'Mesi di Protezione',fa:'ماه‌ها محافظت'},
   hero_order:   {en:'Order Now →',fr:'Commander maintenant →',tr:'Sipariş Ver →',ar:'اطلب الآن →',zh:'立即订购 →',hi:'अभी ऑर्डर करें →',es:'Pedir Ahora →',it:'Ordina Ora →',fa:'همین حالا سفارش دهید →'},
   ships_au:     {en:'Ships AU-wide',fr:'Livraison en Australie',tr:'Avustralya\'ya Kargo',ar:'شحن أستراليا',zh:'全澳配送',hi:'ऑस्ट्रेलिया-भर में',es:'Envío Australia',it:'Spedizione Australia',fa:'ارسال سراسر استرالیا'},
-  ships_sub:    {en:'via Australia Post & Sendle',fr:'via Australia Post & Sendle',tr:'Australia Post ve Sendle ile',ar:'عبر Australia Post و Sendle',zh:'通过 Australia Post 和 Sendle',hi:'Australia Post और Sendle के जरिए',es:'via Australia Post y Sendle',it:'tramite Australia Post e Sendle',fa:'از طریق Australia Post و Sendle'},
+  ships_sub:    {en:'via Australia Post',fr:'via Australia Post',tr:'Australia Post ile',ar:'عبر Australia Post',zh:'通过 Australia Post',hi:'Australia Post के जरिए',es:'via Australia Post',it:'tramite Australia Post',fa:'از طریق Australia Post'},
   // Stats
   stat_products:   {en:'Products',fr:'Produits',tr:'Ürün',ar:'منتجات',zh:'款产品',hi:'उत्पाद',es:'Productos',it:'Prodotti',fa:'محصول'},
   stat_languages:  {en:'Languages',fr:'Langues',tr:'Dil',ar:'لغات',zh:'种语言',hi:'भाषाएं',es:'Idiomas',it:'Lingue',fa:'زبان'},
@@ -931,7 +946,7 @@ const UI = {
   how_s4_p:    {en:'Buff until clear. Avoid water for 30–60 min. Done.',fr:'Polissez jusqu\'à transparence. Évitez l\'eau 30–60 min. Terminé.',tr:'Şeffaflaşana dek parlatın. 30–60 dakika su değdirmeyin. Bitti.',ar:'امسح حتى يصبح شفافًا. تجنب الماء 30–60 دقيقة. تم.',zh:'抛光至透明。避免接触水30-60分钟。完成。',hi:'शफाफ होने तक बफ करें। 30-60 मिनट पानी से बचाएं। हो गया।',es:'Pule hasta que quede claro. Evita el agua 30-60 min. ¡Listo!',it:'Lucida fino a trasparenza. Evita acqua 30–60 min. Fatto.',fa:'تا شفاف شدن پولیش کنید. ۳۰-۶۰ دقیقه از آب دور نگه دارید. تمام.'},
   // Buy section
   buy_eyebrow:   {en:'Order Now',fr:'Commander maintenant',tr:'Hemen Sipariş Ver',ar:'اطلب الآن',zh:'立即订购',hi:'अभी ऑर्डर करें',es:'Pide Ahora',it:'Ordina Ora',fa:'همین حالا سفارش دهید'},
-  buy_sub:       {en:'Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post & Sendle delivery network.',fr:'Livraison gratuite pour les commandes supérieures à $50 AUD · Livraison dans toute l\'Australie via Australia Post & Sendle.',tr:'$50 AUD üzeri siparişlerde ücretsiz kargo · Avustralya genelinde Australia Post & Sendle ile takipli kargo.',ar:'شحن مجاني للطلبات التي تتجاوز $50 AUD · شحن في أنحاء أستراليا عبر Australia Post و Sendle.',zh:'$50 AUD以上免运费 · 通过跟踪澳大利亚邮政和Sendle全澳发货。',hi:'$50 AUD से ऊपर मुफ्त शिपिंग · Australia Post और Sendle से ऑस्ट्रेलिया-भर में ट्रैक्ड डिलीवरी।',es:'Envío gratuito en pedidos superiores a $50 AUD · Envío a toda Australia via Australia Post y Sendle.',it:'Spedizione gratuita per ordini superiori a $50 AUD · Spedizione in tutta Australia tramite Australia Post e Sendle.',fa:'ارسال رایگان برای سفارشات بیش از $50 AUD · ارسال سراسر استرالیا از طریق Australia Post و Sendle.'},
+  buy_sub:       {en:'Free shipping on orders over $50 AUD · Ships Australia-wide via tracked Australia Post delivery network.',fr:'Livraison gratuite pour les commandes supérieures à $50 AUD · Livraison dans toute l\'Australie via Australia Post.',tr:'$50 AUD üzeri siparişlerde ücretsiz kargo · Avustralya genelinde Australia Post ile takipli kargo.',ar:'شحن مجاني للطلبات التي تتجاوز $50 AUD · شحن في أنحاء أستراليا عبر Australia Post.',zh:'$50 AUD以上免运费 · 通过跟踪澳大利亚邮政全澳发货。',hi:'$50 AUD से ऊपर मुफ्त शिपिंग · Australia Post से ऑस्ट्रेलिया-भर में ट्रैक्ड डिलीवरी।',es:'Envío gratuito en pedidos superiores a $50 AUD · Envío a toda Australia via Australia Post.',it:'Spedizione gratuita per ordini superiori a $50 AUD · Spedizione in tutta Australia tramite Australia Post.',fa:'ارسال رایگان برای سفارشات بیش از $50 AUD · ارسال سراسر استرالیا از طریق Australia Post.'},
   buy_lbl_cat:   {en:'Category',fr:'Catégorie',tr:'Kategori',ar:'الفئة',zh:'类别',hi:'श्रेणी',es:'Categoría',it:'Categoria',fa:'دسته‌بندی'},
   buy_lbl_prod:  {en:'Product',fr:'Produit',tr:'Ürün',ar:'المنتج',zh:'产品',hi:'उत्पाद',es:'Producto',it:'Prodotto',fa:'محصول'},
   buy_lbl_qty:   {en:'Quantity',fr:'Quantité',tr:'Adet',ar:'الكمية',zh:'数量',hi:'मात्रा',es:'Cantidad',it:'Quantità',fa:'تعداد'},
@@ -1654,6 +1669,7 @@ function updatePrice() {
   document.getElementById('buyProductName').value = buySelectionName();
   const display = document.getElementById('buyPriceDisplay');
   if (display) display.textContent = price ? ('$' + price.toFixed(2) + ' AUD') : 'Enter size above';
+  if (typeof updatePrepUpsell === 'function') updatePrepUpsell();
 }
 
 // ── CONTACT FORM ──────────────────────────────────────────────────────────────
@@ -1837,7 +1853,7 @@ else applyTranslations('en');
     hero_sub:'Propesyonal na hydrophobic coatings para sa bawat ibabaw. Mag-apply nang isang beses — binibinat ang tubig, nag-aalis ng mantsa, nananatiling malinis ng ilang buwan.',
     hero_cta1:'Mamili Ngayon →',hero_cta2:'📋 Paano Gamitin',
     trust_au:'Gawa sa Australia',trust_stripe:'Stripe Secured',trust_ships:'Nagpapadala sa buong AU',trust_months:'Buwan ng Proteksyon',
-    hero_order:'Umorder Ngayon →',ships_au:'Nagpapadala sa buong AU',ships_sub:'sa pamamagitan ng Australia Post at Sendle',
+    hero_order:'Umorder Ngayon →',ships_au:'Nagpapadala sa buong AU',ships_sub:'sa pamamagitan ng Australia Post',
     stat_products:'Mga Produkto',stat_languages:'Mga Wika',stat_made_in:'Gawa sa Australia',stat_protection:'Proteksyon sa Bawat Apply',
     duo_eyebrow:'Ang 2-Hakbang na Sistema',duo_h2:'Ang Perpektong Duo',
     duo_sub:'Ang pinakamataas na proteksyon ay nagsisimula sa pinakamataas na kalinisan. Ang aming two-step protocol ay ang propesyonal na pamantayan.',
@@ -1860,7 +1876,7 @@ else applyTranslations('en');
     how_s3_h:'Ikalat',how_s3_p:'Gumamit ng malinis na microfiber cloth upang maikalat nang pantay.',
     how_s4_h:'I-buff',how_s4_p:'I-buff hanggang malinaw. Iwasan ang tubig sa loob ng 30–60 min. Tapos na.',
     buy_eyebrow:'Umorder Ngayon',
-    buy_sub:'Libreng shipping para sa mga order na higit sa $50 AUD · Nagpapadala sa buong Australia sa pamamagitan ng tracked Australia Post at Sendle.',
+    buy_sub:'Libreng shipping para sa mga order na higit sa $50 AUD · Nagpapadala sa buong Australia sa pamamagitan ng tracked Australia Post.',
     buy_lbl_cat:'Kategorya',buy_lbl_prod:'Produkto',buy_lbl_qty:'Dami',buy_lbl_email:'Iyong Email',
     buy_submit:'Magpatuloy sa Secure na Pagbabayad →',
     buy_note:'Sinigurado ng Stripe · SSL encrypted · Nagpapadala sa loob ng 1–2 araw ng negosyo',
@@ -1883,7 +1899,7 @@ else applyTranslations('en');
     hero_sub:'Lớp phủ kỵ nước chuyên nghiệp cho mọi bề mặt. Áp dụng một lần — nước đọng thành giọt, vết bẩn trượt đi, bề mặt sạch bóng nhiều tháng.',
     hero_cta1:'Mua Ngay →',hero_cta2:'📋 Cách Sử Dụng',
     trust_au:'Sản xuất tại Úc',trust_stripe:'Bảo mật Stripe',trust_ships:'Giao hàng toàn AU',trust_months:'Bảo vệ nhiều tháng',
-    hero_order:'Đặt Hàng Ngay →',ships_au:'Giao hàng toàn AU',ships_sub:'qua Australia Post & Sendle',
+    hero_order:'Đặt Hàng Ngay →',ships_au:'Giao hàng toàn AU',ships_sub:'qua Australia Post',
     stat_products:'Sản Phẩm',stat_languages:'Ngôn Ngữ',stat_made_in:'Sản xuất tại Úc',stat_protection:'Bảo vệ mỗi lần dùng',
     duo_eyebrow:'Hệ thống 2 bước',duo_h2:'Bộ đôi hoàn hảo',
     duo_sub:'Bảo vệ tối đa bắt đầu từ sự sạch bóng tối đa. Quy trình hai bước là tiêu chuẩn chuyên nghiệp.',
@@ -1906,7 +1922,7 @@ else applyTranslations('en');
     how_s3_h:'Phết Đều',how_s3_p:'Dùng khăn microfiber sạch để phết đều.',
     how_s4_h:'Đánh Bóng',how_s4_p:'Đánh bóng cho đến khi trong suốt. Tránh nước 30–60 phút. Xong.',
     buy_eyebrow:'Đặt Hàng Ngay',
-    buy_sub:'Miễn phí vận chuyển cho đơn hàng trên $50 AUD · Giao hàng toàn Úc qua Australia Post & Sendle có tracking.',
+    buy_sub:'Miễn phí vận chuyển cho đơn hàng trên $50 AUD · Giao hàng toàn Úc qua Australia Post có tracking.',
     buy_lbl_cat:'Danh Mục',buy_lbl_prod:'Sản Phẩm',buy_lbl_qty:'Số Lượng',buy_lbl_email:'Email của bạn',
     buy_submit:'Tiến hành Thanh Toán An Toàn →',
     buy_note:'Bảo mật bởi Stripe · Mã hóa SSL · Giao hàng trong 1–2 ngày làm việc',
@@ -1929,7 +1945,7 @@ else applyTranslations('en');
     hero_sub:'모든 표면을 위한 전문 발수 코팅. 한 번 바르면 — 물방울이 맺히고, 얼룩이 미끄러지며, 몇 달 동안 표면이 깨끗합니다.',
     hero_cta1:'지금 쇼핑 →',hero_cta2:'📋 사용 방법',
     trust_au:'호주 제조',trust_stripe:'Stripe 보안',trust_ships:'호주 전역 배송',trust_months:'수개월간 보호',
-    hero_order:'지금 주문 →',ships_au:'호주 전역 배송',ships_sub:'Australia Post & Sendle 이용',
+    hero_order:'지금 주문 →',ships_au:'호주 전역 배송',ships_sub:'Australia Post 이용',
     stat_products:'제품',stat_languages:'언어',stat_made_in:'호주 제조',stat_protection:'1회 도포 보호 기간',
     duo_eyebrow:'2단계 시스템',duo_h2:'완벽한 듀오',
     duo_sub:'최대 보호는 최대한의 청결에서 시작됩니다. 당사의 2단계 프로토콜은 전문가 표준입니다.',
@@ -1952,7 +1968,7 @@ else applyTranslations('en');
     how_s3_h:'펴바르기',how_s3_p:'깨끗한 마이크로파이버 천으로 균일하게 펴바르세요.',
     how_s4_h:'버핑',how_s4_p:'투명해질 때까지 버핑하세요. 30–60분간 물을 피하세요. 완료.',
     buy_eyebrow:'지금 주문',
-    buy_sub:'$50 AUD 이상 주문 시 무료 배송 · Australia Post & Sendle을 통해 호주 전역 추적 배송.',
+    buy_sub:'$50 AUD 이상 주문 시 무료 배송 · Australia Post을 통해 호주 전역 추적 배송.',
     buy_lbl_cat:'카테고리',buy_lbl_prod:'제품',buy_lbl_qty:'수량',buy_lbl_email:'이메일',
     buy_submit:'안전 결제 진행 →',
     buy_note:'Stripe 보안 · SSL 암호화 · 1–2 영업일 내 배송',
@@ -1975,7 +1991,7 @@ else applyTranslations('en');
     hero_sub:'Revestimentos hidrofóbicos profissionais para cada superfície. Aplique uma vez — a água forma gotas, manchas deslizam, superfícies ficam limpas por meses.',
     hero_cta1:'Comprar Agora →',hero_cta2:'📋 Como Usar',
     trust_au:'Fabricado na Austrália',trust_stripe:'Pagamento Stripe',trust_ships:'Entrega em toda a AU',trust_months:'Meses de Proteção',
-    hero_order:'Pedir Agora →',ships_au:'Entrega em toda a AU',ships_sub:'via Australia Post & Sendle',
+    hero_order:'Pedir Agora →',ships_au:'Entrega em toda a AU',ships_sub:'via Australia Post',
     stat_products:'Produtos',stat_languages:'Idiomas',stat_made_in:'Fabricado na Austrália',stat_protection:'Proteção por Aplicação',
     duo_eyebrow:'O Sistema de 2 Etapas',duo_h2:'A Dupla Perfeita',
     duo_sub:'A máxima proteção começa com a máxima limpeza. Nosso protocolo de duas etapas é o padrão profissional.',
@@ -1998,7 +2014,7 @@ else applyTranslations('en');
     how_s3_h:'Espalhar',how_s3_p:'Use um pano de microfibra limpo para espalhar uniformemente.',
     how_s4_h:'Polir',how_s4_p:'Polir até ficar transparente. Evite água por 30–60 min. Pronto.',
     buy_eyebrow:'Pedir Agora',
-    buy_sub:'Frete grátis em pedidos acima de $50 AUD · Entrega em toda a Austrália via Australia Post & Sendle com rastreamento.',
+    buy_sub:'Frete grátis em pedidos acima de $50 AUD · Entrega em toda a Austrália via Australia Post com rastreamento.',
     buy_lbl_cat:'Categoria',buy_lbl_prod:'Produto',buy_lbl_qty:'Quantidade',buy_lbl_email:'Seu Email',
     buy_submit:'Ir para Pagamento Seguro →',
     buy_note:'Protegido por Stripe · Criptografado SSL · Envio em 1–2 dias úteis',
@@ -2240,6 +2256,7 @@ function renderCart(flash) {
   if (btn) btn.textContent = `Checkout ${adetToplam} item${adetToplam > 1 ? 's' : ''} — $${toplam.toFixed(2)} →`;
   // Kayan buton sepet doluyken sayaç + toplam gösterir
   if (fb) fb.innerHTML = `🛒 Cart (${adetToplam}) — $${toplam.toFixed(2)}`;
+  if (typeof updatePrepUpsell === 'function') updatePrepUpsell();
 }
 
 function prepareCheckout() {
@@ -2249,6 +2266,37 @@ function prepareCheckout() {
   // Ödemeye gidince saklanan sepeti temizle — dönüşte çift sipariş riskini önler
   try { localStorage.removeItem('dropless_cart'); } catch (e) {}
   return true;
+}
+
+// ── PREP ÖNERİSİ — 2 adımlı sistem upsell'i ──────────────────────────────────
+// Sepette veya seçimde Prep yoksa öneri kutusu görünür; fiyat ERP çapasından gelir
+function prepUrunu() {
+  return BUY_PRODUCTS.find(p => p.v.toLowerCase().includes('prep'));
+}
+
+function updatePrepUpsell() {
+  const box = document.getElementById('prepUpsell');
+  if (!box) return;
+  const prep = prepUrunu();
+  const sepetteVar = CART.some(k => k.urun_adi.toLowerCase().includes('prep'));
+  const secimPrep = (document.getElementById('buyProduct').value || '').toLowerCase().includes('prep');
+  if (!prep || sepetteVar || secimPrep) { box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  const fiyat = sizePrice(prep.base, 1.0);
+  document.getElementById('prepUpsellBtn').textContent =
+    '+ Add ' + prep.v.replace('Dropless ', 'Dropless ') + ' 500mL — $' + fiyat.toFixed(2);
+}
+
+function addPrepToCart() {
+  const prep = prepUrunu();
+  if (!prep) return;
+  const name = prep.v + ' 500mL';
+  const price = sizePrice(prep.base, 1.0);
+  const mevcut = CART.find(k => k.urun_adi === name);
+  if (mevcut) { mevcut.adet = Math.min(20, mevcut.adet + 1); }
+  else { CART.push({ urun_adi: name, tutar: price, adet: 1 }); }
+  renderCart(true);
+  showCartToast(name);
 }
 
 // Perfect Duo "Shop the Bundle" — seti sepete ekler, sonra #buy'a kayar (href ile)
