@@ -622,6 +622,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
              border-radius:8px;padding:10px 14px;margin:-4px 0 12px;font-size:.8rem;color:#fcd9b8;line-height:1.5;">
           ⚠️ <strong>Non-standard size</strong> — payment is taken now; your request will be
           reviewed and we'll contact you before dispatch if anything needs adjusting.
+          If we're unable to fulfil your requested size, you'll receive a
+          <strong>full refund</strong> — no questions asked.
         </div>
         <p style="font-size:.75rem;color:rgba(255,255,255,.55);margin:-6px 0 12px;">
           Need more than 5 litres? <a href="mailto:info@dropless.com.au?subject=Trade%20pricing%20enquiry"
@@ -2165,11 +2167,10 @@ else applyTranslations('en');
 
 renderProducts();
 renderFaq();
-fillBuyProducts();   // Ürün + boyut dropdown'larını doldur (hardcoded başlangıç)
-renderCart();        // localStorage'daki sepeti geri yükle
-loadKatalog();       // ERP'den canlı katalog: fiyat + boyut + stok durumu (fallback'li)
 loadFromERP();  // Arka planda ERP'den güncelle — başarısız olursa hardcoded kalır
 loadSDS();      // SDS PDF linklerini ERP'den çek
+// NOT: fillBuyProducts/renderCart/loadKatalog buradan script SONUNA taşındı —
+// CART ve sepet fonksiyonları aşağıda tanımlandığı için burada çağrılınca çöküyordu
 
 // Bundle formları için email senkronizasyonu
 document.getElementById('musteri_email') && document.getElementById('musteri_email').addEventListener('input', function() {
@@ -2344,6 +2345,11 @@ function addBundleToCart(name, price, btn) {
   window.addEventListener('scroll', updateFloatBuy, { passive: true });
   updateFloatBuy();
 })();
+
+// ── INIT — tüm tanımlardan SONRA çalışmalı (CART + sepet fonksiyonları yukarıda) ──
+fillBuyProducts();   // Ürün + boyut dropdown'larını doldur (hardcoded başlangıç)
+renderCart();        // localStorage'daki sepeti geri yükle
+loadKatalog();       // ERP'den canlı katalog: fiyat + boyut + stok durumu (fallback'li)
 </script>
 </body>
 </html>
