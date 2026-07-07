@@ -331,6 +331,14 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 @media(min-width:761px){.nav{top:34px;}body{padding-top:34px;}}
 @media(max-width:760px){.promo-bar{display:none;}}
 
+/* KART İÇİ SATIN ALMA — ürün kartında boyut seçici + sepete ekle */
+.card-buy-row{display:flex;gap:8px;width:calc(100% - 48px);margin:0 24px 16px;}
+.card-size-sel{flex:1;padding:9px 10px;border:1px solid var(--line);border-radius:6px;background:var(--white);
+  color:var(--ink);font-family:'Geist',sans-serif;font-size:12.5px;cursor:pointer;}
+.card-add-btn{padding:9px 16px;background:var(--teal);color:var(--white);border:none;border-radius:6px;
+  font-family:'Geist',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap;}
+.card-add-btn:hover{background:var(--ink);}
+
 /* CART TOAST — ürün eklenince 2 sn görünüp kaybolan bildirim */
 .cart-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(16px);z-index:400;
   background:#0d2027;color:#fff;border:2px solid #e0762e;border-radius:40px;padding:10px 22px;
@@ -1387,13 +1395,42 @@ function renderProducts() {
   </div>
   ${SOON_IDS.includes(p.id)
     ? `<div style="display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 48px);margin:0 24px 16px;padding:10px;background:var(--bg2);color:var(--muted);border:1px dashed var(--line);border-radius:6px;font-size:13px;font-weight:500;">🔜 Coming Soon</div>`
-    : `<button class="prod-buy-btn" onclick="quickBuy('${p.id}')">🛒 ${buyTxt}</button>`}
+    : cardBuyControls(p.id, buyTxt)}
   ${SDS_MAP[p.id] ? `<div class="sds-btns">
     <a class="sds-btn-read" href="${SDS_MAP[p.id]}" target="_blank" rel="noopener">📄 Safety Data Sheet</a>
     <a class="sds-btn-dl"   href="${SDS_MAP[p.id].replace('/serve/','/download/')}" download>⬇️ Download PDF</a>
   </div>` : ''}
 </div>`;
   }).join('');
+}
+
+// Ürün kartı içi boyut seçici + sepete ekle — müşteri buy formuna inmeden ekler
+function cardBuyControls(prodId, buyTxt) {
+  const prod = BUY_PRODUCTS.find(b => b.v === BUY_MAP[prodId]);
+  if (!prod) return `<button class="prod-buy-btn" onclick="quickBuy('${prodId}')">🛒 ${buyTxt}</button>`;
+  const opts = BUY_SIZES.map(s =>
+    `<option value="${s.ml}"${s.ml === 500 ? ' selected' : ''}>${s.t} — $${sizePrice(prod.base, s.mult).toFixed(2)}</option>`
+  ).join('');
+  return `
+<div class="card-buy-row">
+  <select id="cardsize-${prodId}" class="card-size-sel" onclick="event.stopPropagation()">${opts}</select>
+  <button class="card-add-btn" onclick="cardAddToCart('${prodId}')">🛒 Add</button>
+</div>`;
+}
+
+function cardAddToCart(prodId) {
+  const prod = BUY_PRODUCTS.find(b => b.v === BUY_MAP[prodId]);
+  const sel = document.getElementById('cardsize-' + prodId);
+  if (!prod || !sel) return;
+  const ml = parseInt(sel.value);
+  const size = BUY_SIZES.find(s => s.ml === ml);
+  const name = prod.v + ' ' + (ml === 1000 ? '1L' : ml + 'mL');
+  const price = sizePrice(prod.base, size.mult);
+  const mevcut = CART.find(k => k.urun_adi === name);
+  if (mevcut) { mevcut.adet = Math.min(20, mevcut.adet + 1); }
+  else { CART.push({ urun_adi: name, tutar: price, adet: 1 }); }
+  renderCart(true);
+  showCartToast(name);
 }
 
 function toggleInst(id, btn, lang) {
@@ -2056,10 +2093,12 @@ function renderCart(flash) {
   const list = document.getElementById('cartItems');
   const btn = document.querySelector('#buyForm .buy-submit');
   const fiyatDiv = document.getElementById('buyPriceDisplay');
+  const fb = document.getElementById('floatBuy');
   if (!CART.length) {
     box.style.display = 'none';
     if (btn) btn.textContent = 'Proceed to Secure Payment →';
     if (fiyatDiv) fiyatDiv.parentElement.style.display = '';  // tekli fiyat geri gelsin
+    if (fb) fb.innerHTML = '🛒 <span data-i18n="nav_buynow">Buy Now</span>';
     return;
   }
   box.style.display = 'block';
@@ -2084,6 +2123,8 @@ function renderCart(flash) {
   document.getElementById('cartTotal').textContent = '$' + toplam.toFixed(2) + ' AUD';
   const adetToplam = CART.reduce((a, k) => a + k.adet, 0);
   if (btn) btn.textContent = `Checkout ${adetToplam} item${adetToplam > 1 ? 's' : ''} — $${toplam.toFixed(2)} →`;
+  // Kayan buton sepet doluyken sayaç + toplam gösterir
+  if (fb) fb.innerHTML = `🛒 Cart (${adetToplam}) — $${toplam.toFixed(2)}`;
 }
 
 function prepareCheckout() {
@@ -2130,7 +2171,8 @@ function addBundleToCart(name, price, btn) {
     }, { threshold: 0.05 }).observe(buySec);
   }
   function updateFloatBuy() {
-    fb.classList.toggle('show', window.scrollY > 500 && !buyVisible);
+    // Sepet doluysa kaydırma beklemeden görünür — müşteri sepetini hep görsün
+    fb.classList.toggle('show', (window.scrollY > 500 || CART.length > 0) && !buyVisible);
   }
   window.addEventListener('scroll', updateFloatBuy, { passive: true });
   updateFloatBuy();
