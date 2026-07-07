@@ -802,6 +802,58 @@ const BUY_MAP = {
 const SOON_IDS = ['multi-surface','glass-pro','ceramic','interior-glass','plastic-screen',
                   'stone-bench','metal-shine','leather','fabric','odour-refresher'];
 
+// ── ERP KATALOG SENKRONU ─────────────────────────────────────────────────────
+// ERP'de 🌐 işaretli ürünler + çapa fiyat + barkod boyutları + stok durumu çekilir.
+// ERP'ye ulaşılamazsa yukarıdaki hardcoded liste aynen çalışır (fallback).
+const KOD2CARD = {
+  'bathroom-shield':'bathroom', 'toilet':'toilet', 'rainxtreme':'rainxtreme',
+  'hybrid-ultra':'hybrid-ultra', 'multi-surface':'multi-surface', 'glass-pro':'glass-pro',
+  'ceramic':'ceramic', 'interior-glass':'interior-glass', 'plastic-screen':'plastic-screen',
+  'stone-bench':'stone-bench', 'metal-shine':'metal-shine', 'leather':'leather',
+  'fabric-guard':'fabric', 'odour-refresher':'odour-refresher'
+};
+const KOD_ICON = {
+  'bathroom-shield':'🚿', 'toilet':'🚽', 'rainxtreme':'🌧', 'hybrid-ultra':'🔬',
+  'surface-prep':'🧴', 'multi-surface':'🌊', 'glass-pro':'🔭', 'ceramic':'🏠',
+  'interior-glass':'🚗', 'plastic-screen':'📱', 'stone-bench':'🪨',
+  'metal-shine':'✨', 'leather':'👜', 'fabric-guard':'🛋', 'odour-refresher':'💨'
+};
+const ALL_CARD_IDS = ['multi-surface','glass-pro','ceramic','interior-glass','rainxtreme',
+  'plastic-screen','toilet','bathroom','stone-bench','metal-shine','leather','fabric',
+  'odour-refresher','hybrid-ultra'];
+
+function loadKatalog() {
+  fetch('https://app.dropless.com.au/urun/api/web-urunler')
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      if (!d || !d.urunler || !d.urunler.length) return;
+      const satista = d.urunler.filter(u => u.satista && u.capa_fiyat);
+      if (!satista.length) return;  // ERP boş dönerse hardcoded liste kalsın
+      // Satın alınabilir listeyi ERP verisiyle yeniden kur
+      BUY_PRODUCTS.length = 0;
+      Object.keys(BUY_MAP).forEach(k => delete BUY_MAP[k]);
+      SOON_IDS.length = 0;
+      SOON_IDS.push(...ALL_CARD_IDS);
+      satista.forEach(u => {
+        BUY_PRODUCTS.push({
+          v: u.ad,
+          icon: KOD_ICON[u.kod] || '💧',
+          base: u.capa_fiyat,
+          sizes: (u.boyutlar || []).filter(ml => BUY_SIZES.some(s => s.ml === ml))
+        });
+        const card = KOD2CARD[u.kod];
+        if (card) {
+          BUY_MAP[card] = u.ad;
+          const i = SOON_IDS.indexOf(card);
+          if (i >= 0) SOON_IDS.splice(i, 1);
+        }
+      });
+      fillBuyProducts();
+      renderProducts();  // kartlardaki Coming Soon / boyut seçicileri güncellensin
+    })
+    .catch(() => {});  // ERP kapalıysa sessizce hardcoded devam
+}
+
 // ── UI TRANSLATIONS (page-level static text) ──────────────────────────────────
 const UI = {
   // Navigation
@@ -1408,7 +1460,7 @@ function renderProducts() {
 function cardBuyControls(prodId, buyTxt) {
   const prod = BUY_PRODUCTS.find(b => b.v === BUY_MAP[prodId]);
   if (!prod) return `<button class="prod-buy-btn" onclick="quickBuy('${prodId}')">🛒 ${buyTxt}</button>`;
-  const opts = BUY_SIZES.map(s =>
+  const opts = prodSizes(prod).map(s =>
     `<option value="${s.ml}"${s.ml === 500 ? ' selected' : ''}>${s.t} — $${sizePrice(prod.base, s.mult).toFixed(2)}</option>`
   ).join('');
   return `
@@ -1495,13 +1547,21 @@ const BUY_SIZES = [
 // .95'e yuvarlanmış boyut fiyatı (29.95 × 0.7 = 20.965 → 20.95)
 function sizePrice(base, mult) { return Math.floor(base * mult) + 0.95; }
 
+// Ürünün web'de sunulan boyutları — ERP'den geldiyse onun listesi, yoksa hepsi
+function prodSizes(p) {
+  if (p.sizes && p.sizes.length) {
+    return BUY_SIZES.filter(s => p.sizes.includes(s.ml));
+  }
+  return BUY_SIZES;
+}
+
 function fillBuyProducts() {
   const sel = document.getElementById('buyProduct');
   sel.innerHTML = '';
-  BUY_PRODUCTS.forEach(p => {
+  BUY_PRODUCTS.forEach((p, i) => {
     const opt = document.createElement('option');
     opt.value = p.v;
-    opt.dataset.base = p.base;
+    opt.dataset.idx = i;
     opt.textContent = p.icon + ' ' + p.v.replace('Dropless ', '');
     sel.appendChild(opt);
   });
@@ -1512,18 +1572,18 @@ function fillBuySizes() {
   const prodSel = document.getElementById('buyProduct');
   const sizeSel = document.getElementById('buySize');
   if (!prodSel.options.length) return;
-  const base = parseFloat(prodSel.options[prodSel.selectedIndex].dataset.base);
-  const onceki = sizeSel.selectedIndex >= 0 ? sizeSel.selectedIndex : 2;
+  const prod = BUY_PRODUCTS[parseInt(prodSel.options[prodSel.selectedIndex].dataset.idx)];
+  const sizes = prodSizes(prod);
   sizeSel.innerHTML = '';
-  BUY_SIZES.forEach(s => {
+  sizes.forEach(s => {
     const opt = document.createElement('option');
-    const fiyat = sizePrice(base, s.mult);
+    const fiyat = sizePrice(prod.base, s.mult);
     opt.value = s.ml;
     opt.dataset.price = fiyat.toFixed(2);
     opt.textContent = s.t + ' — $' + fiyat.toFixed(2);
+    if (s.ml === 500) opt.selected = true;  // varsayılan 500 mL
     sizeSel.appendChild(opt);
   });
-  sizeSel.selectedIndex = onceki >= 0 && onceki < BUY_SIZES.length ? onceki : 2;
   updatePrice();
 }
 
@@ -2039,8 +2099,9 @@ else applyTranslations('en');
 
 renderProducts();
 renderFaq();
-fillBuyProducts();   // Ürün + boyut dropdown'larını doldur
+fillBuyProducts();   // Ürün + boyut dropdown'larını doldur (hardcoded başlangıç)
 renderCart();        // localStorage'daki sepeti geri yükle
+loadKatalog();       // ERP'den canlı katalog: fiyat + boyut + stok durumu (fallback'li)
 loadFromERP();  // Arka planda ERP'den güncelle — başarısız olursa hardcoded kalır
 loadSDS();      // SDS PDF linklerini ERP'den çek
 
