@@ -2179,9 +2179,11 @@ document.getElementById('musteri_email') && document.getElementById('musteri_ema
 
 // ── MİNİ SEPET — birden fazla farklı ürün tek Stripe checkout'ta ─────────────
 // Sepet localStorage'da saklanır — sayfa yenilense de kaybolmaz
-let CART = [];
+// NOT: 'var' bilinçli — 'let' TDZ hatası veriyordu: updatePrice → updatePrepUpsell
+// zinciri CART tanımlanmadan çalışınca tüm script çöküyor, Add to Cart ölüyordu
+var CART = [];
 try { CART = JSON.parse(localStorage.getItem('dropless_cart') || '[]') || []; } catch (e) { CART = []; }
-let cartToastTimer = null;
+var cartToastTimer = null;
 
 // Ürün eklenince tıklama gerektirmeden 2 sn görünüp kaybolan bildirim
 function showCartToast(name) {
@@ -2277,6 +2279,8 @@ function prepUrunu() {
 function updatePrepUpsell() {
   const box = document.getElementById('prepUpsell');
   if (!box) return;
+  // CART henüz init edilmediyse (erken updatePrice çağrısı) sessizce çık
+  if (typeof CART === 'undefined' || !Array.isArray(CART)) return;
   const prep = prepUrunu();
   const sepetteVar = CART.some(k => k.urun_adi.toLowerCase().includes('prep'));
   const secimPrep = (document.getElementById('buyProduct').value || '').toLowerCase().includes('prep');
