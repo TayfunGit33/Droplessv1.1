@@ -325,6 +325,65 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 .float-buy:hover{background:#c96524;}
 @media(max-width:640px){.float-buy{display:none;}} /* mobilde alt menüde 🛒 Buy zaten var */
 
+/* ── KAYAN SEPET PANELİ (slide-out drawer) — sağdan açılır ───────────── */
+/* Karartma katmanı: drawer açıkken arka planı karartır, tıklanınca kapatır */
+.cart-overlay{position:fixed;inset:0;background:rgba(5,15,20,.55);backdrop-filter:blur(3px);
+  z-index:500;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+.cart-overlay.open{opacity:1;pointer-events:auto;}
+/* Panel: sağda sabit, kapalıyken ekran dışına kayar */
+.cart-drawer{position:fixed;top:0;right:0;height:100%;width:400px;max-width:90vw;z-index:510;
+  background:linear-gradient(180deg,#0d2027 0%,#0b191f 100%);color:#fff;
+  box-shadow:-14px 0 44px rgba(0,0,0,.5);display:flex;flex-direction:column;
+  font-family:'Geist',sans-serif;transform:translateX(105%);
+  transition:transform .4s cubic-bezier(.4,0,.2,1);}
+.cart-drawer.open{transform:translateX(0);}
+.cart-dhead{display:flex;align-items:flex-start;justify-content:space-between;
+  padding:22px 24px 15px;border-bottom:1px solid rgba(255,255,255,.1);}
+.cart-dhead h3{margin:0;font-size:1.18rem;font-weight:700;letter-spacing:.01em;}
+.cart-dcount{font-size:.76rem;color:#5eead4;margin-top:3px;font-weight:600;letter-spacing:.04em;}
+.cart-dclose{background:none;border:none;color:rgba(255,255,255,.65);font-size:1.6rem;
+  cursor:pointer;line-height:1;padding:2px 4px;transition:color .2s;}
+.cart-dclose:hover{color:#fff;}
+.cart-dbody{flex:1;overflow-y:auto;padding:4px 24px;}
+.cart-drow{display:flex;gap:14px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.cart-drow-info{flex:1;min-width:0;}
+.cart-drow-name{font-size:.92rem;font-weight:600;line-height:1.35;margin-bottom:5px;}
+.cart-drow-price{font-size:.95rem;font-weight:700;color:#5eead4;margin:5px 0 9px;}
+/* Adet artır/azalt kontrolü */
+.cart-qty{display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.22);
+  border-radius:9px;overflow:hidden;}
+.cart-qty button{background:rgba(255,255,255,.05);border:none;color:#fff;width:32px;height:32px;
+  font-size:1.15rem;line-height:1;cursor:pointer;transition:background .18s;}
+.cart-qty button:hover{background:rgba(94,234,212,.28);}
+.cart-qty span{min-width:36px;text-align:center;font-size:.9rem;font-weight:700;}
+.cart-drow-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;}
+.cart-drow-rm{background:none;border:none;color:rgba(255,255,255,.38);font-size:1.2rem;
+  cursor:pointer;padding:0 2px;transition:color .2s;}
+.cart-drow-rm:hover{color:#fca5a5;}
+.cart-drow-sub{font-weight:700;font-size:.98rem;}
+.cart-dempty{text-align:center;color:rgba(255,255,255,.5);padding:70px 20px;font-size:.92rem;line-height:1.7;}
+.cart-dfoot{padding:18px 24px 24px;border-top:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.18);}
+.cart-dtotal{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:800;color:#fff;margin:2px 0 4px;}
+.cart-dship{font-size:.72rem;color:rgba(255,255,255,.5);margin-bottom:15px;}
+.cart-dcheckout{width:100%;padding:15px;border:none;border-radius:11px;background:#e0762e;color:#fff;
+  font-size:1.02rem;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:background .2s;}
+.cart-dcheckout:hover{background:#c96524;}
+.cart-dcont{width:100%;padding:11px;margin-top:9px;background:none;border:none;
+  color:rgba(255,255,255,.6);font-size:.85rem;cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
+.cart-dcont:hover{color:#fff;}
+
+/* ── HER ZAMAN GÖRÜNÜR SEPET BUTONU (FAB) — sepet doluyken belirir ──── */
+.cart-fab{position:fixed;right:20px;bottom:20px;z-index:480;width:60px;height:60px;border-radius:50%;
+  background:#e0762e;color:#fff;border:none;cursor:pointer;box-shadow:0 6px 24px rgba(13,32,39,.4);
+  display:none;align-items:center;justify-content:center;font-size:1.55rem;
+  transition:transform .2s,background .2s;}
+.cart-fab.show{display:flex;}
+.cart-fab:hover{background:#c96524;transform:scale(1.07);}
+.cart-fab-badge{position:absolute;top:-5px;right:-5px;background:#5eead4;color:#0d2027;
+  font-size:.72rem;font-weight:800;min-width:23px;height:23px;border-radius:12px;padding:0 5px;
+  display:flex;align-items:center;justify-content:center;border:2px solid #0d2027;}
+@media(max-width:640px){.cart-fab{bottom:80px;} } /* mobil alt menünün üstünde */
+
 /* PROMO BAR — üstte ince duyuru şeridi (yalnız desktop; mobil zaten yoğun) */
 .promo-bar{position:fixed;top:0;left:0;right:0;z-index:210;height:34px;display:flex;align-items:center;
   justify-content:center;gap:6px;background:var(--ink);color:#fff;font-size:12.5px;letter-spacing:.03em;}
@@ -818,6 +877,30 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <!-- FLOATING BUY — kaydırınca sağ altta belirir -->
 <a href="#buy" class="float-buy" id="floatBuy">🛒 <span data-i18n="nav_buynow">Buy Now</span></a>
 
+<!-- ── KAYAN SEPET PANELİ — sağdan açılan drawer ───────────────────── -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-dhead">
+    <div>
+      <h3 data-i18n="cart_title">Shopping Cart</h3>
+      <div class="cart-dcount" id="cartDCount">0 items</div>
+    </div>
+    <button class="cart-dclose" onclick="closeCart()" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-dbody" id="cartDBody"></div>
+  <div class="cart-dfoot" id="cartDFoot" style="display:none;">
+    <div class="cart-dtotal"><span data-i18n="cart_total">Total</span><span id="cartDTotal">$0.00 AUD</span></div>
+    <div class="cart-dship" data-i18n="cart_ship">Free shipping over $50 AUD — calculated at checkout</div>
+    <button class="cart-dcheckout" onclick="drawerCheckout()" data-i18n="cart_checkout">Checkout →</button>
+    <button class="cart-dcont" onclick="closeCart()" data-i18n="cart_continue">Continue shopping</button>
+  </div>
+</aside>
+
+<!-- ── HER ZAMAN GÖRÜNÜR SEPET BUTONU — sepet doluyken belirir, drawer'ı açar -->
+<button class="cart-fab" id="cartFab" onclick="openCart()" aria-label="View cart">
+  🛒<span class="cart-fab-badge" id="cartFabBadge">0</span>
+</button>
+
 <!-- MOBILE NAV -->
 <nav class="mob-nav">
   <a href="#" class="mob-nav-item"><span class="mob-nav-icon">🏠</span><span data-i18n="mobnav_home">Home</span></a>
@@ -1012,6 +1095,12 @@ const UI = {
   mobnav_buy:      {en:'Buy',fr:'Acheter',tr:'Satın Al',ar:'اشتري',zh:'购买',hi:'खरीदें',es:'Comprar',it:'Acquista',fa:'خرید'},
   mobnav_faq:      {en:'FAQ',fr:'FAQ',tr:'SSS',ar:'أسئلة',zh:'问答',hi:'FAQ',es:'FAQ',it:'FAQ',fa:'FAQ'},
   mobnav_contact:  {en:'Contact',fr:'Contact',tr:'İletişim',ar:'تواصل',zh:'联系',hi:'संपर्क',es:'Contacto',it:'Contatto',fa:'تماس'},
+  cart_title:    {en:'Shopping Cart',fr:'Panier',tr:'Sepetim',ar:'سلة التسوق',zh:'购物车',hi:'शॉपिंग कार्ट',es:'Carrito',it:'Carrello',fa:'سبد خرید'},
+  cart_total:    {en:'Total',fr:'Total',tr:'Toplam',ar:'المجموع',zh:'合计',hi:'कुल',es:'Total',it:'Totale',fa:'مجموع'},
+  cart_checkout: {en:'Checkout →',fr:'Commander →',tr:'Ödemeye Geç →',ar:'إتمام الشراء →',zh:'结账 →',hi:'चेकआउट →',es:'Pagar →',it:'Checkout →',fa:'پرداخت →'},
+  cart_continue: {en:'Continue shopping',fr:'Continuer mes achats',tr:'Alışverişe devam et',ar:'متابعة التسوق',zh:'继续购物',hi:'खरीदारी जारी रखें',es:'Seguir comprando',it:'Continua lo shopping',fa:'ادامه خرید'},
+  cart_ship:     {en:'Free shipping over $50 AUD — calculated at checkout',fr:'Livraison gratuite dès 50 $ AUD — calculée au paiement',tr:'50 AUD üzeri ücretsiz kargo — ödemede hesaplanır',ar:'شحن مجاني فوق 50 دولار أسترالي',zh:'满50澳元免运费',hi:'$50 AUD से अधिक पर मुफ्त शिपिंग',es:'Envío gratis desde $50 AUD',it:'Spedizione gratuita oltre 50 $ AUD',fa:'ارسال رایگان بالای ۵۰ دلار'},
+  cart_empty:    {en:'Your cart is empty.',fr:'Votre panier est vide.',tr:'Sepetiniz boş.',ar:'سلتك فارغة.',zh:'购物车是空的。',hi:'आपकी कार्ट खाली है।',es:'Tu carrito está vacío.',it:'Il tuo carrello è vuoto.',fa:'سبد خرید شما خالی است.'},
 };
 
 function applyTranslations(lang) {
@@ -2227,6 +2316,7 @@ function showCartToast(name) {
   t.classList.add('show');
   clearTimeout(cartToastTimer);
   cartToastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+  openCart();   // her ürün eklendiğinde kayan sepet paneli otomatik açılır
 }
 
 function addToCart() {
@@ -2251,6 +2341,7 @@ function removeFromCart(i) { CART.splice(i, 1); renderCart(); }
 
 function renderCart(flash) {
   try { localStorage.setItem('dropless_cart', JSON.stringify(CART)); } catch (e) {}
+  syncDrawer();   // kayan sepet panelini + her-zaman-görünür FAB'ı güncelle
   const box = document.getElementById('miniCart');
   const list = document.getElementById('cartItems');
   const btn = document.querySelector('#buyForm .buy-submit');
@@ -2289,6 +2380,81 @@ function renderCart(flash) {
   if (fb) fb.innerHTML = `🛒 Cart (${adetToplam}) — $${toplam.toFixed(2)}`;
   if (typeof updatePrepUpsell === 'function') updatePrepUpsell();
 }
+
+// ── KAYAN SEPET PANELİ (drawer) ──────────────────────────────────────────────
+// Drawer'ı aç: overlay + panel görünür, arka plan kaydırması kilitlenir
+function openCart() {
+  const ov = document.getElementById('cartOverlay');
+  const dr = document.getElementById('cartDrawer');
+  if (!ov || !dr) return;
+  ov.classList.add('open');
+  dr.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  const ov = document.getElementById('cartOverlay');
+  const dr = document.getElementById('cartDrawer');
+  if (ov) ov.classList.remove('open');
+  if (dr) dr.classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Adet artır/azalt — 0'a inince ürünü sepetten çıkar
+function cartInc(i) { if (CART[i]) { CART[i].adet = Math.min(20, CART[i].adet + 1); renderCart(); } }
+function cartDec(i) { if (CART[i]) { CART[i].adet -= 1; if (CART[i].adet <= 0) CART.splice(i, 1); renderCart(); } }
+
+// Drawer içeriğini + FAB'ı CART'a göre yeniden çiz (renderCart her çağrıldığında tetiklenir)
+function syncDrawer() {
+  const body = document.getElementById('cartDBody');
+  if (!body) return;
+  const foot  = document.getElementById('cartDFoot');
+  const cnt   = document.getElementById('cartDCount');
+  const fab   = document.getElementById('cartFab');
+  const badge = document.getElementById('cartFabBadge');
+  const adetToplam = CART.reduce((a, k) => a + k.adet, 0);
+  // Boş sepet: bilgi mesajı, footer gizli, FAB gizli
+  if (!CART.length) {
+    const bos = (typeof T !== 'undefined' && T.cart_empty) ? '' : '';
+    body.innerHTML = '<div class="cart-dempty">🛒<br><br><span data-i18n="cart_empty">Your cart is empty.</span></div>';
+    if (foot) foot.style.display = 'none';
+    if (cnt)  cnt.textContent = '0 items';
+    if (fab)  fab.classList.remove('show');
+    return;
+  }
+  let toplam = 0;
+  body.innerHTML = CART.map((k, i) => {
+    const sat = k.tutar * k.adet; toplam += sat;
+    return `<div class="cart-drow">
+      <div class="cart-drow-info">
+        <div class="cart-drow-name">${k.urun_adi.replace('Dropless ', '')}</div>
+        <div class="cart-drow-price">$${k.tutar.toFixed(2)} <span style="font-size:.72rem;color:rgba(255,255,255,.5);font-weight:400;">each</span></div>
+        <div class="cart-qty">
+          <button onclick="cartDec(${i})" aria-label="Decrease">&minus;</button>
+          <span>${k.adet}</span>
+          <button onclick="cartInc(${i})" aria-label="Increase">+</button>
+        </div>
+      </div>
+      <div class="cart-drow-right">
+        <button class="cart-drow-rm" onclick="removeFromCart(${i})" aria-label="Remove">&times;</button>
+        <div class="cart-drow-sub">$${sat.toFixed(2)}</div>
+      </div>
+    </div>`;
+  }).join('');
+  if (foot) foot.style.display = 'block';
+  const totalEl = document.getElementById('cartDTotal');
+  if (totalEl) totalEl.textContent = '$' + toplam.toFixed(2) + ' AUD';
+  if (cnt) cnt.textContent = adetToplam + (adetToplam > 1 ? ' items' : ' item');
+  if (fab) { fab.classList.add('show'); if (badge) badge.textContent = adetToplam; }
+}
+
+// Drawer "Checkout" — mevcut buy formunu kullanır (Stripe'a POST); onsubmit
+// programatik submit'te çalışmadığı için prepareCheckout'u elle çağırırız
+function drawerCheckout() {
+  if (!CART.length) return;
+  if (prepareCheckout()) document.getElementById('buyForm').submit();
+}
+
+// Escape ile drawer kapansın
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeCart(); });
 
 function prepareCheckout() {
   // Sepet doluysa JSON gönder (backend çoklu line_item açar); boşsa eski tek-ürün akışı
@@ -2367,8 +2533,9 @@ function addBundleToCart(name, price, btn) {
     }, { threshold: 0.05 }).observe(buySec);
   }
   function updateFloatBuy() {
-    // Sepet doluysa kaydırma beklemeden görünür — müşteri sepetini hep görsün
-    fb.classList.toggle('show', (window.scrollY > 500 || CART.length > 0) && !buyVisible);
+    // Sepet doluyken sağ altta sepet FAB'ı gösterilir; bu yüzden "Buy Now" pili
+    // yalnızca sepet BOŞken ve sayfa kaydırılınca çıkar (ikisi üst üste binmesin)
+    fb.classList.toggle('show', window.scrollY > 500 && !buyVisible && CART.length === 0);
   }
   window.addEventListener('scroll', updateFloatBuy, { passive: true });
   updateFloatBuy();
