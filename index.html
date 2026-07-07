@@ -384,6 +384,62 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   display:flex;align-items:center;justify-content:center;border:2px solid #0d2027;}
 @media(max-width:640px){.cart-fab{bottom:80px;} } /* mobil alt menünün üstünde */
 
+/* ── HESAP BUTONU (nav) ──────────────────────────────────────────────── */
+.acc-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:22px;padding:7px 14px;
+  font-family:'Geist',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;
+  transition:background .2s;white-space:nowrap;}
+.acc-btn:hover{background:rgba(255,255,255,.16);}
+.acc-ico{font-size:1rem;}
+@media(max-width:900px){.acc-label{display:none;} .acc-btn{padding:7px 10px;}}
+
+/* ── MODAL (giriş/kayıt) + HESAP MENÜSÜ ──────────────────────────────── */
+.acc-overlay{position:fixed;inset:0;background:rgba(5,15,20,.6);backdrop-filter:blur(3px);
+  z-index:600;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;
+  align-items:center;justify-content:center;padding:20px;}
+.acc-overlay.open{opacity:1;pointer-events:auto;}
+.acc-modal{width:400px;max-width:100%;background:linear-gradient(180deg,#0d2027,#0b191f);
+  color:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.5);
+  font-family:'Geist',sans-serif;transform:translateY(16px);transition:transform .3s;
+  overflow:hidden;}
+.acc-overlay.open .acc-modal{transform:translateY(0);}
+.acc-mhead{display:flex;align-items:center;justify-content:space-between;padding:22px 24px 8px;}
+.acc-mhead h3{margin:0;font-size:1.25rem;font-weight:700;}
+.acc-mclose{background:none;border:none;color:rgba(255,255,255,.6);font-size:1.5rem;cursor:pointer;line-height:1;}
+.acc-mclose:hover{color:#fff;}
+.acc-mbody{padding:6px 24px 24px;}
+.acc-sub{font-size:.86rem;color:rgba(255,255,255,.65);line-height:1.5;margin:0 0 16px;}
+/* Kanal sekmeleri (Email / SMS) */
+.acc-tabs{display:flex;gap:8px;margin-bottom:16px;}
+.acc-tab{flex:1;padding:9px;border-radius:9px;border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.05);color:rgba(255,255,255,.75);font-size:.85rem;font-weight:600;
+  cursor:pointer;transition:all .2s;}
+.acc-tab.on{background:#5eead4;color:#0d2027;border-color:#5eead4;}
+.acc-modal input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.06);color:#fff;font-size:16px;font-family:inherit;margin-bottom:12px;box-sizing:border-box;}
+.acc-modal input::placeholder{color:rgba(255,255,255,.4);}
+.acc-code-input{text-align:center;letter-spacing:.5rem;font-size:1.6rem !important;font-weight:800;font-family:monospace;}
+.acc-btn-primary{width:100%;padding:14px;border:none;border-radius:11px;background:#e0762e;color:#fff;
+  font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;}
+.acc-btn-primary:hover{background:#c96524;}
+.acc-btn-primary:disabled{opacity:.55;cursor:default;}
+.acc-check{display:flex;align-items:flex-start;gap:9px;margin:4px 0 16px;font-size:.8rem;color:rgba(255,255,255,.7);line-height:1.45;cursor:pointer;}
+.acc-check input{width:auto;margin:2px 0 0;flex-shrink:0;}
+.acc-msg{font-size:.83rem;margin:10px 0 0;min-height:18px;}
+.acc-link{background:none;border:none;color:#5eead4;font-size:.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:0;margin-top:14px;}
+/* Giriş yapılmış hesap menüsü */
+.acc-menu{position:fixed;top:64px;right:20px;z-index:590;width:260px;background:#0d2027;color:#fff;
+  border:1px solid rgba(255,255,255,.14);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.45);
+  padding:16px;font-family:'Geist',sans-serif;display:none;}
+.acc-menu.open{display:block;}
+.acc-menu-name{font-weight:700;font-size:1rem;margin-bottom:2px;}
+.acc-menu-mail{font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:14px;word-break:break-all;}
+.acc-menu a,.acc-menu button{display:block;width:100%;text-align:left;background:none;border:none;
+  color:rgba(255,255,255,.85);font-size:.88rem;padding:9px 6px;border-radius:8px;cursor:pointer;
+  font-family:inherit;text-decoration:none;transition:background .15s;}
+.acc-menu a:hover,.acc-menu button:hover{background:rgba(255,255,255,.08);}
+.acc-menu .acc-logout{color:#fca5a5;border-top:1px solid rgba(255,255,255,.1);margin-top:6px;padding-top:12px;}
+
 /* PROMO BAR — üstte ince duyuru şeridi (yalnız desktop; mobil zaten yoğun) */
 .promo-bar{position:fixed;top:0;left:0;right:0;z-index:210;height:34px;display:flex;align-items:center;
   justify-content:center;gap:6px;background:var(--ink);color:#fff;font-size:12.5px;letter-spacing:.03em;}
@@ -461,6 +517,10 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
     <a href="#contact" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="nav-right">
+    <!-- HESAP — giriş yapılmışsa "Hi, [isim]", değilse "Sign in" -->
+    <button class="acc-btn" id="accBtn" onclick="accClick()" aria-label="Account">
+      <span class="acc-ico">👤</span><span class="acc-label" id="accLabel" data-i18n="acc_signin">Sign in</span>
+    </button>
     <select class="lang-pick" id="globalLang" onchange="setLang(this.value)">
       <optgroup label="Latin Script">
         <option value="en">English</option>
@@ -901,6 +961,52 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   🛒<span class="cart-fab-badge" id="cartFabBadge">0</span>
 </button>
 
+<!-- ── GİRİŞ / KAYIT MODALI (şifresiz kod) ─────────────────────────────── -->
+<div class="acc-overlay" id="accOverlay" onclick="if(event.target===this)closeAuth()">
+  <div class="acc-modal" role="dialog" aria-label="Sign in">
+    <div class="acc-mhead">
+      <h3 id="accTitle" data-i18n="acc_title">Sign in / Register</h3>
+      <button class="acc-mclose" onclick="closeAuth()" aria-label="Close">&times;</button>
+    </div>
+    <div class="acc-mbody">
+      <!-- ADIM 1: hedef gir -->
+      <div id="accStep1">
+        <p class="acc-sub" data-i18n="acc_sub">Enter your email or phone — we'll send a 6-digit code. No password needed.</p>
+        <div class="acc-tabs">
+          <button class="acc-tab on" id="accTabEmail" onclick="accSetKanal('email')" data-i18n="acc_email">Email</button>
+          <button class="acc-tab" id="accTabSms" onclick="accSetKanal('sms')" data-i18n="acc_sms">SMS</button>
+        </div>
+        <input type="email" id="accHedef" placeholder="you@example.com" autocomplete="email"/>
+        <button class="acc-btn-primary" id="accSendBtn" onclick="authSendCode()" data-i18n="acc_send">Send code</button>
+        <p class="acc-msg" id="accMsg1"></p>
+      </div>
+      <!-- ADIM 2: kodu gir -->
+      <div id="accStep2" style="display:none;">
+        <p class="acc-sub"><span data-i18n="acc_sent">We sent a code to</span> <strong id="accHedefEcho"></strong></p>
+        <input type="text" id="accKod" class="acc-code-input" inputmode="numeric" maxlength="6" placeholder="••••••"/>
+        <input type="text" id="accAd" placeholder="Your name (optional)" autocomplete="name"/>
+        <label class="acc-check">
+          <input type="checkbox" id="accPazarlama"/>
+          <span data-i18n="acc_optin">Email me tips & occasional offers (you can unsubscribe anytime).</span>
+        </label>
+        <button class="acc-btn-primary" id="accVerifyBtn" onclick="authVerify()" data-i18n="acc_verify">Verify &amp; continue</button>
+        <p class="acc-msg" id="accMsg2"></p>
+        <button class="acc-link" onclick="accBackToStep1()" data-i18n="acc_back">← Use a different email/phone</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── GİRİŞ YAPILMIŞ HESAP MENÜSÜ ─────────────────────────────────────── -->
+<div class="acc-menu" id="accMenu">
+  <div class="acc-menu-name" id="accMenuName">—</div>
+  <div class="acc-menu-mail" id="accMenuMail">—</div>
+  <a href="#" onclick="alert('Order history — coming soon');return false;" data-i18n="acc_orders">📦 My orders</a>
+  <a href="#" onclick="alert('Saved address — coming soon');return false;" data-i18n="acc_address">📍 Saved address</a>
+  <a href="#" onclick="alert('Wishlist — coming soon');return false;" data-i18n="acc_wishlist">❤️ Wishlist</a>
+  <button class="acc-logout" onclick="authLogout()" data-i18n="acc_logout">Log out</button>
+</div>
+
 <!-- MOBILE NAV -->
 <nav class="mob-nav">
   <a href="#" class="mob-nav-item"><span class="mob-nav-icon">🏠</span><span data-i18n="mobnav_home">Home</span></a>
@@ -1101,6 +1207,20 @@ const UI = {
   cart_continue: {en:'Continue shopping',fr:'Continuer mes achats',tr:'Alışverişe devam et',ar:'متابعة التسوق',zh:'继续购物',hi:'खरीदारी जारी रखें',es:'Seguir comprando',it:'Continua lo shopping',fa:'ادامه خرید'},
   cart_ship:     {en:'Free shipping over $50 AUD — calculated at checkout',fr:'Livraison gratuite dès 50 $ AUD — calculée au paiement',tr:'50 AUD üzeri ücretsiz kargo — ödemede hesaplanır',ar:'شحن مجاني فوق 50 دولار أسترالي',zh:'满50澳元免运费',hi:'$50 AUD से अधिक पर मुफ्त शिपिंग',es:'Envío gratis desde $50 AUD',it:'Spedizione gratuita oltre 50 $ AUD',fa:'ارسال رایگان بالای ۵۰ دلار'},
   cart_empty:    {en:'Your cart is empty.',fr:'Votre panier est vide.',tr:'Sepetiniz boş.',ar:'سلتك فارغة.',zh:'购物车是空的。',hi:'आपकी कार्ट खाली है।',es:'Tu carrito está vacío.',it:'Il tuo carrello è vuoto.',fa:'سبد خرید شما خالی است.'},
+  acc_signin:    {en:'Sign in',fr:'Connexion',tr:'Giriş',ar:'تسجيل الدخول',zh:'登录',hi:'साइन इन',es:'Entrar',it:'Accedi',fa:'ورود'},
+  acc_title:     {en:'Sign in / Register',fr:'Connexion / Inscription',tr:'Giriş / Kayıt',ar:'دخول / تسجيل',zh:'登录 / 注册',hi:'साइन इन / रजिस्टर',es:'Entrar / Registrarse',it:'Accedi / Registrati',fa:'ورود / ثبت‌نام'},
+  acc_sub:       {en:"Enter your email or phone — we'll send a 6-digit code. No password needed.",fr:'Entrez votre e-mail ou téléphone — nous enverrons un code à 6 chiffres. Sans mot de passe.',tr:'E-posta veya telefonunuzu girin — 6 haneli kod göndeririz. Şifre gerekmez.',ar:'أدخل بريدك أو هاتفك — سنرسل رمزًا من 6 أرقام. بدون كلمة مرور.',zh:'输入邮箱或手机号，我们会发送6位验证码。无需密码。',hi:'ईमेल या फ़ोन डालें — हम 6-अंकीय कोड भेजेंगे। पासवर्ड की ज़रूरत नहीं।',es:'Ingresa tu correo o teléfono — enviaremos un código de 6 dígitos. Sin contraseña.',it:'Inserisci email o telefono — invieremo un codice a 6 cifre. Nessuna password.',fa:'ایمیل یا تلفن خود را وارد کنید — کد ۶ رقمی می‌فرستیم. بدون رمز.'},
+  acc_email:     {en:'Email',fr:'E-mail',tr:'E-posta',ar:'بريد',zh:'邮箱',hi:'ईमेल',es:'Correo',it:'Email',fa:'ایمیل'},
+  acc_sms:       {en:'SMS',fr:'SMS',tr:'SMS',ar:'رسالة',zh:'短信',hi:'एसएमएस',es:'SMS',it:'SMS',fa:'پیامک'},
+  acc_send:      {en:'Send code',fr:'Envoyer le code',tr:'Kod gönder',ar:'إرسال الرمز',zh:'发送验证码',hi:'कोड भेजें',es:'Enviar código',it:'Invia codice',fa:'ارسال کد'},
+  acc_sent:      {en:'We sent a code to',fr:'Code envoyé à',tr:'Kod gönderildi:',ar:'أرسلنا رمزًا إلى',zh:'验证码已发送至',hi:'कोड भेजा गया',es:'Enviamos un código a',it:'Codice inviato a',fa:'کد ارسال شد به'},
+  acc_verify:    {en:'Verify & continue',fr:'Vérifier & continuer',tr:'Doğrula ve devam et',ar:'تحقق وتابع',zh:'验证并继续',hi:'सत्यापित करें',es:'Verificar y continuar',it:'Verifica e continua',fa:'تأیید و ادامه'},
+  acc_optin:     {en:'Email me tips & occasional offers (you can unsubscribe anytime).',fr:'Recevoir des conseils et offres (désinscription à tout moment).',tr:'Bana ipuçları ve ara sıra kampanya gönder (istediğin zaman çıkabilirsin).',ar:'أرسل لي نصائح وعروض (يمكنك إلغاء الاشتراك في أي وقت).',zh:'给我发送小贴士和优惠（可随时退订）。',hi:'मुझे टिप्स और ऑफ़र भेजें (कभी भी अनसब्सक्राइब करें)।',es:'Envíame consejos y ofertas (puedes cancelar cuando quieras).',it:'Inviami consigli e offerte (disiscrizione quando vuoi).',fa:'نکات و پیشنهادها را برایم بفرست (هر زمان لغو اشتراک).'},
+  acc_back:      {en:'← Use a different email/phone',fr:'← Autre e-mail/téléphone',tr:'← Farklı e-posta/telefon kullan',ar:'← استخدم بريدًا/هاتفًا آخر',zh:'← 换一个邮箱/手机',hi:'← अलग ईमेल/फ़ोन',es:'← Usar otro correo/teléfono',it:'← Usa altra email/telefono',fa:'← ایمیل/تلفن دیگر'},
+  acc_orders:    {en:'📦 My orders',fr:'📦 Mes commandes',tr:'📦 Siparişlerim',ar:'📦 طلباتي',zh:'📦 我的订单',hi:'📦 मेरे ऑर्डर',es:'📦 Mis pedidos',it:'📦 I miei ordini',fa:'📦 سفارش‌های من'},
+  acc_address:   {en:'📍 Saved address',fr:'📍 Adresse enregistrée',tr:'📍 Kayıtlı adres',ar:'📍 العنوان المحفوظ',zh:'📍 已保存地址',hi:'📍 सहेजा पता',es:'📍 Dirección guardada',it:'📍 Indirizzo salvato',fa:'📍 آدرس ذخیره‌شده'},
+  acc_wishlist:  {en:'❤️ Wishlist',fr:'❤️ Favoris',tr:'❤️ İstek listesi',ar:'❤️ المفضلة',zh:'❤️ 心愿单',hi:'❤️ विशलिस्ट',es:'❤️ Favoritos',it:'❤️ Preferiti',fa:'❤️ علاقه‌مندی‌ها'},
+  acc_logout:    {en:'Log out',fr:'Déconnexion',tr:'Çıkış yap',ar:'خروج',zh:'退出登录',hi:'लॉग आउट',es:'Cerrar sesión',it:'Esci',fa:'خروج'},
 };
 
 function applyTranslations(lang) {
@@ -2541,10 +2661,130 @@ function addBundleToCart(name, price, btn) {
   updateFloatBuy();
 })();
 
+// ── HESAP — şifresiz giriş/kayıt (ERP /api/hesap) ────────────────────────────
+const ACC_API = 'https://app.dropless.com.au';  // hesap API kökü
+var DACC = null;              // giriş yapılmış hesap özeti (localStorage)
+var accKanal = 'email';       // aktif doğrulama kanalı
+try { DACC = JSON.parse(localStorage.getItem('dropless_acc') || 'null'); } catch (e) { DACC = null; }
+function accToken() { try { return localStorage.getItem('dropless_acc_token') || ''; } catch (e) { return ''; } }
+
+// Email/SMS sekmesi seçimi
+function accSetKanal(k) {
+  accKanal = k;
+  document.getElementById('accTabEmail').classList.toggle('on', k === 'email');
+  document.getElementById('accTabSms').classList.toggle('on', k === 'sms');
+  const inp = document.getElementById('accHedef');
+  if (k === 'email') { inp.type = 'email'; inp.placeholder = 'you@example.com'; }
+  else { inp.type = 'tel'; inp.placeholder = '+61 4XX XXX XXX'; }
+}
+function openAuth() { document.getElementById('accOverlay').classList.add('open'); accBackToStep1(); document.getElementById('accHedef').focus(); }
+function closeAuth() { document.getElementById('accOverlay').classList.remove('open'); }
+function accBackToStep1() {
+  document.getElementById('accStep1').style.display = '';
+  document.getElementById('accStep2').style.display = 'none';
+  document.getElementById('accMsg1').textContent = '';
+  document.getElementById('accMsg2').textContent = '';
+}
+// Nav butonu: giriş varsa menüyü aç/kapa, yoksa modalı aç
+function accClick() {
+  if (DACC) document.getElementById('accMenu').classList.toggle('open');
+  else openAuth();
+}
+// 1) Kodu gönder
+function authSendCode() {
+  const hedef = document.getElementById('accHedef').value.trim();
+  const msg = document.getElementById('accMsg1');
+  const btn = document.getElementById('accSendBtn');
+  if (!hedef) { msg.style.color = '#fca5a5'; msg.textContent = 'Please enter your ' + (accKanal === 'email' ? 'email' : 'phone') + '.'; return; }
+  btn.disabled = true; btn.textContent = 'Sending...'; msg.style.color = 'rgba(255,255,255,.7)'; msg.textContent = '';
+  fetch(ACC_API + '/api/hesap/kod-gonder', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ hedef: hedef, kanal: accKanal }) })
+    .then(r => r.json()).then(res => {
+      btn.disabled = false; btn.textContent = 'Send code';
+      if (!res.ok) { msg.style.color = '#fca5a5'; msg.textContent = '❌ ' + (res.hata || 'Could not send code.'); return; }
+      document.getElementById('accHedefEcho').textContent = hedef;
+      document.getElementById('accStep1').style.display = 'none';
+      document.getElementById('accStep2').style.display = '';
+      document.getElementById('accKod').focus();
+    }).catch(() => { btn.disabled = false; btn.textContent = 'Send code'; msg.style.color = '#fca5a5'; msg.textContent = '❌ Network error.'; });
+}
+// 2) Kodu doğrula → giriş
+function authVerify() {
+  const hedef = document.getElementById('accHedef').value.trim();
+  const kod = document.getElementById('accKod').value.trim();
+  const ad = document.getElementById('accAd').value.trim();
+  const pz = document.getElementById('accPazarlama').checked ? '1' : '0';
+  const msg = document.getElementById('accMsg2');
+  const btn = document.getElementById('accVerifyBtn');
+  if (kod.replace(/\D/g, '').length !== 6) { msg.style.color = '#fca5a5'; msg.textContent = 'Enter the 6-digit code.'; return; }
+  btn.disabled = true; btn.textContent = 'Verifying...'; msg.textContent = '';
+  fetch(ACC_API + '/api/hesap/dogrula', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ hedef: hedef, kanal: accKanal, kod: kod, ad_soyad: ad, pazarlama_onay: pz }) })
+    .then(r => r.json()).then(res => {
+      btn.disabled = false; btn.textContent = 'Verify & continue';
+      if (!res.ok) { msg.style.color = '#fca5a5'; msg.textContent = '❌ ' + (res.hata || 'Verification failed.'); return; }
+      DACC = res.musteri;
+      try { localStorage.setItem('dropless_acc', JSON.stringify(DACC)); localStorage.setItem('dropless_acc_token', res.token); } catch (e) {}
+      closeAuth(); renderAccount(); accPrefillCheckout();
+    }).catch(() => { btn.disabled = false; btn.textContent = 'Verify & continue'; msg.style.color = '#fca5a5'; msg.textContent = '❌ Network error.'; });
+}
+// Çıkış
+function authLogout() {
+  fetch(ACC_API + '/api/hesap/cikis', { method: 'POST', headers: { 'Authorization': 'Bearer ' + accToken() } }).catch(() => {});
+  DACC = null;
+  try { localStorage.removeItem('dropless_acc'); localStorage.removeItem('dropless_acc_token'); } catch (e) {}
+  document.getElementById('accMenu').classList.remove('open');
+  renderAccount();
+}
+// Nav etiketi + menü içeriğini güncelle
+function renderAccount() {
+  const label = document.getElementById('accLabel');
+  if (!label) return;
+  if (DACC) {
+    const ad = (DACC.ad_soyad || DACC.eposta || 'Account').split(' ')[0];
+    label.textContent = 'Hi, ' + ad;
+    document.getElementById('accMenuName').textContent = DACC.ad_soyad || 'Welcome';
+    document.getElementById('accMenuMail').textContent = DACC.eposta || DACC.telefon || '';
+  } else {
+    label.textContent = (typeof UI !== 'undefined' && UI.acc_signin) ? (UI.acc_signin[localStorage.getItem('dropless_lang') || 'en'] || UI.acc_signin.en) : 'Sign in';
+    const menu = document.getElementById('accMenu'); if (menu) menu.classList.remove('open');
+  }
+}
+// Checkout e-postasını hesaptan otomatik doldur
+function accPrefillCheckout() {
+  if (!DACC) return;
+  const em = document.getElementById('musteri_email');
+  if (em && !em.value && DACC.eposta) em.value = DACC.eposta;
+}
+// Token hâlâ geçerli mi? Sayfa açılışında sessiz kontrol
+function accSessionCheck() {
+  const tok = accToken();
+  if (!tok || !DACC) return;
+  fetch(ACC_API + '/api/hesap/ben', { headers: { 'Authorization': 'Bearer ' + tok } })
+    .then(r => r.json()).then(res => {
+      if (res.ok && res.musteri) { DACC = res.musteri; try { localStorage.setItem('dropless_acc', JSON.stringify(DACC)); } catch (e) {} renderAccount(); accPrefillCheckout(); }
+      else authLogoutSilent();
+    }).catch(() => {}); // ağ hatasında mevcut durumu koru
+}
+function authLogoutSilent() {
+  DACC = null;
+  try { localStorage.removeItem('dropless_acc'); localStorage.removeItem('dropless_acc_token'); } catch (e) {}
+  renderAccount();
+}
+// Menü dışına / Escape ile kapat
+document.addEventListener('click', function (e) {
+  const menu = document.getElementById('accMenu'), btn = document.getElementById('accBtn');
+  if (menu && menu.classList.contains('open') && !menu.contains(e.target) && btn && !btn.contains(e.target)) menu.classList.remove('open');
+});
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAuth(); });
+
 // ── INIT — tüm tanımlardan SONRA çalışmalı (CART + sepet fonksiyonları yukarıda) ──
 fillBuyProducts();   // Ürün + boyut dropdown'larını doldur (hardcoded başlangıç)
 renderCart();        // localStorage'daki sepeti geri yükle
 loadKatalog();       // ERP'den canlı katalog: fiyat + boyut + stok durumu (fallback'li)
+renderAccount();     // hesap durumunu nav'a yansıt
+accPrefillCheckout();// giriş varsa checkout e-postasını doldur
+accSessionCheck();   // token geçerliliğini arka planda doğrula
 </script>
 </body>
 </html>
