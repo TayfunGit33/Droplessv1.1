@@ -440,6 +440,38 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 .acc-menu a:hover,.acc-menu button:hover{background:rgba(255,255,255,.08);}
 .acc-menu .acc-logout{color:#fca5a5;border-top:1px solid rgba(255,255,255,.1);margin-top:6px;padding-top:12px;}
 
+/* ── FAVORİ KALBİ (ürün kartı) ───────────────────────────────────────── */
+.fav-heart{margin-left:auto;background:none;border:none;font-size:1.35rem;line-height:1;cursor:pointer;
+  color:#cbd5e1;padding:2px 4px;transition:transform .15s,color .2s;flex-shrink:0;}
+.fav-heart:hover{transform:scale(1.15);color:#e0762e;}
+.fav-heart.on{color:#e0762e;}
+
+/* ── HESAP PANELİ (sağdan drawer) — cart-drawer diliyle uyumlu ────────── */
+.acc-panel{position:fixed;top:0;right:0;height:100%;width:430px;max-width:92vw;z-index:520;
+  background:linear-gradient(180deg,#0d2027,#0b191f);color:#fff;box-shadow:-14px 0 44px rgba(0,0,0,.5);
+  display:flex;flex-direction:column;font-family:'Geist',sans-serif;transform:translateX(105%);
+  transition:transform .4s cubic-bezier(.4,0,.2,1);}
+.acc-panel.open{transform:translateX(0);}
+.acc-phead{display:flex;align-items:flex-start;justify-content:space-between;padding:22px 24px 14px;border-bottom:1px solid rgba(255,255,255,.1);}
+.acc-phead .n{font-size:1.15rem;font-weight:700;}
+.acc-phead .e{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:2px;word-break:break-all;}
+.acc-pbody{flex:1;overflow-y:auto;padding:6px 24px 24px;}
+.acc-sec{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.acc-sec-title{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:#5eead4;font-weight:700;margin-bottom:12px;}
+.acc-order{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.86rem;}
+.acc-order:last-child{border-bottom:none;}
+.acc-order .meta{color:rgba(255,255,255,.55);font-size:.75rem;margin-top:2px;}
+.acc-badge{display:inline-block;font-size:.68rem;padding:2px 8px;border-radius:10px;background:rgba(94,234,212,.18);color:#5eead4;font-weight:600;text-transform:capitalize;}
+.acc-dl{background:#e0762e;color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:.78rem;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap;}
+.acc-dl:hover{background:#c96524;}
+.acc-fav{display:flex;justify-content:space-between;align-items:center;padding:9px 0;font-size:.88rem;border-bottom:1px solid rgba(255,255,255,.06);}
+.acc-fav button{background:none;border:none;color:#fca5a5;font-size:1.1rem;cursor:pointer;}
+.acc-panel input{width:100%;padding:11px 13px;border-radius:9px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;font-size:16px;font-family:inherit;margin-bottom:10px;box-sizing:border-box;}
+.acc-save{background:#5eead4;color:#0d2027;border:none;border-radius:9px;padding:11px 18px;font-size:.9rem;font-weight:700;cursor:pointer;}
+.acc-save:hover{background:#4dd6c0;}
+.acc-empty{color:rgba(255,255,255,.5);font-size:.85rem;padding:8px 0;}
+.acc-pmsg{font-size:.82rem;margin-top:8px;min-height:16px;}
+
 /* PROMO BAR — üstte ince duyuru şeridi (yalnız desktop; mobil zaten yoğun) */
 .promo-bar{position:fixed;top:0;left:0;right:0;z-index:210;height:34px;display:flex;align-items:center;
   justify-content:center;gap:6px;background:var(--ink);color:#fff;font-size:12.5px;letter-spacing:.03em;}
@@ -1001,11 +1033,58 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <div class="acc-menu" id="accMenu">
   <div class="acc-menu-name" id="accMenuName">—</div>
   <div class="acc-menu-mail" id="accMenuMail">—</div>
-  <a href="#" onclick="alert('Order history — coming soon');return false;" data-i18n="acc_orders">📦 My orders</a>
-  <a href="#" onclick="alert('Saved address — coming soon');return false;" data-i18n="acc_address">📍 Saved address</a>
-  <a href="#" onclick="alert('Wishlist — coming soon');return false;" data-i18n="acc_wishlist">❤️ Wishlist</a>
+  <a href="#" onclick="openAccountPanel('orders');return false;" data-i18n="acc_orders">📦 My orders</a>
+  <a href="#" onclick="openAccountPanel('address');return false;" data-i18n="acc_address">📍 Saved address</a>
+  <a href="#" onclick="openAccountPanel('wishlist');return false;" data-i18n="acc_wishlist">❤️ Wishlist</a>
   <button class="acc-logout" onclick="authLogout()" data-i18n="acc_logout">Log out</button>
 </div>
+
+<!-- ── HESAP PANELİ (sağdan drawer) — siparişler / adres / favoriler / profil -->
+<div class="cart-overlay" id="accPanelOverlay" onclick="closeAccountPanel()"></div>
+<aside class="acc-panel" id="accPanel" aria-label="My account">
+  <div class="acc-phead">
+    <div>
+      <div class="n" id="accPName">My account</div>
+      <div class="e" id="accPMail">—</div>
+    </div>
+    <button class="cart-dclose" onclick="closeAccountPanel()" aria-label="Close">&times;</button>
+  </div>
+  <div class="acc-pbody">
+    <!-- Siparişler -->
+    <div class="acc-sec" id="accSecOrders">
+      <div class="acc-sec-title" data-i18n="acc_orders">📦 My orders</div>
+      <div id="accOrdersList"><div class="acc-empty">Loading…</div></div>
+    </div>
+    <!-- Favoriler -->
+    <div class="acc-sec" id="accSecWishlist">
+      <div class="acc-sec-title" data-i18n="acc_wishlist">❤️ Wishlist</div>
+      <div id="accFavList"><div class="acc-empty">Loading…</div></div>
+    </div>
+    <!-- Adres -->
+    <div class="acc-sec" id="accSecAddress">
+      <div class="acc-sec-title" data-i18n="acc_address">📍 Saved address</div>
+      <input type="text" id="accAdrLine"   placeholder="Street address"/>
+      <input type="text" id="accAdrCity"   placeholder="Suburb / City"/>
+      <input type="text" id="accAdrState"  placeholder="State (e.g. NSW)"/>
+      <input type="text" id="accAdrPost"   placeholder="Postcode"/>
+      <input type="text" id="accAdrCountry" placeholder="Country" value="Australia"/>
+      <button class="acc-save" onclick="saveAddress()" data-i18n="acc_addr_save">Save address</button>
+      <p class="acc-pmsg" id="accAdrMsg"></p>
+    </div>
+    <!-- Profil -->
+    <div class="acc-sec" id="accSecProfile" style="border-bottom:none;">
+      <div class="acc-sec-title" data-i18n="acc_profile">👤 Profile</div>
+      <input type="text" id="accProfName" placeholder="Your name"/>
+      <label class="acc-check" style="color:rgba(255,255,255,.7);">
+        <input type="checkbox" id="accProfMkt"/>
+        <span data-i18n="acc_optin">Email me tips & occasional offers (you can unsubscribe anytime).</span>
+      </label>
+      <button class="acc-save" onclick="saveProfile()" data-i18n="acc_prof_save">Save profile</button>
+      <p class="acc-pmsg" id="accProfMsg"></p>
+      <button class="acc-logout" style="margin-top:16px;background:none;border:none;color:#fca5a5;font-size:.9rem;cursor:pointer;padding:8px 0;" onclick="authLogout();closeAccountPanel();" data-i18n="acc_logout">Log out</button>
+    </div>
+  </div>
+</aside>
 
 <!-- MOBILE NAV -->
 <nav class="mob-nav">
@@ -1221,6 +1300,9 @@ const UI = {
   acc_address:   {en:'📍 Saved address',fr:'📍 Adresse enregistrée',tr:'📍 Kayıtlı adres',ar:'📍 العنوان المحفوظ',zh:'📍 已保存地址',hi:'📍 सहेजा पता',es:'📍 Dirección guardada',it:'📍 Indirizzo salvato',fa:'📍 آدرس ذخیره‌شده'},
   acc_wishlist:  {en:'❤️ Wishlist',fr:'❤️ Favoris',tr:'❤️ İstek listesi',ar:'❤️ المفضلة',zh:'❤️ 心愿单',hi:'❤️ विशलिस्ट',es:'❤️ Favoritos',it:'❤️ Preferiti',fa:'❤️ علاقه‌مندی‌ها'},
   acc_logout:    {en:'Log out',fr:'Déconnexion',tr:'Çıkış yap',ar:'خروج',zh:'退出登录',hi:'लॉग आउट',es:'Cerrar sesión',it:'Esci',fa:'خروج'},
+  acc_profile:   {en:'👤 Profile',fr:'👤 Profil',tr:'👤 Profil',ar:'👤 الملف',zh:'👤 个人资料',hi:'👤 प्रोफ़ाइल',es:'👤 Perfil',it:'👤 Profilo',fa:'👤 پروفایل'},
+  acc_addr_save: {en:'Save address',fr:'Enregistrer l\'adresse',tr:'Adresi kaydet',ar:'حفظ العنوان',zh:'保存地址',hi:'पता सहेजें',es:'Guardar dirección',it:'Salva indirizzo',fa:'ذخیره آدرس'},
+  acc_prof_save: {en:'Save profile',fr:'Enregistrer le profil',tr:'Profili kaydet',ar:'حفظ الملف',zh:'保存资料',hi:'प्रोफ़ाइल सहेजें',es:'Guardar perfil',it:'Salva profilo',fa:'ذخیره پروفایل'},
 };
 
 function applyTranslations(lang) {
@@ -1683,6 +1765,9 @@ function renderProducts() {
       <div class="prod-name">${p.name}</div>
       <div class="prod-tag">${p.surfaces[L] || p.surfaces.en}</div>
     </div>
+    <button class="fav-heart${(window.FAVS && FAVS.indexOf(p.id) >= 0) ? ' on' : ''}" data-kod="${p.id}"
+            onclick="toggleFav('${p.id}', this)" aria-label="Add to wishlist"
+            title="Add to wishlist">${(window.FAVS && FAVS.indexOf(p.id) >= 0) ? '♥' : '♡'}</button>
   </div>
   ${slipWarn}
   <div class="prod-surfaces"></div>
@@ -2725,7 +2810,7 @@ function authVerify() {
       if (!res.ok) { msg.style.color = '#fca5a5'; msg.textContent = '❌ ' + (res.hata || 'Verification failed.'); return; }
       DACC = res.musteri;
       try { localStorage.setItem('dropless_acc', JSON.stringify(DACC)); localStorage.setItem('dropless_acc_token', res.token); } catch (e) {}
-      closeAuth(); renderAccount(); accPrefillCheckout();
+      closeAuth(); renderAccount(); accPrefillCheckout(); loadFavorites();
     }).catch(() => { btn.disabled = false; btn.textContent = 'Verify & continue'; msg.style.color = '#fca5a5'; msg.textContent = '❌ Network error.'; });
 }
 // Çıkış
@@ -2762,7 +2847,7 @@ function accSessionCheck() {
   if (!tok || !DACC) return;
   fetch(ACC_API + '/api/hesap/ben', { headers: { 'Authorization': 'Bearer ' + tok } })
     .then(r => r.json()).then(res => {
-      if (res.ok && res.musteri) { DACC = res.musteri; try { localStorage.setItem('dropless_acc', JSON.stringify(DACC)); } catch (e) {} renderAccount(); accPrefillCheckout(); }
+      if (res.ok && res.musteri) { DACC = res.musteri; try { localStorage.setItem('dropless_acc', JSON.stringify(DACC)); } catch (e) {} renderAccount(); accPrefillCheckout(); loadFavorites(); }
       else authLogoutSilent();
     }).catch(() => {}); // ağ hatasında mevcut durumu koru
 }
@@ -2771,12 +2856,134 @@ function authLogoutSilent() {
   try { localStorage.removeItem('dropless_acc'); localStorage.removeItem('dropless_acc_token'); } catch (e) {}
   renderAccount();
 }
+// ── FAVORİLER (wishlist) + HESAP PANELİ — Faz 2 ─────────────────────────────
+var FAVS = [];   // giriş yapılmış kullanıcının favori ürün kodları
+function prodAdiById(kod) { try { var p = PRODUCTS.find(x => x.id === kod); return p ? p.name : kod; } catch (e) { return kod; } }
+function accVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+// Kalp: girişsizse login iste (yönlendir), girişliyse toggle
+function toggleFav(kod, btn) {
+  if (!DACC) {
+    openAuth();
+    var m = document.getElementById('accMsg1');
+    m.style.color = '#5eead4'; m.textContent = 'Sign in to save your favourites ❤️';
+    return;
+  }
+  fetch(ACC_API + '/api/hesap/favori', { method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + accToken() },
+    body: JSON.stringify({ urun_kodu: kod, urun_adi: prodAdiById(kod) }) })
+    .then(r => r.json()).then(res => {
+      if (!res.ok) return;
+      FAVS = res.kodlar || [];
+      if (btn) { btn.classList.toggle('on', res.favori); btn.textContent = res.favori ? '♥' : '♡'; }
+      // kart listesindeki diğer kalpleri de senkronla
+      document.querySelectorAll('.fav-heart[data-kod="' + kod + '"]').forEach(b => {
+        b.classList.toggle('on', res.favori); b.textContent = res.favori ? '♥' : '♡';
+      });
+      renderFavList();
+    }).catch(() => {});
+}
+// Giriş sonrası / sayfa açılışında favorileri yükle
+function loadFavorites() {
+  if (!DACC) { FAVS = []; return; }
+  fetch(ACC_API + '/api/hesap/favori', { headers: { 'Authorization': 'Bearer ' + accToken() } })
+    .then(r => r.json()).then(res => {
+      if (res.ok) { FAVS = res.kodlar || []; if (typeof renderProducts === 'function') renderProducts(); renderFavList(res.favoriler); }
+    }).catch(() => {});
+}
+function renderFavList(list) {
+  var box = document.getElementById('accFavList'); if (!box) return;
+  if (!list) list = FAVS.map(k => ({ urun_kodu: k, urun_adi: prodAdiById(k) }));
+  if (!list.length) { box.innerHTML = '<div class="acc-empty">No favourites yet — tap ♡ on any product.</div>'; return; }
+  box.innerHTML = list.map(f => '<div class="acc-fav"><span>' + (f.urun_adi || f.urun_kodu) +
+    '</span><button onclick="toggleFav(\'' + f.urun_kodu + '\',null)" title="Remove">✕</button></div>').join('');
+}
+
+// Hesap panelini aç (section: orders|address|wishlist|profile)
+function openAccountPanel(section) {
+  if (!DACC) { openAuth(); return; }
+  document.getElementById('accMenu').classList.remove('open');
+  document.getElementById('accPName').textContent = DACC.ad_soyad || 'My account';
+  document.getElementById('accPMail').textContent = DACC.eposta || DACC.telefon || '';
+  document.getElementById('accAdrLine').value    = DACC.adres || '';
+  document.getElementById('accAdrCity').value    = DACC.sehir || '';
+  document.getElementById('accAdrState').value   = DACC.eyalet || '';
+  document.getElementById('accAdrPost').value    = DACC.posta_kodu || '';
+  document.getElementById('accAdrCountry').value = DACC.ulke || 'Australia';
+  document.getElementById('accProfName').value   = DACC.ad_soyad || '';
+  document.getElementById('accProfMkt').checked  = !!DACC.pazarlama_onay;
+  document.getElementById('accPanelOverlay').classList.add('open');
+  document.getElementById('accPanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  loadOrders(); renderFavList();
+  var sec = { orders: 'accSecOrders', address: 'accSecAddress', wishlist: 'accSecWishlist', profile: 'accSecProfile' }[section];
+  if (sec) setTimeout(function () { var el = document.getElementById(sec); if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
+}
+function closeAccountPanel() {
+  document.getElementById('accPanelOverlay').classList.remove('open');
+  document.getElementById('accPanel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Siparişlerim + fatura indir
+function loadOrders() {
+  var box = document.getElementById('accOrdersList'); if (!box) return;
+  box.innerHTML = '<div class="acc-empty">Loading…</div>';
+  fetch(ACC_API + '/api/hesap/siparislerim', { headers: { 'Authorization': 'Bearer ' + accToken() } })
+    .then(r => r.json()).then(res => {
+      if (!res.ok) { box.innerHTML = '<div class="acc-empty">Could not load orders.</div>'; return; }
+      if (!res.siparisler.length) { box.innerHTML = '<div class="acc-empty">No orders yet.</div>'; return; }
+      box.innerHTML = res.siparisler.map(s => '<div class="acc-order"><div><strong>' + s.siparis_no +
+        '</strong> <span class="acc-badge">' + (s.durum || '—') + '</span><div class="meta">' + s.tarih +
+        ' · $' + (s.tutar || 0).toFixed(2) + ' ' + s.para_birimi + (s.kargo_takip ? ' · ' + s.kargo_takip : '') +
+        '</div></div>' + (s.fatura_url ? '<a class="acc-dl" href="' + s.fatura_url +
+        '" target="_blank" rel="noopener">📄 Invoice</a>' : '') + '</div>').join('');
+    }).catch(() => { box.innerHTML = '<div class="acc-empty">Network error.</div>'; });
+}
+// Adres kaydet — aktif sipariş varsa teyit iste
+function saveAddress() { _saveAddress(false); }
+function _saveAddress(onayla) {
+  var msg = document.getElementById('accAdrMsg'); msg.style.color = 'rgba(255,255,255,.7)'; msg.textContent = 'Saving…';
+  var body = { adres: accVal('accAdrLine'), sehir: accVal('accAdrCity'), eyalet: accVal('accAdrState'),
+    posta_kodu: accVal('accAdrPost'), ulke: accVal('accAdrCountry'), aktif_onay: onayla ? '1' : '0' };
+  fetch(ACC_API + '/api/hesap/adres', { method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + accToken() },
+    body: JSON.stringify(body) })
+    .then(r => r.json()).then(res => {
+      if (!res.ok) { msg.style.color = '#fca5a5'; msg.textContent = '❌ ' + (res.hata || 'Error'); return; }
+      if (res.musteri) { DACC = res.musteri; try { localStorage.setItem('dropless_acc', JSON.stringify(DACC)); } catch (e) {} }
+      if (res.teyit_gerekli) {
+        if (confirm('You have an active order (' + res.aktif_siparisler.join(', ') + '). Update its delivery address too?')) {
+          _saveAddress(true);
+        } else {
+          msg.style.color = '#5eead4'; msg.textContent = '✅ Saved to your profile (active order left unchanged).';
+        }
+        return;
+      }
+      msg.style.color = '#5eead4';
+      msg.textContent = (res.guncellenen_siparisler && res.guncellenen_siparisler.length)
+        ? '✅ Saved · order ' + res.guncellenen_siparisler.join(', ') + ' updated (confirmation sent).'
+        : '✅ Address saved.';
+    }).catch(() => { msg.style.color = '#fca5a5'; msg.textContent = '❌ Network error.'; });
+}
+// Profil kaydet
+function saveProfile() {
+  var msg = document.getElementById('accProfMsg'); msg.style.color = 'rgba(255,255,255,.7)'; msg.textContent = 'Saving…';
+  fetch(ACC_API + '/api/hesap/profil', { method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + accToken() },
+    body: JSON.stringify({ ad_soyad: accVal('accProfName'), pazarlama_onay: document.getElementById('accProfMkt').checked ? '1' : '0' }) })
+    .then(r => r.json()).then(res => {
+      if (!res.ok) { msg.style.color = '#fca5a5'; msg.textContent = '❌ Error'; return; }
+      DACC = res.musteri; try { localStorage.setItem('dropless_acc', JSON.stringify(DACC)); } catch (e) {}
+      renderAccount(); msg.style.color = '#5eead4'; msg.textContent = '✅ Profile saved.';
+    }).catch(() => { msg.style.color = '#fca5a5'; msg.textContent = '❌ Network error.'; });
+}
+
 // Menü dışına / Escape ile kapat
 document.addEventListener('click', function (e) {
   const menu = document.getElementById('accMenu'), btn = document.getElementById('accBtn');
   if (menu && menu.classList.contains('open') && !menu.contains(e.target) && btn && !btn.contains(e.target)) menu.classList.remove('open');
 });
-document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAuth(); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeAuth(); closeAccountPanel(); } });
 
 // ── INIT — tüm tanımlardan SONRA çalışmalı (CART + sepet fonksiyonları yukarıda) ──
 fillBuyProducts();   // Ürün + boyut dropdown'larını doldur (hardcoded başlangıç)
