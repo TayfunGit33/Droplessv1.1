@@ -472,6 +472,52 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 .acc-empty{color:rgba(255,255,255,.5);font-size:.85rem;padding:8px 0;}
 .acc-pmsg{font-size:.82rem;margin-top:8px;min-height:16px;}
 
+/* ── ÜRÜN KARTI PUAN SATIRI ──────────────────────────────────────────── */
+.card-rating{display:none;align-items:center;gap:6px;margin-top:6px;cursor:pointer;font-size:.8rem;color:var(--muted,#64748b);}
+.card-rating.has{display:flex;}
+.card-rating .stars{color:#e0762e;letter-spacing:.5px;font-size:.92rem;}
+.card-rating:hover{text-decoration:underline;}
+
+/* ── YORUM MODALI (Customer Reviews) ─────────────────────────────────── */
+.rev-overlay{position:fixed;inset:0;background:rgba(5,15,20,.6);backdrop-filter:blur(3px);z-index:620;
+  opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:20px;}
+.rev-overlay.open{opacity:1;pointer-events:auto;}
+.rev-modal{width:560px;max-width:100%;max-height:88vh;overflow-y:auto;background:#fff;color:#0d2027;
+  border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.4);font-family:'Geist',sans-serif;}
+.rev-mhead{display:flex;align-items:center;justify-content:space-between;padding:20px 24px 12px;border-bottom:1px solid #eef2f6;position:sticky;top:0;background:#fff;border-radius:16px 16px 0 0;}
+.rev-mhead h3{margin:0;font-size:1.2rem;font-weight:700;}
+.rev-mclose{background:none;border:none;color:#94a3b8;font-size:1.6rem;cursor:pointer;line-height:1;}
+.rev-body{padding:16px 24px 24px;}
+.rev-summary{display:flex;gap:22px;align-items:center;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid #eef2f6;}
+.rev-avg{text-align:center;}
+.rev-avg .num{font-size:2.4rem;font-weight:800;line-height:1;}
+.rev-avg .stars{color:#e0762e;font-size:1.1rem;letter-spacing:1px;}
+.rev-avg .cnt{font-size:.78rem;color:#64748b;margin-top:2px;}
+.rev-dist{flex:1;min-width:200px;}
+.rev-dist-row{display:flex;align-items:center;gap:8px;font-size:.78rem;color:#64748b;margin:2px 0;}
+.rev-dist-bar{flex:1;height:8px;background:#eef2f6;border-radius:5px;overflow:hidden;}
+.rev-dist-bar span{display:block;height:100%;background:#e0762e;}
+.rev-list{margin-top:8px;}
+.rev-item{padding:14px 0;border-bottom:1px solid #f1f5f9;}
+.rev-item .top{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.rev-item .who{font-weight:700;font-size:.9rem;}
+.rev-vb{background:#e0762e;color:#fff;font-size:.64rem;padding:2px 6px;border-radius:7px;font-weight:700;margin-left:6px;}
+.rev-item .st{color:#e0762e;font-size:.9rem;letter-spacing:.5px;}
+.rev-item .dt{font-size:.72rem;color:#94a3b8;}
+.rev-item .ttl{font-weight:600;margin-top:6px;font-size:.9rem;}
+.rev-item .txt{color:#334155;font-size:.88rem;margin-top:2px;line-height:1.5;}
+.rev-reply{background:#f0fdfa;border-left:3px solid #0d9488;padding:8px 12px;margin-top:8px;border-radius:0 8px 8px 0;font-size:.83rem;color:#0f766e;}
+.rev-reply b{color:#0d9488;}
+.rev-write{margin-top:18px;padding-top:16px;border-top:2px solid #eef2f6;}
+.rev-write h4{margin:0 0 10px;font-size:1rem;}
+.rev-stars-input{font-size:1.8rem;color:#cbd5e1;cursor:pointer;user-select:none;margin-bottom:10px;}
+.rev-stars-input span{transition:color .1s;}
+.rev-stars-input span.on{color:#e0762e;}
+.rev-modal input,.rev-modal textarea{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-family:inherit;font-size:15px;margin-bottom:8px;box-sizing:border-box;}
+.rev-submit{background:#e0762e;color:#fff;border:none;border-radius:9px;padding:12px 20px;font-size:.95rem;font-weight:700;cursor:pointer;}
+.rev-submit:hover{background:#c96524;}
+.rev-msg{font-size:.84rem;margin-top:8px;min-height:16px;}
+
 /* PROMO BAR — üstte ince duyuru şeridi (yalnız desktop; mobil zaten yoğun) */
 .promo-bar{position:fixed;top:0;left:0;right:0;z-index:210;height:34px;display:flex;align-items:center;
   justify-content:center;gap:6px;background:var(--ink);color:#fff;font-size:12.5px;letter-spacing:.03em;}
@@ -1086,6 +1132,34 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   </div>
 </aside>
 
+<!-- ── CUSTOMER REVIEWS MODALI (ürün bazlı) ────────────────────────────── -->
+<div class="rev-overlay" id="revOverlay" onclick="if(event.target===this)closeReviews()">
+  <div class="rev-modal" role="dialog" aria-label="Customer reviews">
+    <div class="rev-mhead">
+      <h3 data-i18n="rev_title">Customer Reviews</h3>
+      <button class="rev-mclose" onclick="closeReviews()" aria-label="Close">&times;</button>
+    </div>
+    <div class="rev-body">
+      <div id="revProdName" style="font-weight:600;color:#0d2027;margin-bottom:10px;"></div>
+      <div class="rev-summary" id="revSummary"></div>
+      <div class="rev-list" id="revList"></div>
+      <!-- Yorum yaz -->
+      <div class="rev-write">
+        <h4 data-i18n="rev_write">Write a review</h4>
+        <div class="rev-stars-input" id="revStarsInput">
+          <span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
+        </div>
+        <input type="text" id="revName" placeholder="Your name" autocomplete="name"/>
+        <input type="email" id="revEmail" placeholder="Your email (kept private)" autocomplete="email"/>
+        <input type="text" id="revTitle" placeholder="Title (optional)"/>
+        <textarea id="revText" rows="3" placeholder="Share your experience…"></textarea>
+        <button class="rev-submit" onclick="submitReview()" data-i18n="rev_submit">Submit review</button>
+        <p class="rev-msg" id="revMsg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- MOBILE NAV -->
 <nav class="mob-nav">
   <a href="#" class="mob-nav-item"><span class="mob-nav-icon">🏠</span><span data-i18n="mobnav_home">Home</span></a>
@@ -1303,6 +1377,9 @@ const UI = {
   acc_profile:   {en:'👤 Profile',fr:'👤 Profil',tr:'👤 Profil',ar:'👤 الملف',zh:'👤 个人资料',hi:'👤 प्रोफ़ाइल',es:'👤 Perfil',it:'👤 Profilo',fa:'👤 پروفایل'},
   acc_addr_save: {en:'Save address',fr:'Enregistrer l\'adresse',tr:'Adresi kaydet',ar:'حفظ العنوان',zh:'保存地址',hi:'पता सहेजें',es:'Guardar dirección',it:'Salva indirizzo',fa:'ذخیره آدرس'},
   acc_prof_save: {en:'Save profile',fr:'Enregistrer le profil',tr:'Profili kaydet',ar:'حفظ الملف',zh:'保存资料',hi:'प्रोफ़ाइल सहेजें',es:'Guardar perfil',it:'Salva profilo',fa:'ذخیره پروفایل'},
+  rev_title:     {en:'Customer Reviews',fr:'Avis clients',tr:'Müşteri Yorumları',ar:'آراء العملاء',zh:'客户评价',hi:'ग्राहक समीक्षाएं',es:'Opiniones',it:'Recensioni',fa:'نظرات مشتریان'},
+  rev_write:     {en:'Write a review',fr:'Écrire un avis',tr:'Yorum yaz',ar:'اكتب رأيك',zh:'写评价',hi:'समीक्षा लिखें',es:'Escribir opinión',it:'Scrivi recensione',fa:'نوشتن نظر'},
+  rev_submit:    {en:'Submit review',fr:'Envoyer l\'avis',tr:'Yorumu gönder',ar:'إرسال',zh:'提交评价',hi:'समीक्षा भेजें',es:'Enviar opinión',it:'Invia recensione',fa:'ارسال نظر'},
 };
 
 function applyTranslations(lang) {
@@ -1764,6 +1841,7 @@ function renderProducts() {
     <div>
       <div class="prod-name">${p.name}</div>
       <div class="prod-tag">${p.surfaces[L] || p.surfaces.en}</div>
+      <div class="card-rating" data-kod="${p.id}" onclick="openReviews('${p.id}')"></div>
     </div>
     <button class="fav-heart${(window.FAVS && FAVS.indexOf(p.id) >= 0) ? ' on' : ''}" data-kod="${p.id}"
             onclick="toggleFav('${p.id}', this)" aria-label="Add to wishlist"
@@ -1799,6 +1877,7 @@ function renderProducts() {
   </div>` : ''}
 </div>`;
   }).join('');
+  if (typeof renderCardRatings === 'function') renderCardRatings();  // kart puan satırlarını doldur
 }
 
 // Ürün kartı içi boyut seçici + sepete ekle — müşteri buy formuna inmeden ekler
@@ -2978,12 +3057,117 @@ function saveProfile() {
     }).catch(() => { msg.style.color = '#fca5a5'; msg.textContent = '❌ Network error.'; });
 }
 
+// ── YORUM & PUANLAMA (Customer Reviews) — Faz 3 ─────────────────────────────
+var REVIEWS = {};        // {urun_kodu: {ortalama, adet, dagilim, yorumlar[]}}
+var revActiveKod = null; // modalda açık ürün
+var revRating = 0;       // form yıldız seçimi
+
+function starStr(n) { n = Math.round(n); return '★'.repeat(n) + '☆'.repeat(5 - n); }
+
+function loadReviews() {
+  fetch(ACC_API + '/api/yorum/hepsi')
+    .then(r => r.json()).then(res => { if (res.ok) { REVIEWS = res.urunler || {}; renderCardRatings(); } })
+    .catch(() => {});
+}
+// Kart puan satırlarını REVIEWS'e göre doldur
+function renderCardRatings() {
+  if (typeof REVIEWS === 'undefined' || !REVIEWS) return;  // erken render'da REVIEWS henüz yok
+  document.querySelectorAll('.card-rating').forEach(el => {
+    var kod = el.getAttribute('data-kod');
+    var r = REVIEWS[kod];
+    if (r && r.adet) {
+      el.classList.add('has');
+      el.innerHTML = '<span class="stars">' + starStr(r.ortalama) + '</span> ' + r.ortalama + ' (' + r.adet + ')';
+    } else {
+      el.classList.remove('has'); el.innerHTML = '';
+    }
+  });
+}
+// Yıldız input (form)
+(function initStarInput() {
+  document.addEventListener('click', function (e) {
+    var s = e.target.closest && e.target.closest('#revStarsInput span');
+    if (!s) return;
+    revRating = parseInt(s.getAttribute('data-v'));
+    document.querySelectorAll('#revStarsInput span').forEach(function (x) {
+      x.classList.toggle('on', parseInt(x.getAttribute('data-v')) <= revRating);
+    });
+  });
+})();
+
+function openReviews(kod) {
+  revActiveKod = kod; revRating = 0;
+  var prod = (typeof PRODUCTS !== 'undefined') ? PRODUCTS.find(p => p.id === kod) : null;
+  document.getElementById('revProdName').textContent = prod ? prod.name : '';
+  document.querySelectorAll('#revStarsInput span').forEach(x => x.classList.remove('on'));
+  document.getElementById('revName').value  = DACC ? (DACC.ad_soyad || '') : '';
+  document.getElementById('revEmail').value = DACC ? (DACC.eposta || '') : '';
+  document.getElementById('revTitle').value = '';
+  document.getElementById('revText').value  = '';
+  document.getElementById('revMsg').textContent = '';
+  renderReviewBody(kod);
+  document.getElementById('revOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeReviews() {
+  document.getElementById('revOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function renderReviewBody(kod) {
+  var r = REVIEWS[kod];
+  var sum = document.getElementById('revSummary'), list = document.getElementById('revList');
+  if (!r || !r.adet) {
+    sum.innerHTML = '<div style="color:#64748b;font-size:.9rem;">No reviews yet — be the first to review this product! ⭐</div>';
+    list.innerHTML = ''; return;
+  }
+  // Özet: ortalama + dağılım barları
+  var dist = '';
+  for (var s = 5; s >= 1; s--) {
+    var n = (r.dagilim[s] || r.dagilim[String(s)] || 0);
+    var pct = r.adet ? Math.round(n / r.adet * 100) : 0;
+    dist += '<div class="rev-dist-row"><span>' + s + '★</span><div class="rev-dist-bar"><span style="width:' + pct + '%"></span></div><span>' + n + '</span></div>';
+  }
+  sum.innerHTML = '<div class="rev-avg"><div class="num">' + r.ortalama + '</div>' +
+    '<div class="stars">' + starStr(r.ortalama) + '</div><div class="cnt">' + r.adet + ' review' + (r.adet > 1 ? 's' : '') + '</div></div>' +
+    '<div class="rev-dist">' + dist + '</div>';
+  // Liste
+  list.innerHTML = r.yorumlar.map(function (y) {
+    return '<div class="rev-item"><div class="top"><div><span class="who">' + esc(y.ad) + '</span>' +
+      (y.verified ? '<span class="rev-vb">✓ Verified</span>' : '') + '</div><span class="dt">' + y.tarih + '</span></div>' +
+      '<div class="st">' + starStr(y.puan) + '</div>' +
+      (y.baslik ? '<div class="ttl">' + esc(y.baslik) + '</div>' : '') +
+      '<div class="txt">' + esc(y.yorum) + '</div>' +
+      (y.yanit ? '<div class="rev-reply"><b>Dropless:</b> ' + esc(y.yanit) + '</div>' : '') + '</div>';
+  }).join('');
+}
+function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+function submitReview() {
+  var msg = document.getElementById('revMsg');
+  if (revRating < 1) { msg.style.color = '#dc2626'; msg.textContent = 'Please pick a star rating.'; return; }
+  var txt = document.getElementById('revText').value.trim();
+  if (!txt) { msg.style.color = '#dc2626'; msg.textContent = 'Please write a short review.'; return; }
+  var body = { urun_kodu: revActiveKod, puan: revRating, baslik: document.getElementById('revTitle').value.trim(),
+    yorum: txt, ad_soyad: document.getElementById('revName').value.trim(), eposta: document.getElementById('revEmail').value.trim() };
+  var headers = { 'Content-Type': 'application/json' };
+  if (DACC && accToken()) headers['Authorization'] = 'Bearer ' + accToken();
+  msg.style.color = '#64748b'; msg.textContent = 'Sending…';
+  fetch(ACC_API + '/api/yorum', { method: 'POST', headers: headers, body: JSON.stringify(body) })
+    .then(r => r.json()).then(res => {
+      if (!res.ok) { msg.style.color = '#dc2626'; msg.textContent = '❌ ' + (res.hata || 'Could not submit.'); return; }
+      msg.style.color = '#16a34a';
+      msg.textContent = '✅ Thanks! Your review will appear once approved.';
+      document.getElementById('revText').value = ''; document.getElementById('revTitle').value = '';
+      revRating = 0; document.querySelectorAll('#revStarsInput span').forEach(x => x.classList.remove('on'));
+    }).catch(() => { msg.style.color = '#dc2626'; msg.textContent = '❌ Network error.'; });
+}
+
 // Menü dışına / Escape ile kapat
 document.addEventListener('click', function (e) {
   const menu = document.getElementById('accMenu'), btn = document.getElementById('accBtn');
   if (menu && menu.classList.contains('open') && !menu.contains(e.target) && btn && !btn.contains(e.target)) menu.classList.remove('open');
 });
-document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeAuth(); closeAccountPanel(); } });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeAuth(); closeAccountPanel(); closeReviews(); } });
 
 // ── INIT — tüm tanımlardan SONRA çalışmalı (CART + sepet fonksiyonları yukarıda) ──
 fillBuyProducts();   // Ürün + boyut dropdown'larını doldur (hardcoded başlangıç)
@@ -2992,6 +3176,7 @@ loadKatalog();       // ERP'den canlı katalog: fiyat + boyut + stok durumu (fal
 renderAccount();     // hesap durumunu nav'a yansıt
 accPrefillCheckout();// giriş varsa checkout e-postasını doldur
 accSessionCheck();   // token geçerliliğini arka planda doğrula
+loadReviews();       // ürün yorumları + kart puan satırları
 </script>
 </body>
 </html>
