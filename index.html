@@ -331,14 +331,24 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 @media(min-width:761px){.nav{top:34px;}body{padding-top:34px;}}
 @media(max-width:760px){.promo-bar{display:none;}}
 
-/* PFAS TOOLTIP — üzerine gelince "PFAS nedir" açıklaması */
-.pfas-tip{position:relative;cursor:help;border-bottom:1px dotted rgba(255,255,255,.55);}
-.pfas-pop{display:none;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
-  width:320px;max-width:86vw;background:#0d2027;color:rgba(255,255,255,.92);border:1px solid #e0762e;
-  border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;letter-spacing:0;text-align:left;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);z-index:420;}
-.pfas-pop::before{content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(45deg);
-  width:10px;height:10px;background:#0d2027;border-left:1px solid #e0762e;border-top:1px solid #e0762e;}
+/* PFAS TOOLTIP — doğa temalı kart: orman tonları, yaprak formlu köşeler */
+.pfas-tip{position:relative;cursor:help;border-bottom:1px dotted rgba(134,239,172,.7);}
+.pfas-pop{display:none;position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);
+  width:330px;max-width:86vw;color:#dcfce7;
+  background:linear-gradient(160deg,#0b2b1a 0%,#14532d 55%,#0d3320 100%);
+  border:1.5px solid #4ade80;
+  border-radius:22px 6px 22px 6px;              /* yaprak silueti */
+  padding:14px 16px 12px;font-size:12px;line-height:1.6;letter-spacing:0;text-align:left;
+  box-shadow:0 12px 32px rgba(0,0,0,.45), inset 0 0 32px rgba(74,222,128,.08);z-index:420;}
+.pfas-pop::before{content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(45deg);
+  width:12px;height:12px;background:#0b2b1a;border-left:1.5px solid #4ade80;border-top:1.5px solid #4ade80;}
+/* köşelerde filizler */
+.pfas-pop::after{content:"🌿";position:absolute;top:-11px;right:10px;font-size:17px;
+  transform:rotate(20deg);filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));}
+.pfas-leaf{position:absolute;bottom:-9px;left:8px;font-size:15px;transform:rotate(-115deg) scaleX(-1);
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));}
+.pfas-eko{display:flex;align-items:center;gap:6px;margin-top:9px;padding-top:8px;
+  border-top:1px dashed rgba(74,222,128,.35);font-size:11px;color:#86efac;font-style:italic;}
 .pfas-tip:hover .pfas-pop,.pfas-tip.open .pfas-pop{display:block;}
 
 /* KART İÇİ SATIN ALMA — ürün kartında boyut seçici + sepete ekle */
@@ -372,12 +382,14 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
 <div class="promo-bar">🚚 Free shipping over $50 AUD &nbsp;·&nbsp; 🇦🇺 Made in Wollongong, NSW &nbsp;·&nbsp;
   <span class="pfas-tip" onclick="this.classList.toggle('open')">✅ PFAS-free formulas
     <span class="pfas-pop">
-      <strong style="color:#f0a35e;">What are PFAS?</strong><br>
-      PFAS — often called <em>"forever chemicals"</em> — are fluorinated compounds used in many
-      traditional water-repellent coatings. They never break down in nature, accumulate in people
-      and wildlife, and are being phased out across Australia.<br>
-      <strong>Dropless contains zero PFAS</strong> — the same water-beading protection,
-      without the forever chemicals.
+      <span class="pfas-leaf">🌿</span>
+      <strong style="color:#86efac;">🌱 What are PFAS?</strong><br>
+      PFAS — often called <em style="color:#bbf7d0;">"forever chemicals"</em> — are fluorinated
+      compounds used in many traditional water-repellent coatings. They never break down in
+      nature, accumulate in people and wildlife, and are being phased out across Australia.<br>
+      <strong style="color:#86efac;">Dropless contains zero PFAS</strong> — the same
+      water-beading protection, without the forever chemicals.
+      <span class="pfas-eko">💚 Kinder to you, your home &amp; Australian waterways</span>
     </span>
   </span>
 </div>
