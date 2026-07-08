@@ -345,7 +345,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.65);padding:40px var(--pad)
   <div class="footer-bottom">
     <span data-i18n="footer_copy">© 2026 Dropless. Made in Australia.</span>
     <span>ABN 65 948 041 856 · Wollongong NSW 2500</span>
-    <span id="siteVersion" title="Site version — last deployed build" style="opacity:.55; font-variant-numeric:tabular-nums;">v1.3 · 2026-07-09</span>
+    <span id="siteVersion" title="Site version — last deployed build" style="opacity:.55; font-variant-numeric:tabular-nums;">v1.4 · 2026-07-09</span>
   </div>
 </footer>
 
@@ -602,6 +602,12 @@ let activeSurface = 'all';
 let proOnly       = false;
 
 // ─── RENDER ─────────────────────────────────────────────────────
+// ERP'de gerçekten satılan (üretilen) ürünler — tek kaynak doğruluk.
+// Buradaki id'ler ERP kataloğuyla (/urun/api/web-urunler) eşleşir:
+// bathroom-shield, rainxtreme, toilet(=toilet-anti-stick), surface-prep(=quik-clean), hybrid-ultra.
+// Listede olmayan her ürün otomatik "Coming Soon" (satın alınamaz) gösterilir.
+const AVAILABLE = ['bathroom-shield','rainxtreme','toilet-anti-stick','quik-clean','hybrid-ultra'];
+
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
   let visible = 0;
@@ -609,6 +615,7 @@ function renderProducts() {
   grid.innerHTML = PRODUCTS.map(p => {
     const show = matchFilter(p);
     if (show) visible++;
+    const soon = !AVAILABLE.includes(p.id);   // ERP'de yoksa → Coming Soon
 
     const originBadge = p.origin === 'selected'
       ? `<div class="card-badge badge-selected selected-tooltip">
@@ -618,7 +625,10 @@ function renderProducts() {
       : `<div class="card-badge badge-made">${t('card_made')}</div>`;
 
     const proBadge = p.pro ? `<div class="badge-pro">Pro</div>` : '';
-    const newBadge = p.badge === 'New' ? `<div class="card-badge badge-new" style="left:auto;right:12px;">New</div>` : '';
+    // Coming Soon rozeti (ERP'de olmayan ürünler) — "New" yerine geçer
+    const newBadge = soon
+      ? `<div class="card-badge" style="left:auto;right:12px;background:#64748b;color:#fff;">Coming Soon</div>`
+      : (p.badge === 'New' ? `<div class="card-badge badge-new" style="left:auto;right:12px;">New</div>` : '');
 
     const surfaceChips = p.surfaces.slice(0,3).map(s =>
       `<span class="surf-chip">${surfaceLabel(s)}</span>`
@@ -653,10 +663,14 @@ function renderProducts() {
         </div>` : ''}
       </div>
       <div class="prod-card-footer">
-        <div class="prod-card-price">$${p.price.toFixed(2)}<span> AUD · ${p.size}</span></div>
+        <div class="prod-card-price">${soon
+          ? `<span style="color:#94a3b8;font-weight:600;">Coming Soon</span>`
+          : `$${p.price.toFixed(2)}<span> AUD · ${p.size}</span>`}</div>
         <div class="prod-card-actions">
           ${howBtn}
-          <a href="${buyUrl}" class="pca-btn pca-buy">${t('card_buy')}</a>
+          ${soon
+            ? `<span class="pca-btn" style="opacity:.55;cursor:not-allowed;background:#e2e8f0;color:#64748b;border-color:#e2e8f0;">Coming Soon</span>`
+            : `<a href="${buyUrl}" class="pca-btn pca-buy">${t('card_buy')}</a>`}
         </div>
       </div>
     </div>`;
