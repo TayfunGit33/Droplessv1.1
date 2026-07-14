@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Test Your Glass — Dropless Water Contact Angle Meter</title>
+<meta name="description" content="Measure how water beads on your glass. Take a photo of a droplet and get the contact angle instantly — proof your Dropless coating works.">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { margin: 0; font-family: -apple-system, system-ui, "Segoe UI", sans-serif; background: #0b1220; color: #eaf2fb; }
+  header { padding: 16px; text-align: center; border-bottom: 1px solid #1c2a3a; }
+  header .logo { font-weight: 800; font-size: 20px; letter-spacing: .5px; }
+  header .logo b { color: #38bdf8; }
+  header small { display: block; font-weight: 400; font-size: 12px; color: #7f93a8; margin-top: 3px; }
+  .wrap { max-width: 620px; margin: 0 auto; padding: 14px; }
+  .lead { font-size: 14px; color: #9fb2c6; text-align: center; margin: 6px 2px 14px; }
+  .stage { position: relative; width: 100%; background: #000; border-radius: 14px; overflow: hidden; line-height: 0; }
+  video, #cv { width: 100%; display: block; }
+  #guide { position: absolute; left: 0; right: 0; top: 78%; height: 2px; background: rgba(56,189,248,.8); pointer-events: none; }
+  #guide::after { content: "line up the glass surface here"; position: absolute; left: 8px; top: -20px; font-size: 11px; color: #38bdf8; line-height: 1; }
+  #baseline { position: absolute; left: 0; right: 0; height: 3px; background: #38bdf8; display: none; touch-action: none; }
+  #baseline::before { content: ""; position: absolute; right: 10px; top: -13px; width: 30px; height: 30px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 0 4px rgba(56,189,248,.25); }
+  #baseline span { position: absolute; left: 8px; top: -22px; font-size: 12px; color: #38bdf8; background: rgba(0,0,0,.55); padding: 1px 7px; border-radius: 6px; }
+  .btns { display: flex; gap: 8px; margin-top: 12px; }
+  button { flex: 1; padding: 15px; font-size: 16px; font-weight: 700; border: 0; border-radius: 12px; color: #fff; background: #0284c7; }
+  button.secondary { background: #334155; }
+  .result { margin-top: 14px; padding: 18px; border-radius: 14px; background: #0f1a28; border: 1px solid #1c2a3a; text-align: center; display: none; }
+  .angle { font-size: 56px; font-weight: 800; line-height: 1; }
+  .angle small { font-size: 22px; color: #7f93a8; }
+  .badge { display: inline-block; margin-top: 10px; padding: 5px 14px; border-radius: 999px; font-weight: 700; }
+  .hydrophobic { background: #0d3b2e; color: #34d399; }
+  .hydrophilic { background: #3b2a0d; color: #fbbf24; }
+  .sub { margin-top: 8px; font-size: 13px; color: #7f93a8; }
+  .scale { margin-top: 10px; font-size: 12px; color: #7f93a8; text-align: center; }
+  .hint { font-size: 13px; color: #7f93a8; margin: 10px 2px; }
+  .err { background: #3b1111; color: #fca5a5; padding: 12px; border-radius: 10px; margin-top: 10px; display: none; font-size: 14px; }
+  .cta { display: block; text-align: center; margin: 18px auto 6px; padding: 14px; background: #16a34a; color: #fff; text-decoration: none; border-radius: 12px; font-weight: 700; max-width: 320px; }
+  input[type=file] { display: none; }
+  a.back { color: #7f93a8; font-size: 13px; text-decoration: none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><b>Dropless</b> · Test Your Glass 💧</div>
+  <small>See the science: measure how water beads on a treated vs untreated surface</small>
+</header>
+<div class="wrap">
+  <p class="lead">Put a water droplet on your glass, photograph it from the side, and get the <b>contact angle</b>. Untreated glass ≈ 20–50°. Dropless‑treated glass ≈ 100–120°+ (water beads up).</p>
+
+  <div class="stage" id="stage">
+    <video id="video" playsinline autoplay muted></video>
+    <canvas id="cv" style="display:none"></canvas>
+    <div id="guide"></div>
+    <div id="baseline"><span>glass surface</span></div>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <div class="btns" id="liveBtns">
+    <button id="shot">📸 Capture</button>
+    <button class="secondary" id="pickBtn">🖼️ Photo</button>
+  </div>
+  <div class="btns" id="editBtns" style="display:none">
+    <button id="measure">📐 Measure</button>
+    <button class="secondary" id="retake">↩︎ Retake</button>
+  </div>
+
+  <div class="hint" id="hint">Tip: shoot from the side with light behind the droplet. After capturing, drag the blue line onto the glass surface, then tap <b>Measure</b>.</div>
+
+  <div class="result" id="result">
+    <div class="angle"><span id="ang">–</span><small>°</small></div>
+    <div class="badge" id="badge">–</div>
+    <div class="sub" id="sub"></div>
+    <div class="scale">Higher angle = more water‑repellent. 90°+ means the surface is hydrophobic.</div>
+  </div>
+
+  <a class="cta" id="shopCta" href="/products.html">🛒 Get Dropless for your glass</a>
+  <div style="text-align:center;margin-top:8px"><a class="back" href="/">← Back to dropless.com.au</a></div>
+
+  <input type="file" id="file" accept="image/*" capture="environment">
+</div>
+
+<script src="goniometre_core.js"></script>
+<script>
+(function () {
+  "use strict";
+  const MAXW = 640;
+  const video = document.getElementById("video");
+  const cv = document.getElementById("cv");
+  const ctx = cv.getContext("2d", { willReadFrequently: true });
+  const guide = document.getElementById("guide");
+  const baseline = document.getElementById("baseline");
+  const errBox = document.getElementById("err");
+  const result = document.getElementById("result");
+  let stream = null, frozen = null, baselineFrac = 0.78;
+
+  function showErr(m){ errBox.style.display="block"; errBox.innerHTML=m; }
+  function hideErr(){ errBox.style.display="none"; }
+
+  async function startCamera(){
+    hideErr();
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+      showErr("Live camera needs a secure page. Tap 🖼️ <b>Photo</b> to use your phone camera instead."); return;
+    }
+    try{
+      stream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:{ideal:"environment"}, width:{ideal:1280}, height:{ideal:960} }, audio:false });
+      video.srcObject = stream;
+      video.style.display="block"; cv.style.display="none";
+      guide.style.display="block"; baseline.style.display="none";
+    }catch(e){ showErr("Couldn't open the camera ("+e.name+"). Allow camera access, or tap 🖼️ <b>Photo</b>."); }
+  }
+  function stopCamera(){ if(stream){ stream.getTracks().forEach(t=>t.stop()); stream=null; } }
+
+  function freezeFrom(src, sw, sh){
+    const scale = Math.min(1, MAXW/sw);
+    cv.width = Math.round(sw*scale); cv.height = Math.round(sh*scale);
+    ctx.drawImage(src, 0, 0, cv.width, cv.height);
+    frozen = ctx.getImageData(0,0,cv.width,cv.height);
+    video.style.display="none"; cv.style.display="block"; guide.style.display="none";
+    document.getElementById("liveBtns").style.display="none";
+    document.getElementById("editBtns").style.display="flex";
+    positionBaseline(); baseline.style.display="block"; result.style.display="none";
+    stopCamera();
+  }
+  function positionBaseline(){
+    const h = cv.getBoundingClientRect().height;
+    baseline.style.top = (baselineFrac*h)+"px";
+    baseline.querySelector("span").textContent = "glass surface — drag";
+  }
+
+  let dragging=false;
+  baseline.addEventListener("pointerdown", e=>{ dragging=true; baseline.setPointerCapture(e.pointerId); });
+  baseline.addEventListener("pointermove", e=>{
+    if(!dragging) return;
+    const r = cv.getBoundingClientRect();
+    let y = Math.max(4, Math.min(r.height-2, e.clientY - r.top));
+    baselineFrac = y/r.height; baseline.style.top = y+"px";
+  });
+  baseline.addEventListener("pointerup", ()=>{ dragging=false; });
+  window.addEventListener("resize", ()=>{ if(cv.style.display==="block") positionBaseline(); });
+
+  document.getElementById("shot").onclick = ()=>{
+    if(!video.videoWidth){ showErr("Camera is still warming up, one sec."); return; }
+    freezeFrom(video, video.videoWidth, video.videoHeight);
+  };
+  document.getElementById("pickBtn").onclick = ()=> document.getElementById("file").click();
+  document.getElementById("file").onchange = e=>{
+    const f = e.target.files[0]; if(!f) return;
+    const img = new Image(); img.onload = ()=> freezeFrom(img, img.naturalWidth, img.naturalHeight);
+    img.src = URL.createObjectURL(f);
+  };
+  document.getElementById("retake").onclick = ()=>{
+    document.getElementById("editBtns").style.display="none";
+    document.getElementById("liveBtns").style.display="flex";
+    result.style.display="none"; hideErr(); startCamera();
+  };
+  document.getElementById("measure").onclick = ()=>{
+    hideErr();
+    const baselineY = Math.round(baselineFrac*cv.height);
+    const d = frozen.data, n = cv.width*cv.height;
+    const gray = new Float64Array(n);
+    for(let i=0;i<n;i++){ const p=i*4; gray[i]=0.299*d[p]+0.587*d[p+1]+0.114*d[p+2]; }
+    let res;
+    try{ res = Goniometre.measure(gray, cv.width, cv.height, baselineY); }
+    catch(err){ showErr("Couldn't find a droplet. Make sure it's backlit and drag the blue line onto the glass surface."); return; }
+    drawOverlay(res); showResult(res);
+  };
+  function drawOverlay(res){
+    ctx.putImageData(frozen,0,0);
+    const c = res.circle; ctx.lineWidth=2;
+    ctx.strokeStyle="rgba(56,189,248,.9)"; ctx.beginPath(); ctx.moveTo(0,res.baselineY); ctx.lineTo(cv.width,res.baselineY); ctx.stroke();
+    ctx.strokeStyle="rgba(255,90,90,.95)"; ctx.beginPath(); ctx.arc(c.cx,c.cy,c.r,0,Math.PI*2); ctx.stroke();
+    ctx.fillStyle="#22ff44"; for(const [px,py] of res.contacts){ ctx.beginPath(); ctx.arc(px,py,5,0,Math.PI*2); ctx.fill(); }
+    baseline.style.display="none";
+  }
+  function showResult(res){
+    document.getElementById("ang").textContent = res.thetaCircle;
+    const badge = document.getElementById("badge");
+    const hydro = res.thetaCircle >= 90;
+    badge.textContent = hydro ? "Hydrophobic — water beads up 💧" : "Hydrophilic — water spreads";
+    badge.className = "badge " + (hydro ? "hydrophobic" : "hydrophilic");
+    const lr = (res.thetaLeft!=null) ? `left ${res.thetaLeft}° · right ${res.thetaRight}°` : "";
+    document.getElementById("sub").textContent = `circle‑fit ${res.thetaCircle}°  ${lr}`;
+    result.style.display="block";
+  }
+  startCamera();
+})();
+</script>
+</body>
+</html>
